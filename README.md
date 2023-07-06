@@ -6,7 +6,7 @@
 - Adjusted so that it does not look out of place when used in conjunction with "m-select".<br>
 - Highly readable coding.<br>
 
-#Stil todo:<br>
+Stil todo:<br>
 - Replace combo number and judge.<br>
 
 ### Sample movie<br>
