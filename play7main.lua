@@ -238,15 +238,15 @@ local function f_center_pos()
 end	
 
 local filepath = {
-	{name = "Mascot", category = "main_2", path = "parts/mascot/*.png", def = "Default"},
+	{name = "Mascot", category = "main_2", path = "parts/!mascot/*.png", def = "Default"},
 	{name = "BG", category = "main_3", path = "parts/bg/*.png", def = "Default"},
 	{name = "Notes", category = "play_9", path = "parts/notes/*.png", def = "Square_1"},
-	{name = "Judge", category = "play_10", path = "parts/judge/*.png"},
-	{name = "Judge Num", category = "play_11", path = "parts/judgenum/*.png"},
+	{name = "Judge", category = "play_10", path = "parts/!judge/*.png"},
+	{name = "Judge Num", category = "play_11", path = "parts/!judgenum/*.png"},
 	{name = "Judge Line", category = "play_12", path = "parts/judgeline/*.png", def = "Default"},
 	{name = "Gauge", category = "play_13", path = "parts/gauge/*.png", def = "Default"},	
 	{name = "Keybeam", category = "play_14", path = "parts/keybeam/*.png", def = "Default"},
-	{name = "Bomb", category = "play_15", path = "parts/bomb/*.png", def = "x150%_Blue_clear_ring_SCUROed"},
+	{name = "Bomb", category = "play_15", path = "parts/!bomb/*.png", def = "x150%_Blue_clear_ring_SCUROed"},
 	{name = "Lane Cover", category = "play_16", path = "parts/lanecover/*.png", def = "Default"},
 	{name = "Lift Cover", category = "play_17", path = "parts/liftcover/*.png", def = "Default"},
 	{name = "Hidden Cover", category = "play_18", path = "parts/hiddencover/*.png", def = "Default"},
@@ -342,25 +342,25 @@ local function main()
 	skin.source = {
 		--common
 		{id = "bg_src", path = "parts/bg/*.png"},
-		{id = "soundonly_src", path = "common/sound_only.png"},
-		{id = "nostagefile_src", path = "common/nostagefile.png"},
+		{id = "soundonly_src", path = "!common/sound_only.png"},
+		{id = "nostagefile_src", path = "!common/nostagefile.png"},
 
 		--info
-		{id = "info_system_src", path = "common/info_system.png"},
+		{id = "info_system_src", path = "!common/info_system.png"},
 
 		--score
-		{id = "score_system_src", path = "common/score_system.png"},	
-		{id = "mascot_src", path = "parts/mascot/*.png"},	
+		{id = "score_system_src", path = "!common/score_system.png"},	
+		{id = "mascot_src", path = "parts/!mascot/*.png"},	
 
 		--play
-		{id = "play_system_src", path = "common/play_system.png"},
+		{id = "play_system_src", path = "!common/play_system.png"},
 		{id = "notes_src", path = "parts/notes/*.png"},
-		{id = "judge_src", path = "parts/judge/*.png"},
-		{id = "judgenum_src", path = "parts/judgenum/*.png"},
+		{id = "judge_src", path = "parts/!judge/*.png"},
+		{id = "judgenum_src", path = "parts/!judgenum/*.png"},
 		{id = "judgeline_src", path = "parts/judgeline/*.png"},
 		{id = "gauge_src", path = "parts/gauge/*.png"},
 		{id = "keybeam_src", path = "parts/keybeam/*.png"},
-		{id = "bomb_src", path = "parts/bomb/*.png"},
+		{id = "bomb_src", path = "parts/!bomb/*.png"},
 		{id = "lanecover_src", path = "parts/lanecover/*.png"},
 		{id = "liftcover_src", path = "parts/liftcover/*.png"},
 		{id = "hiddencover_src", path = "parts/hiddencover/*.png"},
