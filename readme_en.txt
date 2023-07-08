@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:07/06/2023)
+(Last updated:07/08/2023)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -61,11 +61,23 @@ This skin uses "RictyDiminished-Bold" and "RictyDiminished-Regilar" fonts.
 https://github.com/edihbrandon/RictyDiminished
 
 -------------------------------------
+About Licenses:
 
-As stated above, this skin was created by re-editing an image 
-that is the copyrighted work of others.　Therefore, modification or redistribution 
-of this skin is prohibited.
-However, I would like you to modify and redistribute only the ".lua file" of this skin.
+As stated above, this skin was created by re-editing an image that is the copyrighted 
+work of others.　Therefore, modification or distribution of files with 
+the prefix "!" is prohibited. Specifically, the relevant file will be deemed to be in compliance with the "No License"(https://choosealicense.com/no-permission/).
+
+However, for other files, those without the prefix "!", I have created these files, and I give permission to modify and distribute them. Specifically, the relevant files will be deemed 
+compliant with "GPL v3"(https://choosealicense.com/licenses/gpl-3.0/).
+
+There are various restrictions that may make you feel annoyed, but since this is a gray area, 
+I want to be as transparent as possible about the copyrights.
+The purpose of this skin is to provide as much transparency as possible.
+I appreciate your understanding and cooperation.
+
+-------------------------------------
+To skin producers:
+
 I would be more than happy if more people are interested in making skins and 
 if the beatoraja community becomes more lively.
 I can't deny that there is still a lack of information on how to write lua files on beatoraja.
@@ -73,6 +85,7 @@ So, if you are ever stuck on editing a lua file, I may be able to help you in so
 Please contact me and i will do my best to respond.
 
 -------------------------------------
+Problems with this skin:
 
 As for the future of this skin, i cannot say that it is completely clean-handed in that 
 it uses Retsukiya's combo image and Stepmania's judge's image without permission.
@@ -82,7 +95,7 @@ appreciate it if you would contact me.
 
 -------------------------------------
 
-Please contact us for any other bugs or requests.
+Please contact me for any other bugs or requests.
 
 -------------------------------------
 
@@ -95,4 +108,7 @@ Update History
 
 07/06/2023
 	Skin Release
+
+07/08/2023
+	Clear statement of copyrights
 	
