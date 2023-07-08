@@ -6,8 +6,7 @@
 - Adjusted so that it does not look out of place when used in conjunction with **"m-select"**.<br>
 - Highly readable coding.<br>
 
-##
-Still todo:<br>
+## Still todo:<br>
 - Replace combo number and judge.<br>
 
 ## About Licenses<br>
