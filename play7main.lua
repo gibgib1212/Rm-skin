@@ -39,7 +39,9 @@ local category = {
 		"play_22",
 		"play_23",
 		"play_24",
-		"play_25"
+		"play_25",
+		"play_26",
+		"play_27"
 	}},
 }
 
@@ -80,11 +82,15 @@ local property = {
 		{name = "+-ms (Normal)", op = 917},
 		{name = "+-ms (All)", op = 918}
 	}},
-	{name = "Mascot Display", category = "main_1", item = {
+	{name = "Timing Visualizer", category = "play_9", item = {
 		{name = "Off", op = 919},
-		{name = "Stop", op = 920},
-		{name = "Jump", op = 921},
-		{name = "Float", op = 922}
+		{name = "On", op = 920}
+	}},
+	{name = "Mascot Display", category = "main_1", item = {
+		{name = "Off", op = 921},
+		{name = "Stop", op = 922},
+		{name = "Jump", op = 923},
+		{name = "Float", op = 924}
 	}},
 }
 local function isScratchLeft()
@@ -144,17 +150,23 @@ end
 local function isFastSlowMSall()
 	return skin_config.option["Fast/Slow"] == 918
 end 
+local function isTimingVisualizerOff()
+	return skin_config.option["Timing Visualizer"] == 919
+end
+local function isTimingVisualizerOn()
+	return skin_config.option["Timing Visualizer"] == 920
+end 
 local function isMascotOff()
-	return skin_config.option["Mascot Display"] == 919
-end
-local function isMascotStop()
-	return skin_config.option["Mascot Display"] == 920
-end
-local function isMascotJump()
 	return skin_config.option["Mascot Display"] == 921
 end
-local function isMascotFloat()
+local function isMascotStop()
 	return skin_config.option["Mascot Display"] == 922
+end
+local function isMascotJump()
+	return skin_config.option["Mascot Display"] == 923
+end
+local function isMascotFloat()
+	return skin_config.option["Mascot Display"] == 924
 end
 
 local function f_play_pos()
@@ -240,29 +252,30 @@ end
 local filepath = {
 	{name = "Mascot", category = "main_2", path = "parts/!mascot/*.png", def = "Default"},
 	{name = "BG", category = "main_3", path = "parts/bg/*.png", def = "Default"},
-	{name = "Notes", category = "play_9", path = "parts/notes/*.png", def = "Square_1"},
-	{name = "Judge", category = "play_10", path = "parts/!judge/*.png"},
-	{name = "Judge Num", category = "play_11", path = "parts/!judgenum/*.png"},
-	{name = "Judge Line", category = "play_12", path = "parts/judgeline/*.png", def = "Default"},
-	{name = "Gauge", category = "play_13", path = "parts/gauge/*.png", def = "Default"},	
-	{name = "Keybeam", category = "play_14", path = "parts/keybeam/*.png", def = "Default"},
-	{name = "Bomb", category = "play_15", path = "parts/!bomb/*.png", def = "x150%_Blue_clear_ring_SCUROed"},
-	{name = "Lane Cover", category = "play_16", path = "parts/lanecover/*.png", def = "Default"},
-	{name = "Lift Cover", category = "play_17", path = "parts/liftcover/*.png", def = "Default"},
-	{name = "Hidden Cover", category = "play_18", path = "parts/hiddencover/*.png", def = "Default"},
+	{name = "Notes", category = "play_10", path = "parts/notes/*.png", def = "Square_1"},
+	{name = "Judge", category = "play_11", path = "parts/!judge/*.png"},
+	{name = "Judge Num", category = "play_12", path = "parts/!judgenum/*.png"},
+	{name = "Judge Line", category = "play_13", path = "parts/judgeline/*.png", def = "Default"},
+	{name = "Gauge", category = "play_14", path = "parts/gauge/*.png", def = "Default"},	
+	{name = "Keybeam", category = "play_15", path = "parts/keybeam/*.png", def = "Default"},
+	{name = "Bomb", category = "play_16", path = "parts/!bomb/*.png", def = "x150%_Blue_clear_ring_SCUROed"},
+	{name = "Lane Cover", category = "play_17", path = "parts/lanecover/*.png", def = "Default"},
+	{name = "Lift Cover", category = "play_18", path = "parts/liftcover/*.png", def = "Default"},
+	{name = "Hidden Cover", category = "play_19", path = "parts/hiddencover/*.png", def = "Default"},
 }
 
 local offset = {
 
 	{name = "BG Darkness 0~255", category = "main_4", id = 50, x = false, y = false, w = false, h = false, r = false, a = true},
 	{name = "BGA Darkness 0~255", category = "main_5", id = 51, x = false, y = false, w = false, h = false, r = false, a = true},
-	{name = "F/S Position", category = "play_19", id = 52, x = true, y = true, w = false, h = false, r = false, a = false},
-	{name = "Target Position & Transparence", category = "play_20", id = 53, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Target2 Position & Transparence", category = "play_21", id = 54, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Score Rate Position & Transparence", category = "play_22", id = 55, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Lane Darkness 0~255", category = "play_23", id = 56, x = false, y = false, w = false, h = false, r = false, a = true},
-	{name = "Judge Transparence 0~255", category = "play_24", id = 57, x = false, y = false, w = false, h = false, r = false, a = true},
-	{name = "Judge Num Transparence 0~255", category = "play_25", id = 58, x = false, y = false, w = false, h = false, r = false, a = true},
+	{name = "F/S Position", category = "play_20", id = 52, x = true, y = true, w = false, h = false, r = false, a = false},
+	{name = "Target Position & Transparence", category = "play_21", id = 53, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Target2 Position & Transparence", category = "play_22", id = 54, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Score Rate Position & Transparence", category = "play_23", id = 55, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Lane Darkness 0~255", category = "play_24", id = 56, x = false, y = false, w = false, h = false, r = false, a = true},
+	{name = "Judge Transparence 0~255", category = "play_25", id = 57, x = false, y = false, w = false, h = false, r = false, a = true},
+	{name = "Judge Num Transparence 0~255", category = "play_26", id = 58, x = false, y = false, w = false, h = false, r = false, a = true},
+	{name = "Timing Visualizer Transparence 0~255", category = "play_27", id = 59, x = false, y = false, w = false, h = false, r = false, a = true},	
 }
 
 local header = {
@@ -482,6 +495,8 @@ local function main()
 		{id = "mine-Sc", src = "notes_src", x = notesInfo.Sc_x, y = notesInfo.mine_y, w = notesInfo.Sc_width, h = notesInfo.height},
 
 		{id = "section-line", src = "play_system_src", x = 0, y = 0, w = 1, h = 1},
+
+		{id = "timing-visualizer-frame", src = "play_system_src", x = 201, y = 290, w = 322, h = 62},
 
 		{id = "gauge-r1", src = "gauge_src", x = 0, y = 0, w = 15, h = 24},
 		{id = "gauge-r2", src = "gauge_src", x = 30, y = 0, w = 15, h = 24},
@@ -1339,7 +1354,7 @@ if isTarget2On() then
 	local targ_x = -132
 	if isTargetRank() then
 		table.insert(skin.destination,	{
-			id = "diff-best", offsets = {3, 32, 54}, timer = 41, draw = function()
+			id = "diff-best", offsets = {3, 32, 54}, op = {32}, timer = 41, draw = function()
 				if (main_state.float_number(113) ~= 0) and main_state.option(32) then
 					return true
 				end
@@ -1349,7 +1364,7 @@ if isTarget2On() then
 		})
 	elseif isTargetBest()then
 		table.insert(skin.destination,	{
-			id = "diff-target", offsets = {3, 32, 54}, timer = 41, draw = function()
+			id = "diff-target", offsets = {3, 32, 54}, op = {32}, timer = 41, draw = function()
 				if (main_state.float_number(113) ~= 0) and main_state.option(32) then
 					return true
 				end
@@ -1372,6 +1387,20 @@ if isScoreRateOn() then
 		}},
 		{id = "play-rate-DnP", offsets = {3, 55}, timer = 41, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 99, y = geometry.judge_y + (-365), w = 12, h = 45, a = 0, acc = 2}
+		}},
+	})
+end
+
+		-- タイミング・ヴィジュアライザー
+		-- Timing Visualizer
+if isTimingVisualizerOn() then
+	skin.timingvisualizer = {{id = "timing-visualizer"}}
+	append_all(skin.destination, {
+		{id = "timing-visualizer", offsets = {3, 59}, op = {32}, timer = 41, dst = {
+			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-160), y = geometry.judge_y + (-420), w = 320, h = 32, a = 0, acc = 2}
+		}},
+		{id = "timing-visualizer-frame", offsets = {3, 59}, op = {32}, timer = 41, dst = {
+			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-161), y = geometry.judge_y + (-449), w = 322, h = 62, a = 0, acc = 2}
 		}},
 	})
 end
