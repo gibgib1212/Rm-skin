@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:07/08/2023)
+(Last updated:07/15/2023)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -12,48 +12,47 @@ beatorajaX.X.X/skin/Rm-skin-main...
 Also, as a reminder, the initial transparency values for some items are set to "0".
 I apologize for the inconvenience, but in the "beatoraja X.X.X configuration" skin tab,
 please enter any value for "a" in the field labeled "Transparence".
-Please see the included NOTICE.png for details.
+Please see the included "NOTICE.png" for details.
 
 In addition, I created this skin without any specialized knowledge of the Lua language.
-This is not limited to the Lua language, but there is a possibility of fatal defects such as 
-memory leaks when writing skins using a programming language as opposed to the csv format.
-I have debugged the skin and have made every effort to simplify the coding 
-so that it will not cause any problems, but I will not be held responsible for 
-any malfunctions of equipment or facilities that may occur as a result of using this skin.
+Therefore, i assume no responsibility for any malfunction of equipment, facilities, etc. 
+caused by the use of this skin.
 
 -------------------------------------
 
 In creating this skin, I have used code descriptions and images from other authors.
-I would like to express our gratitude to each of them and their products as follows.
+I would like to express our gratitude to the following.
 
 Dear 4228, "Rogan".
-	The source code for this skin is based on 4228's Rogan's Play skin.
-	I had no idea how to write in Lua at the beginning, but 4228's simple and highly 
-	readable code was a guide for me in the process of creating the code. 
+	"play7main.lua" for this skin was produced based on "play7main.lua" for "Rogan".
 	Thank you very much.
 
 Dear むにむにおじさん, "m-select".
-	Most of the materials in my skin are borrowed from and processed by m-select.
-	If むにむにおじさん had not given us permission to modify and distribute the images, 
-	this skin would never have been created. Thank you very much.
+	Most of the materials in my skin are borrowed from and processed by "m-select".
+	Thank you very much.
+	The following is a list of materials borrowed.
+	- "m_select\customize\advanced\default_bganimation\custombg1.png"
+	- "m_select\customize\advanced\default_commonparts\system.png"
+	- "m_select\customize\advanced\default_commonparts\font\m_select_system.png"
+	- "m_select\customize\advanced\default_playerrank2\num.png"
+	- "m_select\customize\advanced\default_stateplayoption2\parts.png"
+	- "m_select\customize\mascot\default.png"
+	- "m_select\play\antique\system\image\fceffect.png"
+	- "m_select\play\antique\system\image\frame_graph1p.png"
+	- "m_select\play\antique\system\image\fullcombo.png"
+	- "m_select\play\antique\system\image\graph.png"
+	- "m_select\play\antique\system\image\graph_line.png"
+	- "m_select\play\antique\system\image\rank.png"
+	- "m_select\result\system.png"
 
 Dear KASAKO, "Modern_Chic".
-	Five of the six bombs in this skin are modified from 
-	clear ring_blue SCUROed" by Modern_Chic.
-	Thank you very much for publishing these high-quality bombs.
+	The bomb in this skin is a 1.5x enlargement of Modern_Chic's "clear ring_blue SCUROed" and color processed.
+	Thank you very much.
+	- "ModernChic\Play\parts\common\bomb\clear ring_blue SCUROed..png"
 
 Dear Retsukiya, "R-skin".
-	I'm using R-skin combo images (2 types) for this skin.
-	R-skin is a very well-known skin in the o!m community, 
-	and various people have created variants of R-skin.
-	Not to use that as an excuse, but our skin also borrows combo images 
-	without permission.
-	If you have any problems, please contact me.
-	I will take measures such as replacing the combo image as soon as possible.
-
-Producer unknown.
-	We also borrow judgm image widely circulated in the o!m community without permission.
-	Please contact me if you have any problems with this as well.
+	Inspired by "R-skin" by Retsukiya, i developed this skin.
+	Thank you very much.
 
 -------------------------------------
 
@@ -63,16 +62,17 @@ https://github.com/edihbrandon/RictyDiminished
 -------------------------------------
 About Licenses:
 
-As stated above, this skin was created by re-editing an image that is the copyrighted 
-work of others.　Therefore, modification or distribution of files with 
-the prefix "!" is prohibited. Specifically, the relevant file will be deemed to be in compliance with the "No License"(https://choosealicense.com/no-permission/).
+As mentioned above, this skin was created by re-editing images and other materials 
+that were the work of our pioneers.
+Therefore, modification or distribution of files with the prefix "!" is prohibited. 
+Specifically, the relevant file will be deemed to be in compliance with the "No License"(https://choosealicense.com/no-permission/).
 
 However, for other files, those without the prefix "!", I have created these files, and I give permission to modify and distribute them. Specifically, the relevant files will be deemed 
 compliant with "GPL v3"(https://choosealicense.com/licenses/gpl-3.0/).
 
-There are various restrictions that may make you feel annoyed, but since this is a gray area, 
-I want to be as transparent as possible about the copyrights.
-The purpose of this skin is to provide as much transparency as possible.
+While the various restrictions may seem cumbersome, the environment surrounding 
+BMS is a gray area, and i want to provide as much transparency as possible regarding copyrights.
+Therefore, my skin has been created with the goal of providing as much transparency as possible.
 I appreciate your understanding and cooperation.
 
 -------------------------------------
@@ -83,15 +83,6 @@ if the beatoraja community becomes more lively.
 I can't deny that there is still a lack of information on how to write lua files on beatoraja.
 So, if you are ever stuck on editing a lua file, I may be able to help you in some small way,
 Please contact me and i will do my best to respond.
-
--------------------------------------
-Problems with this skin:
-
-As for the future of this skin, i cannot say that it is completely clean-handed in that 
-it uses Retsukiya's combo image and Stepmania's judge's image without permission.
-So I would like to replace the combo and judge with a copyright clean one, 
-but I have no knowledge of image manipulation or design, so if there is anyone who can produce images like the above and give me permission to use them as part of this skin, I would 
-appreciate it if you would contact me.
 
 -------------------------------------
 
@@ -107,8 +98,36 @@ mail:kibmibgib.1212@gmail.com
 Update History
 
 07/06/2023
-	Skin Release
+	- Skin Release
 
 07/08/2023
-	Clear statement of copyrights
-	
+	- Clear statement of copyrights
+	- Add prefix "!" to some folders
+	- Update "play7main.lua"
+
+07/09/2023
+	- Add "Timing Visualizer"
+	- Add "parts/!judgenum/Simple.png"
+	- Update "!common/play_system.png"
+	- Update "play7main.lua"
+	- Update "NOTICE"
+
+07/15/2023
+	- Adjust "Timing Visualizer"
+	- Delete "parts/!judgenum/..." folder.
+	- Delete "parts/!judge/..." folder.
+	- Add "parts/judgenum/..." folder.
+	- Add "parts/judge/..." folder.
+	- Add files to "parts/judgenum/..."
+	- Add files to "parts/judge/..."
+	- Add a files to "parts/gauge/..."
+	- Rename "parts/gauge/Default.png" to "Red.png"
+	- Rename "parts/judgeline/Default.png" to "Red.png"
+	- Add prefix "!" to files in "parts/!bomb/..."
+	- Add prefix "!" to a file in "parts/!mascot/..."
+	- Update "!common/play_system.png"
+	- Add prefix "!" to files in "!common/..."
+	- Update "play7main.lua"
+	- Update "NOTICE"
+	- Update "readme_en.txt" and "readme_jp.txt"
+
