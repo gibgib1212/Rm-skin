@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:07/15/2023)
+(Last updated:07/26/2023)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -104,6 +104,7 @@ Update History
 	- Clear statement of copyrights
 	- Add prefix "!" to some folders
 	- Update "play7main.lua"
+	- Update "readme_en.txt" and "readme_jp.txt"
 
 07/09/2023
 	- Add "Timing Visualizer"
@@ -111,6 +112,7 @@ Update History
 	- Update "!common/play_system.png"
 	- Update "play7main.lua"
 	- Update "NOTICE"
+	- Update "readme_en.txt" and "readme_jp.txt"
 
 07/15/2023
 	- Adjust "Timing Visualizer"
@@ -131,3 +133,15 @@ Update History
 	- Update "NOTICE"
 	- Update "readme_en.txt" and "readme_jp.txt"
 
+07/26/2023
+	- Adjust "judgment timing value"
+	- Adjust "bar line"
+	- Add "parts\!bomb\!_x150%_Purple_clear_ring_SCUROed.png"
+	- Delete and add some files of "parts\gauge"
+	- Delete and add some files of "parts\keybeam"
+	- Delete and add some files of "parts\notes"
+	- Delete and add some files of "parts\hiddencover"
+	- Delete and add some files of "parts\lanecover"
+	- Delete and add some files of "parts\liftcover"
+	- Update "play7main.lua"
+	- Update "readme_en.txt" and "readme_jp.txt"

@@ -252,7 +252,7 @@ end
 local filepath = {
 	{name = "Mascot", category = "main_2", path = "parts/!mascot/*.png"},
 	{name = "BG", category = "main_3", path = "parts/bg/*.png", def = "Default"},
-	{name = "Notes", category = "play_10", path = "parts/notes/*.png", def = "Square_1"},
+	{name = "Notes", category = "play_10", path = "parts/notes/*.png", def = "Square;0=Red;4=Yellow"},
 	{name = "Judge", category = "play_11", path = "parts/judge/*.png", def = "Default"},
 	{name = "Judge Num", category = "play_12", path = "parts/judgenum/*.png", def = "Simple_Bold"},
 	{name = "Judge Line", category = "play_13", path = "parts/judgeline/*.png", def = "Red"},
@@ -321,7 +321,7 @@ local function main()
 	geometry.lane_h = 1035
 	geometry.lane_line_width = 4
 	geometry.lane_center = c_center_pos
-	geometry.judge_y = 660
+	geometry.judge_y = 680
 	geometry.bga_x = 68
 	geometry.bga_y = 480
 	geometry.bga_w = 480
@@ -499,29 +499,29 @@ local function main()
 
 		{id = "timing-visualizer-frame", src = "play_system_src", x = 0, y = 353, w = 600, h = 36},
 
-		{id = "gauge-r1", src = "gauge_src", x = 0, y = 0, w = 15, h = 24},
-		{id = "gauge-r2", src = "gauge_src", x = 30, y = 0, w = 15, h = 24},
-		{id = "gauge-r3", src = "gauge_src", x = 0, y = 0, w = 15, h = 24},
+		{id = "gauge-r1", src = "gauge_src", x = 0, y = 0, w = 15, h = 25},
+		{id = "gauge-r2", src = "gauge_src", x = 30, y = 0, w = 15, h = 25},
+		{id = "gauge-r3", src = "gauge_src", x = 0, y = 0, w = 15, h = 25},
 
-		{id = "gauge-b1", src = "gauge_src", x = 15, y = 0, w = 15, h = 24},
-		{id = "gauge-b2", src = "gauge_src", x = 45, y = 0, w = 15, h = 24},
-		{id = "gauge-b3", src = "gauge_src", x = 15, y = 0, w = 15, h = 24},
+		{id = "gauge-b1", src = "gauge_src", x = 15, y = 0, w = 15, h = 25},
+		{id = "gauge-b2", src = "gauge_src", x = 45, y = 0, w = 15, h = 25},
+		{id = "gauge-b3", src = "gauge_src", x = 15, y = 0, w = 15, h = 25},
 		
-		{id = "gauge-y1", src = "gauge_src", x = 120, y = 0, w = 15, h = 24},
-		{id = "gauge-y2", src = "gauge_src", x = 150, y = 0, w = 15, h = 24},
-		{id = "gauge-y3", src = "gauge_src", x = 120, y = 0, w = 15, h = 24},
+		{id = "gauge-y1", src = "gauge_src", x = 120, y = 0, w = 15, h = 25},
+		{id = "gauge-y2", src = "gauge_src", x = 150, y = 0, w = 15, h = 25},
+		{id = "gauge-y3", src = "gauge_src", x = 120, y = 0, w = 15, h = 25},
 		
-		{id = "gauge-p1", src = "gauge_src", x = 135, y = 0, w = 15, h = 24},
-		{id = "gauge-p2", src = "gauge_src", x = 165, y = 0, w = 15, h = 24},
-		{id = "gauge-p3", src = "gauge_src", x = 135, y = 0, w = 15, h = 24},
+		{id = "gauge-p1", src = "gauge_src", x = 135, y = 0, w = 15, h = 25},
+		{id = "gauge-p2", src = "gauge_src", x = 165, y = 0, w = 15, h = 25},
+		{id = "gauge-p3", src = "gauge_src", x = 135, y = 0, w = 15, h = 25},
 		
-		{id = "gauge-g1", src = "gauge_src", x = 75, y = 0, w = 15, h = 24},
-		{id = "gauge-g2", src = "gauge_src", x = 105, y = 0, w = 15, h = 24},
-		{id = "gauge-g3", src = "gauge_src", x = 75, y = 0, w = 15, h = 24},
+		{id = "gauge-g1", src = "gauge_src", x = 75, y = 0, w = 15, h = 25},
+		{id = "gauge-g2", src = "gauge_src", x = 105, y = 0, w = 15, h = 25},
+		{id = "gauge-g3", src = "gauge_src", x = 75, y = 0, w = 15, h = 25},
 		
-		{id = "gauge-w1", src = "gauge_src", x = 180, y = 0, w = 15, h = 24},
-		{id = "gauge-w2", src = "gauge_src", x = 195, y = 0, w = 15, h = 24},
-		{id = "gauge-w3", src = "gauge_src", x = 180, y = 0, w = 15, h = 24},
+		{id = "gauge-w1", src = "gauge_src", x = 180, y = 0, w = 15, h = 25},
+		{id = "gauge-w2", src = "gauge_src", x = 195, y = 0, w = 15, h = 25},
+		{id = "gauge-w3", src = "gauge_src", x = 180, y = 0, w = 15, h = 25},
 
 		{id = "eof", src = "play_system_src", x = 161, y = 33, w = 120, h = 42},
 		{id = "replay", src = "play_system_src", x = 282, y = 32, w = 98, h = 21},
@@ -556,7 +556,7 @@ local function main()
 		{id = "info-rate-adot-num", src = "info_system_src", x = 617, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 103, align = 0},
 
 		{id = "green-num", src = "info_system_src", x = 617, y = 22, w = 200, h = 21, divx = 10, digit = 4, ref = 313, align = 0},
-		{id = "judgetiming-num", src = "info_system_src", x = 617, y = 88, w = 180, h = 34, divx = 12, divy = 2, digit = 3, ref = 12, align = 0},
+		{id = "judgetiming-num", src = "info_system_src", x = 617, y = 88, w = 180, h = 34, divx = 12, divy = 2, digit = 3, ref = 12, align = 1},
 
 		{id = "gauge-num", src = "info_system_src", x = 617, y = 339, w = 300, h = 31, divx = 10, digit = 3, ref = 107, align = 0},
 		{id = "gauge-adot-num", src = "info_system_src", x = 617, y = 339, w = 300, h = 31, divx = 10, digit = 1, ref = 407, align = 0},
@@ -658,22 +658,22 @@ local function main()
 		hidden = {},
 		processed = {},
 		group = {
-			{id = "section-line", offset = 3, dst = {
+			{id = "section-line", timer = 41, offset = 3, dst = {
 				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 5, r = 255, g = 255, b = 255}
 			}}
 		},
 		time = {
-			{id = "section-line", offset = 3, dst = {
+			{id = "section-line", timer = 41, offset = 3, dst = {
 				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 100, g = 100, b = 255}
 			}}
 		},
 		bpm = {
-			{id = "section-line", offset = 3, dst = {
+			{id = "section-line", timer = 41, offset = 3, dst = {
 				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 100, g = 255, b = 100}
 			}}
 		},
 		stop = {
-			{id = "section-line", offset = 3, dst = {
+			{id = "section-line", timer = 41, offset = 3, dst = {
 				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 255, g = 100, b = 100}
 			}}
 		}
@@ -745,29 +745,29 @@ local function main()
 			id = "judge",
 			index = 0,
 			images = {
-				{id = "judge-pg", loop = -1, timer = 46, offsets = {3, 32, 57}, dst = {
+				{id = "judge-pg", loop = -1, timer = 46, offsets = {32, 57}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}},
-				{id = "judge-gr", loop = -1, timer = 46, offsets = {3, 32, 57}, dst = {
+				{id = "judge-gr", loop = -1, timer = 46, offsets = {32, 57}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}},
-				{id = "judge-gd", loop = -1, timer = 46, offsets = {3, 32 ,57}, dst = {
+				{id = "judge-gd", loop = -1, timer = 46, offsets = {32 ,57}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}},
-				{id = "judge-bd", loop = -1, timer = 46, offsets = {3, 32, 57}, dst = {
+				{id = "judge-bd", loop = -1, timer = 46, offsets = {32, 57}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}},
-				{id = "judge-pr", loop = -1, timer = 46, offsets = {3, 32, 57}, dst = {
+				{id = "judge-pr", loop = -1, timer = 46, offsets = {32, 57}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}},
-				{id = "judge-ms", loop = -1, timer = 46, offsets = {3, 32, 57}, dst = {
+				{id = "judge-ms", loop = -1, timer = 46, offsets = {32, 57}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}}
 			},
 			-- コンボ数のx,yは判定文字からの相対距離を指定
@@ -775,27 +775,27 @@ local function main()
 			numbers = {
 				{id = "judge-num-pg", loop = -1, timer = 46, offsets = {32, 58}, dst = {
 					{time = 0, x = 300, y = 256, w = 66, h = 90, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}},
 				{id = "judge-num-gr", loop = -1, timer = 46, offsets = {32, 58}, dst = {
 					{time = 0, x = 300, y = 256, w = 66, h = 90, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}},
 				{id = "judge-num-gd", loop = -1, timer = 46, offsets = {32, 58}, dst = {
 					{time = 0, x = 300, y = 256, w = 66, h = 90, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}},
 				{id = "judge-num-bd", loop = -1, timer = 46, offsets = {32, 58}, dst = {
 					{time = 0, x = 300, y = 256, w = 66, h = 90, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}},
 				{id = "judge-num-pr", loop = -1, timer = 46, offsets = {32, 58}, dst = {
 					{time = 0, x = 300, y = 256, w = 66, h = 90, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}},
 				{id = "judge-num-ms", loop = -1, timer = 46, offsets = {32, 58}, dst = {
 					{time = 0, x = 300, y = 256, w = 66, h = 90, a = 0, acc = 2},
-					{time = 500}
+					{time = 2000}
 				}}
 			},
 			-- judgeとcomboを合わせて一つの定義とするか。二段に分ける場合はfalse
@@ -926,7 +926,7 @@ append_all(skin.destination, {
 		{x = geometry.info_position + 86, y = 182, w = 20, h = 21},
 	}},	
 	{id = "judgetiming-num", timer = 41, dst = {
-		{x = geometry.info_position + 113, y = 161, w = 15, h = 17},
+		{x = geometry.info_position + 113, y = 162, w = 15, h = 17},
 	}},	
 	{id = "gauge-num", timer = 41, dst = {
 		{x = geometry.info_position + 231, y = 143, w = 30, h = 31},
@@ -1152,16 +1152,26 @@ table.insert(skin.destination,
 	
 		-- レーン背景
 		-- lane background
-table.insert(skin.destination,
-	{id = -110, offset = 59, dst = {
-		{x = geometry.lane_x + geometry.play_position + (-2), y = 0, w = geometry.lane_w + 4, h = 1080, a = 0, acc = 2}
-	}})
+append_all(skin.destination, {
+	{id = -110, offset = 59, loop = 200, dst = {
+		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = 0, w = geometry.lane_w + 4, h = 0, a = 0, acc = 2},
+		{time = 200, h = 1080}
+	}},
+	{id = -111, offset = 3, loop = 1400, dst = {
+		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = geometry.lane_h, a = 0, acc = 2},
+		{time = 600, a = 0},
+		{time = 650, a = 255},
+		{time = 1300, a = 0}
+	}},
+})
 
 		-- 判定ライン
 		-- judge line
 table.insert(skin.destination,
-	{id = "judgeline", offset = 3, dst = {
-		{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 24}
+	{id = "judgeline", offset = 3, loop = 250, dst = {
+		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 0},
+		{time = 200},
+		{time = 250, h = 25}
 	}})	
 
 		-- キービーム
@@ -1237,26 +1247,26 @@ table.insert(skin.destination,{id = "notes", offset = 30})
 
 		-- hidden cover
 table.insert(skin.destination,
-	{id = "hiddencover", loop = 2000, dst = {
+	{id = "hiddencover", loop = 1700, dst = {
 		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y - geometry.lane_h, w = geometry.lane_w + 4, h = geometry.lane_h, a = 0},
-		{time = 1700},
-		{time = 2000, a = 255}
+		{time = 1300},
+		{time = 1700, a = 255}
 	}})
 
 		-- lift cover
 table.insert(skin.destination,
 	{id = "liftcover", loop = 1700, dst = {
 		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y - geometry.lane_h, w = geometry.lane_w + 4, h = geometry.lane_h, a = 0},
-		{time = 1400},
+		{time = 1300},
 		{time = 1700, a = 255}
 	}})
 
 		-- lanecover
 table.insert(skin.destination,
-	{id = "lanecover", loop = 1300, dst = {
+	{id = "lanecover", loop = 1700, dst = {
 		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = 1500, w = geometry.lane_w + 4, h = geometry.lane_h, acc = 2},
-		{time = 700},
-		{time = 1300, y = 1080}
+		{time = 1300},
+		{time = 1700, y = 1080}
 	}})
 
 		-- レーンカバーの数値周り
@@ -1269,10 +1279,16 @@ do
 	for i in ipairs(id) do
 		table.insert(skin.destination,
 			{id = id[i], offset = 4, op = {270}, dst = {
-				{x = dst_x[i] + geometry.lane_x + geometry.play_position, y = 1055, w = dst_w[i], h = dst_h[i]}
+				{x = dst_x[i] + geometry.lane_x + geometry.play_position, y = 1049, w = dst_w[i], h = dst_h[i]}
 		}})		
 	end
 end
+table.insert(skin.destination,
+	{id = -111, offset = 4, op = {270, 271}, loop = 0, dst = {
+		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = 1080, w = geometry.lane_w + 4, h = 25, a = 255, acc = 2},
+		{time = 500, a = 64},
+		{time = 1000, a = 255}
+	}})
 
 		-- リフトの数値周り
 		-- values for lift
@@ -1283,11 +1299,18 @@ do
 	local dst_h = {21, 21, 21}
 	for i in ipairs(id) do
 		table.insert(skin.destination,
-			{id = id[i], offset = 3, op = {270, 272}, dst = {
-				{x = dst_x[i] + geometry.lane_x + geometry.play_position, y = geometry.lane_y + 39, w = dst_w[i], h = dst_h[i]}
+			{id = id[i], offset = 3, op = {270}, dst = {
+				{x = dst_x[i] + geometry.lane_x + geometry.play_position, y = geometry.lane_y + 40, w = dst_w[i], h = dst_h[i]}
 		}})
 	end
 end
+table.insert(skin.destination,
+	{id = -111, offset = 3, op = {270, 272}, loop = 0, dst = {
+		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 25, a = 255, acc = 2},
+		{time = 500, a = 64},
+		{time = 1000, a = 255}
+	}})
+
 
 		-- judge
 table.insert(skin.destination,{id = "judge"})
@@ -1295,29 +1318,29 @@ table.insert(skin.destination,{id = "judge"})
 		-- fast/slow
 if isFastSlowOn() then
 	table.insert(skin.destination,	{
-		id = "fast", offsets = {3, 32, 52}, op = {1242}, loop = -1, timer = 46, dst = {
-			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-80), y = geometry.lane_y + 570, w = 160, h = 42, a = 0, acc = 2},
+		id = "fast", offsets = {32, 52}, op = {1242}, loop = -1, timer = 46, dst = {
+			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-80), y = geometry.judge_y + (-52), w = 160, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
 	})
 	table.insert(skin.destination,	{
-		id = "slow", offsets = {3, 32, 52}, op = {1243}, loop = -1, timer = 46, dst = {
-			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-80), y = geometry.lane_y + 570, w = 160, h = 42, a = 0, acc = 2},
+		id = "slow", offsets = {32, 52}, op = {1243}, loop = -1, timer = 46, dst = {
+			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-80), y = geometry.judge_y + (-52), w = 160, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
 	})
 elseif isFastSlowMS() then
 		-- fast/slow ms
 	table.insert(skin.destination,	{
-		id = "fsms-num", offsets = {3, 32, 52}, op = {-241}, loop = -1, timer = 46, dst = {
-			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 570, w = 40, h = 42, a = 0, acc = 2},
+		id = "fsms-num", offsets = {32, 52}, op = {-241}, loop = -1, timer = 46, dst = {
+			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.judge_y + (-52), w = 40, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
 	})
 elseif isFastSlowMSall() then
 	table.insert(skin.destination,	{
-		id = "fsms-num", offsets = {3, 32, 52}, op = {32}, loop = -1, timer = 46, dst = {
-			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 570, w = 40, h = 42, a = 0, acc = 2},
+		id = "fsms-num", offsets = {32, 52}, op = {32}, loop = -1, timer = 46, dst = {
+			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.judge_y + (-52), w = 40, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
 	})
@@ -1327,27 +1350,27 @@ end
 		-- Score difference from target.
 if isTargetBest() then
 	table.insert(skin.destination,	{
-		id = "diff-target", offsets = {3, 32, 53}, op = {32}, timer = 41, draw = function()
+		id = "diff-target", offsets = {3, 53}, op = {32}, timer = 41, draw = function()
 			if (main_state.float_number(113) == 0) and main_state.option(32)then
 				return true
 			end
 		end, dst = {
-			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 412, w = 40, h = 42, a = 0, acc = 2}
+			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 330, w = 40, h = 42, a = 0, acc = 2}
 		}
 	})
 	table.insert(skin.destination,	{
-		id = "diff-best", offsets = {3, 32, 53}, op = {32}, timer = 41, draw = function()			
+		id = "diff-best", offsets = {3, 53}, op = {32}, timer = 41, draw = function()			
 			if (main_state.float_number(113) ~= 0) and main_state.option(32) then
 				return true
 			end
 		end, dst = {
-			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 412, w = 40, h = 42, a = 0, acc = 2}
+			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 330, w = 40, h = 42, a = 0, acc = 2}
 		}
 	})
 elseif isTargetRank() then
 	table.insert(skin.destination,	{
-		id = "diff-target", offsets = {3, 32, 53}, op = {32}, timer = 41, dst = {
-			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 412, w = 40, h = 42, a = 0, acc = 2}
+		id = "diff-target", offsets = {3, 53}, op = {32}, timer = 41, dst = {
+			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 330, w = 40, h = 42, a = 0, acc = 2}
 		}
 	})
 end
@@ -1358,22 +1381,22 @@ if isTarget2On() then
 	local targ_x = -132
 	if isTargetRank() then
 		table.insert(skin.destination,	{
-			id = "diff-best", offsets = {3, 32, 54}, op = {32}, timer = 41, draw = function()
+			id = "diff-best", offsets = {3, 54}, op = {32}, timer = 41, draw = function()
 				if (main_state.float_number(113) ~= 0) and main_state.option(32) then
 					return true
 				end
 			end, dst = {
-				{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 360, w = 40, h = 42, a = 0, acc = 2}
+				{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 382, w = 40, h = 42, a = 0, acc = 2}
 			}
 		})
 	elseif isTargetBest()then
 		table.insert(skin.destination,	{
-			id = "diff-target", offsets = {3, 32, 54}, op = {32}, timer = 41, draw = function()
+			id = "diff-target", offsets = {3, 54}, op = {32}, timer = 41, draw = function()
 				if (main_state.float_number(113) ~= 0) and main_state.option(32) then
 					return true
 				end
 			end,dst = {
-				{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 360, w = 40, h = 42, a = 0, acc = 2}
+				{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 382, w = 40, h = 42, a = 0, acc = 2}
 			}
 		})
 	end
@@ -1383,14 +1406,14 @@ end
 		-- Rate display on lanes
 if isScoreRateOn() then
 	append_all(skin.destination, {
-		{id = "play-rate-num", offsets = {3, 55}, timer = 41, dst = {
-			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105), y = geometry.lane_y + 270, w = 33, h = 45, a = 0, acc = 2}
+		{id = "play-rate-num", offsets = {3, 55}, timer = 46, dst = {
+			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105), y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
 		}},
-		{id = "play-rate-adot-num", offsets = {3, 55}, timer = 41, dst = {		
-			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 111, y = geometry.lane_y + 270, w = 33, h = 45, a = 0, acc = 2}
+		{id = "play-rate-adot-num", offsets = {3, 55}, timer = 46, dst = {		
+			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 111, y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
 		}},
-		{id = "play-rate-DnP", offsets = {3, 55}, timer = 41, dst = {
-			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 99, y = geometry.lane_y + 270, w = 12, h = 45, a = 0, acc = 2}
+		{id = "play-rate-DnP", offsets = {3, 55}, timer = 46, dst = {
+			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 99, y = geometry.lane_y + 275, w = 12, h = 45, a = 0, acc = 2}
 		}},
 	})
 end
@@ -1419,11 +1442,13 @@ end
 		-- lane frame
 if isLaneFrameOn() then
 	append_all(skin.destination, {
-		{id = "lane_frame", dst = {
-			{x = geometry.lane_x + geometry.play_position + (-17), y = 0, w = 15, h = 1080, r = 255, g = 255, b = 255, a = 255, acc = 2}
+		{id = "lane_frame", loop = 600, dst = {
+			{x = geometry.lane_x + geometry.play_position + (-17), y = 0, w = 15, h = 0, r = 255, g = 255, b = 255, a = 255, acc = 2},
+			{time = 600, h = 1080}
 		}},
-		{id = "lane_frame", dst = {
-			{x = geometry.lane_x + geometry.play_position + geometry.lane_w + 2, y = 0, w = 15, h = 1080, r = 255, g = 255, b = 255, a = 255, acc = 2}
+		{id = "lane_frame", loop = 600, dst = {
+			{x = geometry.lane_x + geometry.play_position + geometry.lane_w + 2, y = 0, w = 15, h = 0, r = 255, g = 255, b = 255, a = 255, acc = 2},
+			{time = 600, h = 1080}
 		}},
 	})
 end
@@ -1515,8 +1540,10 @@ end
 		-- ゲージ
 		-- gauge
 table.insert(skin.destination, {
-	id = "gauge", dst = {
-		{x = geometry.lane_x + geometry.play_position + 24, y = 0, w = 750, h = 24}
+	id = "gauge", loop = 250, dst = {
+		{x = geometry.lane_x + geometry.play_position + 24, y = 0, w = 750, h = 0, a = 255, acc = 2},
+		{time = 200},
+		{time = 250, h = 25}
 	}
 })
 
@@ -1537,13 +1564,13 @@ if isScratchRight() then
 		}},	
 			-- 曲の長さスライダー
 			-- song length slider
-		{id = "song-progress-bar", dst = {
+		{id = "song-progress-bar", timer = 41, dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 76, y = 330, w = 4, h = 600, a = 100}
 		}},
-		{id = "song-progress-fin", dst = {
+		{id = "song-progress-fin", timer = 41, dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 76, y = 930, w = 4, h = -600}
 		}},
-		{id = "song-progress", dst = {
+		{id = "song-progress", timer = 41, dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 72, y = 930, w = 12, h = 21}
 		}},
 	})
@@ -1562,13 +1589,13 @@ else
 		}},	
 			-- 曲の長さスライダー
 			-- song length slider		
-		{id = "song-progress-bar", dst = {
+		{id = "song-progress-bar", timer = 41, dst = {
 			{x = geometry.play_position + geometry.lane_x + (-80), y = 330, w = 4, h = 600, a = 100}
 		}},
-		{id = "song-progress-fin", dst = {
+		{id = "song-progress-fin", timer = 41, dst = {
 			{x = geometry.play_position + geometry.lane_x + (-80), y = 930, w = 4, h = -600}
 		}},
-		{id = "song-progress", dst = {
+		{id = "song-progress", timer = 41, dst = {
 			{x = geometry.play_position + geometry.lane_x + (-84), y = 930, w = 12, h = 21}
 		}},
 	})

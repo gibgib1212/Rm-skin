@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 beatoraja用のフルHD(1920x1080)プレイスキン
-(最終更新日:2023/07/15)
+(最終更新日:2023/07/26)
 -------------------------------------
 
 この度は"Rm-skin"をダウンロードしていただき、誠にありがとうございます。
@@ -101,6 +101,7 @@ mail:kibmibgib.1212@gmail.com
 	- 権利関係の明記
 	- いくつかのフォルダに接頭辞"!"を追加
 	- "play7main.lua"の更新
+	- "readme_en.txt"及び"readme_jp.txt"の更新
 
 2023/07/09
 	- タイミング・ヴィジュアライザー機能の追加
@@ -108,6 +109,7 @@ mail:kibmibgib.1212@gmail.com
 	- "!common/play_system.png"を更新
 	- "play7main.lua"の更新
 	- "NOTICE"の更新
+	- "readme_en.txt"及び"readme_jp.txt"の更新
 
 2023/07/15
 	- タイミング・ヴィジュアライザー機能の調整
@@ -128,6 +130,15 @@ mail:kibmibgib.1212@gmail.com
 	- "NOTICE"の更新
 	- "readme_en.txt"及び"readme_jp.txt"の更新
 
-
-
-
+2023/07/26
+	- 判定タイミング値の調整
+	- 小節線の調整
+	- "parts\!bomb\!_x150%_Purple_clear_ring_SCUROed.png"の追加
+	- "parts\gauge"のファイルを削除・追加
+	- "parts\keybeam"のファイルを削除・追加
+	- "parts\notes"のファイルを削除・追加
+	- "parts\hiddencover"のファイルを削除・追加
+	- "parts\lanecover"のファイルを削除・追加
+	- "parts\liftcover"のファイルを削除・追加
+	- "play7main.lua"の更新
+	- "readme_en.txt"及び"readme_jp.txt"の更新
