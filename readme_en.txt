@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:07/26/2023)
+(Last updated:08/06/2023)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -76,15 +76,6 @@ Therefore, my skin has been created with the goal of providing as much transpare
 I appreciate your understanding and cooperation.
 
 -------------------------------------
-To skin producers:
-
-I would be more than happy if more people are interested in making skins and 
-if the beatoraja community becomes more lively.
-I can't deny that there is still a lack of information on how to write lua files on beatoraja.
-So, if you are ever stuck on editing a lua file, I may be able to help you in some small way,
-Please contact me and i will do my best to respond.
-
--------------------------------------
 
 Please contact me for any other bugs or requests.
 
@@ -144,4 +135,15 @@ Update History
 	- Delete and add some files of "parts\lanecover"
 	- Delete and add some files of "parts\liftcover"
 	- Update "play7main.lua"
+	- Update "readme_en.txt" and "readme_jp.txt"
+
+08/06/2023
+	- Fix some bugs
+	- Adjust object display timing
+	- Add "Fast/Slow counter on playground"
+	- Update "!common\!_info_system.png"
+	- Update "!common\!_score_system.png"
+	- Update "!common\!_play_system.png"
+	- Update "play7main.lua"
+	- Update "NOTICE"
 	- Update "readme_en.txt" and "readme_jp.txt"
