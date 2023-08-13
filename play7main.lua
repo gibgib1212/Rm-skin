@@ -7,99 +7,102 @@ local function append_all(list, list1)
 end
 
 local category = {
-	{name = "Main", item = {
-		"main_1",
-		"main_2",
-		"main_3",
-		"main_4",
-		"main_5"
+	{name = "Option", item = {
+		"option_1",
+		"option_2",
+		"option_3",
+		"option_4",
+		"option_5",
+		"option_6",
+		"option_7",
+		"option_8",
+		"option_9",
+		"option_10",
+		"option_11"
 	}},
-	{name = "Play", item = {
-		"play_1",
-		"play_2",
-		"play_3",
-		"play_4",
-		"play_5",
-		"play_6",
-		"play_7",
-		"play_8",
-		"play_9",
-		"play_10",
-		"play_11",
-		"play_12",
-		"play_13",
-		"play_14",
-		"play_15",
-		"play_16",
-		"play_17",
-		"play_18",
-		"play_19",
-		"play_20",
-		"play_21",
-		"play_22",
-		"play_23",
-		"play_24",
-		"play_25",
-		"play_26",
-		"play_27",
-		"play_28",
-		"play_29"
-
+	{name = "Parts", item = {
+		"parts_1",
+		"parts_2",
+		"parts_3",
+		"parts_4",
+		"parts_5",
+		"parts_6",
+		"parts_7",
+		"parts_8",
+		"parts_9",
+		"parts_10"
 	}},
+	{name = "Custom", item = {
+		"custom_1",
+		"custom_2",
+		"custom_3",
+		"custom_4",
+		"custom_5",
+		"custom_6",
+		"custom_7",
+		"custom_8",
+		"custom_9",
+		"custom_10",
+		"custom_11",
+		"custom_12",
+		"custom_13",
+		"custom_14"
+	}},	
 }
 
 local property = {
 
-	{name = "Scratch Side", category = "play_1", item = {
+	{name = "Scratch Side", category = "option_1", item = {
 		{name = "Left", op = 900},
 		{name = "Right", op = 901}
 	}},
-	{name = "Lane Frame", category = "play_2", item = {
+	{name = "Lane Frame", category = "option_2", item = {
 		{name = "Off", op = 902},
 		{name = "On", op = 903},
 	}},	
-	{name = "Lane Center", category = "play_3", item = {
+	{name = "Lane Center", category = "option_3", item = {
 		{name = "Notes", op = 904},
 		{name = "Notes + Scratch", op = 905}
 	}},	
-	{name = "Keybeam Display", category = "play_4", item = {
+	{name = "Keybeam Display", category = "option_4", item = {
 		{name = "Fast", op = 906},
 		{name = "Slow", op = 907}
 	}},
-	{name = "Target", category = "play_5", item = {
+	{name = "Target", category = "option_5", item = {
 		{name = "Off", op = 908},
 		{name = "My Best", op = 909},
 		{name = "Target", op = 910}
 	}},
-	{name = "Target2 (Left)", category = "play_6", item = {
+	{name = "Target2 (Left)", category = "option_6", item = {
 		{name = "Off", op = 911},
 		{name = "On", op = 912}
 	}},
-	{name = "Score Rate", category = "play_7", item = {
+	{name = "Score Rate", category = "option_7", item = {
 		{name = "Off", op = 913},
 		{name = "On", op = 914}
 	}},
-	{name = "Fast/Slow", category = "play_8", item = {
+	{name = "Fast/Slow", category = "option_8", item = {
 		{name = "Off", op = 915},
 		{name = "Center", op = 916},
 		{name = "Right and Left", op = 917},
 		{name = "+-MS", op = 918}
 	}},
-	{name = "Timing Visualizer", category = "play_9", item = {
+	{name = "Timing Visualizer", category = "option_9", item = {
 		{name = "Off", op = 919},
 		{name = "On", op = 920}
 	}},
-	{name = "F/S Count On Pleyground", category = "play_10", item = {
+	{name = "F/S Count On Pleyground", category = "option_10", item = {
 		{name = "Off", op = 921},
 		{name = "On", op = 922}
 	}},
-	{name = "Mascot Display", category = "main_1", item = {
+	{name = "Mascot Display", category = "option_11", item = {
 		{name = "Off", op = 931},
 		{name = "Stop", op = 932},
 		{name = "Jump", op = 933},
 		{name = "Float", op = 934}
 	}},
 }
+
 local function isScratchLeft()
 	return skin_config.option["Scratch Side"] == 900
 end
@@ -263,34 +266,35 @@ local function f_center_pos()
 end	
 
 local filepath = {
-	{name = "Mascot", category = "main_2", path = "parts/!mascot/*.png"},
-	{name = "BG", category = "main_3", path = "parts/bg/*.png", def = "Default"},
-	{name = "Notes", category = "play_11", path = "parts/notes/*.png", def = "Square;0=Red;4=Yellow"},
-	{name = "Judge", category = "play_12", path = "parts/judge/*.png", def = "Default"},
-	{name = "Judge Num", category = "play_13", path = "parts/judgenum/*.png", def = "Simple_Bold"},
-	{name = "Judge Line", category = "play_14", path = "parts/judgeline/*.png", def = "Red"},
-	{name = "Gauge", category = "play_15", path = "parts/gauge/*.png", def = "Red"},	
-	{name = "Keybeam", category = "play_16", path = "parts/keybeam/*.png", def = "Default"},
-	{name = "Bomb", category = "play_17", path = "parts/!bomb/*.png"},
-	{name = "Lane Cover", category = "play_18", path = "parts/lanecover/*.png", def = "Default"},
-	{name = "Lift Cover", category = "play_19", path = "parts/liftcover/*.png", def = "Default"},
-	{name = "Hidden Cover", category = "play_20", path = "parts/hiddencover/*.png", def = "Default"},
+	{name = "Mascot", category = "parts_1", path = "parts/!mascot/*.png"},
+	{name = "BG", category = "parts_2", path = "parts/bg/*.png", def = "Default"},
+	{name = "Notes", category = "parts_3", path = "parts/notes/*.png", def = "Square;0=Red;4=Yellow"},
+	{name = "Judge", category = "parts_4", path = "parts/judge/*.png", def = "Default"},
+	{name = "Judge Num", category = "parts_5", path = "parts/judgenum/*.png", def = "Simple_Bold"},
+	{name = "Judge Line", category = "parts_6", path = "parts/judgeline/*.png", def = "Red"},
+	{name = "Gauge", category = "parts_7", path = "parts/gauge/*.png", def = "Red"},	
+	{name = "Keybeam", category = "parts_8", path = "parts/keybeam/*.png", def = "Default"},
+	{name = "Bomb", category = "parts_9", path = "parts/!bomb/*.png"},
+	{name = "Lane Cover", category = "parts_10", path = "parts/lanecover/*.png", def = "Default"},
 }
 
 local offset = {
 
-	{name = "BG Darkness", category = "main_4", id = 50, x = false, y = false, w = false, h = false, r = false, a = true},
-	{name = "BGA Darkness", category = "main_5", id = 51, x = false, y = false, w = false, h = false, r = false, a = true},
-	{name = "Lane Transparence", category = "play_21", id = 52, x = false, y = false, w = false, h = false, r = false, a = true},
-	{name = "Judge Position & Transparence", category = "play_22", id = 53, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Judge Num Position & Transparence", category = "play_23", id = 54, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "F/S Position & Transparence", category = "play_24", id = 55, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Target Position & Transparence", category = "play_25", id = 56, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Target2 Position & Transparence", category = "play_26", id = 57, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Score Rate Position & Transparence", category = "play_27", id = 58, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Timing Visualizer Position & Transparence", category = "play_28", id = 59, x = true, y = true, w = false, h = false, r = false, a = true},	
-	{name = "F/S Count Position & Transparence", category = "play_29", id = 60, x = true, y = true, w = false, h = false, r = false, a = true},	
-
+	{name = "BG Darkness", category = "custom_1", id = 50, x = false, y = false, w = false, h = false, r = false, a = true},
+	{name = "BGA Darkness", category = "custom_2", id = 51, x = false, y = false, w = false, h = false, r = false, a = true},
+	{name = "Lane Transparence", category = "custom_3", id = 52, x = false, y = false, w = false, h = false, r = false, a = true},
+	{name = "Judge Position & Transparence", category = "custom_4", id = 53, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Judge Num Position & Transparence", category = "custom_5", id = 54, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "F/S Position & Transparence", category = "custom_6", id = 55, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Target Position & Transparence", category = "custom_7", id = 56, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Target2 Position & Transparence", category = "custom_8", id = 57, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Score Rate Position & Transparence", category = "custom_9", id = 58, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Timing Visualizer Position & Transparence", category = "custom_10", id = 59, x = true, y = true, w = false, h = false, r = false, a = true},	
+	{name = "F/S Count Position & Transparence", category = "custom_11", id = 60, x = true, y = true, w = false, h = false, r = false, a = true},	
+	{name = "Judgeline & Keybeam Position", category = "custom_12", id = 61, x = false, y = true, w = false, h = false, r = false, a = false},	
+	{name = "Judgeline Height", category = "custom_13", id = 62, x = false, y = false, w = false, h = true, r = false, a = false},	
+	{name = "Bomb Position & Transparance", category = "custom_14", id = 63, x = false, y = true, w = false, h = false, r = false, a = true},	
+	
 }
 
 local header = {
@@ -390,8 +394,6 @@ local function main()
 		{id = "keybeam_src", path = "parts/keybeam/*.png"},
 		{id = "bomb_src", path = "parts/!bomb/*.png"},
 		{id = "lanecover_src", path = "parts/lanecover/*.png"},
-		{id = "liftcover_src", path = "parts/liftcover/*.png"},
-		{id = "hiddencover_src", path = "parts/hiddencover/*.png"},
 
 	}
 	
@@ -539,11 +541,13 @@ local function main()
 		{id = "gauge-w2", src = "gauge_src", x = 195, y = 0, w = 15, h = 25},
 		{id = "gauge-w3", src = "gauge_src", x = 180, y = 0, w = 15, h = 25},
 
+		{id = "hiddencover", src = "play_system_src", x = 652, y = 4, w = 10, h = 1035},
+
 		{id = "eof", src = "play_system_src", x = 161, y = 33, w = 120, h = 42},
 		{id = "replay", src = "play_system_src", x = 282, y = 32, w = 98, h = 21},
 		{id = "autoplay", src = "play_system_src", x = 282, y = 54, w = 132, h = 21},
 
-		{id = "fc-effect", src = "play_system_src", x = 663, y = 4, w = 802, h = 1035},
+		{id = "fc-effect", src = "play_system_src", x = 663, y = 4, w = 802, h = 1080},
 		{id = "fullcombo", src = "play_system_src", x = 161, y = 76, w = 360, h = 36},
 
 	}
@@ -638,12 +642,6 @@ local function main()
 		{id = "song-progress", src = "play_system_src", x = 0, y = 11, w = 12, h = 21, angle = 2, range = 600, type = 6},
 		{id = "lanecover", src = "lanecover_src", x = 0, y = 0, w = -1, h = -1, angle = 2, range = geometry.lane_h, type = 4},
 	}
-	skin.hiddenCover = {
-		{id = "hiddencover", src = "hiddencover_src", x = 0, y = 0, w = geometry.lane_w + 4, h = geometry.lane_h, disapearLine = geometry.lane_y},
-	}
-	skin.liftCover = {
-		{id = "liftcover", src = "liftcover_src", x = 0, y = 0, w = geometry.lane_w + 4, h = geometry.lane_h, disapearLine = geometry.lane_y},
-	}
 	skin.graph = {
 		-- score graph
 		{id = "graph-now", src = "score_system_src", x = 699, y = 0, w = 10, h = 800, angle = 1, type = 110},
@@ -675,22 +673,22 @@ local function main()
 		processed = {},
 		group = {
 			{id = "section-line", timer = 41, offset = 3, dst = {
-				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 5, r = 255, g = 255, b = 255}
+				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 5, r = 255, g = 255, b = 255, a = 128}
 			}}
 		},
 		time = {
 			{id = "section-line", timer = 41, offset = 3, dst = {
-				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 100, g = 100, b = 255}
+				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 100, g = 100, b = 255, a = 128}
 			}}
 		},
 		bpm = {
 			{id = "section-line", timer = 41, offset = 3, dst = {
-				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 100, g = 255, b = 100}
+				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 100, g = 255, b = 100, a = 128}
 			}}
 		},
 		stop = {
 			{id = "section-line", timer = 41, offset = 3, dst = {
-				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 255, g = 100, b = 100}
+				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 255, g = 100, b = 100, a = 128}
 			}}
 		}
 	}
@@ -761,27 +759,27 @@ local function main()
 			id = "judge",
 			index = 0,
 			images = {
-				{id = "judge-pg", loop = -1, timer = 46, offsets = {32, 53}, dst = {
+				{id = "judge-pg", loop = -1, timer = 46, offsets = {32, 53, 61}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
 					{time = 2000}
 				}},
-				{id = "judge-gr", loop = -1, timer = 46, offsets = {32, 53}, dst = {
+				{id = "judge-gr", loop = -1, timer = 46, offsets = {32, 53, 61}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
 					{time = 2000}
 				}},
-				{id = "judge-gd", loop = -1, timer = 46, offsets = {32 ,53}, dst = {
+				{id = "judge-gd", loop = -1, timer = 46, offsets = {32 ,53, 61}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
 					{time = 2000}
 				}},
-				{id = "judge-bd", loop = -1, timer = 46, offsets = {32, 53}, dst = {
+				{id = "judge-bd", loop = -1, timer = 46, offsets = {32, 53, 61}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
 					{time = 2000}
 				}},
-				{id = "judge-pr", loop = -1, timer = 46, offsets = {32, 53}, dst = {
+				{id = "judge-pr", loop = -1, timer = 46, offsets = {32, 53, 61}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
 					{time = 2000}
 				}},
-				{id = "judge-ms", loop = -1, timer = 46, offsets = {32, 53}, dst = {
+				{id = "judge-ms", loop = -1, timer = 46, offsets = {32, 53, 61}, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y, w = 600, h = 200, a = 0, acc = 2},
 					{time = 2000}
 				}}
@@ -1172,12 +1170,13 @@ table.insert(skin.destination,
 		-- レーン背景
 		-- lane background
 append_all(skin.destination, {
-	{id = -110, offset = 52, loop = 200, dst = {
-		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = 0, w = geometry.lane_w + 4, h = 0, a = 0, acc = 2},
-		{time = 200, h = 1080}
+	{id = -110, offset = 52, dst = {
+		{x = geometry.lane_x + geometry.play_position + (-2), y = 0, w = geometry.lane_w + 4, h = 1080, a = 0, acc = 2},
 	}},
-	{id = -111, offset = 3, loop = 1400, dst = {
-		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = geometry.lane_h, a = 0, acc = 2},
+		-- 演出
+		-- effect
+	{id = -111, offsets = {3, 61}, loop = 1400, dst = {
+		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 2160, a = 0, acc = 2},
 		{time = 600, a = 0},
 		{time = 650, a = 255},
 		{time = 1300, a = 0}
@@ -1187,10 +1186,8 @@ append_all(skin.destination, {
 		-- 判定ライン
 		-- judge line
 table.insert(skin.destination,
-	{id = "judgeline", offset = 3, loop = 250, dst = {
-		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 0},
-		{time = 200},
-		{time = 250, h = 25}
+	{id = "judgeline", offsets = {3, 61, 62}, dst = {
+		{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 24}
 	}})	
 
 		-- キービーム
@@ -1216,7 +1213,7 @@ if isKeybeamFast() then
 	do
 		for i = 1, 8, 1 do
 			table.insert(skin.destination,	{
-				id = "keybeam-"..kb_type[i], offset = 3, timer = kb_onTimer[i], blend = 1, dst = {
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_onTimer[i], blend = 1, dst = {
 					{x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 255}
 				}
 			})
@@ -1227,7 +1224,7 @@ if isKeybeamFast() then
 	do
 		for i = 1, 8, 1 do
 			table.insert(skin.destination,	{
-				id = "keybeam-"..kb_type[i], offset = 3, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 255},
 					{time = 100, x = geometry.lane_x + geometry.play_position + kb_x[i] + kb_move_x[i], w = 0, a = 0}
 				}
@@ -1240,7 +1237,7 @@ else
 	do
 		for i = 1, 8, 1 do
 			table.insert(skin.destination,	{
-				id = "keybeam-"..kb_type[i], offset = 3, timer = kb_onTimer[i], loop = 33, blend = 1, dst = {
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_onTimer[i], loop = 33, blend = 1, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 0},
 					{time = 33, a = 255}
 				}
@@ -1252,7 +1249,7 @@ else
 	do
 		for i = 1, 8, 1 do
 			table.insert(skin.destination,	{
-				id = "keybeam-"..kb_type[i], offset = 3, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h + 230, a = 200},
 					{time = 200, x = geometry.lane_x + geometry.play_position + kb_x[i] + kb_move_x[i], w = 0, a = 0}
 				}
@@ -1266,18 +1263,8 @@ table.insert(skin.destination,{id = "notes", offset = 30})
 
 		-- hidden cover
 table.insert(skin.destination,
-	{id = "hiddencover", loop = 1700, dst = {
-		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y - geometry.lane_h, w = geometry.lane_w + 4, h = geometry.lane_h, a = 0},
-		{time = 1300},
-		{time = 1700, a = 255}
-	}})
-
-		-- lift cover
-table.insert(skin.destination,
-	{id = "liftcover", loop = 1700, dst = {
-		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y - geometry.lane_h, w = geometry.lane_w + 4, h = geometry.lane_h, a = 0},
-		{time = 1300},
-		{time = 1700, a = 255}
+	{id = "hiddencover", offsets = {3, 61}, op = {273}, dst = {
+		{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y + 24, w = geometry.lane_w + 4, h = geometry.lane_h},
 	}})
 
 		-- lanecover
@@ -1304,7 +1291,7 @@ do
 end
 table.insert(skin.destination,
 	{id = -111, offset = 4, op = {270, 271}, loop = 0, dst = {
-		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = 1080, w = geometry.lane_w + 4, h = 25, a = 255, acc = 2},
+		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = 1080, w = geometry.lane_w + 4, h = 24, a = 255, acc = 2},
 		{time = 500, a = 64},
 		{time = 1000, a = 255}
 	}})
@@ -1325,7 +1312,7 @@ do
 end
 table.insert(skin.destination,
 	{id = -111, offset = 3, op = {270, 272}, loop = 0, dst = {
-		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 25, a = 255, acc = 2},
+		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 24, a = 255, acc = 2},
 		{time = 500, a = 64},
 		{time = 1000, a = 255}
 	}})
@@ -1337,13 +1324,13 @@ table.insert(skin.destination,{id = "judge"})
 		-- fast/slow center
 if isFastSlowCenterOn() then
 	table.insert(skin.destination,	{
-		id = "fast", offsets = {32, 55}, op = {1242}, loop = -1, timer = 46, dst = {
+		id = "fast", offsets = {32, 55, 61}, op = {1242}, loop = -1, timer = 46, dst = {
 			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-80), y = geometry.judge_y + (-52), w = 160, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
 	})
 	table.insert(skin.destination,	{
-		id = "slow", offsets = {32, 55}, op = {1243}, loop = -1, timer = 46, dst = {
+		id = "slow", offsets = {32, 55, 61}, op = {1243}, loop = -1, timer = 46, dst = {
 			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-80), y = geometry.judge_y + (-52), w = 160, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
@@ -1351,13 +1338,13 @@ if isFastSlowCenterOn() then
 		-- fast/slow right and left
 elseif isFastSlowRnLOn() then
 	table.insert(skin.destination,	{
-		id = "fast", offsets = {32, 55}, op = {1242}, loop = -1, timer = 46, dst = {
+		id = "fast", offsets = {32, 55, 61}, op = {1242}, loop = -1, timer = 46, dst = {
 			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + 300 + (-160), y = geometry.judge_y + (-52), w = 160, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
 	})
 	table.insert(skin.destination,	{
-		id = "slow", offsets = {32, 55}, op = {1243}, loop = -1, timer = 46, dst = {
+		id = "slow", offsets = {32, 55, 61}, op = {1243}, loop = -1, timer = 46, dst = {
 			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y + (-52), w = 160, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
@@ -1365,7 +1352,7 @@ elseif isFastSlowRnLOn() then
 elseif isFastSlowMS() then
 		-- fast/slow ms
 	table.insert(skin.destination,	{
-		id = "fsms-num", offsets = {32, 55}, op = {-241}, loop = -1, timer = 46, dst = {
+		id = "fsms-num", offsets = {32, 55, 61}, op = {-241}, loop = -1, timer = 46, dst = {
 			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.judge_y + (-52), w = 40, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
@@ -1376,7 +1363,7 @@ end
 		-- Score difference from target.
 if isTargetBest() then
 	table.insert(skin.destination,	{
-		id = "diff-target", offsets = {3, 56}, op = {32}, timer = 41, draw = function()
+		id = "diff-target", offsets = {3, 56, 61}, op = {32}, timer = 41, draw = function()
 			if (main_state.float_number(113) == 0) and main_state.option(32)then
 				return true
 			end
@@ -1385,7 +1372,7 @@ if isTargetBest() then
 		}
 	})
 	table.insert(skin.destination,	{
-		id = "diff-best", offsets = {3, 56}, op = {32}, timer = 41, draw = function()			
+		id = "diff-best", offsets = {3, 56, 61}, op = {32}, timer = 41, draw = function()			
 			if (main_state.float_number(113) ~= 0) and main_state.option(32) then
 				return true
 			end
@@ -1395,7 +1382,7 @@ if isTargetBest() then
 	})
 elseif isTargetRank() then
 	table.insert(skin.destination,	{
-		id = "diff-target", offsets = {3, 56}, op = {32}, timer = 41, dst = {
+		id = "diff-target", offsets = {3, 56, 61}, op = {32}, timer = 41, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.lane_y + 330, w = 40, h = 42, a = 0, acc = 2}
 		}
 	})
@@ -1407,7 +1394,7 @@ if isTarget2On() then
 	local targ_x = -132
 	if isTargetRank() then
 		table.insert(skin.destination,	{
-			id = "diff-best", offsets = {3, 57}, op = {32}, timer = 41, draw = function()
+			id = "diff-best", offsets = {3, 57, 61}, op = {32}, timer = 41, draw = function()
 				if (main_state.float_number(113) ~= 0) and main_state.option(32) then
 					return true
 				end
@@ -1417,7 +1404,7 @@ if isTarget2On() then
 		})
 	elseif isTargetBest()then
 		table.insert(skin.destination,	{
-			id = "diff-target", offsets = {3, 57}, op = {32}, timer = 41, draw = function()
+			id = "diff-target", offsets = {3, 57, 61}, op = {32}, timer = 41, draw = function()
 				if (main_state.float_number(113) ~= 0) and main_state.option(32) then
 					return true
 				end
@@ -1432,13 +1419,13 @@ end
 		-- Rate display on lanes
 if isScoreRateOn() then
 	append_all(skin.destination, {
-		{id = "play-rate-num", offsets = {3, 58}, timer = 46, dst = {
+		{id = "play-rate-num", offsets = {3, 58, 61}, timer = 46, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105), y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
 		}},
-		{id = "play-rate-adot-num", offsets = {3, 58}, timer = 46, dst = {		
+		{id = "play-rate-adot-num", offsets = {3, 58, 61}, timer = 46, dst = {		
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 111, y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
 		}},
-		{id = "play-rate-dot", offsets = {3, 58}, timer = 46, dst = {
+		{id = "play-rate-dot", offsets = {3, 58, 61}, timer = 46, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 99, y = geometry.lane_y + 275, w = 12, h = 45, a = 0, acc = 2}
 		}},
 	})
@@ -1449,25 +1436,26 @@ end
 if isTimingVisualizerOn() then
 	skin.timingvisualizer = {{id = "timing-visualizer"}}
 	append_all(skin.destination, {
-		{id = "timing-visualizer", offsets = {3, 59}, op = {32}, timer = 41, dst = {
+		{id = "timing-visualizer", offsets = {3, 59, 61}, op = {32}, timer = 41, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.lane_y + 225, w = 600, h = 40, a = 0, acc = 2}
 		}},
-		{id = "timing-visualizer-frame", offsets = {3, 59}, op = {32}, timer = 41, dst = {
+		{id = "timing-visualizer-frame", offsets = {3, 59, 61}, op = {32}, timer = 41, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.lane_y + 205, w = 600, h = 10, a = 0, acc = 2}
 		}},
 	})
 end
 
-		-- Fast and Slow on playground
+		-- プレイエリア上でのFast/Slowカウンター
+		-- Fast/Slow counter on playground
 if isFSCountOnPlayOn() then
 	append_all(skin.destination, {
-		{id = "fs-opg-frame", offsets = {3, 60}, op = {32}, timer = 46, dst = {
+		{id = "fs-opg-frame", offsets = {3, 60, 61}, op = {32}, timer = 46, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.lane_y + 301, w = 600, h = 21, a = 0, acc = 2}
 		}},
-		{id = "fs-opg-num", offsets = {3, 60}, op = {32}, timer = 46, dst = {
+		{id = "fs-opg-num", offsets = {3, 60, 61}, op = {32}, timer = 46, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + 300 - 80, y = geometry.lane_y + 275, w = 20, h = 21, a = 0, acc = 2}
 		}},	
-		{id = "sl-opg-num", offsets = {3, 60}, op = {32}, timer = 46, dst = {
+		{id = "sl-opg-num", offsets = {3, 60, 61}, op = {32}, timer = 46, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.lane_y + 275, w = 20, h = 21, a = 0, acc = 2}
 		}},	
 	})
@@ -1554,8 +1542,8 @@ table.insert(skin.destination,{
 				-- Normal explosion effect placement
 for i = 1, #b_init, 1 do
 	table.insert(skin.destination, {
-		id = "bomb-"..b_init[i], offset = 3, loop = -1, filter = 1, timer = bombTimer[i], blend = 2, dst = {
-			{time = 0, x = geometry.play_position + geometry.lane_x + bombPosX[i] - bombWidth / 2, y = geometry.lane_y - (bombHeight / 2), w = bombWidth, h = bombHeight},
+		id = "bomb-"..b_init[i], offsets = {3, 61, 63}, loop = -1, filter = 1, timer = bombTimer[i], blend = 2, dst = {
+			{time = 0, x = geometry.play_position + geometry.lane_x + bombPosX[i] - bombWidth / 2, y = geometry.lane_y - (bombHeight / 2), w = bombWidth, h = bombHeight, a = 0, acc = 2},
 			{time = bombCycle - 1}
 		}
 	})
@@ -1565,8 +1553,8 @@ end
 				-- LN explosion effect placement
 for i = 1, #b_init, 1 do
 	table.insert(skin.destination,	{
-		id = "lnbomb-"..b_init[i], offset = 3, filter = 1, timer = lnBombTimer[i], blend = 2, dst = {
-			{time = 0, x = geometry.play_position + geometry.lane_x + bombPosX[i] - bombWidth / 2, y = geometry.lane_y - (bombHeight / 2), w = bombWidth, h = bombHeight},
+		id = "lnbomb-"..b_init[i], offsets = {3, 61, 63}, filter = 1, timer = lnBombTimer[i], blend = 2, dst = {
+			{time = 0, x = geometry.play_position + geometry.lane_x + bombPosX[i] - bombWidth / 2, y = geometry.lane_y - (bombHeight / 2), w = bombWidth, h = bombHeight, a = 0, acc = 2},
 			{time = lnbombCycle - 1}
 		}
 	})
@@ -1639,17 +1627,17 @@ end
 		-- 曲終了表示
 		-- end of song
 append_all(skin.destination, {
-	{id = "eof", timer = 143, offset = 3, dst = {
+	{id = "eof", timer = 143, offsets = {3, 61}, dst = {
 		{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-60), y = geometry.lane_y + 90, w = 120, h = 42}
 	}},
 		-- リプレイ表示
 		-- replay
-	{id = "replay", op = {84}, offset = 3, dst = {
+	{id = "replay", offsets = {3, 61}, op = {84}, dst = {
 		{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-49), y = geometry.lane_y + 45, w = 98, h = 21}
 	}},	
 		-- オートプレイ表示
 		-- auto play
-	{id = "autoplay", op = {33}, offset = 3, dst = {
+	{id = "autoplay", offsets = {3, 61}, op = {33}, dst = {
 		{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-66), y = geometry.lane_y + 45, w = 132, h = 21}
 	}},
 })
@@ -1657,8 +1645,8 @@ append_all(skin.destination, {
 		-- fullcombo
 append_all(skin.destination, {
 	{id = "fc-effect", loop = -1, timer = 48, stretch = 3, blend = 2, dst = {
-		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = geometry.lane_h, a = 128},
-		{time = 2100, y = geometry.lane_y + 100, a = 0}
+		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = 0, w = geometry.lane_w + 4, h = 1080, a = 128},
+		{time = 2100, y = 100, a = 0}
 	}},
 	{id = "fullcombo", loop = -1, timer = 48, dst = {
 		{time = 550, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-180), y = geometry.lane_y + 500, w = 360, h = 36, a = 0},

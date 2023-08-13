@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 beatoraja用のフルHD(1920x1080)プレイスキン
-(最終更新日:2023/08/06)
+(最終更新日:2023/08/13)
 -------------------------------------
 
 この度は"Rm-skin"をダウンロードしていただき、誠にありがとうございます。
@@ -12,7 +12,7 @@ beatorajaX.X.X/skin/Rm-skin-main/...
 また、注意点といたしまして、いくつかの項目の透明度の初期値が"0"に設定されています。
 お手数をおかけしますが、"beatoraja X.X.X configuration"のスキンタブで、
 "Transparence"と表記されている項目の"a"に任意の値を入力してください。
-詳しくは同梱されている"NOTICE.png"をご覧ください。
+詳しくは同梱されている"取扱説明書.pdf"をご覧ください。
 
 また、当スキンを製作するにあたって、Lua言語についての専門的な知識がないまま作成いたしました。
 したがって、当スキンを利用したことで発生した機材、設備などの故障等に対して、
@@ -144,3 +144,19 @@ mail:kibmibgib.1212@gmail.com
 	- "play7main.lua"の更新
 	- "NOTICE"の更新
 	- "readme_en.txt"及び"readme_jp.txt"の更新
+
+2023/08/13
+	- スキン設定画面の整理
+	- "Judgeline & Keybeam Position"の追加
+	- "Judgeline Height"の追加
+	- "Keybeam Position"の追加
+	- "Bomb Position & Transparansy"の追加
+	- "取扱説明書.pdf"の追加
+	- "parts\lanecover"内のファイルの名称を変更
+	- "parts\liftcover"を削除
+	- "parts\hiddencover"を削除
+	- "NOTICE.png"を削除
+	- "!common\!_play_system.png"の更新
+	- "play7main.lua"の更新
+	- "readme_en.txt"及び"readme_jp.txt"の更新
+
