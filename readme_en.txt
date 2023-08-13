@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:08/06/2023)
+(Last updated:08/13/2023)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -12,7 +12,7 @@ beatorajaX.X.X/skin/Rm-skin-main...
 Also, as a reminder, the initial transparency values for some items are set to "0".
 I apologize for the inconvenience, but in the "beatoraja X.X.X configuration" skin tab,
 please enter any value for "a" in the field labeled "Transparence".
-Please see the included "NOTICE.png" for details.
+Please see the included "User's manual.pdf" for details.
 
 In addition, I created this skin without any specialized knowledge of the Lua language.
 Therefore, i assume no responsibility for any malfunction of equipment, facilities, etc. 
@@ -147,3 +147,20 @@ Update History
 	- Update "play7main.lua"
 	- Update "NOTICE"
 	- Update "readme_en.txt" and "readme_jp.txt"
+
+08/13/2023
+	- Organize skin setting screens
+	- Add "Judgeline & Keybeam Position"
+	- Add "Judgeline Height"
+	- Add "Bomb Position & Transparansy"
+	- Add "User's manual.pdf"
+	- Rename some files in "parts\lanecover"
+	- Delete "parts\liftcover"
+	- Delete "parts\hiddencover"
+	- Delete "NOTICE"
+	- Update "!common\!_play_system.png"
+	- Update "play7main.lua"
+	- Update "readme_en.txt" and "readme_jp.txt"
+
+
+
