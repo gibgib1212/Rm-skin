@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 beatoraja用のフルHD(1920x1080)プレイスキン
-(最終更新日:2023/08/13)
+(最終更新日:2023/08/27)
 -------------------------------------
 
 この度は"Rm-skin"をダウンロードしていただき、誠にありがとうございます。
@@ -32,11 +32,14 @@ beatorajaX.X.X/skin/Rm-skin-main/...
 	大変ありがとうございました。
 	以下にお借りした素材を列記させていただきます。
 	- "m_select\customize\advanced\default_bganimation\custombg1.png"
+	- "m_select\customize\advanced\default_bganimation\custombg2.png"
 	- "m_select\customize\advanced\default_commonparts\system.png"
 	- "m_select\customize\advanced\default_commonparts\font\m_select_system.png"
 	- "m_select\customize\advanced\default_playerrank2\num.png"
 	- "m_select\customize\advanced\default_stateplayoption2\parts.png"
 	- "m_select\customize\mascot\default.png"
+	- "m_select\customize\profile\default.png"
+	- "m_select\play\antique\customize\bga_bgi\default.png"
 	- "m_select\play\antique\system\image\fceffect.png"
 	- "m_select\play\antique\system\image\frame_graph1p.png"
 	- "m_select\play\antique\system\image\fullcombo.png"
@@ -159,4 +162,21 @@ mail:kibmibgib.1212@gmail.com
 	- "!common\!_play_system.png"の更新
 	- "play7main.lua"の更新
 	- "readme_en.txt"及び"readme_jp.txt"の更新
+
+2023/08/27
+	- 不具合の修正
+	- スキン設定画面の整理
+	- BGA非表示時の演出を調整
+	- "parts\notes"に各種ファイルを追加
+	- "!common\!_alt_image.png"を追加
+	- "!common\!_nostagefile.png"を削除
+	- "!common\!_sound_only.png"を削除
+	- "play7main.lua"の更新
+	- "readme_en.txt"及び"readme_jp.txt"の更新
+
+
+
+
+
+
 
