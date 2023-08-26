@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:08/13/2023)
+(Last updated:08/27/2023)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -32,11 +32,14 @@ Dear むにむにおじさん, "m-select".
 	Thank you very much.
 	The following is a list of materials borrowed.
 	- "m_select\customize\advanced\default_bganimation\custombg1.png"
+	- "m_select\customize\advanced\default_bganimation\custombg2.png"
 	- "m_select\customize\advanced\default_commonparts\system.png"
 	- "m_select\customize\advanced\default_commonparts\font\m_select_system.png"
 	- "m_select\customize\advanced\default_playerrank2\num.png"
 	- "m_select\customize\advanced\default_stateplayoption2\parts.png"
 	- "m_select\customize\mascot\default.png"
+	- "m_select\customize\profile\default.png"
+	- "m_select\play\antique\customize\bga_bgi\default.png"
 	- "m_select\play\antique\system\image\fceffect.png"
 	- "m_select\play\antique\system\image\frame_graph1p.png"
 	- "m_select\play\antique\system\image\fullcombo.png"
@@ -161,6 +164,19 @@ Update History
 	- Update "!common\!_play_system.png"
 	- Update "play7main.lua"
 	- Update "readme_en.txt" and "readme_jp.txt"
+
+08/27/2023
+	- Fix a bug	
+	- Organize skin setting screens
+	- Add direction when BGA is not displayed
+	- Add some files in "parts\notes" folder
+	- Add "!common\!_alt_image.png"
+	- Delete "!common\!_nostagefile.png"
+	- Delete "!common\!_sound_only.png"
+	- Update "play7main.lua"
+	- Update "readme_en.txt" and "readme_jp.txt"
+
+
 
 
 

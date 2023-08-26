@@ -20,17 +20,19 @@ local category = {
 		"option_10",
 		"option_11"
 	}},
-	{name = "Parts", item = {
-		"parts_1",
-		"parts_2",
-		"parts_3",
-		"parts_4",
-		"parts_5",
-		"parts_6",
-		"parts_7",
-		"parts_8",
-		"parts_9",
-		"parts_10"
+	{name = "Common Parts", item = {
+		"com_parts_1",
+		"com_parts_2"
+	}},
+	{name = "Play Parts", item = {
+		"pl_parts_1",
+		"pl_parts_2",
+		"pl_parts_3",
+		"pl_parts_4",
+		"pl_parts_5",
+		"pl_parts_6",
+		"pl_parts_7",
+		"pl_parts_8"
 	}},
 	{name = "Custom", item = {
 		"custom_1",
@@ -266,16 +268,19 @@ local function f_center_pos()
 end	
 
 local filepath = {
-	{name = "Mascot", category = "parts_1", path = "parts/!mascot/*.png"},
-	{name = "BG", category = "parts_2", path = "parts/bg/*.png", def = "Default"},
-	{name = "Notes", category = "parts_3", path = "parts/notes/*.png", def = "Square;0=Red;4=Yellow"},
-	{name = "Judge", category = "parts_4", path = "parts/judge/*.png", def = "Default"},
-	{name = "Judge Num", category = "parts_5", path = "parts/judgenum/*.png", def = "Simple_Bold"},
-	{name = "Judge Line", category = "parts_6", path = "parts/judgeline/*.png", def = "Red"},
-	{name = "Gauge", category = "parts_7", path = "parts/gauge/*.png", def = "Red"},	
-	{name = "Keybeam", category = "parts_8", path = "parts/keybeam/*.png", def = "Default"},
-	{name = "Bomb", category = "parts_9", path = "parts/!bomb/*.png"},
-	{name = "Lane Cover", category = "parts_10", path = "parts/lanecover/*.png", def = "Default"},
+
+	{name = "Mascot", category = "com_parts_1", path = "parts/!mascot/*.png"},
+	{name = "Background Image", category = "com_parts_2", path = "parts/bg/*.png", def = "Default"},
+
+	{name = "Notes", category = "pl_parts_1", path = "parts/notes/*.png", def = "Square;0=Red;4=Yellow"},
+	{name = "Judge", category = "pl_parts_2", path = "parts/judge/*.png", def = "Default"},
+	{name = "Judge Num", category = "pl_parts_3", path = "parts/judgenum/*.png", def = "Simple_Bold"},
+	{name = "Judge Line", category = "pl_parts_4", path = "parts/judgeline/*.png", def = "Red"},
+	{name = "Gauge", category = "pl_parts_5", path = "parts/gauge/*.png", def = "Red"},	
+	{name = "Keybeam", category = "pl_parts_6", path = "parts/keybeam/*.png", def = "Default"},
+	{name = "Bomb", category = "pl_parts_7", path = "parts/!bomb/*.png"},
+	{name = "Lane Cover", category = "pl_parts_8", path = "parts/lanecover/*.png", def = "Default"},
+
 }
 
 local offset = {
@@ -374,8 +379,7 @@ local function main()
 	skin.source = {
 		-- common
 		{id = "bg_src", path = "parts/bg/*.png"},
-		{id = "soundonly_src", path = "!common/!_sound_only.png"},
-		{id = "nostagefile_src", path = "!common/!_nostagefile.png"},
+		{id = "alt_image_src", path = "!common/!_alt_image.png"},
 
 		-- info
 		{id = "info_system_src", path = "!common/!_info_system.png"},
@@ -405,11 +409,12 @@ local function main()
 	skin.image = {
 		-- common image
 		{id = "bg", src = "bg_src", x = 0, y = 0, w = -1, h = -1},
-		{id = "bga_soundonly", src = "soundonly_src", x = 0, y = 0, w = -1, h = -1},
+		{id = "alt-bga-1", src = "alt_image_src", x = 0, y = 0, w = 480, h = 480},
+		{id = "alt-bga-2", src = "alt_image_src", x = 0, y = 481, w = 480, h = 480},
 
 		{id = "head-line", src = "play_system_src", x = 15, y = 4, w = 250, h = 3},
 		{id = "load-titleline", src = "play_system_src", x = 15, y = 0, w = 1450, h = 3},
-		{id = "load-nostagefile", src = "nostagefile_src", x = 0, y = 0, w = -1, h = -1},
+		{id = "alt-stagefile", src = "alt_image_src", x = 0, y = 962, w = 320, h = 240},
 
 		-- infomation image
 		{id = "bf-info-frame", src = "info_system_src", x = 0, y = 0, w = 616, h = 480},
@@ -838,14 +843,24 @@ local function main()
 			{time = 0, x = geometry.info_position + geometry.bga_x, y = geometry.bga_y, w = geometry.bga_w, h = geometry.bga_h, a = 0},
 			{time = 400, a = 255}}},
 	
-		{id = "bga_soundonly", stretch = 1, draw = function()
+		{id = "alt-bga-1", stretch = 1, draw = function()
 			if main_state.option(40) or main_state.option(170) then
 				return true
 			end
-		end, timer = 41, loop = 800, dst = {
+		end, timer = 41, loop = 400, dst = {
 			{time = 0, x = geometry.info_position + geometry.bga_x, y = geometry.bga_y, w = geometry.bga_w, h = geometry.bga_h, a = 0},
-			{time = 500},
-			{time = 800, a = 255}}},
+			{time = 400, a = 255}
+		}},
+
+		{id = "alt-bga-2", stretch = 1, draw = function()
+			if main_state.option(40) or main_state.option(170) then
+				return true
+			end
+		end, timer = 41, loop = 400, dst = {
+			{time = 0, x = geometry.info_position + geometry.bga_x, y = geometry.bga_y, w = geometry.bga_w, h = geometry.bga_h, angle = 180, a = 0},
+			{time = 400, angle = 360, a = 255},
+			{time = 4400, angle = 0}
+		}},
 					
 		{id = -110, timer = 41, offset = 51, dst = {
 			{x = geometry.info_position + geometry.bga_x, y = geometry.bga_y, w = geometry.bga_w, h = geometry.bga_h, a = 0}}},
@@ -1197,14 +1212,12 @@ local kb_type = {"w", "b", "w", "y", "w", "b", "w", "s"}
 local kb_onTimer = {101, 102, 103, 104, 105, 106, 107, 100}
 local kb_offTimer = {121, 122, 123, 124, 125, 126, 127, 120}
 local kb_x = {}
-local kb_move_x = {}
+local kb_move_x = {47, 47, 47, 47, 47, 47, 47, 72}
 
 if isScratchRight() then
 	kb_x = {-2, 92, 186, 280, 374, 468, 562, 656}
-	kb_move_x = {47, 47, 47, 47, 47, 47, 47, 72}
 else
 	kb_x = {142, 236, 330, 424, 518, 612, 706, -2}
-	kb_move_x = {72, 47, 47, 47, 47, 47, 47, 47}
 end
 
 if isKeybeamFast() then
@@ -1747,7 +1760,7 @@ table.insert(skin.destination,
 		-- ステージファイルが無い時
 		-- no stagefile
 table.insert(skin.destination,
-{id = "load-nostagefile", loop = 600, filter = 1, op = {80, 190}, dst = {
+{id = "alt-stagefile", loop = 600, filter = 1, op = {80, 190}, dst = {
 	{time = 0, x = 50, y = 420, w = 320, h = 240, a = 0},
 	{time = 300},
 	{time = 600, a = 255}
@@ -1756,7 +1769,7 @@ table.insert(skin.destination,
 			-- ロード終了
 			-- loading end
 table.insert(skin.destination,
-{id = "load-nostagefile", timer = 40, loop = 300, filter = 1, op = {81, 190}, dst = {
+{id = "alt-stagefile", timer = 40, loop = 300, filter = 1, op = {81, 190}, dst = {
 	{time = 0, x = 50, y = 420, w = 320, h = 240, a = 255},
 	{time = 300, a = 0}
 }})
