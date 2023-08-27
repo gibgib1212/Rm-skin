@@ -169,6 +169,7 @@ Update History
 	- Fix a bug	
 	- Organize skin setting screens
 	- Add direction when BGA is not displayed
+	- Add some files in "parts\judge" folder
 	- Add some files in "parts\notes" folder
 	- Add "!common\!_alt_image.png"
 	- Delete "!common\!_nostagefile.png"

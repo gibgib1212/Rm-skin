@@ -167,6 +167,7 @@ mail:kibmibgib.1212@gmail.com
 	- 不具合の修正
 	- スキン設定画面の整理
 	- BGA非表示時の演出を調整
+	- "parts\judge"に各種ファイルを追加
 	- "parts\notes"に各種ファイルを追加
 	- "!common\!_alt_image.png"を追加
 	- "!common\!_nostagefile.png"を削除
