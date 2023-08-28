@@ -1226,7 +1226,7 @@ if isKeybeamFast() then
 	do
 		for i = 1, 8, 1 do
 			table.insert(skin.destination,	{
-				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_onTimer[i], blend = 1, dst = {
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_onTimer[i], blend = 1, op = {-273} ,dst = {
 					{x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 255}
 				}
 			})
@@ -1237,7 +1237,7 @@ if isKeybeamFast() then
 	do
 		for i = 1, 8, 1 do
 			table.insert(skin.destination,	{
-				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_offTimer[i], loop = -1, blend = 1, op = {-273} ,dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 255},
 					{time = 100, x = geometry.lane_x + geometry.play_position + kb_x[i] + kb_move_x[i], w = 0, a = 0}
 				}
@@ -1250,7 +1250,7 @@ else
 	do
 		for i = 1, 8, 1 do
 			table.insert(skin.destination,	{
-				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_onTimer[i], loop = 33, blend = 1, dst = {
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_onTimer[i], loop = 33, blend = 1, op = {-273} ,dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 0},
 					{time = 33, a = 255}
 				}
@@ -1262,7 +1262,7 @@ else
 	do
 		for i = 1, 8, 1 do
 			table.insert(skin.destination,	{
-				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_offTimer[i], loop = -1, blend = 1, op = {-273} ,dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h + 230, a = 200},
 					{time = 200, x = geometry.lane_x + geometry.play_position + kb_x[i] + kb_move_x[i], w = 0, a = 0}
 				}
@@ -1276,9 +1276,64 @@ table.insert(skin.destination,{id = "notes", offset = 30})
 
 		-- hidden cover
 table.insert(skin.destination,
-	{id = "hiddencover", offsets = {3, 61}, op = {273}, dst = {
-		{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y + 24, w = geometry.lane_w + 4, h = geometry.lane_h},
+	{id = "hiddencover", offsets = {3, 61}, loop = 1700, op = {273}, dst = {
+		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y + 24, w = geometry.lane_w + 4, h = 0},
+		{time = 1300},
+		{time = 1700, h = geometry.lane_h}
 	}})
+
+		-- Keybeam for hiddencover
+if isKeybeamFast() then
+		-- キーが押された時
+		-- When a key is pressed.
+	do
+		for i = 1, 8, 1 do
+			table.insert(skin.destination,	{
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_onTimer[i], blend = 1, op = {273} ,dst = {
+					{x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 255}
+				}
+			})
+		end
+	end
+		-- キーが離された時
+		-- When a key is released.
+	do
+		for i = 1, 8, 1 do
+			table.insert(skin.destination,	{
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_offTimer[i], loop = -1, blend = 1, op = {273} ,dst = {
+					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 255},
+					{time = 100, x = geometry.lane_x + geometry.play_position + kb_x[i] + kb_move_x[i], w = 0, a = 0}
+				}
+			})
+		end
+	end
+else
+		-- キーが押された時
+		-- When a key is pressed.
+	do
+		for i = 1, 8, 1 do
+			table.insert(skin.destination,	{
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_onTimer[i], loop = 33, blend = 1, op = {273} ,dst = {
+					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 0},
+					{time = 33, a = 255}
+				}
+			})
+		end
+	end
+		-- キーが離された時
+		-- When a key is released.
+	do
+		for i = 1, 8, 1 do
+			table.insert(skin.destination,	{
+				id = "keybeam-"..kb_type[i], offsets = {3, 61}, timer = kb_offTimer[i], loop = -1, blend = 1, op = {273} ,dst = {
+					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h + 230, a = 200},
+					{time = 200, x = geometry.lane_x + geometry.play_position + kb_x[i] + kb_move_x[i], w = 0, a = 0}
+				}
+			})
+		end
+	end
+end	
+
 
 		-- lanecover
 table.insert(skin.destination,
