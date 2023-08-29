@@ -186,3 +186,7 @@ Update History
 	- Update "play7main.lua"
 	- Update "readme.txt"
 
+08/29/2023
+	- Add "Barline Transparence" in custom tab
+	- Update "play7main.lua"
+	- Update "readme.txt"
