@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:08/28/2023)
+(Last updated:08/30/2023)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -166,7 +166,7 @@ Update History
 	- Update "readme_en.txt" and "readme_jp.txt"
 
 08/27/2023
-	- Fix a bug	
+	- Fix a bug of keybeam issue for 1P
 	- Organize skin setting screens
 	- Add direction when BGA is not displayed
 	- Add some files in "parts\judge" folder
@@ -188,5 +188,12 @@ Update History
 
 08/29/2023
 	- Add "Barline Transparence" in custom tab
+	- Update "play7main.lua"
+	- Update "readme.txt"
+
+08/30/2023
+	- Fix a bug of "F/S Count" is not display
+	- Add "Hidden Cover Position & Height" in custom tab
+	- Update "!common\!_play_system.png"
 	- Update "play7main.lua"
 	- Update "readme.txt"

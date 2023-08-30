@@ -49,7 +49,8 @@ local category = {
 		"custom_12",
 		"custom_13",
 		"custom_14",
-		"custom_15"
+		"custom_15",
+		"custom_16"
 	}},	
 }
 
@@ -290,19 +291,20 @@ local offset = {
 	{name = "BGA Darkness", category = "custom_2", id = 51, x = false, y = false, w = false, h = false, r = false, a = true},
 	{name = "Lane Transparence", category = "custom_3", id = 52, x = false, y = false, w = false, h = false, r = false, a = true},
 	{name = "Barline Transparence", category = "custom_4", id = 53, x = false, y = false, w = false, h = false, r = false, a = true},
+	{name = "Hidden Cover Position & Height", category = "custom_5", id = 54, x = false, y = true, w = false, h = true, r = false, a = false},
 
-	{name = "Judge Position & Transparence", category = "custom_5", id = 60, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Judge Num Position & Transparence", category = "custom_6", id = 61, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "F/S Position & Transparence", category = "custom_7", id = 62, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Target Position & Transparence", category = "custom_8", id = 63, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Target2 Position & Transparence", category = "custom_9", id = 64, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Score Rate Position & Transparence", category = "custom_10", id = 65, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Timing Visualizer Position & Transparence", category = "custom_11", id = 66, x = true, y = true, w = false, h = false, r = false, a = true},	
-	{name = "F/S Count Position & Transparence", category = "custom_12", id = 68, x = true, y = true, w = false, h = false, r = false, a = true},	
+	{name = "Judge Position & Transparence", category = "custom_6", id = 60, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Judge Num Position & Transparence", category = "custom_7", id = 61, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "F/S Position & Transparence", category = "custom_8", id = 62, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Target Position & Transparence", category = "custom_9", id = 63, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Target2 Position & Transparence", category = "custom_10", id = 64, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Score Rate Position & Transparence", category = "custom_11", id = 65, x = true, y = true, w = false, h = false, r = false, a = true},
+	{name = "Timing Visualizer Position & Transparence", category = "custom_12", id = 66, x = true, y = true, w = false, h = false, r = false, a = true},	
+	{name = "F/S Count Position & Transparence", category = "custom_13", id = 67, x = true, y = true, w = false, h = false, r = false, a = true},	
 
-	{name = "Judgeline & Keybeam Position", category = "custom_13", id = 70, x = false, y = true, w = false, h = false, r = false, a = false},	
-	{name = "Judgeline Height", category = "custom_14", id = 71, x = false, y = false, w = false, h = true, r = false, a = false},	
-	{name = "Bomb Position & Transparance", category = "custom_15", id = 72, x = false, y = true, w = false, h = false, r = false, a = true},	
+	{name = "Judgeline & Keybeam Position", category = "custom_14", id = 70, x = false, y = true, w = false, h = false, r = false, a = false},	
+	{name = "Judgeline Height", category = "custom_15", id = 71, x = false, y = false, w = false, h = true, r = false, a = false},	
+	{name = "Bomb Position & Transparance", category = "custom_16", id = 72, x = false, y = true, w = false, h = false, r = false, a = true},	
 	
 }
 
@@ -550,7 +552,7 @@ local function main()
 		{id = "gauge-w2", src = "gauge_src", x = 195, y = 0, w = 15, h = 25},
 		{id = "gauge-w3", src = "gauge_src", x = 180, y = 0, w = 15, h = 25},
 
-		{id = "hiddencover", src = "play_system_src", x = 652, y = 4, w = 10, h = 1035},
+		{id = "hiddencover", src = "play_system_src", x = 652, y = 4, w = 10, h = 1000},
 
 		{id = "eof", src = "play_system_src", x = 161, y = 33, w = 120, h = 42},
 		{id = "replay", src = "play_system_src", x = 282, y = 32, w = 98, h = 21},
@@ -1280,10 +1282,8 @@ table.insert(skin.destination,{id = "notes", offset = 30})
 
 		-- hidden cover
 table.insert(skin.destination,
-	{id = "hiddencover", offsets = {3, 70}, loop = 1700, op = {273}, dst = {
-		{time = 0, x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y + 24, w = geometry.lane_w + 4, h = 0},
-		{time = 1300},
-		{time = 1700, h = geometry.lane_h}
+	{id = "hiddencover", offsets = {3, 54, 70}, timer = 41, op = {273}, dst = {
+		{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y + 24, w = geometry.lane_w + 4, h = 1000}
 	}})
 
 		-- Keybeam for hiddencover
