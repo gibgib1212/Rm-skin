@@ -290,7 +290,7 @@ local offset = {
 	{name = "BG Darkness", category = "custom_1", id = 50, x = false, y = false, w = false, h = false, r = false, a = true},
 	{name = "BGA Darkness", category = "custom_2", id = 51, x = false, y = false, w = false, h = false, r = false, a = true},
 	{name = "Lane Transparence", category = "custom_3", id = 52, x = false, y = false, w = false, h = false, r = false, a = true},
-	{name = "Barline Transparence", category = "custom_4", id = 53, x = false, y = false, w = false, h = false, r = false, a = true},
+	{name = "Barline Position & Transparence", category = "custom_4", id = 53, x = false, y = true, w = false, h = false, r = false, a = true},
 	{name = "Hidden Cover Position & Height", category = "custom_5", id = 54, x = false, y = true, w = false, h = true, r = false, a = false},
 
 	{name = "Judge Position & Transparence", category = "custom_6", id = 60, x = true, y = true, w = false, h = false, r = false, a = true},

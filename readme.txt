@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:08/30/2023)
+(Last updated:08/31/2023)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -195,5 +195,9 @@ Update History
 	- Fix a bug of "F/S Count" is not display
 	- Add "Hidden Cover Position & Height" in custom tab
 	- Update "!common\!_play_system.png"
+	- Update "play7main.lua"
+	- Update "readme.txt"
+08/31/2023
+	- Change "Barline Transparence" to "Barline Position & Transparence"
 	- Update "play7main.lua"
 	- Update "readme.txt"
