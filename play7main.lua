@@ -683,22 +683,22 @@ local function main()
 		hidden = {},
 		processed = {},
 		group = {
-			{id = "section-line", timer = 41, offsets = {3, 53, 70}, dst = {
+			{id = "section-line", timer = 41, offsets = {3, 53}, dst = {
 				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 5, r = 255, g = 255, b = 255, a = 0, acc = 2}
 			}}
 		},
 		time = {
-			{id = "section-line", timer = 41, offsets = {3, 53, 70}, dst = {
+			{id = "section-line", timer = 41, offsets = {3, 53}, dst = {
 				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 100, g = 100, b = 255, a = 0, acc = 2}
 			}}
 		},
 		bpm = {
-			{id = "section-line", timer = 41, offsets = {3, 53, 70}, dst = {
+			{id = "section-line", timer = 41, offsets = {3, 53}, dst = {
 				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 100, g = 255, b = 100, a = 0, acc = 2}
 			}}
 		},
 		stop = {
-			{id = "section-line", timer = 41, offsets = {3, 53, 70}, dst = {
+			{id = "section-line", timer = 41, offsets = {3, 53}, dst = {
 				{x = geometry.lane_x + geometry.play_position + (-2), y = geometry.lane_y, w = geometry.lane_w + 4, h = 15, r = 255, g = 100, b = 100, a = 0, acc = 2}
 			}}
 		}
