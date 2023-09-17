@@ -3,7 +3,6 @@
 
 ## Features<br>
 - This skin is equivalent to the **"R-skin"** standard.<br>
-- Adjusted so that it does not look out of place when used in conjunction with **"m-select"**.<br>
 
 ## About Licenses<br>
 - Files with the prefix "!" : "No-License"(Prohibition of modification or distribution)<br>

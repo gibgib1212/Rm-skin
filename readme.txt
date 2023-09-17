@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:08/31/2023)
+(Last updated:09/17/2023)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -14,8 +14,7 @@ I apologize for the inconvenience, but in the "beatoraja X.X.X configuration" sk
 please enter any value for "a" in the field labeled "Transparence".
 Please see the included "User's manual.pdf" for details.
 
-In addition, I created this skin without any specialized knowledge of the Lua language.
-Therefore, i assume no responsibility for any malfunction of equipment, facilities, etc. 
+In addition, I assume no responsibility for any malfunction of equipment, facilities, etc. 
 caused by the use of this skin.
 
 -------------------------------------
@@ -85,7 +84,6 @@ Please contact me for any other bugs or requests.
 -------------------------------------
 
 author:gibgib1212
-twitter:@gibgib1212
 mail:kibmibgib.1212@gmail.com
 
 -------------------------------------
@@ -201,3 +199,9 @@ Update History
 	- Change "Barline Transparence" to "Barline Position & Transparence"
 	- Update "play7main.lua"
 	- Update "readme.txt"
+
+09/17/2023
+	- Delete "@Deprecated(since=08282023)_readme_jp.txt"
+	- Delete "@Deprecated(since=08282023)_user's manual_jp.pdf"
+	- Update README.md
+	- Update readme.txt
