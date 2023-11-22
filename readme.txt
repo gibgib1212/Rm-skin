@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:09/17/2023)
+(Last updated:11/22/2023)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -204,4 +204,8 @@ Update History
 	- Delete "@Deprecated(since=08282023)_readme_jp.txt"
 	- Delete "@Deprecated(since=08282023)_user's manual_jp.pdf"
 	- Update README.md
+	- Update readme.txt
+
+11/22/2023
+	- Add some files in "parts\keybeam"
 	- Update readme.txt
