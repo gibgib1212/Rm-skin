@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:11/22/2023)
+(Last updated:02/29/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -209,3 +209,10 @@ Update History
 11/22/2023
 	- Add some files in "parts\keybeam"
 	- Update readme.txt
+
+02/29/2024
+	- Supported 5key.
+	- Add play5main.lua and play5main.luaskin
+	- Add some notes and keybeams for 5key.
+	- Update readme.txt
+	

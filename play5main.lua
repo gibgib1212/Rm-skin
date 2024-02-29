@@ -275,7 +275,7 @@ local filepath = {
 	{name = "Mascot", category = "com_parts_1", path = "parts/!mascot/*.png"},
 	{name = "Background Image", category = "com_parts_2", path = "parts/bg/*.png", def = "Default"},
 
-	{name = "Notes", category = "pl_parts_1", path = "parts/notes/*.png", def = "Square;0=Red;4=Yellow"},
+	{name = "Notes", category = "pl_parts_1", path = "parts/notes/for5key/*.png", def = "Square;0=Red;#unswapped"},
 	{name = "Judge", category = "pl_parts_2", path = "parts/judge/*.png", def = "Default"},
 	{name = "Judge Num", category = "pl_parts_3", path = "parts/judgenum/*.png", def = "Simple_Bold"},
 	{name = "Judge Line", category = "pl_parts_4", path = "parts/judgeline/*.png", def = "Red"},
@@ -311,8 +311,8 @@ local offset = {
 }
 
 local header = {
-	type = 0,
-	name = "Rm-skin",
+	type = 1,
+	name = "Rm-skin_for5key",
 	w = 1920,
 	h = 1080,
 	loadend = 3000,
@@ -398,7 +398,7 @@ local function main()
 
 		-- play
 		{id = "play_system_src", path = "!common/!_play_system.png"},
-		{id = "notes_src", path = "parts/notes/*.png"},
+		{id = "notes_src", path = "parts/notes/for5key/*.png"},
 		{id = "judge_src", path = "parts/judge/*.png"},
 		{id = "judgenum_src", path = "parts/judgenum/*.png"},
 		{id = "judgeline_src", path = "parts/judgeline/*.png"},
@@ -670,18 +670,18 @@ local function main()
 	}
 	skin.note = {
 		id = "notes",
-		note = {"note-Wh", "note-Bl", "note-Wh", "note-Ye", "note-Wh", "note-Bl", "note-Wh", "note-Sc"},
-		lnend = {"lnEn-Wh", "lnEn-Bl", "lnEn-Wh", "lnEn-Ye", "lnEn-Wh", "lnEn-Bl", "lnEn-Wh", "lnEn-Sc"},
-		lnstart = {"lnSt-Wh", "lnSt-Bl", "lnSt-Wh", "lnSt-Ye", "lnSt-Wh", "lnSt-Bl", "lnSt-Wh", "lnSt-Sc"},
-		lnbody = {"lnBo-Wh", "lnBo-Bl", "lnBo-Wh", "lnBo-Ye", "lnBo-Wh", "lnBo-Bl", "lnBo-Wh", "lnBo-Sc"},
-		lnactive = {"lnAc-Wh", "lnAc-Bl", "lnAc-Wh", "lnAc-Ye", "lnAc-Wh", "lnAc-Bl", "lnAc-Wh", "lnAc-Sc"},
-		hcnend = {"hcEn-Wh", "hcEn-Bl", "hcEn-Wh", "hcEn-Ye", "hcEn-Wh", "hcEn-Bl", "hcEn-Wh", "hcEn-Sc"},
-		hcnstart = {"hcSt-Wh", "hcSt-Bl", "hcSt-Wh", "hcSt-Ye", "hcSt-Wh", "hcSt-Bl", "hcSt-Wh", "hcSt-Sc"},
-		hcnbody = {"hcBo-Wh", "hcBo-Bl", "hcBo-Wh", "hcBo-Ye", "hcBo-Wh", "hcBo-Bl", "hcBo-Wh", "hcBo-Sc"},
-		hcnactive = {"hcAc-Wh", "hcAc-Bl", "hcAc-Wh", "hcAc-Ye", "hcAc-Wh", "hcAc-Bl", "hcAc-Wh", "hcAc-Sc"},
-		hcndamage = {"hcDm-Wh", "hcDm-Bl", "hcDm-Wh", "hcDm-Ye", "hcDm-Wh", "hcDm-Bl", "hcDm-Wh", "hcDm-Sc"},
-		hcnreactive = {"hcRe-Wh", "hcRe-Bl", "hcRe-Wh", "hcRe-Ye", "hcRe-Wh", "hcRe-Bl", "hcRe-Wh", "hcRe-Sc"},
-		mine = {"mine-Wh", "mine-Bl", "mine-Wh", "mine-Ye", "mine-Wh", "mine-Bl", "mine-Wh", "mine-Sc"},
+		note = {"note-Wh", "note-Bl", "note-Ye", "note-Bl", "note-Wh", "note-Sc"},
+		lnend = {"lnEn-Wh", "lnEn-Bl", "lnEn-Ye", "lnEn-Bl", "lnEn-Wh", "lnEn-Sc"},
+		lnstart = {"lnSt-Wh", "lnSt-Bl", "lnSt-Ye", "lnSt-Bl", "lnSt-Wh", "lnSt-Sc"},
+		lnbody = {"lnBo-Wh", "lnBo-Bl", "lnBo-Ye", "lnBo-Bl", "lnBo-Wh", "lnBo-Sc"},
+		lnactive = {"lnAc-Wh", "lnAc-Bl", "lnAc-Ye", "lnAc-Bl", "lnAc-Wh", "lnAc-Sc"},
+		hcnend = {"hcEn-Wh", "hcEn-Bl", "hcEn-Ye", "hcEn-Bl", "hcEn-Wh", "hcEn-Sc"},
+		hcnstart = {"hcSt-Wh", "hcSt-Bl", "hcSt-Ye", "hcSt-Bl", "hcSt-Wh", "hcSt-Sc"},
+		hcnbody = {"hcBo-Wh", "hcBo-Bl", "hcBo-Ye", "hcBo-Bl", "hcBo-Wh", "hcBo-Sc"},
+		hcnactive = {"hcAc-Wh", "hcAc-Bl", "hcAc-Ye", "hcAc-Bl", "hcAc-Wh", "hcAc-Sc"},
+		hcndamage = {"hcDm-Wh", "hcDm-Bl", "hcDm-Ye", "hcDm-Bl", "hcDm-Wh", "hcDm-Sc"},
+		hcnreactive = {"hcRe-Wh", "hcRe-Bl", "hcRe-Ye", "hcRe-Bl", "hcRe-Wh", "hcRe-Sc"},
+		mine = {"mine-Wh", "mine-Bl", "mine-Ye", "mine-Bl", "mine-Wh", "mine-Sc"},
 		hidden = {},
 		processed = {},
 		group = {
@@ -711,28 +711,34 @@ local function main()
 		geometry.notes_x = {}
 		geometry.notes_w = {}
 		
-		geometry.notes_w[8] = notesInfo.Sc_width
+		geometry.notes_w[6] = notesInfo.Sc_width
 		geometry.notes_w[1] = notesInfo.Wh_width
 
-		if isScratchRight() then
-			geometry.notes_x[1] = geometry.lane_x
-			geometry.notes_x[8] = geometry.lane_x + geometry.lane_w - geometry.notes_w[8]
-		else
-			geometry.notes_x[8] = geometry.lane_x
-			geometry.notes_x[1] = geometry.notes_x[8] + geometry.notes_w[8] + geometry.lane_line_width
+		if isScratchRight() and isLaneCenterPosAll() then
+			geometry.notes_x[1] = geometry.lane_x + geometry.lane_line_width * 2 + notesInfo.Wh_width + notesInfo.Bl_width
+			geometry.notes_x[6] = geometry.lane_x + geometry.lane_w - geometry.notes_w[6]
+		elseif isScratchLeft() and isLaneCenterPosAll() then
+			geometry.notes_x[6] = geometry.lane_x
+			geometry.notes_x[1] = geometry.notes_x[6] + geometry.notes_w[6] + geometry.lane_line_width
+		elseif isScratchRight() and isLaneCenterPosKey() then
+			geometry.notes_x[1] = geometry.lane_x + geometry.lane_line_width + notesInfo.Wh_width
+			geometry.notes_x[6] = geometry.lane_x + geometry.lane_w - geometry.notes_w[6]
+		elseif isScratchLeft() and isLaneCenterPosKey() then
+			geometry.notes_x[6] = geometry.lane_x + geometry.lane_line_width
+			geometry.notes_x[1] = geometry.notes_x[6] + geometry.notes_w[6] + geometry.lane_line_width + notesInfo.Wh_width
 		end
 
-		for i = 2, 7 do
+		for i = 2, 5 do
 			if i % 2 == 0 then
 				geometry.notes_x[i] = geometry.notes_x[i-1] + notesInfo.Wh_width + geometry.lane_line_width
 				geometry.notes_w[i] = notesInfo.Bl_width
 			else
-				geometry.notes_x[i] = geometry.notes_x[i-1] + notesInfo.Bl_width + geometry.lane_line_width
+				geometry.notes_x[i] = geometry.notes_x[i-1] + notesInfo.Wh_width + geometry.lane_line_width
 				geometry.notes_w[i] = notesInfo.Wh_width
 			end
 		end
 	
-		for i = 1, 8 do
+		for i = 1, 6 do
 			skin.note.dst[i] = {
 				x = geometry.notes_x[i] + geometry.play_position,
 				y = geometry.lane_y,
@@ -1215,24 +1221,28 @@ table.insert(skin.destination,
 
 		-- キービーム
 		-- keybeam
-local kb_w = {94, 94, 94, 94, 94, 94, 94, 144}
-local kb_type = {"w", "b", "w", "y", "w", "b", "w", "s"}
-local kb_onTimer = {101, 102, 103, 104, 105, 106, 107, 100}
-local kb_offTimer = {121, 122, 123, 124, 125, 126, 127, 120}
+local kb_w = {94, 94, 94, 94, 94, 144}
+local kb_type = {"w", "b", "y", "b", "w", "s"}
+local kb_onTimer = {101, 102, 103, 104, 105, 100}
+local kb_offTimer = {121, 122, 123, 124, 125, 120}
 local kb_x = {}
-local kb_move_x = {47, 47, 47, 47, 47, 47, 47, 72}
+local kb_move_x = {47, 47, 47, 47, 47, 72}
 
-if isScratchRight() then
-	kb_x = {-2, 92, 186, 280, 374, 468, 562, 656}
-else
-	kb_x = {142, 236, 330, 424, 518, 612, 706, -2}
+if isScratchRight() and isLaneCenterPosAll() then
+	kb_x = {186, 280, 374, 468, 562, 656}
+elseif isScratchLeft() and isLaneCenterPosAll() then
+	kb_x = {142, 236, 330, 424, 518, -2}
+elseif isScratchRight() and isLaneCenterPosKey() then
+	kb_x = {92, 186, 280, 374, 468, 656}
+elseif isScratchLeft() and isLaneCenterPosKey() then
+	kb_x = {236, 330, 424, 518, 612, -2}
 end
 
 if isKeybeamFast() then
 		-- キーが押された時
 		-- When a key is pressed.
 	do
-		for i = 1, 8, 1 do
+		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
 				id = "keybeam-"..kb_type[i], offsets = {3, 70}, timer = kb_onTimer[i], blend = 1, op = {-273} ,dst = {
 					{x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 255}
@@ -1243,7 +1253,7 @@ if isKeybeamFast() then
 		-- キーが離された時
 		-- When a key is released.
 	do
-		for i = 1, 8, 1 do
+		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
 				id = "keybeam-"..kb_type[i], offsets = {3, 70}, timer = kb_offTimer[i], loop = -1, blend = 1, op = {-273} ,dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 255},
@@ -1256,7 +1266,7 @@ else
 		-- キーが押された時
 		-- When a key is pressed.
 	do
-		for i = 1, 8, 1 do
+		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
 				id = "keybeam-"..kb_type[i], offsets = {3, 70}, timer = kb_onTimer[i], loop = 33, blend = 1, op = {-273} ,dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 0},
@@ -1268,7 +1278,7 @@ else
 		-- キーが離された時
 		-- When a key is released.
 	do
-		for i = 1, 8, 1 do
+		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
 				id = "keybeam-"..kb_type[i], offsets = {3, 70}, timer = kb_offTimer[i], loop = -1, blend = 1, op = {-273} ,dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h + 230, a = 200},
@@ -1293,7 +1303,7 @@ if isKeybeamFast() then
 		-- キーが押された時
 		-- When a key is pressed.
 	do
-		for i = 1, 8, 1 do
+		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
 				id = "keybeam-"..kb_type[i], offsets = {3, 70}, timer = kb_onTimer[i], blend = 1, op = {273} ,dst = {
 					{x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 255}
@@ -1304,7 +1314,7 @@ if isKeybeamFast() then
 		-- キーが離された時
 		-- When a key is released.
 	do
-		for i = 1, 8, 1 do
+		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
 				id = "keybeam-"..kb_type[i], offsets = {3, 70}, timer = kb_offTimer[i], loop = -1, blend = 1, op = {273} ,dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 255},
@@ -1317,7 +1327,7 @@ else
 		-- キーが押された時
 		-- When a key is pressed.
 	do
-		for i = 1, 8, 1 do
+		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
 				id = "keybeam-"..kb_type[i], offsets = {3, 70}, timer = kb_onTimer[i], loop = 33, blend = 1, op = {273} ,dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h, a = 0},
@@ -1329,7 +1339,7 @@ else
 		-- キーが離された時
 		-- When a key is released.
 	do
-		for i = 1, 8, 1 do
+		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
 				id = "keybeam-"..kb_type[i], offsets = {3, 70}, timer = kb_offTimer[i], loop = -1, blend = 1, op = {273} ,dst = {
 					{time = 0, x = geometry.lane_x + geometry.play_position + kb_x[i], y = geometry.lane_y, w = kb_w[i], h = geometry.lane_h + 230, a = 200},
@@ -1555,9 +1565,9 @@ end
 local bombCycle = 251
 local lnbombCycle = 160
 
-local b_init = {"1", "2", "3", "4", "5", "6", "7", "s"}
-local bombTimer = {51, 52, 53, 54, 55, 56, 57, 50}
-local lnBombTimer = {71, 72, 73, 74, 75, 76, 77, 70}
+local b_init = {"1", "2", "3", "4", "5", "s"}
+local bombTimer = {51, 52, 53, 54, 55, 50}
+local lnBombTimer = {71, 72, 73, 74, 75, 70}
 local bombPosX = {}
 local bombWidth = 600
 local bombHeight = 450
@@ -1565,10 +1575,14 @@ local adjustPosY = 0
 
 			-- ボム中心点
 			-- center of bomb
-if isScratchRight() then
-	bombPosX = {45, 139, 233, 327, 421, 515, 609, 728}
-else
-	bombPosX = {189, 283, 377, 471, 565, 659, 753, 70}
+if isScratchRight() and isLaneCenterPosAll() then
+	bombPosX = {233, 327, 421, 515, 609, 728}
+elseif isScratchLeft() and isLaneCenterPosAll() then
+	bombPosX = {189, 283, 377, 471, 565, 70}
+elseif isScratchRight() and isLaneCenterPosKey() then
+	bombPosX = {139, 233, 327, 421, 515, 728}
+elseif isScratchLeft() and isLaneCenterPosKey() then
+	bombPosX = {283, 377, 471, 565, 659, 70}	
 end
 
 			-- ボム切り出し
