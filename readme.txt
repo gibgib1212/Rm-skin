@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:02/29/2024)
+(Last updated:03/16/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -48,13 +48,18 @@ Dear むにむにおじさん, "m-select".
 	- "m_select\result\system.png"
 
 Dear KASAKO, "Modern_Chic".
-	The bomb in this skin is a 1.5x enlargement of Modern_Chic's "clear ring_blue SCUROed" and color processed.
+	Some bombs in this skin are 1.5x enlargement of Modern_Chic's "clear ring_blue SCUROed" and color processed.
 	Thank you very much.
 	- "ModernChic\Play\parts\common\bomb\clear ring_blue SCUROed..png"
 
 Dear Retsukiya, "R-skin".
 	Inspired by "R-skin" by Retsukiya, i developed this skin.
 	Thank you very much.
+
+Dear ric(@Aoi_psy), "ECFN".
+	Some bombs in this skin are 1.5x enlargement of ECFN's "default" and color processed.
+	Thank you very much.
+	- "ECFN\play\bomb\default.png"
 
 -------------------------------------
 
@@ -89,16 +94,16 @@ mail:kibmibgib.1212@gmail.com
 -------------------------------------
 Update History
 
-07/06/2023
+07062023
 	- Skin Release
 
-07/08/2023
+07082023
 	- Clear statement of copyrights
 	- Add prefix "!" to some folders
 	- Update "play7main.lua"
 	- Update "readme_en.txt" and "readme_jp.txt"
 
-07/09/2023
+07092023
 	- Add "Timing Visualizer"
 	- Add "parts/!judgenum/Simple.png"
 	- Update "!common/play_system.png"
@@ -106,7 +111,7 @@ Update History
 	- Update "NOTICE"
 	- Update "readme_en.txt" and "readme_jp.txt"
 
-07/15/2023
+07152023
 	- Adjust "Timing Visualizer"
 	- Delete "parts/!judgenum/..." folder.
 	- Delete "parts/!judge/..." folder.
@@ -125,7 +130,7 @@ Update History
 	- Update "NOTICE"
 	- Update "readme_en.txt" and "readme_jp.txt"
 
-07/26/2023
+07262023
 	- Adjust "judgment timing value"
 	- Adjust "bar line"
 	- Add "parts\!bomb\!_x150%_Purple_clear_ring_SCUROed.png"
@@ -138,7 +143,7 @@ Update History
 	- Update "play7main.lua"
 	- Update "readme_en.txt" and "readme_jp.txt"
 
-08/06/2023
+08062023
 	- Fix some bugs
 	- Adjust object display timing
 	- Add "Fast/Slow counter on playground"
@@ -149,7 +154,7 @@ Update History
 	- Update "NOTICE"
 	- Update "readme_en.txt" and "readme_jp.txt"
 
-08/13/2023
+08132023
 	- Organize skin setting screens
 	- Add "Judgeline & Keybeam Position"
 	- Add "Judgeline Height"
@@ -163,7 +168,7 @@ Update History
 	- Update "play7main.lua"
 	- Update "readme_en.txt" and "readme_jp.txt"
 
-08/27/2023
+08272023
 	- Fix a bug of keybeam issue for 1P
 	- Organize skin setting screens
 	- Add direction when BGA is not displayed
@@ -175,7 +180,7 @@ Update History
 	- Update "play7main.lua"
 	- Update "readme_en.txt" and "readme_jp.txt"
 
-08/28/2023
+08282023
 	- Rename some files in "parts\judge"
 	- Rename "readme_en.txt" to "readme.txt"
 	- Rename "readme_jp.txt" to "@Deprecated(since="08282023")_readme_jp.txt"
@@ -184,35 +189,43 @@ Update History
 	- Update "play7main.lua"
 	- Update "readme.txt"
 
-08/29/2023
+08292023
 	- Add "Barline Transparence" in custom tab
 	- Update "play7main.lua"
 	- Update "readme.txt"
 
-08/30/2023
+08302023
 	- Fix a bug of "F/S Count" is not display
 	- Add "Hidden Cover Position & Height" in custom tab
 	- Update "!common\!_play_system.png"
 	- Update "play7main.lua"
 	- Update "readme.txt"
-08/31/2023
+08312023
 	- Change "Barline Transparence" to "Barline Position & Transparence"
 	- Update "play7main.lua"
 	- Update "readme.txt"
 
-09/17/2023
+09172023
 	- Delete "@Deprecated(since=08282023)_readme_jp.txt"
 	- Delete "@Deprecated(since=08282023)_user's manual_jp.pdf"
 	- Update README.md
 	- Update readme.txt
 
-11/22/2023
+11222023
 	- Add some files in "parts\keybeam"
 	- Update readme.txt
 
-02/29/2024
+02292024
 	- Supported 5key.
 	- Add play5main.lua and play5main.luaskin
 	- Add some notes and keybeams for 5key.
 	- Update readme.txt
+
+03162024
+	- Changed to notes, keybeams, gauge, etc. to be set individually for each color.
+	- Add some bombs from "ECFN" by ric (Please forgive me. If there is a problem, I will remove them immediately.)
+	- Other minor adjustments and code optimization.
+	- Update readme.txt
+
+
 	
