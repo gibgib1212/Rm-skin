@@ -363,10 +363,18 @@ local function remain_notes_rate()
 	return remain_notes() / main_state.number(106)
 end
 
+local function display_number(number)
+	if main_state.number(106) == remain_notes() then
+		return 0
+	else
+		return main_state.number(number)
+	end
+end	
+
 local filepath = {
 
-	{name = "Mascot", 								category = "com_parts_1", path = "parts/!mascot/*.png"},
-	{name = "Background Image", 					category = "com_parts_2", path = "parts/bg/*.png", def = "Default"},
+	{name = "Mascot", 								category = "com_parts_1", path = "parts/!mascot/*.png", def = "!_Default"},
+	{name = "Background Image", 					category = "com_parts_2", path = "parts/bg/*.png", def = "Black"},
 
 	{name = "Notes: 1-5", 							category = "pl_notes_1", path = "parts/notes/white/*.png", def = "Square_White#f3f3f3"},
 	{name = "Notes: 2-4", 							category = "pl_notes_2", path = "parts/notes/blue/*.png", def = "Square_LightBlue#35eaff"},
@@ -386,8 +394,8 @@ local filepath = {
 	{name = "Judge: Miss",	 						category = "pl_judge_6", path = "parts/judge/ms/*.png", def = "x75%_Default"},
 
 	{name = "Judge Num", 							category = "pl_parts_1", path = "parts/judgenum/*.png", def = "Simple_Thin"},
-	{name = "Bomb", 								category = "pl_parts_2", path = "parts/!bomb/*.png", def = "!_x150%_Blue_clear_ring_SCUROed"},
-	{name = "Lane Cover", 							category = "pl_parts_3", path = "parts/lanecover/*.png", def = "Default"},
+	{name = "Bomb", 								category = "pl_parts_2", path = "parts/!bomb/*.png", def = "!_x150%_White_clear_ring_SCUROed"},
+	{name = "Lane Cover", 							category = "pl_parts_3", path = "parts/lanecover/*.png", def = "Simple"},
 	{name = "Fast/Slow(except \"+-MS\")", 			category = "pl_parts_4", path = "parts/fast_slow/*.png", def = "Default_Medium"},
 
 	{name = "Judge Line", 							category = "cl_parts_1", path = "parts/colors/judgeline/*.png", def = "White4#a3d1ff"},
@@ -480,9 +488,9 @@ local function main()
 	geometry.score_position = c_score_pos
 	geometry.info_position = c_info_pos
 	geometry.lane_x = c_between_width
-	geometry.lane_y = 45
+	geometry.lane_y = 0
 	geometry.lane_w = notesInfo.Ot_width * 7 + notesInfo.Sc_width
-	geometry.lane_h = 1035
+	geometry.lane_h = 1080
 	geometry.lane_center = c_center_pos
 	geometry.judge_y = 680
 	geometry.bga_x = 68
@@ -659,7 +667,7 @@ local function main()
 		
 		{id = "section-line", src = "play_system_src", x = 0, y = 0, w = 1, h = 1},
 
-		{id = "fs-opg-frame", src = "play_system_src", x = 0, y = 364, w = 600, h = 21},
+		{id = "fs-opg-frame", src = "play_system_src", x = 0, y = 353, w = 600, h = 21},
 
 		{id = "gauge-w1", src = "gaugeHazard_src", x = 0, y = 0, w = 10, h = 10},
 		{id = "gauge-w2", src = "gaugeHazard_src", x = 10, y = 0, w = 10, h = 10},
@@ -716,8 +724,12 @@ local function main()
 		{id = "sl-num", src = "info_system_src", x = 617, y = 66, w = 200, h = 21, divx = 10, digit = 4, ref = 424, align = 0},
 		{id = "br-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 4, ref = 425, align = 0},
 
-		{id = "info-rate-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 3, ref = 102, align = 0},
-		{id = "info-rate-adot-num", src = "info_system_src", x = 617, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 103, align = 0},
+		{id = "info-rate-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 3, align = 0, value = function()
+			return display_number(102)
+		end},
+		{id = "info-rate-adot-num", src = "info_system_src", x = 617, y = 0, w = 220, h = 21, divx = 11, digit = 2, align = 0, value = function()
+			return display_number(103)
+		end},
 
 		{id = "green-num", src = "info_system_src", x = 617, y = 22, w = 200, h = 21, divx = 10, digit = 4, ref = 313, align = 0},
 		{id = "judgetiming-num", src = "info_system_src", x = 617, y = 88, w = 180, h = 34, divx = 12, divy = 2, digit = 3, ref = 12, align = 1},
@@ -737,10 +749,16 @@ local function main()
 		{id = "fps-num-left", src = "score_system_src", x = 373, y =22, w = 200, h = 21, divx = 10, digit = 4, ref = 20, align = 1},
 		{id = "fps-num-right", src = "score_system_src", x = 373, y =22, w = 200, h = 21, divx = 10, digit = 4, ref = 20, align = 0},
 
-		{id = "score-rate-num", src = "score_system_src", x = 373, y = 87, w = 200, h = 24, divx = 10, digit = 3, ref = 102, align = 0},
-		{id = "score-rate-adot-num", src = "score_system_src", x = 373, y = 87, w = 220, h = 24, divx = 11, digit = 2, ref = 103, align = 0},
+		{id = "score-rate-num", src = "score_system_src", x = 373, y = 87, w = 200, h = 24, divx = 10, digit = 3, align = 0, value = function()
+			return display_number(102)
+		end},
+		{id = "score-rate-adot-num", src = "score_system_src", x = 373, y = 87, w = 220, h = 24, divx = 11, digit = 2, align = 0, value = function()
+			return display_number(103)
+		end},
 
-		{id = "score-score", src = "score_system_src", x = 373, y = 0, w = 200, h = 21, divx = 10, digit = 5, ref = 101, align = 0},
+		{id = "score-score", src = "score_system_src", x = 373, y = 0, w = 200, h = 21, divx = 10, digit = 5, align = 0, value = function()
+			return display_number(101)
+		end},
 		{id = "score-diff-best", src = "score_system_src", x = 373, y = 44, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 152, align = 0},
 		{id = "score-diff-target", src = "score_system_src", x = 373, y = 44, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 153, align = 0},	
 
@@ -750,8 +768,12 @@ local function main()
 
 		{id = "fsms-num", src = "play_system_src", x = 0, y = 119, w = 480, h = 84, divx = 12, divy = 2, digit = 4, ref = 525, align = 2},
 
-		{id = "play-rate-num", src = "judgenum_src", x = 0, y = 91, w = 330, h = 45, divx = 10, digit = 3, ref = 102, align = 0},
-		{id = "play-rate-adot-num", src = "judgenum_src", x = 0, y = 91, w = 363, h = 45, divx = 11, digit = 2, ref = 103, align = 0},
+		{id = "play-rate-num", src = "judgenum_src", x = 0, y = 91, w = 330, h = 45, divx = 10, digit = 3, align = 0, value = function()
+				return display_number(102)
+		end},
+		{id = "play-rate-adot-num", src = "judgenum_src", x = 0, y = 91, w = 363, h = 45, divx = 11, digit = 2, align = 0, value = function()
+				return display_number(103)
+		end},
 	
 		{id = "remain-rate-num", src = "play_system_src", x = 10, y = 290, w = 165, h = 18, divx = 11, digit = 3, align = 0, value = function()
 			return remain_notes_rate() * 100 - 100
@@ -1058,52 +1080,52 @@ append_all(skin.destination, {
 	{id = "af-info-frame", timer = 41, dst = {
 		{x = geometry.info_position, y = 0, w = 616, h = 480}
 	}},
-	{id = "info-rate-DnP", timer = 46, dst = {
+	{id = "info-rate-DnP", timer = 41, dst = {
 		{x = geometry.info_position + 525, y = 269, w = 74, h = 21}
 	}},
-	{id = "pf-num", timer = 46, dst = {
+	{id = "pf-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 410, w = 20, h = 21},
 	}},
-	{id = "gr-num", timer = 46, dst = {
+	{id = "gr-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 387, w = 20, h = 21},
 	}},	
-	{id = "gd-num", timer = 46, dst = {
+	{id = "gd-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 364, w = 20, h = 21},
 	}},	
-	{id = "bd-num", timer = 46, dst = {
+	{id = "bd-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 341, w = 20, h = 21},
 	}},	
-	{id = "pr-num", timer = 46, dst = {
+	{id = "pr-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 318, w = 20, h = 21},
 	}},	
-	{id = "ms-num", timer = 46, dst = {
+	{id = "ms-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 295, w = 20, h = 21},
 	}},	
-	{id = "fl-num", timer = 46, dst = {
+	{id = "fl-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 269, w = 20, h = 21},
 	}},	
 	{id = "total-num", dst = {
 		{x = geometry.info_position + 519, y = 410, w = 20, h = 21},
 	}},	
-	{id = "m-combo", timer = 46, dst = {
+	{id = "m-combo", timer = 41, dst = {
 		{x = geometry.info_position + 419, y = 364, w = 20, h = 21},
 	}},	
 	{id = "t-notes", dst = {
 		{x = geometry.info_position + 519, y = 364, w = 20, h = 21},
 	}},	
-	{id = "fs-num", timer = 46, dst = {
+	{id = "fs-num", timer = 41, dst = {
 		{x = geometry.info_position + 519, y = 341, w = 20, h = 21},
 	}},	
-	{id = "sl-num", timer = 46, dst = {
+	{id = "sl-num", timer = 41, dst = {
 		{x = geometry.info_position + 519, y = 318, w = 20, h = 21},
 	}},	
-	{id = "br-num", timer = 46, dst = {
+	{id = "br-num", timer = 41, dst = {
 		{x = geometry.info_position + 519, y = 295, w = 20, h = 21},
 	}},	
-	{id = "info-rate-num", timer = 46, dst = {
+	{id = "info-rate-num", timer = 41, dst = {
 		{x = geometry.info_position + 459, y = 269, w = 20, h = 21},
 	}},	
-	{id = "info-rate-adot-num", timer = 46, dst = {
+	{id = "info-rate-adot-num", timer = 41, dst = {
 		{x = geometry.info_position + 539, y = 269, w = 20, h = 21},
 	}},	
 	{id = "green-num", dst = {
@@ -1196,22 +1218,22 @@ append_all(skin.destination, {
 	{id = "score-frame", timer = 41, dst = {
 		{x = geometry.score_position, y = 0, w = 372, h = 1080}
 	}},
-	{id = "score-rate-DnP", timer = 46, dst = {
+	{id = "score-rate-DnP", timer = 41, dst = {
 		{x = geometry.score_position + 91, y = 993, w = 76, h = 22}
 	}},
-	{id = "score-rate-num", timer = 46, dst = {
+	{id = "score-rate-num", timer = 41, dst = {
 		{x = geometry.score_position + 28, y = 992, w = 20, h = 24}
 	}},
-	{id = "score-rate-adot-num", timer = 46, dst = {
+	{id = "score-rate-adot-num", timer = 41, dst = {
 		{x = geometry.score_position + 102, y = 992, w = 20, h = 24}
 	}},
-	{id = "score-score", timer = 46, dst = {
+	{id = "score-score", timer = 41, dst = {
 		{x = geometry.score_position + 244, y = 961, w = 20, h = 21}
 	}},
-	{id = "score-diff-best", timer = 46, dst = {
+	{id = "score-diff-best", timer = 41, dst = {
 		{x = geometry.score_position + 224, y = 935, w = 20, h = 21}
 	}},
-	{id = "score-diff-target", timer = 46, dst = {
+	{id = "score-diff-target", timer = 41, dst = {
 		{x = geometry.score_position + 224, y = 909, w = 20, h = 21}
 	}},
 	{id = "graph-final", timer = 41, dst = {
@@ -1690,15 +1712,28 @@ end
 
 		-- レーン上でのレート表示
 		-- Rate display on lanes
+-- if isScoreRateOn() and main_state.timer ~= 46 then
+-- 	append_all(skin.destination, {
+-- 		-- dummy rate
+-- 		{id = "play-dummyrate-num", offsets = {3, 65, 70}, timer = 41, dst = {
+-- 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105), y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
+-- 		}},
+-- 		{id = "play-dummyrate-adot-num", offsets = {3, 65, 70}, timer = 41, dst = {		
+-- 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 111, y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
+-- 		}},
+
+-- 	})
+-- end	
+
 if isScoreRateOn() then
 	append_all(skin.destination, {
-		{id = "play-rate-num", offsets = {3, 65, 70}, timer = 46, dst = {
+		{id = "play-rate-num", offsets = {3, 65, 70}, timer = 41, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105), y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
 		}},
-		{id = "play-rate-adot-num", offsets = {3, 65, 70}, timer = 46, dst = {		
+		{id = "play-rate-adot-num", offsets = {3, 65, 70}, timer = 41, dst = {		
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 111, y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
 		}},
-		{id = "play-rate-dot", offsets = {3, 65, 70}, timer = 46, dst = {
+		{id = "play-rate-dot", offsets = {3, 65, 70}, timer = 41, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 99, y = geometry.lane_y + 275, w = 12, h = 45, a = 0, acc = 2}
 		}},
 	})
@@ -1936,18 +1971,18 @@ if isScratchRight() then
 			-- 残りノーツ パーセント
 			-- remain notes persent
 		{id = "remain-rate-num", dst = {
-			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 23, y = 75, w = 15, h = 18}
+			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 23, y = 74, w = 15, h = 18}
 		}},
 		{id = "remain-rate-adot-num", dst = {
-			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 77, y = 75, w = 15, h = 18}
+			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 77, y = 74, w = 15, h = 18}
 		}},
 		{id = "remain-rate-dot", dst = {
-			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 68, y = 75, w = 9, h = 18}
+			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 68, y = 74, w = 9, h = 18}
 		}},	
 			-- 残りノーツ
 			-- remain notes
 		{id = "remain-notes", dst = {
-			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 23, y = 45, w = 15, h = 18}
+			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 23, y = 44, w = 15, h = 18}
 		}},		
 			-- 残り時間
 			-- time left
@@ -1977,18 +2012,18 @@ else
 			-- 残りノーツ パーセント
 			-- remain notes persent
 		{id = "remain-rate-num", dst = {
-			{x = geometry.play_position + geometry.lane_x + (-104), y = 75, w = 15, h = 18}
+			{x = geometry.play_position + geometry.lane_x + (-104), y = 74, w = 15, h = 18}
 		}},	
 		{id = "remain-rate-adot-num", dst = {
-			{x = geometry.play_position + geometry.lane_x + (-50), y = 75, w = 15, h = 18}
+			{x = geometry.play_position + geometry.lane_x + (-50), y = 74, w = 15, h = 18}
 		}},	
 		{id = "remain-rate-dot", dst = {
-			{x = geometry.play_position + geometry.lane_x + (-59), y = 75, w = 9, h = 18}
+			{x = geometry.play_position + geometry.lane_x + (-59), y = 74, w = 9, h = 18}
 		}},	
 			-- 残りノーツ
 			-- remain notes
 		{id = "remain-notes", dst = {
-			{x = geometry.play_position + geometry.lane_x + (-95), y = 45, w = 15, h = 18}
+			{x = geometry.play_position + geometry.lane_x + (-95), y = 44, w = 15, h = 18}
 		}},				
 			-- 残り時間
 			-- time left	

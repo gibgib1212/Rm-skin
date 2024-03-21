@@ -1,13 +1,13 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:03/16/2024)
+(Last updated:03/21/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
 This skin is a simple dark skin in "R-skin" format.
 To use the Rm-skin folder, place the Rm-skin-main folder as shown below.
-beatorajaX.X.X/skin/Rm-skin-main...
+"beatorajaX.X.X/skin/Rm-skin..." (or "beatorajaX.X.X/skin/Rm-skin-main...")
 
 Also, as a reminder, the initial transparency values for some items are set to "0".
 I apologize for the inconvenience, but in the "beatoraja X.X.X configuration" skin tab,
@@ -72,10 +72,13 @@ About Licenses:
 As mentioned above, this skin was created by re-editing images and other materials 
 that were the work of our pioneers.
 Therefore, modification or distribution of files with the prefix "!" is prohibited. 
-Specifically, the relevant file will be deemed to be in compliance with the "No License"(https://choosealicense.com/no-permission/).
+Specifically, the relevant file will be deemed to be in compliance with the 
+"Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)"
+(https://creativecommons.org/licenses/by-nc-nd/4.0/deed.en).
 
-However, for other files, those without the prefix "!", I have created these files, and I give permission to modify and distribute them. Specifically, the relevant files will be deemed 
-compliant with "GPL v3"(https://choosealicense.com/licenses/gpl-3.0/).
+However, for other files, those without the prefix "!", I have created these files, and I give permission to modify and distribute them. 
+Specifically, the relevant files will be deemed compliant with 
+"GNU General Public License v3.0 (GPLv3)"(https://choosealicense.com/licenses/gpl-3.0/).
 
 While the various restrictions may seem cumbersome, the environment surrounding 
 BMS is a gray area, and i want to provide as much transparency as possible regarding copyrights.
@@ -218,7 +221,7 @@ Update History
 02292024
 	- Supported 5key.
 	- Add play5main.lua and play5main.luaskin
-	- Add some notes and keybeams for 5key.
+	- Add some notes and keybeams for 5key
 	- Update readme.txt
 
 03162024
@@ -226,6 +229,17 @@ Update History
 	- Add some bombs from "ECFN" by ric (Please forgive me. If there is a problem, I will remove them immediately.)
 	- Other minor adjustments and code optimization.
 	- Update readme.txt
+
+--- v0.1.0	
+
+03212024
+	- Changed lane height 1035 to 1080 pixel (If you do not set the lift, the gauge will appear before the judgeline)
+	- Changed in display timing of various numerical values
+	- Added remain notes value
+	- Update readme.txt
+	- Update README.md
+
+
 
 
 	
