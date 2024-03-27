@@ -24,48 +24,73 @@ local category = {
 	}},
 
 	{name = "Common", item = {
-		"com_parts_1",
-		"com_parts_2"
+		"common_1",
+		"common_2"
 	}},
 
-	{name = "Notes", item = {
-		"pl_notes_1",
-		"pl_notes_2",
-		"pl_notes_3",
-		"pl_notes_4"
+	{name = "Notes : 1-3-5-7", item = {
+		"notes_wh_1",
+		"notes_wh_2",
+		"notes_wh_3",
+		"notes_wh_4",
+		"notes_wh_5"
+	}},
+
+	{name = "Notes : 2-6", item = {
+		"notes_bl_1",
+		"notes_bl_2",
+		"notes_bl_3",
+		"notes_bl_4",
+		"notes_bl_5"
+	}},
+
+	{name = "Notes : 4", item = {
+		"notes_ye_1",
+		"notes_ye_2",
+		"notes_ye_3",
+		"notes_ye_4",
+		"notes_ye_5"
+	}},
+
+	{name = "Notes : Scratch", item = {
+		"notes_sc_1",
+		"notes_sc_2",
+		"notes_sc_3",
+		"notes_sc_4",
+		"notes_sc_5"
 	}},
 
 	{name = "Keybeam", item = {
-		"pl_keybeam_1",
-		"pl_keybeam_2",
-		"pl_keybeam_3",
-		"pl_keybeam_4"
+		"keybeam_1",
+		"keybeam_2",
+		"keybeam_3",
+		"keybeam_4"
 	}},
 
 	{name = "Judge", item = {
-		"pl_judge_1",
-		"pl_judge_2",
-		"pl_judge_3",
-		"pl_judge_4",
-		"pl_judge_5",
-		"pl_judge_6"
+		"judge_1",
+		"judge_2",
+		"judge_3",
+		"judge_4",
+		"judge_5",
+		"judge_6"
 	}},
 
 	{name = "Other", item = {
-		"pl_parts_1",
-		"pl_parts_2",
-		"pl_parts_3",
-		"pl_parts_4"
+		"other_1",
+		"other_2",
+		"other_3",
+		"other_4"
 	}},
 
 	{name = "Colors", item = {
-		"cl_parts_1",
-		"cl_parts_2",
-		"cl_parts_3",
-		"cl_parts_4",
-		"cl_parts_5",
-		"cl_parts_6",
-		"cl_parts_7"
+		"color_1",
+		"color_2",
+		"color_3",
+		"color_4",
+		"color_5",
+		"color_6",
+		"color_7"
 	}},
 
 	{name = "Custom", item = {
@@ -87,7 +112,7 @@ local category = {
 		"custom_16",
 		"custom_17",
 		"custom_18"
-	}},	
+	}},
 }
 
 local property = {
@@ -100,12 +125,12 @@ local property = {
 	{name = "Lane Frame", category = "option_2", item = {
 		{name = "Off", op = 902},
 		{name = "On", op = 903},
-	}},	
+	}},
 
 	{name = "Lane Center", category = "option_3", item = {
 		{name = "Notes", op = 904},
 		{name = "Notes + Scratch", op = 905}
-	}},	
+	}},
 
 	{name = "Keybeam Display", category = "option_4", item = {
 		{name = "Fast", op = 906},
@@ -148,7 +173,7 @@ local property = {
 	{name = "Bomb Under the Gauge", category = "option_11", item = {
 		{name = "Off", op = 923},
 		{name = "On", op = 924}
-	}},	
+	}},
 
 	{name = "Mascot Display", category = "option_12", item = {
 		{name = "Off", op = 950},
@@ -166,10 +191,6 @@ local function isScratchRight()
 	return skin_config.option["Scratch Side"] == 901
 end
 
-local function isLaneFrameOff()
-	return skin_config.option["Lane Frame"] == 902
-end
-
 local function isLaneFrameOn()
 	return skin_config.option["Lane Frame"] == 903
 end
@@ -178,20 +199,8 @@ local function isLaneCenterPosKey()
 	return skin_config.option["Lane Center"] == 904
 end
 
-local function isLaneCenterPosAll()
-	return skin_config.option["Lane Center"] == 905
-end
-
 local function isKeybeamFast()
 	return skin_config.option["Keybeam Display"] == 906
-end
-
-local function isKeybeamSlow()
-	return skin_config.option["Keybeam Display"] == 907
-end
-
-local function isTargetOff()
-	return skin_config.option["Target"] == 908
 end
 
 local function isTargetBest()
@@ -202,24 +211,12 @@ local function isTargetRank()
 	return skin_config.option["Target"] == 910
 end
 
-local function isTarget2Off()
-	return skin_config.option["Target2 (Left)"] == 911
-end
-
 local function isTarget2On()
 	return skin_config.option["Target2 (Left)"] == 912
 end
 
-local function isScoreRateOff()
-	return skin_config.option["Score Rate"] == 913
-end
-
 local function isScoreRateOn()
 	return skin_config.option["Score Rate"] == 914
-end
-
-local function isFastSlowOff()
-	return skin_config.option["Fast/Slow"] == 915
 end
 
 local function isFastSlowCenterOn()
@@ -232,34 +229,18 @@ end
 
 local function isFastSlowMS()
 	return skin_config.option["Fast/Slow"] == 918
-end 
-
-local function isTimingVisualizerOff()
-	return skin_config.option["Timing Visualizer"] == 919
 end
 
 local function isTimingVisualizerOn()
 	return skin_config.option["Timing Visualizer"] == 920
-end 
-
-local function isFSCountOnPlayOff()
-	return skin_config.option["F/S Count On Pleyground"] == 921
 end
 
 local function isFSCountOnPlayOn()
 	return skin_config.option["F/S Count On Pleyground"] == 922
 end
 
-local function isBombUnderTheGaugeOff()
-	return skin_config.option["Bomb Under the Gauge"] == 923
-end
-
 local function isBombUnderTheGaugeOn()
 	return skin_config.option["Bomb Under the Gauge"] == 924
-end
-
-local function isMascotOff()
-	return skin_config.option["Mascot Display"] == 950
 end
 
 local function isMascotStop()
@@ -276,19 +257,17 @@ end
 
 local function f_play_pos()
 	local value = 0
-	local index = skin_config.option["Scratch Side"]
-	if index == 901 then
+	if isScratchRight() then
 		value = 616
 	else
 		value = 372
 	end
 	return value
 end
-	
+
 local function f_score_pos()
 	local value = 0
-	local index = skin_config.option["Scratch Side"]
-	if index == 901 then
+	if isScratchRight() then
 		value = 1550
 	else
 		value = 0
@@ -298,8 +277,7 @@ end
 
 local function f_info_pos()
 	local value = 0
-	local index = skin_config.option["Scratch Side"]
-	if index == 901 then
+	if isScratchRight() then
 		value = 0
 	else
 		value = 1304
@@ -309,8 +287,7 @@ end
 
 local function f_graph_blue_pos()
 	local value = 0
-	local index = skin_config.option["Scratch Side"]
-	if index == 901 then
+	if isScratchRight() then
 		value = 72
 	else
 		value = 264
@@ -320,8 +297,7 @@ end
 
 local function f_graph_red_pos()
 	local value = 0
-	local index = skin_config.option["Scratch Side"]
-	if index == 901 then
+	if isScratchRight() then
 		value = 264
 	else
 		value = 72
@@ -331,28 +307,25 @@ end
 
 local function f_between_width()
 	local value = 0
-	local index = skin_config.option["Scratch Side"]
-	if index == 901 then
+	if isScratchRight() then
 		value = 15
 	else
 		value = 115
-	end	
+	end
 	return value
-end	
+end
 
 local function f_center_pos()
 	local value = 0
-	local index1 = skin_config.option["Scratch Side"]
-	local index2 = skin_config.option["Lane Center"]
-	if index1 == 901 and index2 == 904 then
+	if isLaneCenterPosKey() and isScratchRight() then
 		value = 329
-	elseif index1 == 900 and index2 == 904 then
+	elseif isLaneCenterPosKey() and isScratchLeft() then
 		value = 473
-	else	
+	else
 		value = 401
 	end
 	return value
-end	
+end
 
 local function remain_notes()
 	return main_state.number(106) - main_state.number(110) - main_state.number(111) - main_state.number(112) - main_state.number(113) - main_state.number(114)
@@ -368,42 +341,61 @@ local function display_number(number)
 	else
 		return main_state.number(number)
 	end
-end	
+end
 
 local filepath = {
 
-	{name = "Mascot", 								category = "com_parts_1", path = "parts/!mascot/*.png", def = "!_Default"},
-	{name = "Background Image", 					category = "com_parts_2", path = "parts/bg/*.png", def = "Black"},
+	{name = "Mascot", 								category = "common_1", path = "parts/!mascot/*.png", 	def = "!_Default"},
+	{name = "Background Image", 					category = "common_2", path = "parts/bg/*.png", 		def = "Black"},
 
-	{name = "Notes: 1-3-5-7", 						category = "pl_notes_1", path = "parts/notes/white/*.png", def = "Square_White#f3f3f3"},
-	{name = "Notes: 2-6", 							category = "pl_notes_2", path = "parts/notes/blue/*.png", def = "Square_LightBlue#35eaff"},
-	{name = "Notes: 4", 							category = "pl_notes_3", path = "parts/notes/yellow/*.png", def = "Square_Yellow#ffde35"},
-	{name = "Notes: Scratch", 						category = "pl_notes_4", path = "parts/notes/scratch/*.png", def = "Square_Red#fc0014"},
-	
-	{name = "Keybeam: 1-3-5-7", 					category = "pl_keybeam_1", path = "parts/keybeam/white/*.png", def = "Default_Wh"},
-	{name = "Keybeam: 2-6", 						category = "pl_keybeam_2", path = "parts/keybeam/blue/*.png", def = "Default_Bl"},
-	{name = "Keybeam: 4", 							category = "pl_keybeam_3", path = "parts/keybeam/yellow/*.png", def = "Default_Bl"},
-	{name = "Keybeam: Scratch", 					category = "pl_keybeam_4", path = "parts/keybeam/scratch/*.png", def = "Default_Sc"},
+	{name = "Notes (White)", 						category = "notes_wh_1", path = "parts/notes/white/*.png", 			def = "White_#Square_#f3f3f3"},
+	{name = "Long-Start (White)", 					category = "notes_wh_2", path = "parts/notes/white_lnSt/*.png", 	def = "White_#Line_#f3f3f3"},
+	{name = "Long-End (White)", 					category = "notes_wh_3", path = "parts/notes/white_lnEn/*.png", 	def = "General_#Fadeout"},
+	{name = "Long-Body (White)", 					category = "notes_wh_4", path = "parts/notes/white_lnBo/*.png", 	def = "General_#808088"},
+	{name = "Mine (White)", 						category = "notes_wh_5", path = "parts/notes/white_mine/*.png", 	def = "Off"},
 
-	{name = "Judge: Perfect", 						category = "pl_judge_1", path = "parts/judge/pg/*.png", def = "x75%_Default"},
-	{name = "Judge: Great", 						category = "pl_judge_2", path = "parts/judge/gr/*.png", def = "x75%_Default"},
-	{name = "Judge: Good",	 						category = "pl_judge_3", path = "parts/judge/gd/*.png", def = "x75%_Default"},
-	{name = "Judge: Bad", 							category = "pl_judge_4", path = "parts/judge/bd/*.png", def = "x75%_Default"},
-	{name = "Judge: Poor", 							category = "pl_judge_5", path = "parts/judge/pr/*.png", def = "x75%_Default"},
-	{name = "Judge: Miss",	 						category = "pl_judge_6", path = "parts/judge/ms/*.png", def = "x75%_Default"},
+	{name = "Notes (Blue)", 						category = "notes_bl_1", path = "parts/notes/blue/*.png", 			def = "LightBlue_#Square_#35eaff"},
+	{name = "Long-Start (Blue)", 					category = "notes_bl_2", path = "parts/notes/blue_lnSt/*.png", 		def = "LightBlue_#Line_#35eaff"},
+	{name = "Long-End (Blue)", 						category = "notes_bl_3", path = "parts/notes/blue_lnEn/*.png", 		def = "General_#Fadeout"},
+	{name = "Long-Body (Blue)", 					category = "notes_bl_4", path = "parts/notes/blue_lnBo/*.png", 		def = "General_#808088"},
+	{name = "Mine (Blue)", 							category = "notes_bl_5", path = "parts/notes/blue_mine/*.png", 		def = "Off"},
 
-	{name = "Judge Num", 							category = "pl_parts_1", path = "parts/judgenum/*.png", def = "Simple_Thin"},
-	{name = "Bomb", 								category = "pl_parts_2", path = "parts/!bomb/*.png", def = "!_x150%_White_clear_ring_SCUROed"},
-	{name = "Lane Cover", 							category = "pl_parts_3", path = "parts/lanecover/*.png", def = "Simple"},
-	{name = "Fast/Slow(except \"+-MS\")", 			category = "pl_parts_4", path = "parts/fast_slow/*.png", def = "Default_Medium"},
+	{name = "Notes (Yellow)", 						category = "notes_ye_1", path = "parts/notes/yellow/*.png", 		def = "Yellow_#Square_#ffde35"},
+	{name = "Long-Start (Yellow)", 					category = "notes_ye_2", path = "parts/notes/yellow_lnSt/*.png", 	def = "Yellow_#Line_#ffde35"},
+	{name = "Long-End (Yellow)", 					category = "notes_ye_3", path = "parts/notes/yellow_lnEn/*.png", 	def = "General_#Fadeout"},
+	{name = "Long-Body (Yellow)", 					category = "notes_ye_4", path = "parts/notes/yellow_lnBo/*.png", 	def = "General_#808088"},
+	{name = "Mine (Yellow)", 						category = "notes_ye_5", path = "parts/notes/yellow_mine/*.png", 	def = "Off"},
 
-	{name = "Judge Line", 							category = "cl_parts_1", path = "parts/colors/judgeline/*.png", def = "White4#a3d1ff"},
-	{name = "Gauge: Hazard", 						category = "cl_parts_2", path = "parts/colors/hazard/*.png", def = "Blue1#389eff"},	
-	{name = "Gauge: Ex Hard", 						category = "cl_parts_3", path = "parts/colors/exhard/*.png", def = "Yellow1#ffff40"},
-	{name = "Gauge: Hard", 							category = "cl_parts_4", path = "parts/colors/hard/*.png", def = "White1#ffffff"},
-	{name = "Gauge: Normal", 						category = "cl_parts_5", path = "parts/colors/normal/*.png", def = "LightBlue1#74f7f7"},
-	{name = "Gauge: Easy", 							category = "cl_parts_6", path = "parts/colors/easy/*.png", def = "Green1#80ff40"},	
-	{name = "Gauge: Asist Easy", 					category = "cl_parts_7", path = "parts/colors/aseasy/*.png", def = "Pink1#ffb6c1"},
+	{name = "Notes (Scratch)", 						category = "notes_sc_1", path = "parts/notes/scratch/*.png", 		def = "LightCoral_#Square_#ff6d6d"},
+	{name = "Long-Start (Scratch)", 				category = "notes_sc_2", path = "parts/notes/scratch_lnSt/*.png", 	def = "LightCoral_#Line_#ff6d6d"},
+	{name = "Long-End (Scratch)", 					category = "notes_sc_3", path = "parts/notes/scratch_lnEn/*.png", 	def = "General_#Fadeout"},
+	{name = "Long-Body (Scratch)", 					category = "notes_sc_4", path = "parts/notes/scratch_lnBo/*.png", 	def = "General_#808088"},
+	{name = "Mine (Scratch)", 						category = "notes_sc_5", path = "parts/notes/scratch_mine/*.png", 	def = "Off"},
+
+	{name = "Keybeam: 1-3-5-7", 					category = "keybeam_1", path = "parts/keybeam/white/*.png", 		def = "Default_Wh"},
+	{name = "Keybeam: 2-6", 						category = "keybeam_2", path = "parts/keybeam/blue/*.png", 			def = "Default_Bl"},
+	{name = "Keybeam: 4", 							category = "keybeam_3", path = "parts/keybeam/yellow/*.png", 		def = "Default_Bl"},
+	{name = "Keybeam: Scratch", 					category = "keybeam_4", path = "parts/keybeam/scratch/*.png", 		def = "Default_Sc"},
+
+	{name = "Judge: Perfect", 						category = "judge_1", path = "parts/judge/pg/*.png", 	def = "x75%_Default"},
+	{name = "Judge: Great", 						category = "judge_2", path = "parts/judge/gr/*.png", 	def = "x75%_Default"},
+	{name = "Judge: Good",	 						category = "judge_3", path = "parts/judge/gd/*.png", 	def = "x75%_Default"},
+	{name = "Judge: Bad", 							category = "judge_4", path = "parts/judge/bd/*.png", 	def = "x75%_Default"},
+	{name = "Judge: Poor", 							category = "judge_5", path = "parts/judge/pr/*.png", 	def = "x75%_Default"},
+	{name = "Judge: Miss",	 						category = "judge_6", path = "parts/judge/ms/*.png",	def = "x75%_Default"},
+
+	{name = "Judge Num", 							category = "other_1", path = "parts/judgenum/*.png", 	def = "Simple_Thin"},
+	{name = "Bomb", 								category = "other_2", path = "parts/!bomb/*.png", 		def = "!_x150%_White_clear_ring_SCUROed"},
+	{name = "Lane Cover", 							category = "other_3", path = "parts/lanecover/*.png", 	def = "Simple"},
+	{name = "Fast/Slow(except \"+-MS\")", 			category = "other_4", path = "parts/fast_slow/*.png", 	def = "Default_Medium"},
+
+	{name = "Judge Line", 							category = "color_1", path = "parts/colors/judgeline/*.png", 	def = "White4_#a3d1ff"},
+	{name = "Gauge: Hazard", 						category = "color_2", path = "parts/colors/hazard/*.png", 		def = "Blue1_#389eff"},
+	{name = "Gauge: Ex Hard", 						category = "color_3", path = "parts/colors/exhard/*.png", 		def = "Yellow1_#ffff40"},
+	{name = "Gauge: Hard", 							category = "color_4", path = "parts/colors/hard/*.png", 		def = "White1_#ffffff"},
+	{name = "Gauge: Normal", 						category = "color_5", path = "parts/colors/normal/*.png", 		def = "LightBlue1_#74f7f7"},
+	{name = "Gauge: Easy", 							category = "color_6", path = "parts/colors/easy/*.png", 		def = "Green1_#80ff40"},
+	{name = "Gauge: Asist Easy", 					category = "color_7", path = "parts/colors/aseasy/*.png", 		def = "Pink1_#ffb6c1"},
 
 }
 
@@ -421,15 +413,15 @@ local offset = {
 	{name = "Target Position & Transparence", 				category = "custom_9", id = 63, x = true, y = true, w = false, h = false, r = false, a = true},
 	{name = "Target2 Position & Transparence", 				category = "custom_10", id = 64, x = true, y = true, w = false, h = false, r = false, a = true},
 	{name = "Score Rate Position & Transparence", 			category = "custom_11", id = 65, x = true, y = true, w = false, h = false, r = false, a = true},
-	{name = "Timing Visualizer Position & Transparence", 	category = "custom_12", id = 66, x = true, y = true, w = true, h = true, r = false, a = true},	
-	{name = "F/S Count Position & Transparence", 			category = "custom_13", id = 67, x = true, y = true, w = false, h = false, r = false, a = true},	
+	{name = "Timing Visualizer Position & Transparence", 	category = "custom_12", id = 66, x = true, y = true, w = true, h = true, r = false, a = true},
+	{name = "F/S Count Position & Transparence", 			category = "custom_13", id = 67, x = true, y = true, w = false, h = false, r = false, a = true},
 
-	{name = "Judgeline & Keybeam Y-Position", 				category = "custom_14", id = 70, x = false, y = true, w = false, h = false, r = false, a = false},	
-	{name = "Judgeline Height", 							category = "custom_15", id = 71, x = false, y = false, w = false, h = true, r = false, a = false},	
+	{name = "Judgeline & Keybeam Y-Position", 				category = "custom_14", id = 70, x = false, y = true, w = false, h = false, r = false, a = false},
+	{name = "Judgeline Height", 							category = "custom_15", id = 71, x = false, y = false, w = false, h = true, r = false, a = false},
 	{name = "Bomb Position & Transparance", 				category = "custom_16", id = 72, x = false, y = true, w = false, h = false, r = false, a = true},
 	{name = "Gauge Position", 								category = "custom_17", id = 73, x = true, y = true, w = true, h = true, r = false, a = false},
 	{name = "Gauge Transparance", 							category = "custom_18", id = 74, x = false, y = false, w = false, h = false, r = false, a = true},
-	
+
 }
 
 local header = {
@@ -462,24 +454,12 @@ local function main()
 	local c_between_width = f_between_width()
 	local c_graph_blue_pos = f_graph_blue_pos()
 	local c_graph_red_pos = f_graph_red_pos()
-	local c_center_pos = f_center_pos() 
+	local c_center_pos = f_center_pos()
 
 	local notesInfo = {
 		height = 40,
 		Ot_width = 94,
 		Sc_width = 144,
-		Std_y = 0,
-		lnEn_y = 40,
-		lnSt_y = 80,
-		lnAc_y = 120,
-		lnBo_y = 160,
-		hcEn_y = 40,
-		hcSt_y = 80,
-		hcBo_y = 160,
-		hcAc_y = 120,
-		hcDm_y = 160,
-		hcRe_y = 120,
-		mine_y = 200,
 	}
 
 	local geometry = {}
@@ -501,52 +481,113 @@ local function main()
 
 	skin.source = {
 		-- common
-		{id = "bg_src", path = "parts/bg/*.png"},
-		{id = "alt_image_src", path = "!common/!_alt_image.png"},
+		{id = "bg_src", 			path = "parts/bg/*.png"},
+		{id = "alt_image_src", 		path = "!common/!_alt_image.png"},
 
 		-- info
-		{id = "info_system_src", path = "!common/!_info_system.png"},
+		{id = "info_system_src", 	path = "!common/!_info_system.png"},
 
 		-- score
-		{id = "score_system_src", path = "!common/!_score_system.png"},	
-		{id = "mascot_src", path = "parts/!mascot/*.png"},	
+		{id = "score_system_src", 	path = "!common/!_score_system.png"},
+		{id = "mascot_src", 		path = "parts/!mascot/*.png"},
 
 		-- play
-		{id = "play_system_src", path = "!common/!_play_system.png"},
+		{id = "play_system_src", 	path = "!common/!_play_system.png"},
 
-		{id = "notes_wh_src", path = "parts/notes/white/*.png"},
-		{id = "notes_bl_src", path = "parts/notes/blue/*.png"},
-		{id = "notes_ye_src", path = "parts/notes/yellow/*.png"},
-		{id = "notes_sc_src", path = "parts/notes/scratch/*.png"},
+			-- note
+		{id = "notes_wh_src", 	path = "parts/notes/white/*.png"},
+		{id = "notes_bl_src", 	path = "parts/notes/blue/*.png"},
+		{id = "notes_ye_src", 	path = "parts/notes/yellow/*.png"},
+		{id = "notes_sc_src", 	path = "parts/notes/scratch/*.png"},
+
+			-- lnend	
+		{id = "lnEn_wh_src", 	path = "parts/notes/white_lnEn/*.png"},
+		{id = "lnEn_bl_src", 	path = "parts/notes/blue_lnEn/*.png"},
+		{id = "lnEn_ye_src", 	path = "parts/notes/yellow_lnEn/*.png"},
+		{id = "lnEn_sc_src", 	path = "parts/notes/scratch_lnEn/*.png"},
+
+			-- lnstart	
+		{id = "lnSt_wh_src", 	path = "parts/notes/white_lnSt/*.png"},
+		{id = "lnSt_bl_src", 	path = "parts/notes/blue_lnSt/*.png"},
+		{id = "lnSt_ye_src", 	path = "parts/notes/yellow_lnSt/*.png"},
+		{id = "lnSt_sc_src", 	path = "parts/notes/scratch_lnSt/*.png"},
+
+			-- lnbody	
+		{id = "lnBo_wh_src", 	path = "parts/notes/white_lnBo/*.png"},
+		{id = "lnBo_bl_src", 	path = "parts/notes/blue_lnBo/*.png"},
+		{id = "lnBo_ye_src", 	path = "parts/notes/yellow_lnBo/*.png"},
+		{id = "lnBo_sc_src", 	path = "parts/notes/scratch_lnBo/*.png"},
+
+			-- lnactive
+		{id = "lnAc_wh_src", 	path = "parts/notes/white_lnBo/*.png"},
+		{id = "lnAc_bl_src", 	path = "parts/notes/blue_lnBo/*.png"},
+		{id = "lnAc_ye_src", 	path = "parts/notes/yellow_lnBo/*.png"},
+		{id = "lnAc_sc_src", 	path = "parts/notes/scratch_lnBo/*.png"},
+
+			-- hcnend	
+		{id = "hcEn_wh_src", 	path = "parts/notes/white_lnEn/*.png"},
+		{id = "hcEn_bl_src", 	path = "parts/notes/blue_lnEn/*.png"},
+		{id = "hcEn_ye_src", 	path = "parts/notes/yellow_lnEn/*.png"},
+		{id = "hcEn_sc_src", 	path = "parts/notes/scratch_lnEn/*.png"},
+
+			-- hcnstart	
+		{id = "hcSt_wh_src", 	path = "parts/notes/white_lnSt/*.png"},
+		{id = "hcSt_bl_src", 	path = "parts/notes/blue_lnSt/*.png"},
+		{id = "hcSt_ye_src", 	path = "parts/notes/yellow_lnSt/*.png"},
+		{id = "hcSt_sc_src", 	path = "parts/notes/scratch_lnSt/*.png"},
+
+			-- hcnbody	
+		{id = "hcBo_wh_src", 	path = "parts/notes/white_lnBo/*.png"},
+		{id = "hcBo_bl_src", 	path = "parts/notes/blue_lnBo/*.png"},
+		{id = "hcBo_ye_src", 	path = "parts/notes/yellow_lnBo/*.png"},
+		{id = "hcBo_sc_src", 	path = "parts/notes/scratch_lnBo/*.png"},
+
+			-- hcnactive
+		{id = "hcAc_wh_src", 	path = "parts/notes/white_lnBo/*.png"},
+		{id = "hcAc_bl_src", 	path = "parts/notes/blue_lnBo/*.png"},
+		{id = "hcAc_ye_src", 	path = "parts/notes/yellow_lnBo/*.png"},
+		{id = "hcAc_sc_src", 	path = "parts/notes/scratch_lnBo/*.png"},
+
+			-- hcndamage
+		{id = "hcBo_wh_src", 	path = "parts/notes/white_lnBo/*.png"},
+		{id = "hcBo_bl_src", 	path = "parts/notes/blue_lnBo/*.png"},
+		{id = "hcBo_ye_src", 	path = "parts/notes/yellow_lnBo/*.png"},
+		{id = "hcBo_sc_src", 	path = "parts/notes/scratch_lnBo/*.png"},
+
+			-- mine
+		{id = "mine_wh_src", 	path = "parts/notes/white_mine/*.png"},
+		{id = "mine_bl_src", 	path = "parts/notes/blue_mine/*.png"},
+		{id = "mine_ye_src", 	path = "parts/notes/yellow_mine/*.png"},
+		{id = "mine_sc_src", 	path = "parts/notes/scratch_mine/*.png"},
 
 		{id = "keybeam_wh_src", path = "parts/keybeam/white/*.png"},
 		{id = "keybeam_bl_src", path = "parts/keybeam/blue/*.png"},
 		{id = "keybeam_ye_src", path = "parts/keybeam/yellow/*.png"},
 		{id = "keybeam_sc_src", path = "parts/keybeam/scratch/*.png"},
 
-		{id = "judge_pg_src", path = "parts/judge/pg/*.png"},
-		{id = "judge_gr_src", path = "parts/judge/gr/*.png"},
-		{id = "judge_gd_src", path = "parts/judge/gd/*.png"},
-		{id = "judge_bd_src", path = "parts/judge/bd/*.png"},
-		{id = "judge_pr_src", path = "parts/judge/pr/*.png"},
-		{id = "judge_ms_src", path = "parts/judge/ms/*.png"},
+		{id = "judge_pg_src", 	path = "parts/judge/pg/*.png"},
+		{id = "judge_gr_src", 	path = "parts/judge/gr/*.png"},
+		{id = "judge_gd_src", 	path = "parts/judge/gd/*.png"},
+		{id = "judge_bd_src", 	path = "parts/judge/bd/*.png"},
+		{id = "judge_pr_src", 	path = "parts/judge/pr/*.png"},
+		{id = "judge_ms_src", 	path = "parts/judge/ms/*.png"},
 
-		{id = "judgenum_src", path = "parts/judgenum/*.png"},
-		{id = "bomb_src", path = "parts/!bomb/*.png"},
-		{id = "lanecover_src", path = "parts/lanecover/*.png"},
-		{id = "fast_slow_src", path = "parts/fast_slow/*.png"},
+		{id = "judgenum_src", 	path = "parts/judgenum/*.png"},
+		{id = "bomb_src", 		path = "parts/!bomb/*.png"},
+		{id = "lanecover_src", 	path = "parts/lanecover/*.png"},
+		{id = "fast_slow_src", 	path = "parts/fast_slow/*.png"},
 
-		{id = "judgeline_src", path = "parts/colors/judgeline/*.png"},
+		{id = "judgeline_src", 	path = "parts/colors/judgeline/*.png"},
 
-		{id = "gaugeHazard_src", path = "parts/colors/hazard/*.png"},
-		{id = "gaugeExHard_src", path = "parts/colors/exhard/*.png"},
-		{id = "gaugeHard_src", path = "parts/colors/hard/*.png"},
-		{id = "gaugeNormal_src", path = "parts/colors/normal/*.png"},
-		{id = "gaugeEasy_src", path = "parts/colors/easy/*.png"},
-		{id = "gaugeAsEasy_src", path = "parts/colors/aseasy/*.png"},
+		{id = "gaugeHazard_src", 	path = "parts/colors/hazard/*.png"},
+		{id = "gaugeExHard_src", 	path = "parts/colors/exhard/*.png"},
+		{id = "gaugeHard_src", 		path = "parts/colors/hard/*.png"},
+		{id = "gaugeNormal_src", 	path = "parts/colors/normal/*.png"},
+		{id = "gaugeEasy_src", 		path = "parts/colors/easy/*.png"},
+		{id = "gaugeAsEasy_src", 	path = "parts/colors/aseasy/*.png"},
 
 	}
-	
+
 	skin.font = {
 		{id = 0, path = "font/RictyDiminished-Regular.ttf"},
 		{id = 1, path = "font/RictyDiminished-Bold.ttf"},
@@ -554,13 +595,13 @@ local function main()
 
 	skin.image = {
 		-- common image
-		{id = "bg", src = "bg_src", x = 0, y = 0, w = -1, h = -1},
-		{id = "alt-bga-1", src = "alt_image_src", x = 0, y = 0, w = 480, h = 480},
-		{id = "alt-bga-2", src = "alt_image_src", x = 0, y = 481, w = 480, h = 480},
+		{id = "bg", 			src = "bg_src", x = 0, y = 0, w = -1, h = -1},
+		{id = "alt-bga-1", 		src = "alt_image_src", x = 0, y = 0, w = 480, h = 480},
+		{id = "alt-bga-2", 		src = "alt_image_src", x = 0, y = 481, w = 480, h = 480},
 
-		{id = "head-line", src = "play_system_src", x = 15, y = 4, w = 250, h = 3},
+		{id = "head-line", 		src = "play_system_src", x = 15, y = 4, w = 250, h = 3},
 		{id = "load-titleline", src = "play_system_src", x = 15, y = 0, w = 1450, h = 3},
-		{id = "alt-stagefile", src = "alt_image_src", x = 0, y = 962, w = 320, h = 240},
+		{id = "alt-stagefile", 	src = "alt_image_src", x = 0, y = 962, w = 320, h = 240},
 
 		-- infomation image
 		{id = "bf-info-frame", src = "info_system_src", x = 0, y = 0, w = 616, h = 480},
@@ -568,27 +609,27 @@ local function main()
 		{id = "info-rate-DnP", src = "info_system_src", x = 617, y = 481, w = 74, h = 21},
 
 		-- score image
-		{id = "score-frame", src = "score_system_src", x = 0, y = 0, w = 372, h = 1080},
-		{id = "op-time-colon", src = "score_system_src", x = 373, y = 994, w = 68, h = 21},
+		{id = "score-frame", 	src = "score_system_src", x = 0, y = 0, w = 372, h = 1080},
+		{id = "op-time-colon", 	src = "score_system_src", x = 373, y = 994, w = 68, h = 21},
 		{id = "score-rate-DnP", src = "score_system_src", x = 373, y = 1016, w = 76, h = 22},
 
-		{id = "graph-aaa", src = "score_system_src", x = 373, y = 1039, w = 316, h = 13},
-		{id = "graph-aa", src = "score_system_src", x = 373, y = 1053, w = 316, h = 13},
-		{id = "graph-a", src = "score_system_src", x = 373, y = 1067, w = 316, h = 13},
+		{id = "graph-aaa", 	src = "score_system_src", x = 373, y = 1039, w = 316, h = 13},
+		{id = "graph-aa", 	src = "score_system_src", x = 373, y = 1053, w = 316, h = 13},
+		{id = "graph-a", 	src = "score_system_src", x = 373, y = 1067, w = 316, h = 13},
 
-		{id = "mascot", src = "mascot_src", x = 0, y = 0, w = -1, h = -1},
+		{id = "mascot", 	src = "mascot_src", x = 0, y = 0, w = -1, h = -1},
 
 		-- play image
 		{id = "lane-frame", src = "play_system_src", x = 0, y = 0, w = 10, h = 10},
 
-		{id = "fast", src = "fast_slow_src", x = 0, y = 0, w = 160, h = 42},
-		{id = "slow", src = "fast_slow_src", x = 0, y = 43, w = 160, h = 42},
+		{id = "fast", 		src = "fast_slow_src", x = 0, y = 0, w = 160, h = 42},
+		{id = "slow", 		src = "fast_slow_src", x = 0, y = 43, w = 160, h = 42},
 
 		{id = "play-rate-dot", src = "judgenum_src", x = 364, y = 91, w = 12, h = 45},
 
-		{id = "remain-rate-dot", src = "play_system_src", x = 342, y = 290, w = 9, h = 18},	
-		{id = "song-time-colon", src = "play_system_src", x = 0, y = 290, w = 9, h = 18},
-		{id = "song-progress-bar", src = "play_system_src", x = 10, y = 0, w = 4, h = 10},
+		{id = "remain-rate-dot", 	src = "play_system_src", x = 342, y = 290, w = 9, h = 18},
+		{id = "song-time-colon", 	src = "play_system_src", x = 0, y = 290, w = 9, h = 18},
+		{id = "song-progress-bar",	src = "play_system_src", x = 10, y = 0, w = 4, h = 10},
 
 		{id = "judge-pg", src = "judge_pg_src", x = 0, y = 0, w = 600, h = 200},
 		{id = "judge-gr", src = "judge_gr_src", x = 0, y = 0, w = 600, h = 200},
@@ -599,72 +640,84 @@ local function main()
 
 		{id = "judgeline", src = "judgeline_src", x = 0, y = 0, w = 10, h = 10},
 
+			-- note
+		{id = "note-Wh", src = "notes_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "note-Bl", src = "notes_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "note-Ye", src = "notes_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "note-Sc", src = "notes_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- lnend
+		{id = "lnEn-Wh", src = "lnEn_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnEn-Bl", src = "lnEn_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnEn-Ye", src = "lnEn_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnEn-Sc", src = "lnEn_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- lnstart
+		{id = "lnSt-Wh", src = "lnSt_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnSt-Bl", src = "lnSt_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnSt-Ye", src = "lnSt_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnSt-Sc", src = "lnSt_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- lnbody
+		{id = "lnBo-Wh", src = "lnBo_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnBo-Bl", src = "lnBo_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnBo-Ye", src = "lnBo_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnBo-Sc", src = "lnBo_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- lnactive
+		{id = "lnAc-Wh", src = "lnAc_wh_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnAc-Bl", src = "lnAc_bl_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnAc-Ye", src = "lnAc_ye_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "lnAc-Sc", src = "lnAc_sc_src", x = 0, y = notesInfo.height, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- hcnend
+		{id = "hcEn-Wh", src = "hcEn_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcEn-Bl", src = "hcEn_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcEn-Ye", src = "hcEn_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcEn-Sc", src = "hcEn_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- hcnstart
+		{id = "hcSt-Wh", src = "hcSt_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcSt-Bl", src = "hcSt_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcSt-Ye", src = "hcSt_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcSt-Sc", src = "hcSt_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- hcnbody
+		{id = "hcBo-Wh", src = "hcBo_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcBo-Bl", src = "hcBo_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcBo-Ye", src = "hcBo_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcBo-Sc", src = "hcBo_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- hcnactive
+		{id = "hcAc-Wh", src = "hcAc_wh_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcAc-Bl", src = "hcAc_bl_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcAc-Ye", src = "hcAc_ye_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcAc-Sc", src = "hcAc_sc_src", x = 0, y = notesInfo.height, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- hcndamage
+		{id = "hcDm-Wh", src = "hcBo_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcDm-Bl", src = "hcBo_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcDm-Ye", src = "hcBo_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcDm-Sc", src = "hcBo_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- hcnreactive
+		{id = "hcRe-Wh", src = "hcAc_wh_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcRe-Bl", src = "hcAc_bl_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcRe-Ye", src = "hcAc_ye_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "hcRe-Sc", src = "hcAc_sc_src", x = 0, y = notesInfo.height, w = notesInfo.Sc_width, h = notesInfo.height},
+
+			-- mine
+		{id = "mine-Wh", src = "mine_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "mine-Bl", src = "mine_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "mine-Ye", src = "mine_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
+		{id = "mine-Sc", src = "mine_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
+
+		{id = "section-line", src = "play_system_src", x = 0, y = 0, w = 1, h = 1},
+
 		{id = "keybeam-w", src = "keybeam_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = geometry.lane_h},
 		{id = "keybeam-b", src = "keybeam_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = geometry.lane_h},
 		{id = "keybeam-y", src = "keybeam_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = geometry.lane_h},
 		{id = "keybeam-s", src = "keybeam_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = geometry.lane_h},
-
-		{id = "note-Wh", src = "notes_wh_src", x = 0, y = notesInfo.Std_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "note-Bl", src = "notes_bl_src", x = 0, y = notesInfo.Std_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "note-Ye", src = "notes_ye_src", x = 0, y = notesInfo.Std_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "note-Sc", src = "notes_sc_src", x = 0, y = notesInfo.Std_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "lnSt-Wh", src = "notes_wh_src", x = 0, y = notesInfo.lnSt_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnSt-Bl", src = "notes_bl_src", x = 0, y = notesInfo.lnSt_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnSt-Ye", src = "notes_ye_src", x = 0, y = notesInfo.lnSt_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnSt-Sc", src = "notes_sc_src", x = 0, y = notesInfo.lnSt_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "lnEn-Wh", src = "notes_wh_src", x = 0, y = notesInfo.lnEn_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnEn-Bl", src = "notes_bl_src", x = 0, y = notesInfo.lnEn_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnEn-Ye", src = "notes_ye_src", x = 0, y = notesInfo.lnEn_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnEn-Sc", src = "notes_sc_src", x = 0, y = notesInfo.lnEn_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "lnBo-Wh", src = "notes_wh_src", x = 0, y = notesInfo.lnAc_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnBo-Bl", src = "notes_bl_src", x = 0, y = notesInfo.lnAc_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnBo-Ye", src = "notes_ye_src", x = 0, y = notesInfo.lnAc_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnBo-Sc", src = "notes_sc_src", x = 0, y = notesInfo.lnAc_y, w = notesInfo.Sc_width, h = notesInfo.height},
-	
-		{id = "lnAc-Wh", src = "notes_wh_src", x = 0, y = notesInfo.lnBo_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnAc-Bl", src = "notes_bl_src", x = 0, y = notesInfo.lnBo_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnAc-Ye", src = "notes_ye_src", x = 0, y = notesInfo.lnBo_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "lnAc-Sc", src = "notes_sc_src", x = 0, y = notesInfo.lnBo_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "hcSt-Wh", src = "notes_wh_src", x = 0, y = notesInfo.hcSt_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcSt-Bl", src = "notes_bl_src", x = 0, y = notesInfo.hcSt_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcSt-Ye", src = "notes_ye_src", x = 0, y = notesInfo.hcSt_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcSt-Sc", src = "notes_sc_src", x = 0, y = notesInfo.hcSt_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "hcEn-Wh", src = "notes_wh_src", x = 0, y = notesInfo.hcEn_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcEn-Bl", src = "notes_bl_src", x = 0, y = notesInfo.hcEn_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcEn-Ye", src = "notes_ye_src", x = 0, y = notesInfo.hcEn_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcEn-Sc", src = "notes_sc_src", x = 0, y = notesInfo.hcEn_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "hcAc-Wh", src = "notes_wh_src", x = 0, y = notesInfo.hcBo_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcAc-Bl", src = "notes_bl_src", x = 0, y = notesInfo.hcBo_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcAc-Ye", src = "notes_ye_src", x = 0, y = notesInfo.hcBo_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcAc-Sc", src = "notes_sc_src", x = 0, y = notesInfo.hcBo_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "hcBo-Wh", src = "notes_wh_src", x = 0, y = notesInfo.hcAc_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcBo-Bl", src = "notes_bl_src", x = 0, y = notesInfo.hcAc_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcBo-Ye", src = "notes_ye_src", x = 0, y = notesInfo.hcAc_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcBo-Sc", src = "notes_sc_src", x = 0, y = notesInfo.hcAc_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "hcDm-Wh", src = "notes_wh_src", x = 0, y = notesInfo.hcDm_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcDm-Bl", src = "notes_bl_src", x = 0, y = notesInfo.hcDm_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcDm-Ye", src = "notes_ye_src", x = 0, y = notesInfo.hcDm_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcDm-Sc", src = "notes_sc_src", x = 0, y = notesInfo.hcDm_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "hcRe-Wh", src = "notes_wh_src", x = 0, y = notesInfo.hcRe_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcRe-Bl", src = "notes_bl_src", x = 0, y = notesInfo.hcRe_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcRe-Ye", src = "notes_ye_src", x = 0, y = notesInfo.hcRe_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "hcRe-Sc", src = "notes_sc_src", x = 0, y = notesInfo.hcRe_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "mine-Wh", src = "notes_wh_src", x = 0, y = notesInfo.mine_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "mine-Bl", src = "notes_bl_src", x = 0, y = notesInfo.mine_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "mine-Ye", src = "notes_ye_src", x = 0, y = notesInfo.mine_y, w = notesInfo.Ot_width, h = notesInfo.height},
-		{id = "mine-Sc", src = "notes_sc_src", x = 0, y = notesInfo.mine_y, w = notesInfo.Sc_width, h = notesInfo.height},
-
-		{id = "section-line", src = "play_system_src", x = 0, y = 0, w = 1, h = 1},
 
 		{id = "fs-opg-frame", src = "play_system_src", x = 0, y = 353, w = 600, h = 21},
 
@@ -683,28 +736,28 @@ local function main()
 		{id = "gauge-b1", src = "gaugeNormal_src", x = 0, y = 0, w = 10, h = 10},
 		{id = "gauge-b2", src = "gaugeNormal_src", x = 10, y = 0, w = 10, h = 10},
 		{id = "gauge-b3", src = "gaugeNormal_src", x = 0, y = 0, w = 10, h = 10},
-		
+
 		{id = "gauge-g1", src = "gaugeEasy_src", x = 0, y = 0, w = 10, h = 10},
 		{id = "gauge-g2", src = "gaugeEasy_src", x = 10, y = 0, w = 10, h = 10},
 		{id = "gauge-g3", src = "gaugeEasy_src", x = 0, y = 0, w = 10, h = 10},
-		
+
 		{id = "gauge-p1", src = "gaugeAsEasy_src", x = 0, y = 0, w = 10, h = 10},
 		{id = "gauge-p2", src = "gaugeAsEasy_src", x = 10, y = 0, w = 10, h = 10},
 		{id = "gauge-p3", src = "gaugeAsEasy_src", x = 0, y = 0, w = 10, h = 10},
 
 		{id = "hiddencover", src = "play_system_src", x = 652, y = 4, w = 10, h = 1000},
 
-		{id = "eof", src = "play_system_src", x = 0, y = 39, w = 120, h = 42},
-		{id = "replay", src = "play_system_src", x = 15, y = 8, w = 171, h = 30},
-		{id = "autoplay", src = "play_system_src", x = 187, y = 8, w = 240, h = 30},
+		{id = "eof", 		src = "play_system_src", x = 0, y = 39, w = 120, h = 42},
+		{id = "replay", 	src = "play_system_src", x = 15, y = 8, w = 171, h = 30},
+		{id = "autoplay", 	src = "play_system_src", x = 187, y = 8, w = 240, h = 30},
 
-		{id = "fc-effect", src = "play_system_src", x = 663, y = 4, w = 802, h = 1080},
-		{id = "fullcombo", src = "play_system_src", x = 0, y = 82, w = 360, h = 36},
+		{id = "fc-effect", 	src = "play_system_src", x = 663, y = 4, w = 802, h = 1080},
+		{id = "fullcombo", 	src = "play_system_src", x = 0, y = 82, w = 360, h = 36},
 
 	}
 	skin.imageset = {}
 	skin.value = {
-		
+
 		-- infomation value
 		{id = "pf-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 5, ref = 110, align = 0},
 		{id = "gr-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 5, ref = 111, align = 0},
@@ -715,7 +768,7 @@ local function main()
 		{id = "fl-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 5, ref = 427, align = 0},
 
 		{id = "total-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 4, ref = 368, align = 0},
-		
+
 		{id = "m-combo", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 4, ref = 105, align = 0},
 		{id = "t-notes", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 4, ref = 74, align = 0},
 
@@ -730,67 +783,67 @@ local function main()
 			return display_number(103)
 		end},
 
-		{id = "green-num", src = "info_system_src", x = 617, y = 22, w = 200, h = 21, divx = 10, digit = 4, ref = 313, align = 0},
-		{id = "judgetiming-num", src = "info_system_src", x = 617, y = 88, w = 180, h = 34, divx = 12, divy = 2, digit = 3, ref = 12, align = 1},
+		{id = "green-num", 			src = "info_system_src", x = 617, y = 22, w = 200, h = 21, divx = 10, digit = 4, ref = 313, align = 0},
+		{id = "judgetiming-num", 	src = "info_system_src", x = 617, y = 88, w = 180, h = 34, divx = 12, divy = 2, digit = 3, ref = 12, align = 1},
 
-		{id = "gauge-num", src = "info_system_src", x = 617, y = 339, w = 300, h = 31, divx = 10, digit = 3, ref = 107, align = 0},
-		{id = "gauge-adot-num", src = "info_system_src", x = 617, y = 339, w = 300, h = 31, divx = 10, digit = 1, ref = 407, align = 0},
+		{id = "gauge-num", 			src = "info_system_src", x = 617, y = 339, w = 300, h = 31, divx = 10, digit = 3, ref = 107, align = 0},
+		{id = "gauge-adot-num", 	src = "info_system_src", x = 617, y = 339, w = 300, h = 31, divx = 10, digit = 1, ref = 407, align = 0},
 
 		{id = "bpm-now", src = "info_system_src", x = 617, y = 408, w = 720, h = 72, divx = 10, digit = 3, ref = 160, align = 0},
 		{id = "bpm-max", src = "info_system_src", x = 617, y = 371, w = 360, h = 36, divx = 10, digit = 3, ref = 90, align = 0},
 		{id = "bpm-min", src = "info_system_src", x = 617, y = 371, w = 360, h = 36, divx = 10, digit = 3, ref = 91, align = 0},
 
 		-- score value
-		{id = "op-time-hour-num", src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 27, align = 1},
+		{id = "op-time-hour-num", 	src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 27, align = 1},
 		{id = "op-time-minute-num", src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 28, align = 1},
 		{id = "op-time-second-num", src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 29, align = 1},
 
-		{id = "fps-num-left", src = "score_system_src", x = 373, y =22, w = 200, h = 21, divx = 10, digit = 4, ref = 20, align = 1},
-		{id = "fps-num-right", src = "score_system_src", x = 373, y =22, w = 200, h = 21, divx = 10, digit = 4, ref = 20, align = 0},
+		{id = "fps-num-left", 	src = "score_system_src", x = 373, y =22, w = 200, h = 21, divx = 10, digit = 4, ref = 20, align = 1},
+		{id = "fps-num-right", 	src = "score_system_src", x = 373, y =22, w = 200, h = 21, divx = 10, digit = 4, ref = 20, align = 0},
 
-		{id = "score-rate-num", src = "score_system_src", x = 373, y = 87, w = 200, h = 24, divx = 10, digit = 3, align = 0, value = function()
+		{id = "score-rate-num", 		src = "score_system_src", x = 373, y = 87, w = 200, h = 24, divx = 10, digit = 3, align = 0, value = function()
 			return display_number(102)
 		end},
-		{id = "score-rate-adot-num", src = "score_system_src", x = 373, y = 87, w = 220, h = 24, divx = 11, digit = 2, align = 0, value = function()
+		{id = "score-rate-adot-num", 	src = "score_system_src", x = 373, y = 87, w = 220, h = 24, divx = 11, digit = 2, align = 0, value = function()
 			return display_number(103)
 		end},
 
-		{id = "score-score", src = "score_system_src", x = 373, y = 0, w = 200, h = 21, divx = 10, digit = 5, align = 0, value = function()
+		{id = "score-score", 			src = "score_system_src", x = 373, y = 0, w = 200, h = 21, divx = 10, digit = 5, align = 0, value = function()
 			return display_number(101)
 		end},
-		{id = "score-diff-best", src = "score_system_src", x = 373, y = 44, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 152, align = 0},
-		{id = "score-diff-target", src = "score_system_src", x = 373, y = 44, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 153, align = 0},	
+		{id = "score-diff-best", 	src = "score_system_src", x = 373, y = 44, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 152, align = 0},
+		{id = "score-diff-target", 	src = "score_system_src", x = 373, y = 44, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 153, align = 0},
 
 		-- play value
-		{id = "diff-best", src = "play_system_src", x = 0, y = 204, w = 480, h = 84, divx = 12, divy = 2, digit = 5, ref = 152, align = 2},
-		{id = "diff-target", src = "play_system_src", x = 0, y = 204, w = 480, h = 84, divx = 12, divy = 2, digit = 5, ref = 153, align = 2},	
+		{id = "diff-best", 		src = "play_system_src", x = 0, y = 204, w = 480, h = 84, divx = 12, divy = 2, digit = 5, ref = 152, align = 2},
+		{id = "diff-target", 	src = "play_system_src", x = 0, y = 204, w = 480, h = 84, divx = 12, divy = 2, digit = 5, ref = 153, align = 2},
 
-		{id = "fsms-num", src = "play_system_src", x = 0, y = 119, w = 480, h = 84, divx = 12, divy = 2, digit = 4, ref = 525, align = 2},
+		{id = "fsms-num", 		src = "play_system_src", x = 0, y = 119, w = 480, h = 84, divx = 12, divy = 2, digit = 4, ref = 525, align = 2},
 
-		{id = "play-rate-num", src = "judgenum_src", x = 0, y = 91, w = 330, h = 45, divx = 10, digit = 3, align = 0, value = function()
+		{id = "play-rate-num", 			src = "judgenum_src", x = 0, y = 91, w = 330, h = 45, divx = 10, digit = 3, align = 0, value = function()
 			return display_number(102)
 		end},
-		{id = "play-rate-adot-num", src = "judgenum_src", x = 0, y = 91, w = 363, h = 45, divx = 11, digit = 2, align = 0, value = function()
+		{id = "play-rate-adot-num", 	src = "judgenum_src", x = 0, y = 91, w = 363, h = 45, divx = 11, digit = 2, align = 0, value = function()
 			return display_number(103)
 		end},
-	
-		{id = "remain-rate-num", src = "play_system_src", x = 10, y = 290, w = 165, h = 18, divx = 11, digit = 3, align = 0, value = function()
+
+		{id = "remain-rate-num", 		src = "play_system_src", x = 10, y = 290, w = 165, h = 18, divx = 11, digit = 3, align = 0, value = function()
 			return remain_notes_rate() * 100 - 100
 		end},
-		{id = "remain-rate-adot-num", src = "play_system_src", x = 176, y = 290, w = 165, h = 18, divx = 11, digit = 2, align = 0, value = function()
+		{id = "remain-rate-adot-num", 	src = "play_system_src", x = 176, y = 290, w = 165, h = 18, divx = 11, digit = 2, align = 0, value = function()
 			return remain_notes_rate() * 10000 - 10000
 		end},
-		{id = "remain-notes", src = "play_system_src", x = 10, y = 290, w = 165, h = 18, divx = 11, digit = 5, align = 0, value = function()
+		{id = "remain-notes",	 		src = "play_system_src", x = 10, y = 290, w = 165, h = 18, divx = 11, digit = 5, align = 0, value = function()
 			return remain_notes()
 		end},
 
 		{id = "song-left-m", src = "play_system_src", x = 10, y = 290, w = 165, h = 18, divx = 11, digit = 2, ref = 163, align = 0},
 		{id = "song-left-s", src = "play_system_src", x = 176, y = 290, w = 165, h = 18, divx = 11, digit = 2, ref = 164, align = 0},
 
-		{id = "lanecover-value", src = "play_system_src", x = 0, y = 309, w = 200, h = 21, divx = 10, digit = 4, ref = 14, align = 0},
-		{id = "lanecover-green", src = "play_system_src", x = 0, y = 331, w = 200, h = 21, divx = 10, digit = 4, ref = 313, align = 0},
-		{id = "lanecover-duration", src = "play_system_src", x = 0, y = 309, w = 200, h = 21, divx = 10, digit = 4, ref = 312, align = 0},
-		{id = "lift-value", src = "play_system_src", x = 0, y = 309, w = 200, h = 21, divx = 10, digit = 4, ref = 314, align = 0},
+		{id = "lanecover-value", 		src = "play_system_src", x = 0, y = 309, w = 200, h = 21, divx = 10, digit = 4, ref = 14, align = 0},
+		{id = "lanecover-green", 		src = "play_system_src", x = 0, y = 331, w = 200, h = 21, divx = 10, digit = 4, ref = 313, align = 0},
+		{id = "lanecover-duration", 	src = "play_system_src", x = 0, y = 309, w = 200, h = 21, divx = 10, digit = 4, ref = 312, align = 0},
+		{id = "lift-value", 			src = "play_system_src", x = 0, y = 309, w = 200, h = 21, divx = 10, digit = 4, ref = 314, align = 0},
 
 		{id = "judge-num-pg", src = "judgenum_src", x = 0, y = 0, w = 660, h = 90, divx = 10, digit = 6, ref = 75, align = 1},
 		{id = "judge-num-gr", src = "judgenum_src", x = 0, y = 0, w = 660, h = 90, divx = 10, digit = 6, ref = 75, align = 1},
@@ -799,36 +852,36 @@ local function main()
 		{id = "judge-num-pr", src = "judgenum_src", x = 0, y = 0, w = 660, h = 90, divx = 10, digit = 6, ref = 75, align = 1},
 		{id = "judge-num-ms", src = "judgenum_src", x = 0, y = 0, w = 660, h = 90, divx = 10, digit = 6, ref = 75, align = 1},
 
-		{id = "fs-opg-num", src = "play_system_src", x = 201, y = 309, w = 200, h = 21, divx = 10, digit = 4, ref = 423, align = 0},
-		{id = "sl-opg-num", src = "play_system_src", x = 201, y = 331, w = 200, h = 21, divx = 10, digit = 4, ref = 424, align = 1},
-	
+		{id = "fs-opg-num", src = "play_system_src", x = 201, y = 309, w = 200, h = 21, divx = 10, digit = 4, ref = 423, align = 1},
+		{id = "sl-opg-num", src = "play_system_src", x = 201, y = 331, w = 200, h = 21, divx = 10, digit = 4, ref = 424, align = 0},
+
 	}
 	skin.text = {
-		{id = "tablename-left", font = 0, size = 26, ref = 1003, overflow = 1, align = 0},
-		{id = "tablename-right", font = 0, size = 26, ref = 1003, overflow = 1, align = 2},
-		{id = "title-left", font = 1, size = 42, ref = 12, overflow = 1, align = 0},
-		{id = "title-right", font = 1, size = 42, ref = 12, overflow = 1, align = 2},
-		{id = "load-genre", font = 0, size = 27, ref = 13, overflow = 1},
-		{id = "load-title", font = 1, size = 73, ref = 12, overflow = 1},
-		{id = "load-artist", font = 0, size = 41, ref = 16, overflow = 1},
+		{id = "tablename-left", 	font = 0, size = 26, ref = 1003, overflow = 1, align = 0},
+		{id = "tablename-right", 	font = 0, size = 26, ref = 1003, overflow = 1, align = 2},
+		{id = "title-left", 		font = 1, size = 42, ref = 12, overflow = 1, align = 0},
+		{id = "title-right", 		font = 1, size = 42, ref = 12, overflow = 1, align = 2},
+		{id = "load-genre", 		font = 0, size = 27, ref = 13, overflow = 1},
+		{id = "load-title", 		font = 1, size = 73, ref = 12, overflow = 1},
+		{id = "load-artist", 		font = 0, size = 41, ref = 16, overflow = 1},
 	}
 	skin.slider = {
 		-- play slider
-		{id = "song-progress", src = "play_system_src", x = 0, y = 11, w = 12, h = 21, angle = 2, range = 600, type = 6},
-		{id = "lanecover", src = "lanecover_src", x = 0, y = 0, w = -1, h = -1, angle = 2, range = geometry.lane_h, type = 4},
+		{id = "song-progress", 	src = "play_system_src", x = 0, y = 11, w = 12, h = 21, angle = 2, range = 600, type = 6},
+		{id = "lanecover", 		src = "lanecover_src", x = 0, y = 0, w = -1, h = -1, angle = 2, range = geometry.lane_h, type = 4},
 	}
 	skin.graph = {
 		-- score graph
-		{id = "graph-now", src = "score_system_src", x = 699, y = 0, w = 10, h = 800, angle = 1, type = 110},
-		{id = "graph-final", src = "score_system_src", x = 732, y = 0, w = 10, h = 800, angle = 1, type = 111},
-		{id = "graph-best-now", src = "score_system_src", x = 710, y = 0, w = 10, h = 800, angle = 1, type = 112},
-		{id = "graph-best-final", src = "score_system_src", x = 732, y = 0, w = 10, h = 800, angle = 1, type = 113},
-		{id = "graph-target-now", src = "score_system_src", x = 721, y = 0, w = 10, h = 800, angle = 1, type = 114},
+		{id = "graph-now", 			src = "score_system_src", x = 699, y = 0, w = 10, h = 800, angle = 1, type = 110},
+		{id = "graph-final", 		src = "score_system_src", x = 732, y = 0, w = 10, h = 800, angle = 1, type = 111},
+		{id = "graph-best-now", 	src = "score_system_src", x = 710, y = 0, w = 10, h = 800, angle = 1, type = 112},
+		{id = "graph-best-final", 	src = "score_system_src", x = 732, y = 0, w = 10, h = 800, angle = 1, type = 113},
+		{id = "graph-target-now", 	src = "score_system_src", x = 721, y = 0, w = 10, h = 800, angle = 1, type = 114},
 		{id = "graph-target-final", src = "score_system_src", x = 732, y = 0, w = 10, h = 800, angle = 1, type = 115},
 
 		-- play graph
-		{id = "load-progress", src = "play_system_src", x = 15, y = 0, w = 1450, h = 3, angle = 0, type = 102},
-		{id = "song-progress-fin", src = "play_system_src", x = 10, y = 0, w = 4, h = 10, angle = 1, type = 101},
+		{id = "load-progress", 		src = "play_system_src", x = 15, y = 0, w = 1450, h = 3, angle = 0, type = 102},
+		{id = "song-progress-fin", 	src = "play_system_src", x = 10, y = 0, w = 4, h = 10, angle = 1, type = 101},
 	}
 	skin.note = {
 		id = "notes",
@@ -872,7 +925,7 @@ local function main()
 
 		geometry.notes_x = {}
 		geometry.notes_w = {}
-		
+
 		geometry.notes_w[8] = notesInfo.Sc_width
 		geometry.notes_w[1] = notesInfo.Ot_width
 
@@ -888,7 +941,7 @@ local function main()
 			geometry.notes_x[i] = geometry.notes_x[i-1] + notesInfo.Ot_width
 			geometry.notes_w[i] = notesInfo.Ot_width
 		end
-	
+
 		for i = 1, 8 do
 			skin.note.dst[i] = {
 				x = geometry.notes_x[i] + geometry.play_position,
@@ -896,7 +949,7 @@ local function main()
 				w = geometry.notes_w[i],
 				h = geometry.lane_h}
 		end
-	
+
 	skin.gauge = {
 		id = "gauge",
 		nodes = {
@@ -1007,7 +1060,7 @@ local function main()
 		{id = -101, loop = 400, op = {80, 195}, filter = 1, stretch = 1, dst = {
 			{time = 0, x = geometry.info_position + geometry.bga_x, y = geometry.bga_y, w = geometry.bga_w, h = geometry.bga_h, a = 0},
 			{time = 400, a = 255}}},
-	
+
 		{id = "alt-bga-1", stretch = 1, draw = function()
 			if main_state.option(40) or main_state.option(170) then
 				return true
@@ -1026,7 +1079,7 @@ local function main()
 			{time = 400, angle = 360, a = 255},
 			{time = 4400, angle = 0}
 		}},
-					
+
 		{id = -110, timer = 41, offset = 51, dst = {
 			{x = geometry.info_position + geometry.bga_x, y = geometry.bga_y, w = geometry.bga_w, h = geometry.bga_h, a = 0}}},
 	}
@@ -1039,7 +1092,7 @@ local function main()
 
 		-- ジャンル名・曲名 
 		-- genre,title
-if isScratchRight() then	
+if isScratchRight() then
 	append_all(skin.destination, {
 		{id = "tablename-left", timer = 41, filter = 1, dst = {
 			{x = geometry.info_position + 8, y = 1034, w = 600, h = 26}
@@ -1057,7 +1110,7 @@ else
 			{x = geometry.info_position + 608, y = 984, w = 600, h = 42}
 		}},
 	})
-end		
+end
 
 		-- 判定情報・曲情報・BPM・ゲージの値など
 		-- Judge information, song information, BPM, gauge values, etc.
@@ -1076,64 +1129,64 @@ append_all(skin.destination, {
 	}},
 	{id = "gr-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 387, w = 20, h = 21},
-	}},	
+	}},
 	{id = "gd-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 364, w = 20, h = 21},
-	}},	
+	}},
 	{id = "bd-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 341, w = 20, h = 21},
-	}},	
+	}},
 	{id = "pr-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 318, w = 20, h = 21},
-	}},	
+	}},
 	{id = "ms-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 295, w = 20, h = 21},
-	}},	
+	}},
 	{id = "fl-num", timer = 41, dst = {
 		{x = geometry.info_position + 178, y = 269, w = 20, h = 21},
-	}},	
+	}},
 	{id = "total-num", dst = {
 		{x = geometry.info_position + 519, y = 410, w = 20, h = 21},
-	}},	
+	}},
 	{id = "m-combo", timer = 41, dst = {
 		{x = geometry.info_position + 419, y = 364, w = 20, h = 21},
-	}},	
+	}},
 	{id = "t-notes", dst = {
 		{x = geometry.info_position + 519, y = 364, w = 20, h = 21},
-	}},	
+	}},
 	{id = "fs-num", timer = 41, dst = {
 		{x = geometry.info_position + 519, y = 341, w = 20, h = 21},
-	}},	
+	}},
 	{id = "sl-num", timer = 41, dst = {
 		{x = geometry.info_position + 519, y = 318, w = 20, h = 21},
-	}},	
+	}},
 	{id = "br-num", timer = 41, dst = {
 		{x = geometry.info_position + 519, y = 295, w = 20, h = 21},
-	}},	
+	}},
 	{id = "info-rate-num", timer = 41, dst = {
 		{x = geometry.info_position + 459, y = 269, w = 20, h = 21},
-	}},	
+	}},
 	{id = "info-rate-adot-num", timer = 41, dst = {
 		{x = geometry.info_position + 539, y = 269, w = 20, h = 21},
-	}},	
+	}},
 	{id = "green-num", dst = {
 		{x = geometry.info_position + 86, y = 182, w = 20, h = 21},
-	}},	
+	}},
 	{id = "judgetiming-num", dst = {
 		{x = geometry.info_position + 113, y = 162, w = 15, h = 17},
-	}},	
+	}},
 	{id = "gauge-num", dst = {
 		{x = geometry.info_position + 231, y = 143, w = 30, h = 31},
-	}},	
+	}},
 	{id = "gauge-adot-num", dst = {
 		{x = geometry.info_position + 333, y = 143, w = 30, h = 31},
-	}},	
+	}},
 	{id = "bpm-now", dst = {
 		{x = geometry.info_position + 200, y = 10, w = 72, h = 72},
-	}},	
+	}},
 	{id = "bpm-min", dst = {
 		{x = geometry.info_position + 82, y = 10, w = 36, h = 36},
-	}},	
+	}},
 	{id = "bpm-max", dst = {
 		{x = geometry.info_position + 426, y = 10, w = 36, h = 36},
 	}},
@@ -1187,10 +1240,10 @@ end
 table.insert(skin.destination,
 	{id = "lane-op-tx", dst = {
 		{x = geometry.info_position + 407, y = 184, w = 146, h = 19}
-	}})	
+	}})
 -- 曲情報エリア
 -- song infomation area
-	
+
 	-- ここまで
 	-- to here
 
@@ -1270,7 +1323,7 @@ if isScratchRight() then
 		{id = "fps-num-right", dst = {
 			{x = geometry.score_position + 285, y = 1031, w = 20, h = 21}
 		}},
-	})	
+	})
 else
 	append_all(skin.destination, {
 		{id = "op-time-colon", dst = {
@@ -1287,9 +1340,9 @@ else
 		}},
 		{id = "fps-num-left", dst = {
 			{x = geometry.score_position + 5, y = 1031, w = 20, h = 21}
-		}},	
+		}},
 	})
-end	
+end
 
 		-- score rank
 do
@@ -1310,7 +1363,7 @@ if isMascotStop() then
 		{id = "mascot", filter = 1, dst = {
 			{x = geometry.score_position + 58, y = 102, w = 256, h = 256}
 		}})
-elseif isMascotJump() then	
+elseif isMascotJump() then
 	table.insert(skin.destination,
 		{id = "mascot", filter = 1, loop = 0, dst = {
 			{time = 0, x = geometry.score_position + 58, y = 102, w = 256, h = 256, acc = 2},
@@ -1319,16 +1372,16 @@ elseif isMascotJump() then
 			{time = 450, y = 102, h = 256},
 			{time = 500, y = 102, h = 250},
 			{time = 600, y = 102, h = 256, acc = 2},
-			{time = 5000},				
+			{time = 5000},
 		}})
-elseif isMascotFloat() then	
-	table.insert(skin.destination,	
+elseif isMascotFloat() then
+	table.insert(skin.destination,
 		{id = "mascot", filter = 1, loop = 0, dst = {
 			{time = 0, x = geometry.score_position + 58, y = 102, w = 256, h = 256, acc = 2},
 			{time = 1000, y = 112},
 			{time = 2000, y = 102},
-		}})	
-end	
+		}})
+end
 
 		-- notes graph
 table.insert(skin.destination,
@@ -1343,10 +1396,10 @@ table.insert(skin.destination,
 
 -- プレイエリア
 -- play area
-	
+
 	-- ここから
 	-- from here
-	
+
 		-- レーン背景
 		-- lane background
 append_all(skin.destination, {
@@ -1368,18 +1421,18 @@ append_all(skin.destination, {
 table.insert(skin.destination,
 	{id = "judgeline", offsets = {3, 70, 71}, dst = {
 		{x = geometry.lane_x + geometry.play_position, y = geometry.lane_y, w = geometry.lane_w, h = 24}
-	}})	
+	}})
 
 		-- キービーム
 		-- keybeam
 local kb_w = {
-	notesInfo.Ot_width, 
-	notesInfo.Ot_width, 
-	notesInfo.Ot_width, 
-	notesInfo.Ot_width, 
-	notesInfo.Ot_width, 
-	notesInfo.Ot_width, 
-	notesInfo.Ot_width, 
+	notesInfo.Ot_width,
+	notesInfo.Ot_width,
+	notesInfo.Ot_width,
+	notesInfo.Ot_width,
+	notesInfo.Ot_width,
+	notesInfo.Ot_width,
+	notesInfo.Ot_width,
 	notesInfo.Sc_width
 }
 local kb_type = {"w", "b", "w", "y", "w", "b", "w", "s"}
@@ -1387,13 +1440,13 @@ local kb_onTimer = {101, 102, 103, 104, 105, 106, 107, 100}
 local kb_offTimer = {121, 122, 123, 124, 125, 126, 127, 120}
 local kb_x = {}
 local kb_move_x = {
-	notesInfo.Ot_width / 2, 
-	notesInfo.Ot_width / 2, 
-	notesInfo.Ot_width / 2, 
-	notesInfo.Ot_width / 2, 
-	notesInfo.Ot_width / 2, 
-	notesInfo.Ot_width / 2, 
-	notesInfo.Ot_width / 2, 
+	notesInfo.Ot_width / 2,
+	notesInfo.Ot_width / 2,
+	notesInfo.Ot_width / 2,
+	notesInfo.Ot_width / 2,
+	notesInfo.Ot_width / 2,
+	notesInfo.Ot_width / 2,
+	notesInfo.Ot_width / 2,
 	notesInfo.Sc_width / 2
 }
 
@@ -1401,26 +1454,26 @@ local kb_move_x = {
 if isScratchRight() then
 	-- 1,2,3,4,5,6,7,S
 	kb_x = {
-		0, 
-		notesInfo.Ot_width, 
-		notesInfo.Ot_width * 2, 
-		notesInfo.Ot_width * 3, 
-		notesInfo.Ot_width * 4, 
-		notesInfo.Ot_width * 5, 
-		notesInfo.Ot_width * 6, 
+		0,
+		notesInfo.Ot_width,
+		notesInfo.Ot_width * 2,
+		notesInfo.Ot_width * 3,
+		notesInfo.Ot_width * 4,
+		notesInfo.Ot_width * 5,
+		notesInfo.Ot_width * 6,
 		notesInfo.Ot_width * 7
 	}
 else
 -- Left Side
 	-- S,1,2,3,4,5,6,7
 	kb_x = {
-		notesInfo.Sc_width, 
-		notesInfo.Sc_width + notesInfo.Ot_width, 
-		notesInfo.Sc_width + notesInfo.Ot_width * 2, 
-		notesInfo.Sc_width + notesInfo.Ot_width * 3, 
-		notesInfo.Sc_width + notesInfo.Ot_width * 4, 
-		notesInfo.Sc_width + notesInfo.Ot_width * 5, 
-		notesInfo.Sc_width + notesInfo.Ot_width * 6, 
+		notesInfo.Sc_width,
+		notesInfo.Sc_width + notesInfo.Ot_width,
+		notesInfo.Sc_width + notesInfo.Ot_width * 2,
+		notesInfo.Sc_width + notesInfo.Ot_width * 3,
+		notesInfo.Sc_width + notesInfo.Ot_width * 4,
+		notesInfo.Sc_width + notesInfo.Ot_width * 5,
+		notesInfo.Sc_width + notesInfo.Ot_width * 6,
 		0
 	}
 end
@@ -1535,7 +1588,7 @@ else
 			})
 		end
 	end
-end	
+end
 
 
 		-- lanecover
@@ -1557,7 +1610,7 @@ do
 		table.insert(skin.destination,
 			{id = id[i], offset = 4, op = {270}, dst = {
 				{x = dst_x[i] + geometry.lane_x + geometry.play_position, y = 1049, w = dst_w[i], h = dst_h[i]}
-		}})		
+		}})
 	end
 end
 table.insert(skin.destination,
@@ -1591,7 +1644,7 @@ table.insert(skin.destination,
 
 		-- judge
 table.insert(skin.destination,{id = "judge"})
-	
+
 		-- fast/slow center
 if isFastSlowCenterOn() then
 	table.insert(skin.destination,	{
@@ -1610,16 +1663,16 @@ if isFastSlowCenterOn() then
 elseif isFastSlowRnLOn() then
 	table.insert(skin.destination,	{
 		id = "fast", offsets = {32, 62, 70}, op = {1242}, loop = -1, timer = 46, dst = {
-			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + 300 + (-160), y = geometry.judge_y + (-52), w = 160, h = 42, a = 0, acc = 2},
+			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y + (-52), w = 160, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
 	})
 	table.insert(skin.destination,	{
 		id = "slow", offsets = {32, 62, 70}, op = {1243}, loop = -1, timer = 46, dst = {
-			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.judge_y + (-52), w = 160, h = 42, a = 0, acc = 2},
+			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + 300 + (-160), y = geometry.judge_y + (-52), w = 160, h = 42, a = 0, acc = 2},
 			{time = 500}
 		}
-	})	
+	})
 elseif isFastSlowMS() then
 		-- fast/slow ms
 	table.insert(skin.destination,	{
@@ -1643,7 +1696,7 @@ if isTargetBest() then
 		}
 	})
 	table.insert(skin.destination,	{
-		id = "diff-best", offsets = {3, 63, 70}, op = {32}, timer = 41, draw = function()			
+		id = "diff-best", offsets = {3, 63, 70}, op = {32}, timer = 41, draw = function()
 			if (main_state.float_number(113) ~= 0) and main_state.option(32) then
 				return true
 			end
@@ -1693,7 +1746,7 @@ if isScoreRateOn() then
 		{id = "play-rate-num", offsets = {3, 65, 70}, timer = 41, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105), y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
 		}},
-		{id = "play-rate-adot-num", offsets = {3, 65, 70}, timer = 41, dst = {		
+		{id = "play-rate-adot-num", offsets = {3, 65, 70}, timer = 41, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 111, y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
 		}},
 		{id = "play-rate-dot", offsets = {3, 65, 70}, timer = 41, dst = {
@@ -1708,7 +1761,7 @@ if isTimingVisualizerOn() then
 	skin.timingvisualizer = {{id = "timing-visualizer"}}
 	append_all(skin.destination, {
 		{id = "timing-visualizer", offsets = {3, 66, 70}, op = {32}, timer = 41, dst = {
-			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-150), y = geometry.lane_y + 225, w = 300, h = 15, a = 0, acc = 2}
+			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + 150, y = geometry.lane_y + 205, w = -300, h = 15, a = 0, r = 230, g = 200, b = 255, acc = 2}
 		}},
 	})
 end
@@ -1721,11 +1774,11 @@ if isFSCountOnPlayOn() then
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.lane_y + 301, w = 600, h = 21, a = 0, acc = 2}
 		}},
 		{id = "fs-opg-num", offsets = {3, 67, 70}, op = {32}, timer = 46, dst = {
-			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + 300 - 80, y = geometry.lane_y + 275, w = 20, h = 21, a = 0, acc = 2}
-		}},	
-		{id = "sl-opg-num", offsets = {3, 67, 70}, op = {32}, timer = 46, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-300), y = geometry.lane_y + 275, w = 20, h = 21, a = 0, acc = 2}
-		}},	
+		}},
+		{id = "sl-opg-num", offsets = {3, 67, 70}, op = {32}, timer = 46, dst = {
+			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + 300 - 80, y = geometry.lane_y + 275, w = 20, h = 21, a = 0, acc = 2}
+		}},
 	})
 end
 
@@ -1746,7 +1799,7 @@ end
 
 		-- ゲージ
 		-- gauge
-if isBombUnderTheGaugeOff() and isScratchRight() then
+if not isBombUnderTheGaugeOn() and isScratchRight() then
 	append_all(skin.destination, {
 		{id = -110, offset = 73, loop = 250, dst = {
 			{x = geometry.lane_x + geometry.play_position + 750 + 26, y = 0, w = -750, h = 0, a = 255, acc = 2},
@@ -1759,7 +1812,7 @@ if isBombUnderTheGaugeOff() and isScratchRight() then
 			{time = 250, h = 25}
 		}},
 	})
-elseif isBombUnderTheGaugeOff() and isScratchLeft() then
+elseif not isBombUnderTheGaugeOn() and isScratchLeft() then
 	append_all(skin.destination, {
 		{id = -110, offset = 73, loop = 250, dst = {
 			{x = geometry.lane_x + geometry.play_position + 26, y = 0, w = 750, h = 0, a = 255, acc = 2},
@@ -1772,7 +1825,7 @@ elseif isBombUnderTheGaugeOff() and isScratchLeft() then
 			{time = 250, h = 25}
 		}},
 	})
-end	
+end
 
 		-- ボム
 		-- bomb
@@ -1785,30 +1838,29 @@ local lnBombTimer = {71, 72, 73, 74, 75, 76, 77, 70}
 local bombPosX = {}
 local bombWidth = 600
 local bombHeight = 450
-local adjustPosY = 0
 
 			-- ボム中心点
 			-- center of bomb
 if isScratchRight() then
 	bombPosX = {
-		notesInfo.Ot_width / 2, 
-		notesInfo.Ot_width / 2 + notesInfo.Ot_width, 
-		notesInfo.Ot_width / 2 + notesInfo.Ot_width * 2, 
-		notesInfo.Ot_width / 2 + notesInfo.Ot_width * 3, 
-		notesInfo.Ot_width / 2 + notesInfo.Ot_width * 4, 
-		notesInfo.Ot_width / 2 + notesInfo.Ot_width * 5, 
-		notesInfo.Ot_width / 2 + notesInfo.Ot_width * 6, 
+		notesInfo.Ot_width / 2,
+		notesInfo.Ot_width / 2 + notesInfo.Ot_width,
+		notesInfo.Ot_width / 2 + notesInfo.Ot_width * 2,
+		notesInfo.Ot_width / 2 + notesInfo.Ot_width * 3,
+		notesInfo.Ot_width / 2 + notesInfo.Ot_width * 4,
+		notesInfo.Ot_width / 2 + notesInfo.Ot_width * 5,
+		notesInfo.Ot_width / 2 + notesInfo.Ot_width * 6,
 		notesInfo.Sc_width / 2 + notesInfo.Ot_width * 7
 	}
 else
 	bombPosX = {
-		notesInfo.Sc_width + notesInfo.Ot_width / 2, 
-		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width, 
-		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width * 2, 
-		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width * 3, 
-		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width * 4, 
-		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width * 5, 
-		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width * 6, 
+		notesInfo.Sc_width + notesInfo.Ot_width / 2,
+		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width,
+		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width * 2,
+		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width * 3,
+		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width * 4,
+		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width * 5,
+		notesInfo.Sc_width + notesInfo.Ot_width / 2 + notesInfo.Ot_width * 6,
 		notesInfo.Sc_width / 2
 	}
 end
@@ -1864,7 +1916,7 @@ for i = 1, #b_init, 1 do
 		}
 	})
 end
-	
+
 				-- LN爆発エフェクトの配置
 				-- LN explosion effect placement
 for i = 1, #b_init, 1 do
@@ -1904,11 +1956,11 @@ elseif isBombUnderTheGaugeOn() and isScratchLeft() then
 			{time = 250, h = 25}
 		}},
 	})
-end	
+end
 
 		-- 曲の長さ + 残りノーツ
 		-- song length + remain notes
-if isScratchRight() then	
+if isScratchRight() then
 	append_all(skin.destination, {
 			-- 残りノーツ パーセント
 			-- remain notes persent
@@ -1920,12 +1972,12 @@ if isScratchRight() then
 		}},
 		{id = "remain-rate-dot", dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 68, y = 74, w = 9, h = 18}
-		}},	
+		}},
 			-- 残りノーツ
 			-- remain notes
 		{id = "remain-notes", dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 23, y = 44, w = 15, h = 18}
-		}},		
+		}},
 			-- 残り時間
 			-- time left
 		{id = "song-left-m", dst = {
@@ -1936,7 +1988,7 @@ if isScratchRight() then
 		}},
 		{id = "song-time-colon", dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 53, y = 10, w = 9, h = 18}
-		}},	
+		}},
 			-- 曲の長さスライダー
 			-- song length slider
 		{id = "song-progress-bar", timer = 41, dst = {
@@ -1955,18 +2007,18 @@ else
 			-- remain notes persent
 		{id = "remain-rate-num", dst = {
 			{x = geometry.play_position + geometry.lane_x + (-104), y = 74, w = 15, h = 18}
-		}},	
+		}},
 		{id = "remain-rate-adot-num", dst = {
 			{x = geometry.play_position + geometry.lane_x + (-50), y = 74, w = 15, h = 18}
-		}},	
+		}},
 		{id = "remain-rate-dot", dst = {
 			{x = geometry.play_position + geometry.lane_x + (-59), y = 74, w = 9, h = 18}
-		}},	
+		}},
 			-- 残りノーツ
 			-- remain notes
 		{id = "remain-notes", dst = {
 			{x = geometry.play_position + geometry.lane_x + (-95), y = 44, w = 15, h = 18}
-		}},				
+		}},
 			-- 残り時間
 			-- time left	
 		{id = "song-left-m", dst = {
@@ -1977,7 +2029,7 @@ else
 		}},
 		{id = "song-time-colon", dst = {
 			{x = geometry.play_position + geometry.lane_x + (-59), y = 10, w = 9, h = 18}
-		}},	
+		}},
 			-- 曲の長さスライダー
 			-- song length slider		
 		{id = "song-progress-bar", timer = 41, dst = {
@@ -1990,7 +2042,7 @@ else
 			{x = geometry.play_position + geometry.lane_x + (-82), y = 930, w = 12, h = 21}
 		}},
 	})
-end	
+end
 
 		-- 曲終了表示
 		-- end of song
@@ -2002,7 +2054,7 @@ append_all(skin.destination, {
 		-- replay
 	{id = "replay", offsets = {3, 70}, op = {84}, dst = {
 		{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-85), y = geometry.lane_y + 90, w = 171, h = 30}
-	}},	
+	}},
 		-- オートプレイ表示
 		-- auto play
 	{id = "autoplay", offsets = {3, 70}, op = {33}, dst = {
@@ -2094,7 +2146,7 @@ table.insert(skin.destination,
 	{time = 0, x = 445, y = 425, w = 1405, h = 41, a = 255},
 	{time = 300, a = 0}
 }})
-	
+
 		-- ステージファイル
 		-- stagefile
 table.insert(skin.destination,
@@ -2131,14 +2183,14 @@ table.insert(skin.destination,
 
 		-- 曲名下の線
 		-- line under the song title
-table.insert(skin.destination, 
+table.insert(skin.destination,
 	{id = "load-titleline", loop = 900, op = {80}, dst = {
 		{time = 0, x = 400, y = 505, w = 0, h = 3, a = 100, acc = 2},
 		{time = 300, w = 0},
 		{time = 400},
 		{time = 900, w = 1450}
 	}})
-table.insert(skin.destination, 
+table.insert(skin.destination,
 	{id = "load-progress", loop = 900, op = {80}, dst = {
 		{time = 0, x = 400, y = 505, w = 0, h = 3, acc = 2},
 		{time = 300, w = 0},
@@ -2148,7 +2200,7 @@ table.insert(skin.destination,
 
 			-- ロード終了
 			-- loading end
-table.insert(skin.destination, 
+table.insert(skin.destination,
 	{id = "load-progress", timer = 40, loop = 300, op = {81}, dst = {
 		{time = 0, x = 400, y = 505, w = 1450, h = 3, a = 100},
 		{time = 300, a = 0}
