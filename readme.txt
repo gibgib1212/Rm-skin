@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:03/26/2024)
+(Last updated:03/28/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -246,6 +246,12 @@ Update History
 	- Inverted Timing Visualizer display
 	- Added some files to "notes" and "fast_slow" folder
 	- Organized functions
+	- Update readme.txt
+
+03282024
+
+	- Orgnized functions
+	- Orgnized comment
 	- Update readme.txt
 
 

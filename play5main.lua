@@ -112,7 +112,7 @@ local category = {
 		"custom_16",
 		"custom_17",
 		"custom_18"
-	}},
+	}}
 }
 
 local property = {
@@ -180,8 +180,7 @@ local property = {
 		{name = "Stop", op = 951},
 		{name = "Jump", op = 952},
 		{name = "Float", op = 953}
-	}},
-
+	}}
 }
 
 local function isScratchLeft()
@@ -261,75 +260,61 @@ local function isMascotFloat()
 end
 
 local function f_play_pos()
-	local value = 0
 	if isScratchRight() then
-		value = 616
+		return 616
 	else
-		value = 372
+		return 372
 	end
-	return value
 end
 
 local function f_score_pos()
-	local value = 0
 	if isScratchRight() then
-		value = 1550
+		return 1550
 	else
-		value = 0
+		return 0
 	end
-	return value
 end
 
 local function f_info_pos()
-	local value = 0
 	if isScratchRight() then
-		value = 0
+		return 0
 	else
-		value = 1304
+		return 1304
 	end
-	return value
 end
 
 local function f_graph_blue_pos()
-	local value = 0
 	if isScratchRight() then
-		value = 72
+		return 72
 	else
-		value = 264
+		return 264
 	end
-	return value
 end
 
 local function f_graph_red_pos()
-	local value = 0
 	if isScratchRight() then
-		value = 264
+		return 264
 	else
-		value = 72
+		return 72
 	end
-	return value
 end
 
 local function f_between_width()
-	local value = 0
 	if isScratchRight() then
-		value = 15
+		return 15
 	else
-		value = 115
+		return 115
 	end
-	return value
 end
 
 local function f_center_pos()
-	local value = 0
 	if isLaneCenterPosKey() and isScratchRight() then
-		value = 329
+		return 329
 	elseif isLaneCenterPosKey() and isScratchLeft() then
-		value = 473
+		return 473
 	else
-		value = 401
+		return 401
 	end
-	return value
 end
 
 local function remain_notes()
@@ -400,7 +385,7 @@ local filepath = {
 	{name = "Gauge: Hard", 							category = "color_4", path = "parts/colors/hard/*.png", 		def = "White1_#ffffff"},
 	{name = "Gauge: Normal", 						category = "color_5", path = "parts/colors/normal/*.png", 		def = "LightBlue1_#74f7f7"},
 	{name = "Gauge: Easy", 							category = "color_6", path = "parts/colors/easy/*.png", 		def = "Green1_#80ff40"},
-	{name = "Gauge: Asist Easy", 					category = "color_7", path = "parts/colors/aseasy/*.png", 		def = "Pink1_#ffb6c1"},
+	{name = "Gauge: Asist Easy", 					category = "color_7", path = "parts/colors/aseasy/*.png", 		def = "Pink1_#ffb6c1"}
 
 }
 
@@ -425,7 +410,7 @@ local offset = {
 	{name = "Judgeline Height", 							category = "custom_15", id = 71, x = false, y = false, w = false, h = true, r = false, a = false},
 	{name = "Bomb Position & Transparance", 				category = "custom_16", id = 72, x = false, y = true, w = false, h = false, r = false, a = true},
 	{name = "Gauge Position", 								category = "custom_17", id = 73, x = true, y = true, w = true, h = true, r = false, a = false},
-	{name = "Gauge Transparance", 							category = "custom_18", id = 74, x = false, y = false, w = false, h = false, r = false, a = true},
+	{name = "Gauge Transparance", 							category = "custom_18", id = 74, x = false, y = false, w = false, h = false, r = false, a = true}
 
 }
 
@@ -464,7 +449,7 @@ local function main()
 	local notesInfo = {
 		height = 40,
 		Ot_width = 94,
-		Sc_width = 144,
+		Sc_width = 144
 	}
 
 	local geometry = {}
@@ -485,81 +470,81 @@ local function main()
 	geometry.graph_red = c_graph_red_pos
 
 	skin.source = {
-		-- common
+		-- ## common ##
 		{id = "bg_src", 			path = "parts/bg/*.png"},
 		{id = "alt_image_src", 		path = "!common/!_alt_image.png"},
 
-		-- info
+		-- ## info ##
 		{id = "info_system_src", 	path = "!common/!_info_system.png"},
 
-		-- score
+		-- ## score ##
 		{id = "score_system_src", 	path = "!common/!_score_system.png"},
 		{id = "mascot_src", 		path = "parts/!mascot/*.png"},
 
-		-- play
+		-- ## play ##
 		{id = "play_system_src", 	path = "!common/!_play_system.png"},
 
-			-- note
+		-- note
 		{id = "notes_wh_src", 	path = "parts/notes/white/*.png"},
 		{id = "notes_bl_src", 	path = "parts/notes/blue/*.png"},
 		{id = "notes_ye_src", 	path = "parts/notes/yellow/*.png"},
 		{id = "notes_sc_src", 	path = "parts/notes/scratch/*.png"},
 
-			-- lnend	
+		-- lnend	
 		{id = "lnEn_wh_src", 	path = "parts/notes/white_lnEn/*.png"},
 		{id = "lnEn_bl_src", 	path = "parts/notes/blue_lnEn/*.png"},
 		{id = "lnEn_ye_src", 	path = "parts/notes/yellow_lnEn/*.png"},
 		{id = "lnEn_sc_src", 	path = "parts/notes/scratch_lnEn/*.png"},
 
-			-- lnstart	
+		-- lnstart	
 		{id = "lnSt_wh_src", 	path = "parts/notes/white_lnSt/*.png"},
 		{id = "lnSt_bl_src", 	path = "parts/notes/blue_lnSt/*.png"},
 		{id = "lnSt_ye_src", 	path = "parts/notes/yellow_lnSt/*.png"},
 		{id = "lnSt_sc_src", 	path = "parts/notes/scratch_lnSt/*.png"},
 
-			-- lnbody	
+		-- lnbody	
 		{id = "lnBo_wh_src", 	path = "parts/notes/white_lnBo/*.png"},
 		{id = "lnBo_bl_src", 	path = "parts/notes/blue_lnBo/*.png"},
 		{id = "lnBo_ye_src", 	path = "parts/notes/yellow_lnBo/*.png"},
 		{id = "lnBo_sc_src", 	path = "parts/notes/scratch_lnBo/*.png"},
 
-			-- lnactive
+		-- lnactive
 		{id = "lnAc_wh_src", 	path = "parts/notes/white_lnBo/*.png"},
 		{id = "lnAc_bl_src", 	path = "parts/notes/blue_lnBo/*.png"},
 		{id = "lnAc_ye_src", 	path = "parts/notes/yellow_lnBo/*.png"},
 		{id = "lnAc_sc_src", 	path = "parts/notes/scratch_lnBo/*.png"},
 
-			-- hcnend	
+		-- hcnend	
 		{id = "hcEn_wh_src", 	path = "parts/notes/white_lnEn/*.png"},
 		{id = "hcEn_bl_src", 	path = "parts/notes/blue_lnEn/*.png"},
 		{id = "hcEn_ye_src", 	path = "parts/notes/yellow_lnEn/*.png"},
 		{id = "hcEn_sc_src", 	path = "parts/notes/scratch_lnEn/*.png"},
 
-			-- hcnstart	
+		-- hcnstart	
 		{id = "hcSt_wh_src", 	path = "parts/notes/white_lnSt/*.png"},
 		{id = "hcSt_bl_src", 	path = "parts/notes/blue_lnSt/*.png"},
 		{id = "hcSt_ye_src", 	path = "parts/notes/yellow_lnSt/*.png"},
 		{id = "hcSt_sc_src", 	path = "parts/notes/scratch_lnSt/*.png"},
 
-			-- hcnbody	
+		-- hcnbody	
 		{id = "hcBo_wh_src", 	path = "parts/notes/white_lnBo/*.png"},
 		{id = "hcBo_bl_src", 	path = "parts/notes/blue_lnBo/*.png"},
 		{id = "hcBo_ye_src", 	path = "parts/notes/yellow_lnBo/*.png"},
 		{id = "hcBo_sc_src", 	path = "parts/notes/scratch_lnBo/*.png"},
 
-			-- hcnactive
+		-- hcnactive
 		{id = "hcAc_wh_src", 	path = "parts/notes/white_lnBo/*.png"},
 		{id = "hcAc_bl_src", 	path = "parts/notes/blue_lnBo/*.png"},
 		{id = "hcAc_ye_src", 	path = "parts/notes/yellow_lnBo/*.png"},
 		{id = "hcAc_sc_src", 	path = "parts/notes/scratch_lnBo/*.png"},
 
-			-- hcndamage
+		-- hcndamage
 		{id = "hcBo_wh_src", 	path = "parts/notes/white_lnBo/*.png"},
 		{id = "hcBo_bl_src", 	path = "parts/notes/blue_lnBo/*.png"},
 		{id = "hcBo_ye_src", 	path = "parts/notes/yellow_lnBo/*.png"},
 		{id = "hcBo_sc_src", 	path = "parts/notes/scratch_lnBo/*.png"},
 
-			-- mine
+		-- mine
 		{id = "mine_wh_src", 	path = "parts/notes/white_mine/*.png"},
 		{id = "mine_bl_src", 	path = "parts/notes/blue_mine/*.png"},
 		{id = "mine_ye_src", 	path = "parts/notes/yellow_mine/*.png"},
@@ -589,7 +574,7 @@ local function main()
 		{id = "gaugeHard_src", 		path = "parts/colors/hard/*.png"},
 		{id = "gaugeNormal_src", 	path = "parts/colors/normal/*.png"},
 		{id = "gaugeEasy_src", 		path = "parts/colors/easy/*.png"},
-		{id = "gaugeAsEasy_src", 	path = "parts/colors/aseasy/*.png"},
+		{id = "gaugeAsEasy_src", 	path = "parts/colors/aseasy/*.png"}
 
 	}
 
@@ -599,7 +584,7 @@ local function main()
 	}
 
 	skin.image = {
-		-- common image
+		-- ## common image ##
 		{id = "bg", 			src = "bg_src", x = 0, y = 0, w = -1, h = -1},
 		{id = "alt-bga-1", 		src = "alt_image_src", x = 0, y = 0, w = 480, h = 480},
 		{id = "alt-bga-2", 		src = "alt_image_src", x = 0, y = 481, w = 480, h = 480},
@@ -608,12 +593,12 @@ local function main()
 		{id = "load-titleline", src = "play_system_src", x = 15, y = 0, w = 1450, h = 3},
 		{id = "alt-stagefile", 	src = "alt_image_src", x = 0, y = 962, w = 320, h = 240},
 
-		-- infomation image
+		-- ## infomation image ##
 		{id = "bf-info-frame", src = "info_system_src", x = 0, y = 0, w = 616, h = 480},
 		{id = "af-info-frame", src = "info_system_src", x = 0, y = 481, w = 616, h = 480},
 		{id = "info-rate-DnP", src = "info_system_src", x = 617, y = 481, w = 74, h = 21},
 
-		-- score image
+		-- ## score image ##
 		{id = "score-frame", 	src = "score_system_src", x = 0, y = 0, w = 372, h = 1080},
 		{id = "op-time-colon", 	src = "score_system_src", x = 373, y = 994, w = 68, h = 21},
 		{id = "score-rate-DnP", src = "score_system_src", x = 373, y = 1016, w = 76, h = 22},
@@ -624,11 +609,11 @@ local function main()
 
 		{id = "mascot", 	src = "mascot_src", x = 0, y = 0, w = -1, h = -1},
 
-		-- play image
+		-- ## play image ##
 		{id = "lane-frame", src = "play_system_src", x = 0, y = 0, w = 10, h = 10},
 
-		{id = "fast", 		src = "fast_slow_src", x = 0, y = 0, w = 160, h = 42},
-		{id = "slow", 		src = "fast_slow_src", x = 0, y = 43, w = 160, h = 42},
+		{id = "fast", 	src = "fast_slow_src", x = 0, y = 0, w = 160, h = 42},
+		{id = "slow", 	src = "fast_slow_src", x = 0, y = 43, w = 160, h = 42},
 
 		{id = "play-rate-dot", src = "judgenum_src", x = 364, y = 91, w = 12, h = 45},
 
@@ -645,73 +630,73 @@ local function main()
 
 		{id = "judgeline", src = "judgeline_src", x = 0, y = 0, w = 10, h = 10},
 
-			-- note
+		-- note
 		{id = "note-Wh", src = "notes_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "note-Bl", src = "notes_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "note-Ye", src = "notes_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "note-Sc", src = "notes_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- lnend
+		-- lnend
 		{id = "lnEn-Wh", src = "lnEn_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnEn-Bl", src = "lnEn_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnEn-Ye", src = "lnEn_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnEn-Sc", src = "lnEn_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- lnstart
+		-- lnstart
 		{id = "lnSt-Wh", src = "lnSt_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnSt-Bl", src = "lnSt_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnSt-Ye", src = "lnSt_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnSt-Sc", src = "lnSt_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- lnbody
+		-- lnbody
 		{id = "lnBo-Wh", src = "lnBo_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnBo-Bl", src = "lnBo_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnBo-Ye", src = "lnBo_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnBo-Sc", src = "lnBo_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- lnactive
+		-- lnactive
 		{id = "lnAc-Wh", src = "lnAc_wh_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnAc-Bl", src = "lnAc_bl_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnAc-Ye", src = "lnAc_ye_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "lnAc-Sc", src = "lnAc_sc_src", x = 0, y = notesInfo.height, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- hcnend
+		-- hcnend
 		{id = "hcEn-Wh", src = "hcEn_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcEn-Bl", src = "hcEn_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcEn-Ye", src = "hcEn_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcEn-Sc", src = "hcEn_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- hcnstart
+		-- hcnstart
 		{id = "hcSt-Wh", src = "hcSt_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcSt-Bl", src = "hcSt_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcSt-Ye", src = "hcSt_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcSt-Sc", src = "hcSt_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- hcnbody
+		-- hcnbody
 		{id = "hcBo-Wh", src = "hcBo_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcBo-Bl", src = "hcBo_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcBo-Ye", src = "hcBo_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcBo-Sc", src = "hcBo_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- hcnactive
+		-- hcnactive
 		{id = "hcAc-Wh", src = "hcAc_wh_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcAc-Bl", src = "hcAc_bl_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcAc-Ye", src = "hcAc_ye_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcAc-Sc", src = "hcAc_sc_src", x = 0, y = notesInfo.height, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- hcndamage
+		-- hcndamage
 		{id = "hcDm-Wh", src = "hcBo_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcDm-Bl", src = "hcBo_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcDm-Ye", src = "hcBo_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcDm-Sc", src = "hcBo_sc_src", x = 0, y = 0, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- hcnreactive
+		-- hcnreactive
 		{id = "hcRe-Wh", src = "hcAc_wh_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcRe-Bl", src = "hcAc_bl_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcRe-Ye", src = "hcAc_ye_src", x = 0, y = notesInfo.height, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "hcRe-Sc", src = "hcAc_sc_src", x = 0, y = notesInfo.height, w = notesInfo.Sc_width, h = notesInfo.height},
 
-			-- mine
+		-- mine
 		{id = "mine-Wh", src = "mine_wh_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "mine-Bl", src = "mine_bl_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
 		{id = "mine-Ye", src = "mine_ye_src", x = 0, y = 0, w = notesInfo.Ot_width, h = notesInfo.height},
@@ -757,13 +742,13 @@ local function main()
 		{id = "autoplay", src = "play_system_src", x = 187, y = 8, w = 240, h = 30},
 
 		{id = "fc-effect", src = "play_system_src", x = 663, y = 4, w = 802, h = 1080},
-		{id = "fullcombo", src = "play_system_src", x = 0, y = 82, w = 360, h = 36},
+		{id = "fullcombo", src = "play_system_src", x = 0, y = 82, w = 360, h = 36}
 
 	}
 	skin.imageset = {}
 	skin.value = {
 
-		-- infomation value
+		-- ## infomation value ##
 		{id = "pf-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 5, ref = 110, align = 0},
 		{id = "gr-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 5, ref = 111, align = 0},
 		{id = "gd-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 5, ref = 112, align = 0},
@@ -798,7 +783,7 @@ local function main()
 		{id = "bpm-max", src = "info_system_src", x = 617, y = 371, w = 360, h = 36, divx = 10, digit = 3, ref = 90, align = 0},
 		{id = "bpm-min", src = "info_system_src", x = 617, y = 371, w = 360, h = 36, divx = 10, digit = 3, ref = 91, align = 0},
 
-		-- score value
+		-- ## score value ##
 		{id = "op-time-hour-num", 	src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 27, align = 1},
 		{id = "op-time-minute-num", src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 28, align = 1},
 		{id = "op-time-second-num", src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 29, align = 1},
@@ -819,7 +804,7 @@ local function main()
 		{id = "score-diff-best", 	src = "score_system_src", x = 373, y = 44, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 152, align = 0},
 		{id = "score-diff-target", 	src = "score_system_src", x = 373, y = 44, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 153, align = 0},
 
-		-- play value
+		-- ## play value ##
 		{id = "diff-best", 		src = "play_system_src", x = 0, y = 204, w = 480, h = 84, divx = 12, divy = 2, digit = 5, ref = 152, align = 2},
 		{id = "diff-target",	src = "play_system_src", x = 0, y = 204, w = 480, h = 84, divx = 12, divy = 2, digit = 5, ref = 153, align = 2},
 
@@ -858,7 +843,7 @@ local function main()
 		{id = "judge-num-ms", src = "judgenum_src", x = 0, y = 0, w = 660, h = 90, divx = 10, digit = 6, ref = 75, align = 1},
 
 		{id = "fs-opg-num", src = "play_system_src", x = 201, y = 309, w = 200, h = 21, divx = 10, digit = 4, ref = 423, align = 1},
-		{id = "sl-opg-num", src = "play_system_src", x = 201, y = 331, w = 200, h = 21, divx = 10, digit = 4, ref = 424, align = 0},
+		{id = "sl-opg-num", src = "play_system_src", x = 201, y = 331, w = 200, h = 21, divx = 10, digit = 4, ref = 424, align = 0}
 
 	}
 	skin.text = {
@@ -868,12 +853,14 @@ local function main()
 		{id = "title-right", font = 1, size = 42, ref = 12, overflow = 1, align = 2},
 		{id = "load-genre", font = 0, size = 27, ref = 13, overflow = 1},
 		{id = "load-title", font = 1, size = 73, ref = 12, overflow = 1},
-		{id = "load-artist", font = 0, size = 41, ref = 16, overflow = 1},
+		{id = "load-artist", font = 0, size = 41, ref = 16, overflow = 1}
+
 	}
 	skin.slider = {
 		-- play slider
 		{id = "song-progress", src = "play_system_src", x = 0, y = 11, w = 12, h = 21, angle = 2, range = 600, type = 6},
-		{id = "lanecover", src = "lanecover_src", x = 0, y = 0, w = -1, h = -1, angle = 2, range = geometry.lane_h, type = 4},
+		{id = "lanecover", src = "lanecover_src", x = 0, y = 0, w = -1, h = -1, angle = 2, range = geometry.lane_h, type = 4}
+
 	}
 	skin.graph = {
 		-- score graph
@@ -886,7 +873,8 @@ local function main()
 
 		-- play graph
 		{id = "load-progress", src = "play_system_src", x = 15, y = 0, w = 1450, h = 3, angle = 0, type = 102},
-		{id = "song-progress-fin", src = "play_system_src", x = 10, y = 0, w = 4, h = 10, angle = 1, type = 101},
+		{id = "song-progress-fin", src = "play_system_src", x = 10, y = 0, w = 4, h = 10, angle = 1, type = 101}
+
 	}
 	skin.note = {
 		id = "notes",
@@ -935,8 +923,8 @@ local function main()
 		geometry.notes_w[1] = notesInfo.Ot_width
 
 		-- Right Side
-			-- 3,4,5,6,7,S
 		if isScratchRight() and isLaneCenterPosAll() then
+			-- 3,4,5,6,7,S
 			geometry.notes_x[1] = geometry.lane_x + notesInfo.Ot_width * 2
 			geometry.notes_x[6] = geometry.lane_x + geometry.lane_w - geometry.notes_w[6]
 			-- 2,3,4,5,6,S
@@ -1065,8 +1053,8 @@ local function main()
 			{x = 0, y = 0, w = 1920, h = 1080}}},
 		{id = -110, offset = 50, dst = {
 			{x = 0, y = 0, w = 1920, h = 1080, r = 255, g = 255, b = 255, a = 0}}},
--- BGA関連 
--- BGA related
+		-- BGA関連 
+		-- BGA related
 		{id = -110, dst = {
 			{x = geometry.info_position + geometry.bga_x, y = geometry.bga_y, w = geometry.bga_w, h = geometry.bga_h}}},
 
@@ -1097,17 +1085,14 @@ local function main()
 		}},
 
 		{id = -110, timer = 41, offset = 51, dst = {
-			{x = geometry.info_position + geometry.bga_x, y = geometry.bga_y, w = geometry.bga_w, h = geometry.bga_h, a = 0}}},
+			{x = geometry.info_position + geometry.bga_x, y = geometry.bga_y, w = geometry.bga_w, h = geometry.bga_h, a = 0}}}
 	}
 
--- 曲情報エリア 
--- song infomation area
+-- ### 曲情報エリア開始 ###
+-- ### song infomation area start ###
 
-	-- ここから 
-	-- from hare
-
-		-- ジャンル名・曲名 
-		-- genre,title
+-- ジャンル名・曲名 
+-- genre,title
 if isScratchRight() then
 	append_all(skin.destination, {
 		{id = "tablename-left", timer = 41, filter = 1, dst = {
@@ -1115,7 +1100,7 @@ if isScratchRight() then
 		}},
 		{id = "title-left", timer = 41, filter = 1, dst = {
 			{x = geometry.info_position + 8, y = 984, w = 600, h = 42}
-		}},
+		}}
 	})
 else
 	append_all(skin.destination, {
@@ -1124,12 +1109,12 @@ else
 		}},
 		{id = "title-right", timer = 41, filter = 1, dst = {
 			{x = geometry.info_position + 608, y = 984, w = 600, h = 42}
-		}},
+		}}
 	})
 end
 
-		-- 判定情報・曲情報・BPM・ゲージの値など
-		-- Judge information, song information, BPM, gauge values, etc.
+-- 判定情報・曲情報・BPM・ゲージの値など
+-- Judge information, song information, BPM, gauge values, etc.
 append_all(skin.destination, {
 	{id = "bf-info-frame", dst = {
 		{x = geometry.info_position, y = 0, w = 616, h = 480}
@@ -1204,12 +1189,12 @@ append_all(skin.destination, {
 		{x = geometry.info_position + 82, y = 10, w = 36, h = 36},
 	}},
 	{id = "bpm-max", dst = {
-		{x = geometry.info_position + 426, y = 10, w = 36, h = 36},
-	}},
+		{x = geometry.info_position + 426, y = 10, w = 36, h = 36}
+	}}
 })
 
-		-- 判定レベル
-		-- judge level
+-- 判定レベル
+-- judge level
 do
 	local id = {"jd-veasy-tx", "jd-easy-tx", "jd-normal-tx", "jd-hard-tx", "jd-vhard-tx"}
 	for i in ipairs(id) do
@@ -1222,8 +1207,8 @@ do
 	end
 end
 
-		-- ゲージの種類
-		-- gauge type
+-- ゲージの種類
+-- gauge type
 do
 	local id = {"ga-aeasy-tx", "ga-easy-tx", "ga-nor-tx", "ga-hard-tx", "ga-exh-tx", "ga-haz-tx", "ga-gra", "ga-egra", "ga-ehgra"}
 	for i in ipairs(id) do
@@ -1240,8 +1225,8 @@ table.insert(skin.destination,
 		{x = geometry.info_position + 244, y = 184, w = 128, h = 19}
 	}})
 
-		-- ランダムの種類
-		-- random type
+-- ランダムの種類
+-- random type
 do
 	local id = {"la-orig-tx", "la-mir-tx", "laran-tx", "la-rran-tx", "la-sran-tx", "la-spir-tx", "la-hran-tx", "la-alls-tx", "la-exran-tx", "la-exs-tx"}
 	for i in ipairs(id) do
@@ -1257,20 +1242,15 @@ table.insert(skin.destination,
 	{id = "lane-op-tx", dst = {
 		{x = geometry.info_position + 407, y = 184, w = 146, h = 19}
 	}})
--- 曲情報エリア
--- song infomation area
 
-	-- ここまで
-	-- to here
+-- ### 曲情報エリア終了 ###
+-- ### song infomation area end ###
 
--- スコアエリア
--- score area
+-- ### スコアエリア開始 ###
+-- ### score area start ###
 
-	-- ここから
-	-- from here
-
-		-- 操作時間・フレームレート・グラフなど
-		-- Operation time, frame rate, graphs, etc.
+-- 操作時間・フレームレート・グラフなど
+-- Operation time, frame rate, graphs, etc.
 append_all(skin.destination, {
 	{id = "score-frame", timer = 41, dst = {
 		{x = geometry.score_position, y = 0, w = 372, h = 1080}
@@ -1319,7 +1299,7 @@ append_all(skin.destination, {
 	}},
 	{id = "graph-a", timer = 348, dst = {
 		{x = geometry.score_position + 28, y = 637, w = 316, h = 13}
-	}},
+	}}
 })
 
 if isScratchRight() then
@@ -1338,7 +1318,7 @@ if isScratchRight() then
 		}},
 		{id = "fps-num-right", dst = {
 			{x = geometry.score_position + 285, y = 1031, w = 20, h = 21}
-		}},
+		}}
 	})
 else
 	append_all(skin.destination, {
@@ -1356,11 +1336,11 @@ else
 		}},
 		{id = "fps-num-left", dst = {
 			{x = geometry.score_position + 5, y = 1031, w = 20, h = 21}
-		}},
+		}}
 	})
 end
 
-		-- score rank
+-- score rank
 do
 	local id = {"rankAAA", "rankAA", "rankA", "rankB", "rankC", "rankD", "rankE", "rankF"}
 	for i in ipairs(id) do
@@ -1373,7 +1353,7 @@ do
 	end
 end
 
-		-- mascot
+-- mascot
 if isMascotStop() then
 	table.insert(skin.destination,
 		{id = "mascot", filter = 1, dst = {
@@ -1399,48 +1379,45 @@ elseif isMascotFloat() then
 		}})
 end
 
-		-- notes graph
+-- notes graph
 table.insert(skin.destination,
 	{id = "notes-graph", dst = {
 		{x = geometry.score_position, y = 0, w = 372, h = 100}
 	}})
-		-- BPM graph
+-- BPM graph
 table.insert(skin.destination,
 	{id = "bpm-graph", dst = {
 		{x = geometry.score_position, y = 0, w = 372, h = 100}
 	}})
 
--- プレイエリア
--- play area
+-- ### プレイエリア開始 ###
+-- ### play area start ###
 
-	-- ここから
-	-- from here
-
-		-- レーン背景
-		-- lane background
+-- レーン背景
+-- lane background
 append_all(skin.destination, {
 	{id = -110, offset = 52, dst = {
 		{x = geometry.lane_x + geometry.play_position, y = 0, w = geometry.lane_w, h = 1080, a = 0, acc = 2},
 	}},
-		-- 演出
-		-- effect
+	-- 演出
+	-- effect
 	{id = -111, offsets = {3, 70}, loop = 1400, dst = {
 		{time = 0, x = geometry.lane_x + geometry.play_position, y = geometry.lane_y, w = geometry.lane_w, h = 2160, a = 0, acc = 2},
 		{time = 600, a = 0},
 		{time = 650, a = 255},
 		{time = 1300, a = 0}
-	}},
+	}}
 })
 
-		-- 判定ライン
-		-- judge line
+-- 判定ライン
+-- judge line
 table.insert(skin.destination,
 	{id = "judgeline", offsets = {3, 70, 71}, dst = {
 		{x = geometry.lane_x + geometry.play_position, y = geometry.lane_y, w = geometry.lane_w, h = 24}
 	}})
 
-		-- キービーム
-		-- keybeam
+-- キービーム
+-- keybeam
 local kb_w = {
 	notesInfo.Ot_width,
 	notesInfo.Ot_width,
@@ -1507,8 +1484,8 @@ elseif isScratchLeft() and isLaneCenterPosKey() then
 end
 
 if isKeybeamFast() then
-		-- キーが押された時
-		-- When a key is pressed.
+	-- キーが押された時
+	-- When a key is pressed.
 	do
 		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
@@ -1518,8 +1495,8 @@ if isKeybeamFast() then
 			})
 		end
 	end
-		-- キーが離された時
-		-- When a key is released.
+	-- キーが離された時
+	-- When a key is released.
 	do
 		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
@@ -1531,8 +1508,8 @@ if isKeybeamFast() then
 		end
 	end
 else
-		-- キーが押された時
-		-- When a key is pressed.
+	-- キーが押された時
+	-- When a key is pressed.
 	do
 		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
@@ -1543,8 +1520,8 @@ else
 			})
 		end
 	end
-		-- キーが離された時
-		-- When a key is released.
+	-- キーが離された時
+	-- When a key is released.
 	do
 		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
@@ -1557,19 +1534,19 @@ else
 	end
 end
 
-		-- notes
+-- notes
 table.insert(skin.destination,{id = "notes", offset = 30})
 
-		-- hidden cover
+-- hidden cover
 table.insert(skin.destination,
 	{id = "hiddencover", offsets = {3, 54, 70}, timer = 41, op = {273}, dst = {
 		{x = geometry.lane_x + geometry.play_position, y = geometry.lane_y + 24, w = geometry.lane_w, h = 1000}
 	}})
 
-		-- Keybeam for hiddencover
+-- Keybeam for hiddencover
 if isKeybeamFast() then
-		-- キーが押された時
-		-- When a key is pressed.
+	-- キーが押された時
+	-- When a key is pressed.
 	do
 		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
@@ -1579,8 +1556,8 @@ if isKeybeamFast() then
 			})
 		end
 	end
-		-- キーが離された時
-		-- When a key is released.
+	-- キーが離された時
+	-- When a key is released.
 	do
 		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
@@ -1592,8 +1569,8 @@ if isKeybeamFast() then
 		end
 	end
 else
-		-- キーが押された時
-		-- When a key is pressed.
+	-- キーが押された時
+	-- When a key is pressed.
 	do
 		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
@@ -1604,8 +1581,8 @@ else
 			})
 		end
 	end
-		-- キーが離された時
-		-- When a key is released.
+	-- キーが離された時
+	-- When a key is released.
 	do
 		for i = 1, 6, 1 do
 			table.insert(skin.destination,	{
@@ -1618,8 +1595,7 @@ else
 	end
 end
 
-
-		-- lanecover
+-- lanecover
 table.insert(skin.destination,
 	{id = "lanecover", loop = 1700, dst = {
 		{time = 0, x = geometry.lane_x + geometry.play_position, y = 1500, w = geometry.lane_w, h = geometry.lane_h, acc = 2},
@@ -1627,8 +1603,8 @@ table.insert(skin.destination,
 		{time = 1700, y = 1080}
 	}})
 
-		-- レーンカバーの数値周り
-		-- values for lane cover
+-- レーンカバーの数値周り
+-- values for lane cover
 do
 	local id = {"lanecover-value", "lanecover-green", "lanecover-duration"}
 	local dst_x = {68, 342, 616}
@@ -1648,8 +1624,8 @@ table.insert(skin.destination,
 		{time = 1000, a = 255}
 	}})
 
-		-- リフトの数値周り
-		-- values for lift
+-- リフトの数値周り
+-- values for lift
 do
 	local id = {"lift-value", "lanecover-green", "lanecover-duration"}
 	local dst_x = {68, 342, 616}
@@ -1670,10 +1646,10 @@ table.insert(skin.destination,
 	}})
 
 
-		-- judge
+-- judge
 table.insert(skin.destination,{id = "judge"})
 
-		-- fast/slow center
+-- fast/slow center
 if isFastSlowCenterOn() then
 	table.insert(skin.destination,	{
 		id = "fast", offsets = {32, 62, 70}, op = {1242}, loop = -1, timer = 46, dst = {
@@ -1687,7 +1663,7 @@ if isFastSlowCenterOn() then
 			{time = 500}
 		}
 	})
-		-- fast/slow right and left
+-- fast/slow right and left
 elseif isFastSlowRnLOn() then
 	table.insert(skin.destination,	{
 		id = "fast", offsets = {32, 62, 70}, op = {1242}, loop = -1, timer = 46, dst = {
@@ -1701,8 +1677,8 @@ elseif isFastSlowRnLOn() then
 			{time = 500}
 		}
 	})
+-- fast/slow ms
 elseif isFastSlowMS() then
-		-- fast/slow ms
 	table.insert(skin.destination,	{
 		id = "fsms-num", offsets = {32, 62, 70}, op = {-241}, loop = -1, timer = 46, dst = {
 			{time = 0, x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-100), y = geometry.judge_y + (-52), w = 40, h = 42, a = 0, acc = 2},
@@ -1711,8 +1687,8 @@ elseif isFastSlowMS() then
 	})
 end
 
-		-- ターゲットとのスコア差
-		-- Score difference from target.
+-- ターゲットとのスコア差
+-- Score difference from target.
 if isTargetBest() then
 	table.insert(skin.destination,	{
 		id = "diff-target", offsets = {3, 63, 70}, op = {32}, timer = 41, draw = function()
@@ -1740,8 +1716,8 @@ elseif isTargetRank() then
 	})
 end
 
-		-- ターゲット2 Targetで選択してない方を自動で表示 初回プレイでは表示されない
-		-- Target2: Automatic display of the one not selected in Target. Not shown on first play.
+-- ターゲット2 Targetで選択してない方を自動で表示 初回プレイでは表示されない
+-- Target2: Automatic display of the one not selected in Target. Not shown on first play.
 if isTarget2On() then
 	local targ_x = -132
 	if isTargetRank() then
@@ -1767,21 +1743,8 @@ if isTarget2On() then
 	end
 end
 
-		-- レーン上でのレート表示
-		-- Rate display on lanes
--- if isScoreRateOn() and main_state.timer ~= 46 then
--- 	append_all(skin.destination, {
--- 		-- dummy rate
--- 		{id = "play-dummyrate-num", offsets = {3, 65, 70}, timer = 41, dst = {
--- 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105), y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
--- 		}},
--- 		{id = "play-dummyrate-adot-num", offsets = {3, 65, 70}, timer = 41, dst = {		
--- 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 111, y = geometry.lane_y + 275, w = 33, h = 45, a = 0, acc = 2}
--- 		}},
-
--- 	})
--- end	
-
+-- レーン上でのレート表示
+-- Rate display on lanes
 if isScoreRateOn() then
 	append_all(skin.destination, {
 		{id = "play-rate-num", offsets = {3, 65, 70}, timer = 41, dst = {
@@ -1792,23 +1755,23 @@ if isScoreRateOn() then
 		}},
 		{id = "play-rate-dot", offsets = {3, 65, 70}, timer = 41, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-105) + 99, y = geometry.lane_y + 275, w = 12, h = 45, a = 0, acc = 2}
-		}},
+		}}
 	})
 end
 
-		-- タイミング・ヴィジュアライザー
-		-- Timing Visualizer
+-- タイミング・ヴィジュアライザー
+-- Timing Visualizer
 if isTimingVisualizerOn() then
 	skin.timingvisualizer = {{id = "timing-visualizer"}}
 	append_all(skin.destination, {
 		{id = "timing-visualizer", offsets = {3, 66, 70}, op = {32}, timer = 41, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + 150, y = geometry.lane_y + 205, w = -300, h = 15, a = 0, r = 230, g = 200, b = 255, acc = 2}
-		}},
+		}}
 	})
 end
 
-		-- プレイエリア上でのFast/Slowカウンター
-		-- Fast/Slow counter on playground
+-- プレイエリア上でのFast/Slowカウンター
+-- Fast/Slow counter on playground
 if isFSCountOnPlayOn() then
 	append_all(skin.destination, {
 		{id = "fs-opg-frame", offsets = {3, 67, 70}, op = {32}, timer = 46, dst = {
@@ -1819,7 +1782,7 @@ if isFSCountOnPlayOn() then
 		}},
 		{id = "sl-opg-num", offsets = {3, 67, 70}, op = {32}, timer = 46, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_center + 300 - 80, y = geometry.lane_y + 275, w = 20, h = 21, a = 0, acc = 2}
-		}},
+		}}
 	})
 end
 
@@ -1834,7 +1797,7 @@ if isLaneFrameOn() then
 		{id = "lane-frame", loop = 600, dst = {
 			{x = geometry.lane_x + geometry.play_position + geometry.lane_w, y = 0, w = 15, h = 0, r = 255, g = 255, b = 255, a = 255, acc = 2},
 			{time = 600, h = 1080}
-		}},
+		}}
 	})
 end
 
@@ -1851,7 +1814,7 @@ if not isBombUnderTheGaugeOn() and isScratchRight() then
 			{x = geometry.lane_x + geometry.play_position + 750 + 26, y = 0, w = -750, h = 0, a = 0, acc = 2},
 			{time = 200},
 			{time = 250, h = 25}
-		}},
+		}}
 	})
 elseif not isBombUnderTheGaugeOn() and isScratchLeft() then
 	append_all(skin.destination, {
@@ -1864,12 +1827,12 @@ elseif not isBombUnderTheGaugeOn() and isScratchLeft() then
 			{x = geometry.lane_x + geometry.play_position + 26, y = 0, w = 750, h = 0, a = 0, acc = 2},
 			{time = 200},
 			{time = 250, h = 25}
-		}},
+		}}
 	})
 end
 
-		-- ボム
-		-- bomb
+-- ボム
+-- bomb
 local bombCycle = 251
 local lnbombCycle = 160
 
@@ -1879,10 +1842,9 @@ local lnBombTimer = {71, 72, 73, 74, 75, 70}
 local bombPosX = {}
 local bombWidth = 600
 local bombHeight = 450
-local adjustPosY = 0
 
-			-- ボム中心点
-			-- center of bomb
+-- ボム中心点
+-- center of bomb
 
 -- Right Side
 if isScratchRight() and isLaneCenterPosAll() then
@@ -1928,8 +1890,8 @@ elseif isScratchLeft() and isLaneCenterPosKey() then
 	}
 end
 
-			-- ボム切り出し
-			-- cutting out bomb
+-- ボム切り出し
+-- cutting out bomb
 table.insert(skin.image, {
 	id = "bomb", src = "bomb_src", x = 0, y = 0, w = -1, h = -1
 })
@@ -1939,8 +1901,8 @@ for i = 1, #b_init, 1 do
 	})
 end
 
-			-- LNボム切り出し
-			-- cutting out LNbomb
+-- LNボム切り出し
+-- cutting out LNbomb
 table.insert(skin.image, {
 	id = "lnbomb", src = "bomb_src", x = 0, y = 0, w = -1, h = -1
 })
@@ -1950,11 +1912,11 @@ for i = 1, #b_init, 1 do
 	})
 end
 
-			-- ボム配置
-			-- bomb placement
+-- ボム配置
+-- bomb placement
 
-				-- ボム先読み
-				-- bomb preload
+-- ボム先読み
+-- bomb preload
 table.insert(skin.destination,{
 	id = "bomb", dst = {
 		{x = 0, y = 0, w = 1, h = 1},
@@ -1966,11 +1928,11 @@ table.insert(skin.destination,{
 	}
 })
 
-			-- 爆発エフェクト
-			-- Explosion effect
+-- 爆発エフェクト
+-- Explosion effect
 
-				-- 通常爆発エフェクトの配置
-				-- Normal explosion effect placement
+-- 通常爆発エフェクトの配置
+-- Normal explosion effect placement
 for i = 1, #b_init, 1 do
 	table.insert(skin.destination, {
 		id = "bomb-"..b_init[i], offsets = {3, 70, 72}, loop = -1, filter = 1, timer = bombTimer[i], blend = 2, dst = {
@@ -1980,8 +1942,8 @@ for i = 1, #b_init, 1 do
 	})
 end
 
-				-- LN爆発エフェクトの配置
-				-- LN explosion effect placement
+-- LN爆発エフェクトの配置
+-- LN explosion effect placement
 for i = 1, #b_init, 1 do
 	table.insert(skin.destination,	{
 		id = "lnbomb-"..b_init[i], offsets = {3, 70, 72}, filter = 1, timer = lnBombTimer[i], blend = 2, dst = {
@@ -1991,8 +1953,8 @@ for i = 1, #b_init, 1 do
 	})
 end
 
-		-- ゲージ
-		-- gauge
+-- ゲージ
+-- gauge
 if isBombUnderTheGaugeOn() and isScratchRight() then
 	append_all(skin.destination, {
 		{id = -110, offset = 73, loop = 250, dst = {
@@ -2004,7 +1966,7 @@ if isBombUnderTheGaugeOn() and isScratchRight() then
 			{x = geometry.lane_x + geometry.play_position + 750 + 26, y = 0, w = -750, h = 0, a = 0, acc = 2},
 			{time = 200},
 			{time = 250, h = 25}
-		}},
+		}}
 	})
 elseif isBombUnderTheGaugeOn() and isScratchLeft() then
 	append_all(skin.destination, {
@@ -2017,16 +1979,16 @@ elseif isBombUnderTheGaugeOn() and isScratchLeft() then
 			{x = geometry.lane_x + geometry.play_position + 26, y = 0, w = 750, h = 0, a = 0, acc = 2},
 			{time = 200},
 			{time = 250, h = 25}
-		}},
+		}}
 	})
 end
 
-		-- 曲の長さ + 残りノーツ
-		-- song length + remain notes
+-- 曲の長さ + 残りノーツ
+-- song length + remain notes
 if isScratchRight() then
 	append_all(skin.destination, {
-			-- 残りノーツ パーセント
-			-- remain notes persent
+		-- 残りノーツ パーセント
+		-- remain notes persent
 		{id = "remain-rate-num", dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 23, y = 74, w = 15, h = 18}
 		}},
@@ -2036,13 +1998,13 @@ if isScratchRight() then
 		{id = "remain-rate-dot", dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 68, y = 74, w = 9, h = 18}
 		}},
-			-- 残りノーツ
-			-- remain notes
+		-- 残りノーツ
+		-- remain notes
 		{id = "remain-notes", dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 23, y = 44, w = 15, h = 18}
 		}},
-			-- 残り時間
-			-- time left
+		-- 残り時間
+		-- time left
 		{id = "song-left-m", dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 23, y = 10, w = 15, h = 18}
 		}},
@@ -2052,8 +2014,8 @@ if isScratchRight() then
 		{id = "song-time-colon", dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 53, y = 10, w = 9, h = 18}
 		}},
-			-- 曲の長さスライダー
-			-- song length slider
+		-- 曲の長さスライダー
+		-- song length slider
 		{id = "song-progress-bar", timer = 41, dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 74, y = 330, w = 4, h = 600, a = 100}
 		}},
@@ -2062,12 +2024,12 @@ if isScratchRight() then
 		}},
 		{id = "song-progress", timer = 41, dst = {
 			{x = geometry.play_position + geometry.lane_x + geometry.lane_w + 70, y = 930, w = 12, h = 21}
-		}},
+		}}
 	})
 else
 	append_all(skin.destination, {
-			-- 残りノーツ パーセント
-			-- remain notes persent
+		-- 残りノーツ パーセント
+		-- remain notes persent
 		{id = "remain-rate-num", dst = {
 			{x = geometry.play_position + geometry.lane_x + (-104), y = 74, w = 15, h = 18}
 		}},
@@ -2077,13 +2039,13 @@ else
 		{id = "remain-rate-dot", dst = {
 			{x = geometry.play_position + geometry.lane_x + (-59), y = 74, w = 9, h = 18}
 		}},
-			-- 残りノーツ
-			-- remain notes
+		-- 残りノーツ
+		-- remain notes
 		{id = "remain-notes", dst = {
 			{x = geometry.play_position + geometry.lane_x + (-95), y = 44, w = 15, h = 18}
 		}},
-			-- 残り時間
-			-- time left	
+		-- 残り時間
+		-- time left	
 		{id = "song-left-m", dst = {
 			{x = geometry.play_position + geometry.lane_x + (-89), y = 10, w = 15, h = 18}
 		}},
@@ -2093,8 +2055,8 @@ else
 		{id = "song-time-colon", dst = {
 			{x = geometry.play_position + geometry.lane_x + (-59), y = 10, w = 9, h = 18}
 		}},
-			-- 曲の長さスライダー
-			-- song length slider		
+		-- 曲の長さスライダー
+		-- song length slider		
 		{id = "song-progress-bar", timer = 41, dst = {
 			{x = geometry.play_position + geometry.lane_x + (-78), y = 330, w = 4, h = 600, a = 100}
 		}},
@@ -2103,29 +2065,29 @@ else
 		}},
 		{id = "song-progress", timer = 41, dst = {
 			{x = geometry.play_position + geometry.lane_x + (-82), y = 930, w = 12, h = 21}
-		}},
+		}}
 	})
 end
 
-		-- 曲終了表示
-		-- end of song
+-- 曲終了表示
+-- end of song
 append_all(skin.destination, {
 	{id = "eof", timer = 143, offsets = {3, 70}, dst = {
 		{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-60), y = geometry.lane_y + 140, w = 120, h = 42}
 	}},
-		-- リプレイ表示
-		-- replay
+	-- リプレイ表示
+	-- replay
 	{id = "replay", offsets = {3, 70}, op = {84}, dst = {
 		{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-85), y = geometry.lane_y + 90, w = 171, h = 30}
 	}},
-		-- オートプレイ表示
-		-- auto play
+	-- オートプレイ表示
+	-- auto play
 	{id = "autoplay", offsets = {3, 70}, op = {33}, dst = {
 		{x = geometry.lane_x + geometry.play_position + geometry.lane_center + (-120), y = geometry.lane_y + 90, w = 240, h = 30}
-	}},
+	}}
 })
 
-		-- fullcombo
+-- fullcombo
 append_all(skin.destination, {
 	{id = "fc-effect", loop = -1, timer = 48, stretch = 3, blend = 2, dst = {
 		{time = 0, x = geometry.lane_x + geometry.play_position, y = 0, w = geometry.lane_w, h = 1080, a = 128},
@@ -2136,22 +2098,17 @@ append_all(skin.destination, {
 		{time = 650, a = 255},
 		{time = 1600},
 		{time = 1800, y = geometry.lane_y + 470, a = 0}
-	}},
+	}}
 })
--- プレイエリア
--- play area
 
-	-- ここまで
-	-- to here
+-- ### プレイエリア終了 ###
+-- ### play area end ###
 
--- ロード中曲情報
--- song infomation in loading
+-- ### ロード中曲情報開始 ###
+-- ### song infomation in loading end ###
 
-	-- ここから
-	-- from here
-
-		-- 枠
-		-- background
+-- 枠
+-- background
 table.insert(skin.destination,
 {id = -110, loop = 600, op = {80}, dst = {
 	{time = 0, x = 0, y = 360, w = 1920, h = 360, a = 0},
@@ -2159,16 +2116,16 @@ table.insert(skin.destination,
 	{time = 600, a = 150}
 }})
 
-			-- ロード終了
-			-- loading end		
+-- ロード終了
+-- loading end		
 table.insert(skin.destination,
 {id = -110, timer = 40, loop = 300, op = {81}, dst = {
 	{time = 0, x = 0, y = 360, w = 1920, h = 360, a = 150},
 	{time = 300, a = 0}
 }})
 
-		-- ジャンル名・曲名・アーティスト名
-		-- genre, title, artist
+-- ジャンル名・曲名・アーティスト名
+-- genre, title, artist
 table.insert(skin.destination,
 {id = "load-genre", loop = 600, op = {80}, filter = 1, dst = {
 	{time = 0, x = 445, y = 608, w = 1405, h = 27, a = 0},
@@ -2190,8 +2147,8 @@ table.insert(skin.destination,
 	{time = 600, a = 255}
 }})
 
-			-- ロード終了
-			-- loading end
+-- ロード終了
+-- loading end
 table.insert(skin.destination,
 {id = "load-genre", timer = 40,loop = 300, op = {81}, filter = 1, dst = {
 	{time = 0, x = 445, y = 608, w = 1405, h = 27, a = 255},
@@ -2210,8 +2167,8 @@ table.insert(skin.destination,
 	{time = 300, a = 0}
 }})
 
-		-- ステージファイル
-		-- stagefile
+-- ステージファイル
+-- stagefile
 table.insert(skin.destination,
 {id = -100, loop = 600, filter = 1, op = {80, 191}, dst = {
 	{time = 0, x = 50, y = 420, w = 320, h = 240, a = 0},
@@ -2219,16 +2176,16 @@ table.insert(skin.destination,
 	{time = 600, a = 255}
 }})
 
-			-- ロード終了
-			-- loading end
+-- ロード終了
+-- loading end
 table.insert(skin.destination,
 {id = -100, timer = 40, loop = 300, filter = 1, op = {81, 191}, dst = {
 	{time = 0, x = 50, y = 420, w = 320, h = 240, a = 255},
 	{time = 300, a = 0}
 }})
 
-		-- ステージファイルが無い時
-		-- no stagefile
+-- ステージファイルが無い時
+-- no stagefile
 table.insert(skin.destination,
 {id = "alt-stagefile", loop = 600, filter = 1, op = {80, 190}, dst = {
 	{time = 0, x = 50, y = 420, w = 320, h = 240, a = 0},
@@ -2236,16 +2193,16 @@ table.insert(skin.destination,
 	{time = 600, a = 255}
 }})
 
-			-- ロード終了
-			-- loading end
+-- ロード終了
+-- loading end
 table.insert(skin.destination,
 {id = "alt-stagefile", timer = 40, loop = 300, filter = 1, op = {81, 190}, dst = {
 	{time = 0, x = 50, y = 420, w = 320, h = 240, a = 255},
 	{time = 300, a = 0}
 }})
 
-		-- 曲名下の線
-		-- line under the song title
+-- 曲名下の線
+-- line under the song title
 table.insert(skin.destination,
 	{id = "load-titleline", loop = 900, op = {80}, dst = {
 		{time = 0, x = 400, y = 505, w = 0, h = 3, a = 100, acc = 2},
@@ -2261,18 +2218,16 @@ table.insert(skin.destination,
 		{time = 900, w = 1450}
 	}})
 
-			-- ロード終了
-			-- loading end
+-- ロード終了
+-- loading end
 table.insert(skin.destination,
 	{id = "load-progress", timer = 40, loop = 300, op = {81}, dst = {
 		{time = 0, x = 400, y = 505, w = 1450, h = 3, a = 100},
 		{time = 300, a = 0}
 	}})
--- ロード中曲情報
--- song infomation in loading
 
-	-- ここまで
-	-- to here
+-- ### ロード中曲情報終了 ###
+-- ### song infomation in loading end ###
 
 -- フェードイン
 -- fade in
