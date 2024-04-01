@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:03/28/2024)
+(Last updated:04/01/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -241,7 +241,7 @@ Update History
 
 03262024
 
-	- Changed to notes, Long-Head, Long-End, Long-Body,etc. to be set individually for each type.
+	- Changed to notes, Long-Head, Long-End, Long-Body,etc. to be set individually for each type
 	- Swapped Fast and Slow positions in some options
 	- Inverted Timing Visualizer display
 	- Added some files to "notes" and "fast_slow" folder
@@ -254,6 +254,12 @@ Update History
 	- Orgnized comment
 	- Update readme.txt
 
+04012024
+
+	- Added option to change notes height
+	- Added option to switch Operation time to Current time
+	- Remove superfluous variables
+	- Update readme.txt
 
 
 	
