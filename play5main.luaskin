@@ -1,4 +1,13 @@
-local t = require("play5main")
+local t = require("play")
+t.header.type = 1
+t.header.name = "Rm-skin for5key"
+
+local _header, _category = 	t.processHeader(t.header.type)
+t.header.property = 		_header.property
+t.header.filepath = 		_header.filepath
+t.header.offset = 			_header.offset
+t.header.category = 		_category
+
 if skin_config then
 	return t.main()
 else

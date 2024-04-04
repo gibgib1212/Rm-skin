@@ -32,3 +32,5 @@
 
 ## [Sample Movie](https://www.youtube.com/watch?v=Sd-M3WOqrFM&ab_channel=gibgib1212 "Sample Movie")
 \* This Sample Movie is an early version. Some of them may differ from the current specifications.
+
+## [Sample Picture]()

@@ -1,0 +1,15 @@
+local t = require("play")
+t.header.type = 4
+t.header.name = "Rm-skin for9key"
+
+local _header, _category = 	t.processHeader(t.header.type)
+t.header.property = 		_header.property
+t.header.filepath = 		_header.filepath
+t.header.offset = 			_header.offset
+t.header.category = 		_category
+
+if skin_config then
+	return t.main()
+else
+	return t.header
+end

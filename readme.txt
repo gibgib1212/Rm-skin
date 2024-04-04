@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
 Full HD (1920x1080) Playskin for beatoraja
-(Last updated:04/01/2024)
+(Last updated:04/04/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -219,7 +219,7 @@ Update History
 	- Update readme.txt
 
 02292024
-	- Supported 5key.
+	- Supported 5key
 	- Add play5main.lua and play5main.luaskin
 	- Add some notes and keybeams for 5key
 	- Update readme.txt
@@ -261,5 +261,17 @@ Update History
 	- Remove superfluous variables
 	- Update readme.txt
 
+04032024
 
+	- Integrated lua files for 7key and 5key
+	- Change Option and Offset to variable
+	- Further option to change notes height. Also changed to treat the value entered in Custom_Setting.lua as the height of the notes
+	- Changed Keybeam to be adjustable on skin side
+	- Update readme.txt
 	
+04042024
+
+	- Supported 9key
+	- Added the ability to freely change the height and width of notes
+	- Update readme.txt
+
