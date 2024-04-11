@@ -1,6 +1,6 @@
 local t = require("play")
 t.header.type = 0
-t.header.name = "Rm-skin for7key"
+t.header.name = t.header.name .. " for7key"
 
 local _header, _category = 	t.processHeader(t.header.type)
 t.header.property = 		_header.property

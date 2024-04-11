@@ -1,7 +1,7 @@
 -------------------------------------
 "Rm-skin"
-Full HD (1920x1080) Playskin for beatoraja
-(Last updated:04/04/2024)
+Full HD (1920x1080) Playskin-5,7,9key for beatoraja
+(Last updated:04/11/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -63,10 +63,6 @@ Dear ric(@Aoi_psy), "ECFN".
 
 -------------------------------------
 
-This skin uses "RictyDiminished-Bold" and "RictyDiminished-Regilar" fonts.
-https://github.com/edihbrandon/RictyDiminished
-
--------------------------------------
 About Licenses:
 
 As mentioned above, this skin was created by re-editing images and other materials 
@@ -80,10 +76,9 @@ However, for other files, those without the prefix "!", I have created these fil
 Specifically, the relevant files will be deemed compliant with 
 "GNU General Public License v3.0 (GPLv3)"(https://choosealicense.com/licenses/gpl-3.0/).
 
-While the various restrictions may seem cumbersome, the environment surrounding 
-BMS is a gray area, and i want to provide as much transparency as possible regarding copyrights.
-Therefore, my skin has been created with the goal of providing as much transparency as possible.
-I appreciate your understanding and cooperation.
+In addition to the above image files, this skin uses as the embedded fonts or fonts used as the basis for image files, 
+such as “Mplus1”, “Enigmatic”, “Squares Bold Free”, “Kikakana-IO”, “RictyDiminished”.
+Please refer to the license included in the package for more information.
 
 -------------------------------------
 
@@ -230,7 +225,7 @@ Update History
 	- Other minor adjustments and code optimization.
 	- Update readme.txt
 
---- v0.1.0	
+---- v0.1.0	
 
 03212024
 	- Changed lane height 1035 to 1080 pixel (If you do not set the lift, the gauge will appear before the judgeline)
@@ -272,6 +267,15 @@ Update History
 04042024
 
 	- Supported 9key
-	- Added the ability to freely change the height and width of notes
+	- Added the function to freely change the height and width of notes
+	- Update readme.txt
+
+---- ver0.2.0
+
+04112024
+
+	- Added option to set fast and slow threshold
+	- Renewed some parts in judge, combonumber, etc..
+	- Deleted "User's manual.pdf"
 	- Update readme.txt
 

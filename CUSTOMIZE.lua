@@ -24,19 +24,25 @@
     入力する際は「,」（カンマ）を忘れずに！
 ]]
 
+-- OTHER_WIDTH * 7 + SCRATCH_WIDTH * 1 = 802
+-- Default: OTHER_WIDTH = 94, SCRATCH_WIDTH = 144
 local CUSTOM_NOTES_WIDTH_7KEY = {
-    OTHER_WIDTH = 100,      -- OTHER_WIDTH * 7 + SCRATCH_WIDTH * 1 = 802
-    SCRATCH_WIDTH = 102     -- Default: OTHER_WIDTH = 94, SCRATCH_WIDTH = 144
+    OTHER_WIDTH = 100,
+    SCRATCH_WIDTH = 102
 }
 
+-- OTHER_WIDTH * 5 + SCRATCH_WIDTH * 1 = 802
+-- Default: OTHER_WIDTH = 132, SCRATCH_WIDTH = 142
 local CUSTOM_NOTES_WIDTH_5KEY = {
-    OTHER_WIDTH = 132,      -- OTHER_WIDTH * 5 + SCRATCH_WIDTH * 1 = 802
-    SCRATCH_WIDTH = 142     -- Default: OTHER_WIDTH = 132, SCRATCH_WIDTH = 142
+    OTHER_WIDTH = 132,
+    SCRATCH_WIDTH = 142
 }
 
+-- OTHER_WIDTH * 7 + SCRATCH_WIDTH * 2 = 802
+-- Default: OTHER_WIDTH = 84, SCRATCH_WIDTH = 107
 local CUSTOM_NOTES_WIDTH_9KEY = {
-    OTHER_WIDTH = 84,       -- OTHER_WIDTH * 7 + SCRATCH_WIDTH * 2 = 802
-    SCRATCH_WIDTH = 107     -- Default: OTHER_WIDTH = 84, SCRATCH_WIDTH = 107
+    OTHER_WIDTH = 84,
+    SCRATCH_WIDTH = 107
 }
 
 local CUSTOM_NOTES_HEIGHT_7KEY = {
@@ -49,6 +55,23 @@ local CUSTOM_NOTES_HEIGHT_5KEY = {
 
 local CUSTOM_NOTES_HEIGHT_9KEY = {
     CUSTOM_NOTES_HEIGHT = 64   -- Value from 1 to 256
+}
+
+local CUSTOM_FAST_SLOW_THRESHOLD = {
+    CUSTOM_THRESHOLD = 15
+}
+
+local CUSTOM_BOMB_PROPERTY = {
+    BOMB_CYCLE_MULUTIPLIER = 	1.0,
+    LNBOMB_CYCLE_MULUTIPLIER = 	1.0,
+    BOMB_WIDTH_MULUTIPLIER =	1.0,
+    BOMB_HEIGHT_MULUTIPLIER =	1.0,
+    BOMB_RED =		            255,
+    BOMB_GREEN =	            255,
+    BOMB_BLUE =		            255,
+    LNBOMB_RED =	            255,
+    LNBOMB_GREEN =	            255,
+    LNBOMB_BLUE =	            255
 }
 
 local function load(varName)
@@ -64,6 +87,10 @@ local function load(varName)
         return CUSTOM_NOTES_HEIGHT_5KEY
     elseif varName ==   "CUSTOM_NOTES_HEIGHT_9KEY" then
         return CUSTOM_NOTES_HEIGHT_9KEY
+    elseif varName ==   "CUSTOM_FAST_SLOW_THRESHOLD" then
+        return CUSTOM_FAST_SLOW_THRESHOLD
+    elseif varName ==   "CUSTOM_BOMB_PROPERTY" then
+        return CUSTOM_BOMB_PROPERTY
     else
         return nil
     end
