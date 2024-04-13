@@ -34,7 +34,7 @@
 - Also, please refer to the license included with the fonts for information on font handling.
    - "Rm-skin/font/LICENSE_..."
 
-## [Sample Movie](https://www.youtube.com/watch?v=Sd-M3WOqrFM&ab_channel=gibgib1212 "Sample Movie")
+## [Sample Movie](https://www.youtube.com/watch?v=UInLj27s08A "Sample Movie")
 \* This Sample Movie is an early version. Some of them may differ from the current specifications.
 
 ## Sample Picture
