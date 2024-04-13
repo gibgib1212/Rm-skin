@@ -77,14 +77,12 @@ Specifically, the relevant files will be deemed compliant with
 "GNU General Public License v3.0 (GPLv3)"(https://choosealicense.com/licenses/gpl-3.0/).
 
 In addition to the above image files, this skin uses as the embedded fonts or fonts used as the basis for image files, 
-such as “Mplus1”, “Enigmatic”, “Squares Bold Free”, “Kikakana-IO”, “RictyDiminished”.
+such as “Mplus2”, “Enigmatic”, “Squares Bold Free”, “Kikakana-IO”, “RictyDiminished”.
 Please refer to the license included in the package for more information.
 
 -------------------------------------
 
-Please contact me for any other bugs or requests.
-
--------------------------------------
+Please contact me for any other bugs.
 
 author:gibgib1212
 mail:kibmibgib.1212@gmail.com
@@ -277,5 +275,12 @@ Update History
 	- Added option to set fast and slow threshold
 	- Renewed some parts in judge, combonumber, etc..
 	- Deleted "User's manual.pdf"
+	- Update readme.txt
+
+04132024
+
+	- Organized variables used to be subject to gc
+	- Added option to change the size of the judge size
+	- Added some images for description
 	- Update readme.txt
 

@@ -1,20 +1,3 @@
---[[
-	#04112024
-	問題点1:
-		headerの読み込み方がごちゃごちゃしすぎている。その弊害かはわからないが、main_state.offset(id)が動作せず、記述するとoraja側に読み込んでもらえない
-		（oraja設定画面でスキン自体が認識されない）。
-		現状は各キータイプで使わないオプションを振るい落とすためだけにoffset、filepath、optionを全部検索して、いらないものを除いてディープコピーして
-		無理やりheaderに読み込ませているが、もっとシンプルに記述できるような気がする。けど思いつかん。
-
-	問題点2:
-		カスタムオプションを使い過ぎて、あとひとつでも定義すると、やっぱりoraja設定画面でスキンが認識されない。もしoraja本体のバージョンアップで
-		カスタムオプションを使える数が減ったり、またはカスタムオプションの仕様が変更された場合、スキンが使えなくなる可能性が高い。
-
-	問題点3:
-		値を返す式を動的に評価して、その結果をh = などのdst内変数に代入する方法がわからない。
-		具体的にはコンボ数でhiddencoverの高さが変化するよう実装したかったけどむりだった。
-]]
-
 main_state = require("main_state")
 
 local function append_all(list, list1)
@@ -46,14 +29,15 @@ local NOTES_5KEY_ALIGN_CENTER = 			optionCount()
 local NOTES_5KEY_ALIGN_ENLARGE = 			optionCount()
 
 local NOTES_HEIGHT_60_PIX = 				optionCount()
-local NOTES_HEIGHT_55_PIX = 				optionCount()
 local NOTES_HEIGHT_50_PIX = 				optionCount()
-local NOTES_HEIGHT_45_PIX = 				optionCount()
 local NOTES_HEIGHT_40_PIX = 				optionCount()
-local NOTES_HEIGHT_35_PIX = 				optionCount()
 local NOTES_HEIGHT_30_PIX = 				optionCount()
-local NOTES_HEIGHT_25_PIX = 				optionCount()
 local NOTES_HEIGHT_CUSTOM = 				optionCount()
+
+local JUDGE_SIZE_MULUTIPLIER_x40 =			optionCount()
+local JUDGE_SIZE_MULUTIPLIER_x60 =			optionCount()
+local JUDGE_SIZE_MULUTIPLIER_x80 =			optionCount()
+local JUDGE_SIZE_MULUTIPLIER_x100 =			optionCount()
 
 local KEYBEAM_DISPLAY_FAST = 				optionCount()
 local KEYBEAM_DISPLAY_SLOW = 				optionCount()
@@ -121,8 +105,8 @@ local function offsetCount()
 	return OFFSET
 end
 
+local BG_DARKNESS = 						offsetCount()
 local BGA_DARKNESS = 						offsetCount()
-local BG_ALPHA = 							offsetCount()
 local BARLINE_ALPHA = 						offsetCount()
 local JUDGE_POS_ALPHA = 					offsetCount()
 local JUDGE_NUM_POS_ALPHA = 				offsetCount()
@@ -139,8 +123,8 @@ local GAUGE_POS = 							offsetCount()
 local GAUGE_ALPHA = 						offsetCount()
 
 local original_offset = {
+	{name = "Background Darkness", 						id = BG_DARKNESS, 																	a = true},
 	{name = "BGA Darkness", 							id = BGA_DARKNESS, 																	a = true},
-	{name = "Background Alpha", 						id = BG_ALPHA, 																		a = true},
 	{name = "Barline Alpha", 							id = BARLINE_ALPHA, 																a = true},
 	{name = "Judge Position & Alpha", 					id = JUDGE_POS_ALPHA, 				x = true, 	y = true, 							a = true},
 	{name = "Combo Number Position & Alpha", 			id = JUDGE_NUM_POS_ALPHA, 			x = true, 	y = true, 							a = true},
@@ -194,12 +178,12 @@ local original_filepath = {
 	{name = "Yellow-Keybeam: 4 / 3", 					path = "parts/keybeam/3_yellow/*.png", 			def = "Blue"},
 	{name = "Scratch-Keybeam: 0-8", 					path = "parts/keybeam/4_scratch/*.png", 		def = "Blue"},
 
-	{name = "Judge: Perfect", 							path = "parts/judge/1_pg/*.png", 				def = "x50%_PERFECT_Default"},
-	{name = "Judge: Great", 							path = "parts/judge/2_gr/*.png", 				def = "x50%_GREAT_Default"},
-	{name = "Judge: Good",	 							path = "parts/judge/3_gd/*.png", 				def = "x50%_GOOD_Default"},
-	{name = "Judge: Bad", 								path = "parts/judge/4_bd/*.png", 				def = "x50%_BAD_Default"},
-	{name = "Judge: Poor", 								path = "parts/judge/5_pr/*.png", 				def = "x50%_POOR_Default"},
-	{name = "Judge: Miss",	 							path = "parts/judge/6_ms/*.png",				def = "x50%_MISS_Default"},
+	{name = "Judge: Perfect", 							path = "parts/judge/1_pg/*.png", 				def = "PERFECT_Default"},
+	{name = "Judge: Great", 							path = "parts/judge/2_gr/*.png", 				def = "GREAT_Default"},
+	{name = "Judge: Good",	 							path = "parts/judge/3_gd/*.png", 				def = "GOOD_Default"},
+	{name = "Judge: Bad", 								path = "parts/judge/4_bd/*.png", 				def = "BAD_Default"},
+	{name = "Judge: Poor", 								path = "parts/judge/5_pr/*.png", 				def = "POOR_Default"},
+	{name = "Judge: Miss",	 							path = "parts/judge/6_ms/*.png",				def = "MISS_Default"},
 	{name = "Judge: Num", 								path = "parts/judgenum/*.png", 					def = "Default_Square"},
 
 	{name = "Gauge: Hazard", 							path = "parts/colors/1_hazard/*.png", 			def = "Blue1_#389eff"},
@@ -242,14 +226,16 @@ local original_property = {
 	}},
 	{name = "Notes Height", 							item = {
 		{name = "60 pixel", 							op = NOTES_HEIGHT_60_PIX},
-		{name = "55 pixel", 							op = NOTES_HEIGHT_55_PIX},
 		{name = "50 pixel", 							op = NOTES_HEIGHT_50_PIX},
-		{name = "45 pixel", 							op = NOTES_HEIGHT_45_PIX},
 		{name = "40 pixel", 							op = NOTES_HEIGHT_40_PIX},
-		{name = "35 pixel", 							op = NOTES_HEIGHT_35_PIX},
 		{name = "30 pixel", 							op = NOTES_HEIGHT_30_PIX},
-		{name = "25 pixel", 							op = NOTES_HEIGHT_25_PIX},
 		{name = "Custom", 								op = NOTES_HEIGHT_CUSTOM}
+	}},
+	{name = "Judge Size",		 						item = {
+		{name = "40%", 									op = JUDGE_SIZE_MULUTIPLIER_x40},
+		{name = "60%", 									op = JUDGE_SIZE_MULUTIPLIER_x60},
+		{name = "80%", 									op = JUDGE_SIZE_MULUTIPLIER_x80},
+		{name = "100%",		 							op = JUDGE_SIZE_MULUTIPLIER_x100}
 	}},
 	{name = "Keybeam Display", 							item = {
 		{name = "Fast", 								op = KEYBEAM_DISPLAY_FAST},
@@ -329,12 +315,6 @@ local original_property = {
 	}}
 }
 
---[[
-	#04112024
-	Optionのなかには、特定のキーでしか使わないものもある（"Notes 5Key Align"とか）。そういうものを7key、9key設定画面に表示させないために、
-	まずすべてのOptionが入ったテーブルを作成して（original_table）、そこから引数で受け取ったexclude_names内の要素とnameが一致する要素を除外しつつ
-	ディープコピーする。さらにコピー元の要素のnameを使ってcategoryテーブルも作成する関数
-]]
 local function createTable(original_table, exclude_names, category_name)
     local t = {}
     local c = {name = category_name, item = {}}
@@ -373,74 +353,59 @@ local function createTable(original_table, exclude_names, category_name)
     return t, c
 end
 
---[[
-	#04112024
-	上記のcreateTableで作成したoriginal_tableの複製とcategoryを_header、_categoryにつめて呼び出し元に返す関数。
-	.luaskinでheader呼び出し前にこの関数を無理やり起動して、headerにkey数で条件分岐した要素を詰め込んでいる。
-	やたら手順が複雑な上に、oraja起動時にskin内のheaderを読み込むのなら、processHeader関数を使っている分だけ
-	処理に負荷がかかってると思う（誤差かもしれないけど）。その割にやってることは大したことがないので、
-	もっといい方法思いついたら書き換えたい。
-	あと、main_state.offset(id)が動作しないのも、この処理が原因なんじゃないかと思ってる。
-]]
 local function processHeader(type)
-    local exclude_names = 	{}
-    local _tmp = 			{}
-    local _header = 		{}
-    local _category = 		{}
+	do
+		local exclude_names = 	{}
+		local _tmp = 			{}
+		local _header = 		{}
+		local _category = 		{}
 
-    if type == 0 then
+		if type == 0 then
 
-		_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
-        _category.Offset = _tmp
+			_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
+			_category.Offset = _tmp
 
-        _header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
-        _category.Filepath = _tmp
+			_header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
+			_category.Filepath = _tmp
 
-        exclude_names = {"Notes 5Key Align"}
-        _header.property, _tmp = createTable(original_property, exclude_names, "Property")
-        _category.Property = _tmp
+			exclude_names = {"Notes 5Key Align"}
+			_header.property, _tmp = createTable(original_property, exclude_names, "Property")
+			_category.Property = _tmp
 
-	elseif type == 1 then
+		elseif type == 1 then
 
-		_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
-        _category.Offset = _tmp
+			_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
+			_category.Offset = _tmp
 
-        _header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
-        _category.Filepath = _tmp
+			_header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
+			_category.Filepath = _tmp
 
-        _header.property, _tmp = createTable(original_property, exclude_names, "Property")
-        _category.Property = _tmp
+			_header.property, _tmp = createTable(original_property, exclude_names, "Property")
+			_category.Property = _tmp
 
-	elseif type == 4 then
+		elseif type == 4 then
 
-		_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
-        _category.Offset = _tmp
+			_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
+			_category.Offset = _tmp
 
-        _header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
-        _category.Filepath = _tmp
+			_header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
+			_category.Filepath = _tmp
 
-		exclude_names = {"Lane Center", "Notes 5Key Align",}
-        _header.property, _tmp = createTable(original_property, exclude_names, "Property")
-        _category.Property = _tmp
+			exclude_names = {"Lane Center", "Notes 5Key Align",}
+			_header.property, _tmp = createTable(original_property, exclude_names, "Property")
+			_category.Property = _tmp
 
-    end
-    return _header, _category
+		end
+		return _header, _category
+	end
 end
 
 local header = {
 	--[[
 		Skin Type
-			0:7keys
-			1:5keys
-		2:14keys
-		3:10keys
-			4:9keys
-		12:7keys_battle
-		13:5keys_battle
-		14:9keys_battle
-		16:24keys
-		17:48keys
-		18:24keys_battle
+		0:7keys
+		1:5keys
+		4:9keys
 	--]]
 	type = 		nil, -- set in ".luaskin"
 	name = 		"Rm-skin ver0.2.0",
@@ -476,14 +441,14 @@ local function is5keyAlignCenter() 		return skin_config.option["Notes 5Key Align
 local function is5keyAlignEnlarge() 	return skin_config.option["Notes 5Key Align"] ==			NOTES_5KEY_ALIGN_ENLARGE end
 
 local function isNotesHeight_60() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_60_PIX end
-local function isNotesHeight_55() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_55_PIX end
 local function isNotesHeight_50() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_50_PIX end
-local function isNotesHeight_45() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_45_PIX end
 local function isNotesHeight_40() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_40_PIX end
-local function isNotesHeight_35() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_35_PIX end
 local function isNotesHeight_30() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_30_PIX end
-local function isNotesHeight_25() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_25_PIX end
 local function isNotesHeightCustom() 	return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_CUSTOM end
+
+local function isJudgeSize_x40() 		return skin_config.option["Judge Size"] ==	 				JUDGE_SIZE_MULUTIPLIER_x40 end
+local function isJudgeSize_x60() 		return skin_config.option["Judge Size"] ==	 				JUDGE_SIZE_MULUTIPLIER_x60 end
+local function isJudgeSize_x80() 		return skin_config.option["Judge Size"] ==	 				JUDGE_SIZE_MULUTIPLIER_x80 end
 
 local function isKeybeamFast() 			return skin_config.option["Keybeam Display"] == 			KEYBEAM_DISPLAY_FAST end
 
@@ -622,20 +587,12 @@ local function main()
 
 	if isNotesHeight_60() then
 		notesInfo.height = 60
-	elseif isNotesHeight_55() then
-		notesInfo.height = 55
 	elseif isNotesHeight_50() then
 		notesInfo.height = 50
-	elseif isNotesHeight_45() then
-		notesInfo.height = 45
 	elseif isNotesHeight_40() then
 		notesInfo.height = 40
-	elseif isNotesHeight_35() then
-		notesInfo.height = 35
 	elseif isNotesHeight_30() then
 		notesInfo.height = 30
-	elseif isNotesHeight_25() then
-		notesInfo.height = 25
 	elseif isNotesHeightCustom() and is7key() then
 		local lua_path = skin_config.get_path("CUSTOMIZE.lua")
 		local status, result = pcall(function()
@@ -751,6 +708,18 @@ local function main()
 			return notesInfo.Ot_width * 2.5 + notesInfo.Sc_width
 		else
 			return 401
+		end
+	end
+
+	local function getJudgeSize()
+		if isJudgeSize_x40() then
+			return 0.4
+		elseif isJudgeSize_x60() then
+			return 0.6
+		elseif isJudgeSize_x80() then
+			return 0.8
+		else
+			return 1
 		end
 	end
 
@@ -1060,9 +1029,9 @@ local function main()
 		{id = "judgeline_src", 	path = "parts/colors/7_judgeline/*.png"}
 	}
 	skin.font = {
-		{id = 0, 	path = "font/Mplus1-ExtraBold.ttf"},
-		{id = 1,	path = "font/Mplus1-Medium.ttf"},
-		{id = 2, 	path = "font/Mplus1-Regular.ttf"}
+		{id = 0, 	path = "font/Mplus2-ExtraBold.ttf"},
+		{id = 1,	path = "font/Mplus2-Medium.ttf"},
+		{id = 2, 	path = "font/Mplus2-Regular.ttf"}
 	}
 	skin.image = {
 		---- # common image
@@ -1252,6 +1221,8 @@ local function main()
 		{id = "info-rate-adot-num", src = "info_system_src", x = 617, y = 0, w = 220, h = 21, divx = 11, digit = 2, align = 0, value = function()
 			return getDummyNum(103)
 		end},
+
+		{id = "judgetiming-num", src = "info_system_src", x = 617, y = 110, w = 180, h = 34, divx = 12, divy = 2, digit = 3, ref = 12, align = 1},
 
 		{id = "gauge-num", 			src = "info_system_src", x = 617, y = 339, w = 300, h = 31, divx = 10, digit = 3, ref = 107, align = 0},
 		{id = "gauge-adot-num", 	src = "info_system_src", x = 617, y = 339, w = 300, h = 31, divx = 10, digit = 1, ref = 407, align = 0},
@@ -1532,46 +1503,39 @@ local function main()
 		}
 	}
 
-	local _numbers = {}
-	for i = 1, 6, 1 do
-		-- コンボ数のx,yは判定文字からの相対距離を指定
-		-- The value of x and y for the combo number specifies the relative distance from the judgment character.
-		_numbers[i] =
-			{id = "judge-num", loop = -1, timer = 46, offsets = {JUDGE_NUM_POS_ALPHA}, dst = {
-				{time = 0, x = 317, y = 156, w = 54, h = 100, a = 64, acc = 2},
+	local _images = {}
+	do
+		local id = {"judge-pg", "judge-gr", "judge-gd", "judge-bd", "judge-pr", "judge-ms"}
+		local _x, _w, _h = 	GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-math.floor(660 * getJudgeSize() / 2)),
+							math.floor(660 * getJudgeSize()),
+							math.floor(120 * getJudgeSize())
+		for i in ipairs(id) do
+			_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {JUDGE_POS_ALPHA}, dst = {
+				{time = 0, x = _x, y = GEOMETRY.JUDGE_Y, w = _w, h = _h, a = 64, acc = 2},
 				{time = 3000}
 			}}
+		end
 	end
+
+	local _numbers = {}
+	do
+		local _x = (math.floor(660 * getJudgeSize() / 2))
+		for i = 1, 6, 1 do
+			-- コンボ数のx,yは判定文字からの相対距離を指定
+			-- The value of x and y for the combo number specifies the relative distance from the judgment character.
+			_numbers[i] =
+				{id = "judge-num", loop = -1, timer = 46, offsets = {JUDGE_NUM_POS_ALPHA}, dst = {
+					{time = 0, x = _x, y = 156, w = 54, h = 100, a = 64, acc = 2},
+					{time = 3000}
+				}}
+		end
+	end
+
 	skin.judge = {
 		{
 			id = "judge",
 			index = 0,
-			images = {
-				{id = "judge-pg", loop = -1, timer = 46, offsets = {JUDGE_POS_ALPHA}, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
-					{time = 3000}
-				}},
-				{id = "judge-gr", loop = -1, timer = 46, offsets = {JUDGE_POS_ALPHA}, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
-					{time = 3000}
-				}},
-				{id = "judge-gd", loop = -1, timer = 46, offsets = {JUDGE_POS_ALPHA}, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
-					{time = 3000}
-				}},
-				{id = "judge-bd", loop = -1, timer = 46, offsets = {JUDGE_POS_ALPHA}, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
-					{time = 3000}
-				}},
-				{id = "judge-pr", loop = -1, timer = 46, offsets = {JUDGE_POS_ALPHA}, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
-					{time = 3000}
-				}},
-				{id = "judge-ms", loop = -1, timer = 46, offsets = {JUDGE_POS_ALPHA}, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
-					{time = 3000}
-				}}
-			},
+			images = _images,
 			numbers = _numbers,
 			-- judgeとcomboを合わせて一つの定義とするか。二段に分ける場合はfalse
 			-- Whether judge and combo together constitute one definition. If dividing into two tiers, false.
@@ -1582,9 +1546,9 @@ local function main()
 	skin.bpmgraph = {{id = "bpm-graph"}}
 	skin.bga = {id = "bga"}
 	skin.destination = {
-		{id = -110, dst = {
-			{x = 0, y = 0, w = 1920, h = 1080, r = 255, g = 255, b = 255, a = 255}}},
-		{id = "bg", offset = BG_ALPHA, stretch = 1, dst = {
+		{id = "bg", stretch = 1, dst = {
+			{x = 0, y = 0, w = 1920, h = 1080, a = 255}}},
+		{id = -110, offset = BG_DARKNESS, dst = {
 			{x = 0, y = 0, w = 1920, h = 1080, a = 0}}},
 
 		-- BGA関連 
@@ -1617,6 +1581,7 @@ local function main()
 		{id = -110, timer = 41, offset = BGA_DARKNESS, dst = {
 			{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H, a = 0}}}
 	}
+	_images, _numbers = nil, nil
 
 	---- <<< 曲情報エリア開始
 	---- <<< song infomation area start
@@ -1728,20 +1693,16 @@ local function main()
 	-- F/S しきい値
 	-- F/S Threshold
 	if isFSThresholdDef() then
-		table.insert(skin.value, {id = "judgetiming-num", src = "info_system_src", x = 617, y = 110, w = 180, h = 34, divx = 12, divy = 2, digit = 3, ref = 12, align = 1})
 		table.insert(skin.destination, {id = "judgetiming-num", dst = {{x = GEOMETRY.INFO_POS + 113, y = 157, w = 15, h = 17}}})
 	else
-		table.insert(skin.image, {id = "threshold-sign", src = "info_system_src", x = 768, y = 145, w = 38, h = 17})
-		append_all(skin.value, {
-			{id = "judgetiming-num", src = "info_system_src", x = 617, y = 110, w = 180, h = 34, divx = 12, divy = 2, digit = 3, ref = 12, align = 0},
-			{id = "threshold-num", src = "info_system_src", x = 617, y = 145, w = 150, h = 17, divx = 10, digit = 3, align = 1, value = function()
-				return FS_THRESHOLD
-			end}
-		})
+		table.insert(skin.image, {id = "threshold-sign", src = "info_system_src", x = 768, y = 145, w = 29, h = 17})
+		table.insert(skin.value, {id = "threshold-num", src = "info_system_src", x = 617, y = 145, w = 150, h = 17, divx = 10, digit = 3, align = 1, value = function()
+			return FS_THRESHOLD
+		end})
 		append_all(skin.destination, {
-			{id = "judgetiming-num", dst = {{x = GEOMETRY.INFO_POS + 70, y = 157, w = 15, h = 17}}},
-			{id = "threshold-sign",	dst = {{x = GEOMETRY.INFO_POS + 130, y = 157, w = 38, h = 17}}},
-			{id = "threshold-num", dst = {{x = GEOMETRY.INFO_POS + 168, y = 157, w = 15, h = 17}}}
+			{id = "judgetiming-num", dst = {{x = GEOMETRY.INFO_POS + 75, y = 157, w = 15, h = 17}}},
+			{id = "threshold-sign",	dst = {{x = GEOMETRY.INFO_POS + 126, y = 157, w = 29, h = 17}}},
+			{id = "threshold-num", dst = {{x = GEOMETRY.INFO_POS + 155, y = 157, w = 15, h = 17}}}
 		})
 	end
 
@@ -2195,22 +2156,22 @@ local function main()
 		if isFSThresholdDef() and isFastSlowCenter() then
 			append_all(skin.destination, {
 				{id = "fast", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {1242}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slow", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {1243}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
 		elseif isFSThresholdDef() and isFastSlowRnL() then
 			append_all(skin.destination, {
 				{id = "fast", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {1242}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-250), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-250), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slow", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {1243}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 250 + (-148), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 250 + (-148), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
@@ -2219,13 +2180,13 @@ local function main()
 				{id = "fast", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateFast()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slow", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateSlow()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
@@ -2234,13 +2195,13 @@ local function main()
 				{id = "fast", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateFast()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-250), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-250), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slow", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateSlow()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 250 + (-148), y = GEOMETRY.JUDGE_Y, w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 250 + (-148), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
@@ -2250,7 +2211,7 @@ local function main()
 		if isFSThresholdDef() then
 			table.insert(skin.destination,	{
 				id = "fsms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}
 			})
@@ -2259,7 +2220,7 @@ local function main()
 				id = "fsms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateFast() or predicateSlow()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}
 			})
@@ -2272,11 +2233,11 @@ local function main()
 		if isFSThresholdDef() then
 			append_all(skin.destination, {
 				{id = "fsms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-300), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-300), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + 300 + (-170), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + 300 + (-170), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
@@ -2285,13 +2246,13 @@ local function main()
 				{id = "fsms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateFast()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-300), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-300), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateSlow()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 300 + (-170), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 300 + (-170), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
