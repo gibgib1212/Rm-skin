@@ -30,6 +30,7 @@
      - ".../!_x150%_Yellow_ECFN_Default.png"
    - "Rm-skin-main/parts/!_mascot/..."
      - ".../!_Default.png"
+     - ".../!_Default_Inverted.png"
 - Other Files : ["GNU General Public License v3.0 (GPLv3)"](https://choosealicense.com/licenses/gpl-3.0/ "GPLv3")
 - Also, please refer to the license included with the fonts for information on font handling.
    - "Rm-skin/font/LICENSE_..."
@@ -39,7 +40,10 @@
 
 ## Sample Picture
 
-![7key-Left](_Image_7key_Left.png)
-![7key-Right](_Image_7key_Right.png)
-![5key](_Image_5key.png)
-![9key](_Image_9key.png)
+![7key-Left](_image/7key_Left.png)
+
+![7key-Right](_image/7key_Right.png)
+
+![5key](_image/5key.png)
+
+![9key](_image/9key.png)

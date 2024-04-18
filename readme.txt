@@ -77,7 +77,7 @@ Specifically, the relevant files will be deemed compliant with
 "GNU General Public License v3.0 (GPLv3)"(https://choosealicense.com/licenses/gpl-3.0/).
 
 In addition to the above image files, this skin uses as the embedded fonts or fonts used as the basis for image files, 
-such as “Mplus2”, “Enigmatic”, “Squares Bold Free”, “Kikakana-IO”, “RictyDiminished”.
+such as “Mplus1”, “Mplus2”, "Rounded Mplus1", "Rounded Mplus2", “Enigmatic”, “Squares Bold Free”, “Kikakana-IO”, “RictyDiminished”.
 Please refer to the license included in the package for more information.
 
 -------------------------------------
@@ -284,3 +284,22 @@ Update History
 	- Added some images for description
 	- Update readme.txt
 
+04142024
+
+	- Rename "judgenum/Default_Soft.png" to "Default_Rounded"
+	- Added "mascot/!_Default_Inverted.png"
+	- As a temporary measure, the height of the key beam is now linked to the height of the hiddencover
+	- Update readme.txt
+
+04162024
+	- When the size of the ‘judge’ is changed on the skin side, it appears jagged. So, change the specification to adjust it on the image side.
+	- Delete option to change the size of the judge size
+	- Adjusted the color of Judges.
+	- Update readme.txt
+
+04182024
+	- Added new judge images made from "Mplus1"
+	- Changed to a mechanism to load image files of notes separately for each key
+	- Update readme.txt
+
+---- ver 0.2.1

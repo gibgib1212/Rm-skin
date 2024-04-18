@@ -1,1 +1,11 @@
-Ac～:明るさ-66
+5keyL
+    notesInfo.Ot_width = 132
+    notesInfo.Sc_width = 142
+9key
+    notesInfo.Ot_width = 84
+    notesInfo.Sc_width = 107
+else
+    notesInfo.Ot_width = 94
+    notesInfo.Sc_width = 144
+
+lnAc = Transparancy -50

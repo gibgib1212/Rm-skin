@@ -29,15 +29,13 @@ local NOTES_5KEY_ALIGN_CENTER = 			optionCount()
 local NOTES_5KEY_ALIGN_ENLARGE = 			optionCount()
 
 local NOTES_HEIGHT_60_PIX = 				optionCount()
+local NOTES_HEIGHT_55_PIX = 				optionCount()
 local NOTES_HEIGHT_50_PIX = 				optionCount()
+local NOTES_HEIGHT_45_PIX = 				optionCount()
 local NOTES_HEIGHT_40_PIX = 				optionCount()
+local NOTES_HEIGHT_35_PIX = 				optionCount()
 local NOTES_HEIGHT_30_PIX = 				optionCount()
 local NOTES_HEIGHT_CUSTOM = 				optionCount()
-
-local JUDGE_SIZE_MULUTIPLIER_x40 =			optionCount()
-local JUDGE_SIZE_MULUTIPLIER_x60 =			optionCount()
-local JUDGE_SIZE_MULUTIPLIER_x80 =			optionCount()
-local JUDGE_SIZE_MULUTIPLIER_x100 =			optionCount()
 
 local KEYBEAM_DISPLAY_FAST = 				optionCount()
 local KEYBEAM_DISPLAY_SLOW = 				optionCount()
@@ -54,15 +52,9 @@ local KEYBEAM_HEIGHT_MULUTIPLIER_x20 =		optionCount()
 local KEYBEAM_HEIGHT_MULUTIPLIER_x10 =		optionCount()
 
 local KEYBEAM_ALPHA_MULUTIPLIER_x100 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x90 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x80 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x70 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x60 =		optionCount()
+local KEYBEAM_ALPHA_MULUTIPLIER_x75 =		optionCount()
 local KEYBEAM_ALPHA_MULUTIPLIER_x50 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x40 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x30 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x20 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x10 =		optionCount()
+local KEYBEAM_ALPHA_MULUTIPLIER_x25 =		optionCount()
 
 local TARGET_OFF = 							optionCount()
 local TARGET_MYBEST = 						optionCount()
@@ -108,7 +100,13 @@ end
 local BG_DARKNESS = 						offsetCount()
 local BGA_DARKNESS = 						offsetCount()
 local BARLINE_ALPHA = 						offsetCount()
-local JUDGE_POS_ALPHA = 					offsetCount()
+local JUDGE_POS = 							offsetCount()
+local JUDGE_PG_ALPHA = 						offsetCount()
+local JUDGE_GR_ALPHA = 						offsetCount()
+local JUDGE_GD_ALPHA = 						offsetCount()
+local JUDGE_BD_ALPHA = 						offsetCount()
+local JUDGE_PR_ALPHA = 						offsetCount()
+local JUDGE_MS_ALPHA = 						offsetCount()
 local JUDGE_NUM_POS_ALPHA = 				offsetCount()
 local FAST_SLOW_POS_ALPHA = 				offsetCount()
 local TARGET_POS_ALPHA = 					offsetCount()
@@ -126,7 +124,13 @@ local original_offset = {
 	{name = "Background Darkness", 						id = BG_DARKNESS, 																	a = true},
 	{name = "BGA Darkness", 							id = BGA_DARKNESS, 																	a = true},
 	{name = "Barline Alpha", 							id = BARLINE_ALPHA, 																a = true},
-	{name = "Judge Position & Alpha", 					id = JUDGE_POS_ALPHA, 				x = true, 	y = true, 							a = true},
+	{name = "Judge Position", 							id = JUDGE_POS, 					x = true, 	y = true},
+	{name = "Judge PG Alpha", 							id = JUDGE_PG_ALPHA, 																a = true},
+	{name = "Judge GR Alpha", 							id = JUDGE_GR_ALPHA, 																a = true},
+	{name = "Judge GD Alpha", 							id = JUDGE_GD_ALPHA, 																a = true},
+	{name = "Judge BD Alpha", 							id = JUDGE_BD_ALPHA, 																a = true},
+	{name = "Judge PR Alpha", 							id = JUDGE_PR_ALPHA, 																a = true},
+	{name = "Judge MS Alpha", 							id = JUDGE_MS_ALPHA, 																a = true},
 	{name = "Combo Number Position & Alpha", 			id = JUDGE_NUM_POS_ALPHA, 			x = true, 	y = true, 							a = true},
 	{name = "F/S Position & Alpha", 					id = FAST_SLOW_POS_ALPHA, 			x = true, 	y = true, 							a = true},
 	{name = "Target Position & Alpha", 					id = TARGET_POS_ALPHA, 				x = true, 	y = true, 							a = true},
@@ -142,64 +146,181 @@ local original_offset = {
 }
 
 local original_filepath = {
-	{name = "Mascot", 									path = "parts/!_mascot/*.png", 					def = "!_Default"},
-	{name = "Background Image", 						path = "parts/bg/*.png", 						def = "Black"},
+	{name = "Mascot", 											path = "parts/!_mascot/*.png", 						def = "!_Default"},
+	{name = "Background Image", 								path = "parts/bg/*.png", 							def = "Black"},
 
-	{name = "White-Notes: 1-3-5-7 / 1-5", 				path = "parts/notes/1-1_white/*.png", 			def = "White_#Simple_#f3f3f3"},
-	{name = "White-Long-Start: 1-3-5-7 / 1-5", 			path = "parts/notes/1-2_white_lnSt/*.png", 		def = "White_#Simple_#f3f3f3"},
-	{name = "White-Long-End: 1-3-5-7 / 1-5", 			path = "parts/notes/1-3_white_lnEn/*.png", 		def = "Off"},
-	{name = "White-Long-Body: 1-3-5-7 / 1-5", 			path = "parts/notes/1-4_white_lnBo/*.png", 		def = "White_#Simple_#f3f3f3"},
-	{name = "White-Long-Active: 1-3-5-7 / 1-5", 		path = "parts/notes/1-5_white_lnAc/*.png", 		def = "White_#Simple_#f3f3f3"},
-	{name = "White-Mine: 1-3-5-7 / 1-5", 				path = "parts/notes/1-6_white_mine/*.png", 		def = "Off"},
+	-- 7key
+	{name = "Temeplate_7key : White-Notes", 					path = "parts/notes/7key/1-1_white/*.png", 			def = "White_#Borderless_#f3f3f3"},
+	{name = "Temeplate_7key : White-Long-Start", 				path = "parts/notes/7key/1-2_white_lnSt/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_7key : White-Long-End", 					path = "parts/notes/7key/1-3_white_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_7key : White-Long-Body", 				path = "parts/notes/7key/1-4_white_lnBo/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_7key : White-Long-Active", 				path = "parts/notes/7key/1-5_white_lnAc/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_7key : White-Mine", 						path = "parts/notes/7key/1-6_white_mine/*.png", 	def = "Off"},
 
-	{name = "Blue-Notes: 2-6 / 2-4", 					path = "parts/notes/2-1_blue/*.png", 			def = "LightBlue_#Simple_#35eaff"},
-	{name = "Blue-Long-Start: 2-6 / 2-4", 				path = "parts/notes/2-2_blue_lnSt/*.png", 		def = "LightBlue_#Simple_#35eaff"},
-	{name = "Blue-Long-End: 2-6 / 2-4", 				path = "parts/notes/2-3_blue_lnEn/*.png", 		def = "Off"},
-	{name = "Blue-Long-Body: 2-6 / 2-4", 				path = "parts/notes/2-4_blue_lnBo/*.png", 		def = "LightBlue_#Simple_#35eaff"},
-	{name = "Blue-Long-Active: 2-6 / 2-4", 				path = "parts/notes/2-5_blue_lnAc/*.png", 		def = "LightBlue_#Simple_#35eaff"},
-	{name = "Blue-Mine: 2-6 / 2-4", 					path = "parts/notes/2-6_blue_mine/*.png", 		def = "Off"},
+	{name = "Temeplate_7key : Blue-Notes", 						path = "parts/notes/7key/2-1_blue/*.png", 			def = "LightBlue_#Borderless_#35eaff"},
+	{name = "Temeplate_7key : Blue-Long-Start", 				path = "parts/notes/7key/2-2_blue_lnSt/*.png", 		def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_7key : Blue-Long-End", 					path = "parts/notes/7key/2-3_blue_lnEn/*.png", 		def = "Off"},
+	{name = "Temeplate_7key : Blue-Long-Body", 					path = "parts/notes/7key/2-4_blue_lnBo/*.png", 		def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_7key : Blue-Long-Active", 				path = "parts/notes/7key/2-5_blue_lnAc/*.png", 		def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_7key : Blue-Mine", 						path = "parts/notes/7key/2-6_blue_mine/*.png", 		def = "Off"},
 
-	{name = "Yellow-Notes: 4 / 3", 						path = "parts/notes/3-1_yellow/*.png", 			def = "Yellow_#Simple_#ffde35"},
-	{name = "Yellow-Long-Start: 4 / 3", 				path = "parts/notes/3-2_yellow_lnSt/*.png", 	def = "Yellow_#Simple_#ffde35"},
-	{name = "Yellow-Long-End: 4 / 3", 					path = "parts/notes/3-3_yellow_lnEn/*.png", 	def = "Off"},
-	{name = "Yellow-Long-Body: 4 / 3", 					path = "parts/notes/3-4_yellow_lnBo/*.png", 	def = "Yellow_#Simple_#ffde35"},
-	{name = "Yellow-Long-Active: 4 / 3", 				path = "parts/notes/3-5_yellow_lnAc/*.png", 	def = "Yellow_#Simple_#ffde35"},
-	{name = "Yellow-Mine: 4 / 3", 						path = "parts/notes/3-6_yellow_mine/*.png", 	def = "Off"},
+	{name = "Temeplate_7key : Yellow-Notes", 					path = "parts/notes/7key/3-1_yellow/*.png", 		def = "Yellow_#Borderless_#ffde35"},
+	{name = "Temeplate_7key : Yellow-Long-Start", 				path = "parts/notes/7key/3-2_yellow_lnSt/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_7key : Yellow-Long-End", 				path = "parts/notes/7key/3-3_yellow_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_7key : Yellow-Long-Body", 				path = "parts/notes/7key/3-4_yellow_lnBo/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_7key : Yellow-Long-Active", 				path = "parts/notes/7key/3-5_yellow_lnAc/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_7key : Yellow-Mine", 					path = "parts/notes/7key/3-6_yellow_mine/*.png", 	def = "Off"},
 
-	{name = "Scratch-Notes: 0-8", 						path = "parts/notes/4-1_scratch/*.png", 	 	def = "Green_#Simple_#5def35"},
-	{name = "Scratch-Long-Start: 0-8", 					path = "parts/notes/4-2_scratch_lnSt/*.png", 	def = "Green_#Simple_#5def35"},
-	{name = "Scratch-Long-End: 0-8", 					path = "parts/notes/4-3_scratch_lnEn/*.png", 	def = "Off"},
-	{name = "Scratch-Long-Body: 0-8", 					path = "parts/notes/4-4_scratch_lnBo/*.png", 	def = "Green_#Simple_#5def35"},
-	{name = "Scratch-Long-Active: 0-8", 				path = "parts/notes/4-5_scratch_lnAc/*.png", 	def = "Green_#Simple_#5def35"},
-	{name = "Scratch-Mine: 0-8", 						path = "parts/notes/4-6_scratch_mine/*.png", 	def = "Off"},
+	{name = "Temeplate_7key : Scratch-Notes", 					path = "parts/notes/7key/4-1_scratch/*.png", 	 	def = "Green_#Borderless_#5def35"},
+	{name = "Temeplate_7key : Scratch-Long-Start", 				path = "parts/notes/7key/4-2_scratch_lnSt/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_7key : Scratch-Long-End", 				path = "parts/notes/7key/4-3_scratch_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_7key : Scratch-Long-Body", 				path = "parts/notes/7key/4-4_scratch_lnBo/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_7key : Scratch-Long-Active", 			path = "parts/notes/7key/4-5_scratch_lnAc/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_7key : Scratch-Mine", 					path = "parts/notes/7key/4-6_scratch_mine/*.png", 	def = "Off"},
 
-	{name = "White-Keybeam: 1-3-5-7 / 1-5", 			path = "parts/keybeam/1_white/*.png", 			def = "Blue"},
-	{name = "Blue-Keybeam: 2-6 / 2-4", 					path = "parts/keybeam/2_blue/*.png", 			def = "Blue"},
-	{name = "Yellow-Keybeam: 4 / 3", 					path = "parts/keybeam/3_yellow/*.png", 			def = "Blue"},
-	{name = "Scratch-Keybeam: 0-8", 					path = "parts/keybeam/4_scratch/*.png", 		def = "Blue"},
+	-- 5key : Normal
+	{name = "Temeplate_5key : Normal : White-Notes", 			path = "parts/notes/7key/1-1_white/*.png", 			def = "White_#Borderless_#f3f3f3"},
+	{name = "Temeplate_5key : Normal : White-Long-Start", 		path = "parts/notes/7key/1-2_white_lnSt/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_5key : Normal : White-Long-End", 		path = "parts/notes/7key/1-3_white_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_5key : Normal : White-Long-Body", 		path = "parts/notes/7key/1-4_white_lnBo/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_5key : Normal : White-Long-Active", 		path = "parts/notes/7key/1-5_white_lnAc/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_5key : Normal : White-Mine", 			path = "parts/notes/7key/1-6_white_mine/*.png", 	def = "Off"},
 
-	{name = "Judge: Perfect", 							path = "parts/judge/1_pg/*.png", 				def = "PERFECT_Default"},
-	{name = "Judge: Great", 							path = "parts/judge/2_gr/*.png", 				def = "GREAT_Default"},
-	{name = "Judge: Good",	 							path = "parts/judge/3_gd/*.png", 				def = "GOOD_Default"},
-	{name = "Judge: Bad", 								path = "parts/judge/4_bd/*.png", 				def = "BAD_Default"},
-	{name = "Judge: Poor", 								path = "parts/judge/5_pr/*.png", 				def = "POOR_Default"},
-	{name = "Judge: Miss",	 							path = "parts/judge/6_ms/*.png",				def = "MISS_Default"},
-	{name = "Judge: Num", 								path = "parts/judgenum/*.png", 					def = "Default_Square"},
+	{name = "Temeplate_5key : Normal : Blue-Notes", 			path = "parts/notes/7key/2-1_blue/*.png", 			def = "LightBlue_#Borderless_#35eaff"},
+	{name = "Temeplate_5key : Normal : Blue-Long-Start", 		path = "parts/notes/7key/2-2_blue_lnSt/*.png", 		def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_5key : Normal : Blue-Long-End", 			path = "parts/notes/7key/2-3_blue_lnEn/*.png", 		def = "Off"},
+	{name = "Temeplate_5key : Normal : Blue-Long-Body", 		path = "parts/notes/7key/2-4_blue_lnBo/*.png", 		def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_5key : Normal : Blue-Long-Active", 		path = "parts/notes/7key/2-5_blue_lnAc/*.png", 		def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_5key : Normal : Blue-Mine", 				path = "parts/notes/7key/2-6_blue_mine/*.png", 		def = "Off"},
 
-	{name = "Gauge: Hazard", 							path = "parts/colors/1_hazard/*.png", 			def = "Blue1_#389eff"},
-	{name = "Gauge: Ex-Hard", 							path = "parts/colors/2_exhard/*.png", 			def = "Yellow1_#ffff40"},
-	{name = "Gauge: Hard", 								path = "parts/colors/3_hard/*.png", 			def = "White1_#ffffff"},
-	{name = "Gauge: Normal", 							path = "parts/colors/4_normal/*.png", 			def = "LightBlue1_#74f7f7"},
-	{name = "Gauge: Easy", 								path = "parts/colors/5_easy/*.png", 			def = "Green1_#80ff40"},
-	{name = "Gauge: Assist-Easy", 						path = "parts/colors/6_aseasy/*.png", 			def = "Pink1_#ffb6c1"},
+	{name = "Temeplate_5key : Normal : Yellow-Notes", 			path = "parts/notes/7key/3-1_yellow/*.png", 		def = "Yellow_#Borderless_#ffde35"},
+	{name = "Temeplate_5key : Normal : Yellow-Long-Start", 		path = "parts/notes/7key/3-2_yellow_lnSt/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_5key : Normal : Yellow-Long-End", 		path = "parts/notes/7key/3-3_yellow_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_5key : Normal : Yellow-Long-Body", 		path = "parts/notes/7key/3-4_yellow_lnBo/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_5key : Normal : Yellow-Long-Active", 	path = "parts/notes/7key/3-5_yellow_lnAc/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_5key : Normal : Yellow-Mine", 			path = "parts/notes/7key/3-6_yellow_mine/*.png", 	def = "Off"},
 
-	{name = "Judge Line", 								path = "parts/colors/7_judgeline/*.png", 		def = "White4_#a3d1ff"},
-	{name = "Bomb", 									path = "parts/!_bomb/*.png", 					def = "!_x150%_White_clear_ring_SCUROed"},
-	{name = "Lane Cover", 								path = "parts/lanecover/*.png", 				def = "Simple"},
-	{name = "Fast/Slow: Character", 					path = "parts/fast_slow/character/*.png", 		def = "Fast_Slow"},
-	{name = "Fast/Slow: Number", 						path = "parts/fast_slow/number/*.png", 			def = "Default"},
-	{name = "Mybest Number", 							path = "parts/scorenum/mybest/*.png", 			def = "Default"},
-	{name = "Target Number", 							path = "parts/scorenum/target/*.png", 			def = "Default"}
+	{name = "Temeplate_5key : Normal : Scratch-Notes", 			path = "parts/notes/7key/4-1_scratch/*.png", 	 	def = "Green_#Borderless_#5def35"},
+	{name = "Temeplate_5key : Normal : Scratch-Long-Start", 	path = "parts/notes/7key/4-2_scratch_lnSt/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_5key : Normal : Scratch-Long-End", 		path = "parts/notes/7key/4-3_scratch_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_5key : Normal : Scratch-Long-Body", 		path = "parts/notes/7key/4-4_scratch_lnBo/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_5key : Normal : Scratch-Long-Active", 	path = "parts/notes/7key/4-5_scratch_lnAc/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_5key : Normal : Scratch-Mine", 			path = "parts/notes/7key/4-6_scratch_mine/*.png", 	def = "Off"},
+
+	-- 5key : Enlarge
+	{name = "Temeplate_5key : Enlarge : White-Notes", 			path = "parts/notes/5keyL/1-1_white/*.png", 		def = "White_#Borderless_#f3f3f3"},
+	{name = "Temeplate_5key : Enlarge : White-Long-Start", 		path = "parts/notes/5keyL/1-2_white_lnSt/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_5key : Enlarge : White-Long-End", 		path = "parts/notes/5keyL/1-3_white_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_5key : Enlarge : White-Long-Body", 		path = "parts/notes/5keyL/1-4_white_lnBo/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_5key : Enlarge : White-Long-Active", 	path = "parts/notes/5keyL/1-5_white_lnAc/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_5key : Enlarge : White-Mine", 			path = "parts/notes/5keyL/1-6_white_mine/*.png", 	def = "Off"},
+
+	{name = "Temeplate_5key : Enlarge : Blue-Notes", 			path = "parts/notes/5keyL/2-1_blue/*.png", 			def = "LightBlue_#Borderless_#35eaff"},
+	{name = "Temeplate_5key : Enlarge : Blue-Long-Start", 		path = "parts/notes/5keyL/2-2_blue_lnSt/*.png", 	def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_5key : Enlarge : Blue-Long-End", 		path = "parts/notes/5keyL/2-3_blue_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_5key : Enlarge : Blue-Long-Body", 		path = "parts/notes/5keyL/2-4_blue_lnBo/*.png", 	def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_5key : Enlarge : Blue-Long-Active", 		path = "parts/notes/5keyL/2-5_blue_lnAc/*.png", 	def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_5key : Enlarge : Blue-Mine", 			path = "parts/notes/5keyL/2-6_blue_mine/*.png", 	def = "Off"},
+
+	{name = "Temeplate_5key : Enlarge : Yellow-Notes", 			path = "parts/notes/5keyL/3-1_yellow/*.png", 		def = "Yellow_#Borderless_#ffde35"},
+	{name = "Temeplate_5key : Enlarge : Yellow-Long-Start", 	path = "parts/notes/5keyL/3-2_yellow_lnSt/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_5key : Enlarge : Yellow-Long-End", 		path = "parts/notes/5keyL/3-3_yellow_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_5key : Enlarge : Yellow-Long-Body", 		path = "parts/notes/5keyL/3-4_yellow_lnBo/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_5key : Enlarge : Yellow-Long-Active", 	path = "parts/notes/5keyL/3-5_yellow_lnAc/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_5key : Enlarge : Yellow-Mine", 			path = "parts/notes/5keyL/3-6_yellow_mine/*.png", 	def = "Off"},
+
+	{name = "Temeplate_5key : Enlarge : Scratch-Notes", 		path = "parts/notes/5keyL/4-1_scratch/*.png", 	 	def = "Green_#Borderless_#5def35"},
+	{name = "Temeplate_5key : Enlarge : Scratch-Long-Start", 	path = "parts/notes/5keyL/4-2_scratch_lnSt/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_5key : Enlarge : Scratch-Long-End", 		path = "parts/notes/5keyL/4-3_scratch_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_5key : Enlarge : Scratch-Long-Body", 	path = "parts/notes/5keyL/4-4_scratch_lnBo/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_5key : Enlarge : Scratch-Long-Active", 	path = "parts/notes/5keyL/4-5_scratch_lnAc/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_5key : Enlarge : Scratch-Mine", 			path = "parts/notes/5keyL/4-6_scratch_mine/*.png", 	def = "Off"},
+
+	-- 9key
+	{name = "Temeplate_9key : White-Notes", 					path = "parts/notes/9key/1-1_white/*.png", 			def = "White_#Borderless_#f3f3f3"},
+	{name = "Temeplate_9key : White-Long-Start", 				path = "parts/notes/9key/1-2_white_lnSt/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_9key : White-Long-End", 					path = "parts/notes/9key/1-3_white_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_9key : White-Long-Body", 				path = "parts/notes/9key/1-4_white_lnBo/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_9key : White-Long-Active", 				path = "parts/notes/9key/1-5_white_lnAc/*.png", 	def = "White_#Partition_#f3f3f3"},
+	{name = "Temeplate_9key : White-Mine", 						path = "parts/notes/9key/1-6_white_mine/*.png", 	def = "Off"},
+
+	{name = "Temeplate_9key : Blue-Notes", 						path = "parts/notes/9key/2-1_blue/*.png", 			def = "LightBlue_#Borderless_#35eaff"},
+	{name = "Temeplate_9key : Blue-Long-Start", 				path = "parts/notes/9key/2-2_blue_lnSt/*.png", 		def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_9key : Blue-Long-End", 					path = "parts/notes/9key/2-3_blue_lnEn/*.png", 		def = "Off"},
+	{name = "Temeplate_9key : Blue-Long-Body", 					path = "parts/notes/9key/2-4_blue_lnBo/*.png", 		def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_9key : Blue-Long-Active", 				path = "parts/notes/9key/2-5_blue_lnAc/*.png", 		def = "LightBlue_#Partition_#35eaff"},
+	{name = "Temeplate_9key : Blue-Mine", 						path = "parts/notes/9key/2-6_blue_mine/*.png", 		def = "Off"},
+
+	{name = "Temeplate_9key : Yellow-Notes", 					path = "parts/notes/9key/3-1_yellow/*.png", 		def = "Yellow_#Borderless_#ffde35"},
+	{name = "Temeplate_9key : Yellow-Long-Start", 				path = "parts/notes/9key/3-2_yellow_lnSt/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_9key : Yellow-Long-End", 				path = "parts/notes/9key/3-3_yellow_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_9key : Yellow-Long-Body", 				path = "parts/notes/9key/3-4_yellow_lnBo/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_9key : Yellow-Long-Active", 				path = "parts/notes/9key/3-5_yellow_lnAc/*.png", 	def = "Yellow_#Partition_#ffde35"},
+	{name = "Temeplate_9key : Yellow-Mine", 					path = "parts/notes/9key/3-6_yellow_mine/*.png", 	def = "Off"},
+
+	{name = "Temeplate_9key : Scratch-Notes", 					path = "parts/notes/9key/4-1_scratch/*.png", 	 	def = "Green_#Borderless_#5def35"},
+	{name = "Temeplate_9key : Scratch-Long-Start", 				path = "parts/notes/9key/4-2_scratch_lnSt/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_9key : Scratch-Long-End", 				path = "parts/notes/9key/4-3_scratch_lnEn/*.png", 	def = "Off"},
+	{name = "Temeplate_9key : Scratch-Long-Body", 				path = "parts/notes/9key/4-4_scratch_lnBo/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_9key : Scratch-Long-Active", 			path = "parts/notes/9key/4-5_scratch_lnAc/*.png", 	def = "Green_#Partition_#5def35"},
+	{name = "Temeplate_9key : Scratch-Mine", 					path = "parts/notes/9key/4-6_scratch_mine/*.png", 	def = "Off"},
+
+	-- Custom
+	{name = "Custom : White-Notes", 							path = "parts/notes/custom/1-1_white/*.png", 		def = "White_#f3f3f3"},
+	{name = "Custom : White-Long-Start", 						path = "parts/notes/custom/1-2_white_lnSt/*.png", 	def = "White_#f3f3f3"},
+	{name = "Custom : White-Long-End", 							path = "parts/notes/custom/1-3_white_lnEn/*.png", 	def = "Off"},
+	{name = "Custom : White-Long-Body", 						path = "parts/notes/custom/1-4_white_lnBo/*.png", 	def = "White_#f3f3f3"},
+	{name = "Custom : White-Long-Active", 						path = "parts/notes/custom/1-5_white_lnAc/*.png", 	def = "White_#f3f3f3"},
+	{name = "Custom : White-Mine", 								path = "parts/notes/custom/1-6_white_mine/*.png", 	def = "Off"},
+
+	{name = "Custom : Blue-Notes", 								path = "parts/notes/custom/2-1_blue/*.png", 		def = "LightBlue_#35eaff"},
+	{name = "Custom : Blue-Long-Start", 						path = "parts/notes/custom/2-2_blue_lnSt/*.png", 	def = "LightBlue_#35eaff"},
+	{name = "Custom : Blue-Long-End", 							path = "parts/notes/custom/2-3_blue_lnEn/*.png", 	def = "Off"},
+	{name = "Custom : Blue-Long-Body", 							path = "parts/notes/custom/2-4_blue_lnBo/*.png", 	def = "LightBlue_#35eaff"},
+	{name = "Custom : Blue-Long-Active", 						path = "parts/notes/custom/2-5_blue_lnAc/*.png", 	def = "LightBlue_#35eaff"},
+	{name = "Custom : Blue-Mine", 								path = "parts/notes/custom/2-6_blue_mine/*.png", 	def = "Off"},
+
+	{name = "Custom : Yellow-Notes", 							path = "parts/notes/custom/3-1_yellow/*.png", 		def = "Yellow_#ffde35"},
+	{name = "Custom : Yellow-Long-Start", 						path = "parts/notes/custom/3-2_yellow_lnSt/*.png", 	def = "Yellow_#ffde35"},
+	{name = "Custom : Yellow-Long-End", 						path = "parts/notes/custom/3-3_yellow_lnEn/*.png", 	def = "Off"},
+	{name = "Custom : Yellow-Long-Body", 						path = "parts/notes/custom/3-4_yellow_lnBo/*.png", 	def = "Yellow_#ffde35"},
+	{name = "Custom : Yellow-Long-Active", 						path = "parts/notes/custom/3-5_yellow_lnAc/*.png", 	def = "Yellow_#ffde35"},
+	{name = "Custom : Yellow-Mine", 							path = "parts/notes/custom/3-6_yellow_mine/*.png", 	def = "Off"},
+
+	{name = "Custom : Scratch-Notes", 							path = "parts/notes/custom/4-1_scratch/*.png", 	 	def = "Green_#5def35"},
+	{name = "Custom : Scratch-Long-Start", 						path = "parts/notes/custom/4-2_scratch_lnSt/*.png", def = "Green_#5def35"},
+	{name = "Custom : Scratch-Long-End", 						path = "parts/notes/custom/4-3_scratch_lnEn/*.png", def = "Off"},
+	{name = "Custom : Scratch-Long-Body", 						path = "parts/notes/custom/4-4_scratch_lnBo/*.png", def = "Green_#5def35"},
+	{name = "Custom : Scratch-Long-Active", 					path = "parts/notes/custom/4-5_scratch_lnAc/*.png", def = "Green_#5def35"},
+	{name = "Custom : Scratch-Mine", 							path = "parts/notes/custom/4-6_scratch_mine/*.png", def = "Off"},
+
+	{name = "White-Keybeam", 									path = "parts/keybeam/1_white/*.png", 				def = "Blue"},
+	{name = "Blue-Keybeam", 									path = "parts/keybeam/2_blue/*.png", 				def = "Blue"},
+	{name = "Yellow-Keybeam", 									path = "parts/keybeam/3_yellow/*.png", 				def = "Blue"},
+	{name = "Scratch-Keybeam", 									path = "parts/keybeam/4_scratch/*.png", 			def = "Blue"},
+
+	{name = "Judge: Perfect", 									path = "parts/judge/1_pg/*.png", 					def = "x50%_PERFECT_Rounded"},
+	{name = "Judge: Great", 									path = "parts/judge/2_gr/*.png", 					def = "x50%_GREAT_Rounded"},
+	{name = "Judge: Good",	 									path = "parts/judge/3_gd/*.png", 					def = "x50%_GOOD_Rounded"},
+	{name = "Judge: Bad", 										path = "parts/judge/4_bd/*.png", 					def = "x50%_BAD_Rounded"},
+	{name = "Judge: Poor", 										path = "parts/judge/5_pr/*.png", 					def = "x50%_POOR_Rounded"},
+	{name = "Judge: Miss",	 									path = "parts/judge/6_ms/*.png",					def = "x50%_MISS_Rounded"},
+	{name = "Judge: Num", 										path = "parts/judgenum/*.png", 						def = "Default_Rounded"},
+
+	{name = "Gauge: Hazard", 									path = "parts/colors/1_hazard/*.png", 				def = "Blue1_#389eff"},
+	{name = "Gauge: Ex-Hard", 									path = "parts/colors/2_exhard/*.png", 				def = "Yellow1_#ffff40"},
+	{name = "Gauge: Hard", 										path = "parts/colors/3_hard/*.png", 				def = "White1_#ffffff"},
+	{name = "Gauge: Normal", 									path = "parts/colors/4_normal/*.png", 				def = "LightBlue1_#74f7f7"},
+	{name = "Gauge: Easy", 										path = "parts/colors/5_easy/*.png", 				def = "Green1_#80ff40"},
+	{name = "Gauge: Assist-Easy", 								path = "parts/colors/6_aseasy/*.png", 				def = "Pink1_#ffb6c1"},
+
+	{name = "Judge Line", 										path = "parts/colors/7_judgeline/*.png", 			def = "White4_#a3d1ff"},
+	{name = "Bomb", 											path = "parts/!_bomb/*.png", 						def = "!_x150%_White_clear_ring_SCUROed"},
+	{name = "Lane Cover", 										path = "parts/lanecover/*.png", 					def = "Simple"},
+	{name = "Fast/Slow: Character", 							path = "parts/fast_slow/character/*.png", 			def = "Fast_Slow"},
+	{name = "Fast/Slow: Number", 								path = "parts/fast_slow/number/*.png", 				def = "Default"},
+	{name = "Mybest Number", 									path = "parts/scorenum/mybest/*.png", 				def = "Default"},
+	{name = "Target Number", 									path = "parts/scorenum/target/*.png", 				def = "Default"}
 }
 
 local original_property = {
@@ -226,16 +347,13 @@ local original_property = {
 	}},
 	{name = "Notes Height", 							item = {
 		{name = "60 pixel", 							op = NOTES_HEIGHT_60_PIX},
+		{name = "55 pixel", 							op = NOTES_HEIGHT_55_PIX},
 		{name = "50 pixel", 							op = NOTES_HEIGHT_50_PIX},
+		{name = "45 pixel", 							op = NOTES_HEIGHT_45_PIX},
 		{name = "40 pixel", 							op = NOTES_HEIGHT_40_PIX},
+		{name = "35 pixel", 							op = NOTES_HEIGHT_35_PIX},
 		{name = "30 pixel", 							op = NOTES_HEIGHT_30_PIX},
 		{name = "Custom", 								op = NOTES_HEIGHT_CUSTOM}
-	}},
-	{name = "Judge Size",		 						item = {
-		{name = "40%", 									op = JUDGE_SIZE_MULUTIPLIER_x40},
-		{name = "60%", 									op = JUDGE_SIZE_MULUTIPLIER_x60},
-		{name = "80%", 									op = JUDGE_SIZE_MULUTIPLIER_x80},
-		{name = "100%",		 							op = JUDGE_SIZE_MULUTIPLIER_x100}
 	}},
 	{name = "Keybeam Display", 							item = {
 		{name = "Fast", 								op = KEYBEAM_DISPLAY_FAST},
@@ -255,15 +373,9 @@ local original_property = {
 	}},
 	{name = "Keybeam Alpha Multiplier", 				item = {
 		{name = "100%", 								op = KEYBEAM_ALPHA_MULUTIPLIER_x100},
-		{name = "90%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x90},
-		{name = "80%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x80},
-		{name = "70%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x70},
-		{name = "60%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x60},
+		{name = "75%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x75},
 		{name = "50%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x50},
-		{name = "40%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x40},
-		{name = "30%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x30},
-		{name = "20%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x20},
-		{name = "10%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x10}
+		{name = "25%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x25}
 	}},
 	{name = "Target", 									item = {
 		{name = "Off", 									op = TARGET_OFF},
@@ -360,11 +472,99 @@ local function processHeader(type)
 		local _header = 		{}
 		local _category = 		{}
 
-		if type == 0 then
+		if type == 0 then	-- 7key
 
 			_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
 			_category.Offset = _tmp
 
+			exclude_names = {
+				-- 5key : Normal
+				"Temeplate_5key : Normal : White-Notes",
+				"Temeplate_5key : Normal : White-Long-Start",
+				"Temeplate_5key : Normal : White-Long-End",
+				"Temeplate_5key : Normal : White-Long-Body",
+				"Temeplate_5key : Normal : White-Long-Active",
+				"Temeplate_5key : Normal : White-Mine",
+
+				"Temeplate_5key : Normal : Blue-Notes",
+				"Temeplate_5key : Normal : Blue-Long-Start",
+				"Temeplate_5key : Normal : Blue-Long-End",
+				"Temeplate_5key : Normal : Blue-Long-Body",
+				"Temeplate_5key : Normal : Blue-Long-Active",
+				"Temeplate_5key : Normal : Blue-Mine",
+
+				"Temeplate_5key : Normal : Yellow-Notes",
+				"Temeplate_5key : Normal : Yellow-Long-Start",
+				"Temeplate_5key : Normal : Yellow-Long-End",
+				"Temeplate_5key : Normal : Yellow-Long-Body",
+				"Temeplate_5key : Normal : Yellow-Long-Active",
+				"Temeplate_5key : Normal : Yellow-Mine",
+
+				"Temeplate_5key : Normal : Scratch-Notes",
+				"Temeplate_5key : Normal : Scratch-Long-Start",
+				"Temeplate_5key : Normal : Scratch-Long-End",
+				"Temeplate_5key : Normal : Scratch-Long-Body",
+				"Temeplate_5key : Normal : Scratch-Long-Active",
+				"Temeplate_5key : Normal : Scratch-Mine",
+
+				-- 5key : Enlarge
+				"Temeplate_5key : Enlarge : White-Notes",
+				"Temeplate_5key : Enlarge : White-Long-Start",
+				"Temeplate_5key : Enlarge : White-Long-End",
+				"Temeplate_5key : Enlarge : White-Long-Body",
+				"Temeplate_5key : Enlarge : White-Long-Active",
+				"Temeplate_5key : Enlarge : White-Mine",
+
+				"Temeplate_5key : Enlarge : Blue-Notes",
+				"Temeplate_5key : Enlarge : Blue-Long-Start",
+				"Temeplate_5key : Enlarge : Blue-Long-End",
+				"Temeplate_5key : Enlarge : Blue-Long-Body",
+				"Temeplate_5key : Enlarge : Blue-Long-Active",
+				"Temeplate_5key : Enlarge : Blue-Mine",
+
+				"Temeplate_5key : Enlarge : Yellow-Notes",
+				"Temeplate_5key : Enlarge : Yellow-Long-Start",
+				"Temeplate_5key : Enlarge : Yellow-Long-End",
+				"Temeplate_5key : Enlarge : Yellow-Long-Body",
+				"Temeplate_5key : Enlarge : Yellow-Long-Active",
+				"Temeplate_5key : Enlarge : Yellow-Mine",
+
+				"Temeplate_5key : Enlarge : Scratch-Notes",
+				"Temeplate_5key : Enlarge : Scratch-Long-Start",
+				"Temeplate_5key : Enlarge : Scratch-Long-End",
+				"Temeplate_5key : Enlarge : Scratch-Long-Body",
+				"Temeplate_5key : Enlarge : Scratch-Long-Active",
+				"Temeplate_5key : Enlarge : Scratch-Mine",
+
+				-- 9key
+				"Temeplate_9key : White-Notes",
+				"Temeplate_9key : White-Long-Start",
+				"Temeplate_9key : White-Long-End",
+				"Temeplate_9key : White-Long-Body",
+				"Temeplate_9key : White-Long-Active",
+				"Temeplate_9key : White-Mine",
+
+				"Temeplate_9key : Blue-Notes",
+				"Temeplate_9key : Blue-Long-Start",
+				"Temeplate_9key : Blue-Long-End",
+				"Temeplate_9key : Blue-Long-Body",
+				"Temeplate_9key : Blue-Long-Active",
+				"Temeplate_9key : Blue-Mine",
+
+				"Temeplate_9key : Yellow-Notes",
+				"Temeplate_9key : Yellow-Long-Start",
+				"Temeplate_9key : Yellow-Long-End",
+				"Temeplate_9key : Yellow-Long-Body",
+				"Temeplate_9key : Yellow-Long-Active",
+				"Temeplate_9key : Yellow-Mine",
+
+				"Temeplate_9key : Scratch-Notes",
+				"Temeplate_9key : Scratch-Long-Start",
+				"Temeplate_9key : Scratch-Long-End",
+				"Temeplate_9key : Scratch-Long-Body",
+				"Temeplate_9key : Scratch-Long-Active",
+				"Temeplate_9key : Scratch-Mine"
+			}
 			_header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
 			_category.Filepath = _tmp
 
@@ -372,26 +572,173 @@ local function processHeader(type)
 			_header.property, _tmp = createTable(original_property, exclude_names, "Property")
 			_category.Property = _tmp
 
-		elseif type == 1 then
+		elseif type == 1 then	-- 5key
 
 			_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
 			_category.Offset = _tmp
 
+			exclude_names = {
+				-- 7key
+				"Temeplate_7key : White-Notes",
+				"Temeplate_7key : White-Long-Start",
+				"Temeplate_7key : White-Long-End",
+				"Temeplate_7key : White-Long-Body",
+				"Temeplate_7key : White-Long-Active",
+				"Temeplate_7key : White-Mine",
+
+				"Temeplate_7key : Blue-Notes",
+				"Temeplate_7key : Blue-Long-Start",
+				"Temeplate_7key : Blue-Long-End",
+				"Temeplate_7key : Blue-Long-Body",
+				"Temeplate_7key : Blue-Long-Active",
+				"Temeplate_7key : Blue-Mine",
+
+				"Temeplate_7key : Yellow-Notes",
+				"Temeplate_7key : Yellow-Long-Start",
+				"Temeplate_7key : Yellow-Long-End",
+				"Temeplate_7key : Yellow-Long-Body",
+				"Temeplate_7key : Yellow-Long-Active",
+				"Temeplate_7key : Yellow-Mine",
+
+				"Temeplate_7key : Scratch-Notes",
+				"Temeplate_7key : Scratch-Long-Start",
+				"Temeplate_7key : Scratch-Long-End",
+				"Temeplate_7key : Scratch-Long-Body",
+				"Temeplate_7key : Scratch-Long-Active",
+				"Temeplate_7key : Scratch-Mine",
+
+				-- 9key
+				"Temeplate_9key : White-Notes",
+				"Temeplate_9key : White-Long-Start",
+				"Temeplate_9key : White-Long-End",
+				"Temeplate_9key : White-Long-Body",
+				"Temeplate_9key : White-Long-Active",
+				"Temeplate_9key : White-Mine",
+
+				"Temeplate_9key : Blue-Notes",
+				"Temeplate_9key : Blue-Long-Start",
+				"Temeplate_9key : Blue-Long-End",
+				"Temeplate_9key : Blue-Long-Body",
+				"Temeplate_9key : Blue-Long-Active",
+				"Temeplate_9key : Blue-Mine",
+
+				"Temeplate_9key : Yellow-Notes",
+				"Temeplate_9key : Yellow-Long-Start",
+				"Temeplate_9key : Yellow-Long-End",
+				"Temeplate_9key : Yellow-Long-Body",
+				"Temeplate_9key : Yellow-Long-Active",
+				"Temeplate_9key : Yellow-Mine",
+
+				"Temeplate_9key : Scratch-Notes",
+				"Temeplate_9key : Scratch-Long-Start",
+				"Temeplate_9key : Scratch-Long-End",
+				"Temeplate_9key : Scratch-Long-Body",
+				"Temeplate_9key : Scratch-Long-Active",
+				"Temeplate_9key : Scratch-Mine"
+			}
 			_header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
 			_category.Filepath = _tmp
 
 			_header.property, _tmp = createTable(original_property, exclude_names, "Property")
 			_category.Property = _tmp
 
-		elseif type == 4 then
+		elseif type == 4 then	-- 9key
 
 			_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
 			_category.Offset = _tmp
 
+			exclude_names = {
+				-- 7key
+				"Temeplate_7key : White-Notes",
+				"Temeplate_7key : White-Long-Start",
+				"Temeplate_7key : White-Long-End",
+				"Temeplate_7key : White-Long-Body",
+				"Temeplate_7key : White-Long-Active",
+				"Temeplate_7key : White-Mine",
+
+				"Temeplate_7key : Blue-Notes",
+				"Temeplate_7key : Blue-Long-Start",
+				"Temeplate_7key : Blue-Long-End",
+				"Temeplate_7key : Blue-Long-Body",
+				"Temeplate_7key : Blue-Long-Active",
+				"Temeplate_7key : Blue-Mine",
+
+				"Temeplate_7key : Yellow-Notes",
+				"Temeplate_7key : Yellow-Long-Start",
+				"Temeplate_7key : Yellow-Long-End",
+				"Temeplate_7key : Yellow-Long-Body",
+				"Temeplate_7key : Yellow-Long-Active",
+				"Temeplate_7key : Yellow-Mine",
+
+				"Temeplate_7key : Scratch-Notes",
+				"Temeplate_7key : Scratch-Long-Start",
+				"Temeplate_7key : Scratch-Long-End",
+				"Temeplate_7key : Scratch-Long-Body",
+				"Temeplate_7key : Scratch-Long-Active",
+				"Temeplate_7key : Scratch-Mine",
+
+				-- 5key : Normal
+				"Temeplate_5key : Normal : White-Notes",
+				"Temeplate_5key : Normal : White-Long-Start",
+				"Temeplate_5key : Normal : White-Long-End",
+				"Temeplate_5key : Normal : White-Long-Body",
+				"Temeplate_5key : Normal : White-Long-Active",
+				"Temeplate_5key : Normal : White-Mine",
+
+				"Temeplate_5key : Normal : Blue-Notes",
+				"Temeplate_5key : Normal : Blue-Long-Start",
+				"Temeplate_5key : Normal : Blue-Long-End",
+				"Temeplate_5key : Normal : Blue-Long-Body",
+				"Temeplate_5key : Normal : Blue-Long-Active",
+				"Temeplate_5key : Normal : Blue-Mine",
+
+				"Temeplate_5key : Normal : Yellow-Notes",
+				"Temeplate_5key : Normal : Yellow-Long-Start",
+				"Temeplate_5key : Normal : Yellow-Long-End",
+				"Temeplate_5key : Normal : Yellow-Long-Body",
+				"Temeplate_5key : Normal : Yellow-Long-Active",
+				"Temeplate_5key : Normal : Yellow-Mine",
+
+				"Temeplate_5key : Normal : Scratch-Notes",
+				"Temeplate_5key : Normal : Scratch-Long-Start",
+				"Temeplate_5key : Normal : Scratch-Long-End",
+				"Temeplate_5key : Normal : Scratch-Long-Body",
+				"Temeplate_5key : Normal : Scratch-Long-Active",
+				"Temeplate_5key : Normal : Scratch-Mine",
+
+				-- 5key : Enlarge
+				"Temeplate_5key : Enlarge : White-Notes",
+				"Temeplate_5key : Enlarge : White-Long-Start",
+				"Temeplate_5key : Enlarge : White-Long-End",
+				"Temeplate_5key : Enlarge : White-Long-Body",
+				"Temeplate_5key : Enlarge : White-Long-Active",
+				"Temeplate_5key : Enlarge : White-Mine",
+
+				"Temeplate_5key : Enlarge : Blue-Notes",
+				"Temeplate_5key : Enlarge : Blue-Long-Start",
+				"Temeplate_5key : Enlarge : Blue-Long-End",
+				"Temeplate_5key : Enlarge : Blue-Long-Body",
+				"Temeplate_5key : Enlarge : Blue-Long-Active",
+				"Temeplate_5key : Enlarge : Blue-Mine",
+
+				"Temeplate_5key : Enlarge : Yellow-Notes",
+				"Temeplate_5key : Enlarge : Yellow-Long-Start",
+				"Temeplate_5key : Enlarge : Yellow-Long-End",
+				"Temeplate_5key : Enlarge : Yellow-Long-Body",
+				"Temeplate_5key : Enlarge : Yellow-Long-Active",
+				"Temeplate_5key : Enlarge : Yellow-Mine",
+
+				"Temeplate_5key : Enlarge : Scratch-Notes",
+				"Temeplate_5key : Enlarge : Scratch-Long-Start",
+				"Temeplate_5key : Enlarge : Scratch-Long-End",
+				"Temeplate_5key : Enlarge : Scratch-Long-Body",
+				"Temeplate_5key : Enlarge : Scratch-Long-Active",
+				"Temeplate_5key : Enlarge : Scratch-Mine"
+			}
 			_header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
 			_category.Filepath = _tmp
 
-			exclude_names = {"Lane Center", "Notes 5Key Align",}
+			exclude_names = {"Lane Center", "Notes 5Key Align"}
 			_header.property, _tmp = createTable(original_property, exclude_names, "Property")
 			_category.Property = _tmp
 
@@ -441,14 +788,13 @@ local function is5keyAlignCenter() 		return skin_config.option["Notes 5Key Align
 local function is5keyAlignEnlarge() 	return skin_config.option["Notes 5Key Align"] ==			NOTES_5KEY_ALIGN_ENLARGE end
 
 local function isNotesHeight_60() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_60_PIX end
+local function isNotesHeight_55() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_55_PIX end
 local function isNotesHeight_50() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_50_PIX end
+local function isNotesHeight_45() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_45_PIX end
 local function isNotesHeight_40() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_40_PIX end
+local function isNotesHeight_35() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_35_PIX end
 local function isNotesHeight_30() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_30_PIX end
 local function isNotesHeightCustom() 	return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_CUSTOM end
-
-local function isJudgeSize_x40() 		return skin_config.option["Judge Size"] ==	 				JUDGE_SIZE_MULUTIPLIER_x40 end
-local function isJudgeSize_x60() 		return skin_config.option["Judge Size"] ==	 				JUDGE_SIZE_MULUTIPLIER_x60 end
-local function isJudgeSize_x80() 		return skin_config.option["Judge Size"] ==	 				JUDGE_SIZE_MULUTIPLIER_x80 end
 
 local function isKeybeamFast() 			return skin_config.option["Keybeam Display"] == 			KEYBEAM_DISPLAY_FAST end
 
@@ -463,14 +809,8 @@ local function isKeybeamHeight_x30() 	return skin_config.option["Keybeam Height 
 local function isKeybeamHeight_x20() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x20 end
 
 local function isKeybeamAlpha_x100() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x100 end
-local function isKeybeamAlpha_x90() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x90 end
-local function isKeybeamAlpha_x80() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x80 end
-local function isKeybeamAlpha_x70() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x70 end
-local function isKeybeamAlpha_x60() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x60 end
+local function isKeybeamAlpha_x75() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x75 end
 local function isKeybeamAlpha_x50() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x50 end
-local function isKeybeamAlpha_x40() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x40 end
-local function isKeybeamAlpha_x30() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x30 end
-local function isKeybeamAlpha_x20() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x20 end
 
 local function isTargetBest() 			return skin_config.option["Target"] == 						TARGET_MYBEST end
 local function isTargetRank() 			return skin_config.option["Target"] == 						TARGET_TARGET end
@@ -587,10 +927,16 @@ local function main()
 
 	if isNotesHeight_60() then
 		notesInfo.height = 60
+	elseif isNotesHeight_55() then
+		notesInfo.height = 55
 	elseif isNotesHeight_50() then
 		notesInfo.height = 50
+	elseif isNotesHeight_45() then
+		notesInfo.height = 45
 	elseif isNotesHeight_40() then
 		notesInfo.height = 40
+	elseif isNotesHeight_35() then
+		notesInfo.height = 35
 	elseif isNotesHeight_30() then
 		notesInfo.height = 30
 	elseif isNotesHeightCustom() and is7key() then
@@ -711,18 +1057,6 @@ local function main()
 		end
 	end
 
-	local function getJudgeSize()
-		if isJudgeSize_x40() then
-			return 0.4
-		elseif isJudgeSize_x60() then
-			return 0.6
-		elseif isJudgeSize_x80() then
-			return 0.8
-		else
-			return 1
-		end
-	end
-
 	local function getKeybeamHeight()
 		if isKeybeamHeight_x100() then
 			return 1
@@ -750,24 +1084,12 @@ local function main()
 	local function getKeybeamAlpha(alpha)
 		if isKeybeamAlpha_x100() then
 			return math.floor(1 * alpha)
-		elseif isKeybeamAlpha_x90() then
-			return math.floor(0.9 * alpha)
-		elseif isKeybeamAlpha_x80() then
-			return math.floor(0.8 * alpha)
-		elseif isKeybeamAlpha_x70() then
-			return math.floor(0.7 * alpha)
-		elseif isKeybeamAlpha_x60() then
-			return math.floor(0.6 * alpha)
+		elseif isKeybeamAlpha_x75() then
+			return math.floor(0.75 * alpha)
 		elseif isKeybeamAlpha_x50() then
 			return math.floor(0.5 * alpha)
-		elseif isKeybeamAlpha_x40() then
-			return math.floor(0.4 * alpha)
-		elseif isKeybeamAlpha_x30() then
-			return math.floor(0.3 * alpha)
-		elseif isKeybeamAlpha_x20() then
-			return math.floor(0.2 * alpha)
 		else
-			return math.floor(0.1 * alpha)
+			return math.floor(0.25 * alpha)
 		end
 	end
 
@@ -907,6 +1229,16 @@ local function main()
 		MASCOT_H = 		256
 	}
 
+	local key_type
+	if isNotesWidthCustom() then
+		key_type = "/custom/"
+	elseif is5key() and is5keyAlignEnlarge() then
+		key_type = "/5keyL/"
+	elseif is9key() then
+		key_type = "/9key/"
+	else
+		key_type = "/7key/"
+	end
 	skin.source = {
 		---- # common src
 		{id = "bg_src", 			path = "parts/bg/*.png"},
@@ -923,76 +1255,76 @@ local function main()
 		{id = "play_system_src", 	path = "!_common/!_play_system.png"},
 
 		-- note
-		{id = "notes_wh_src", 	path = "parts/notes/1-1_white/*.png"},
-		{id = "notes_bl_src", 	path = "parts/notes/2-1_blue/*.png"},
-		{id = "notes_ye_src", 	path = "parts/notes/3-1_yellow/*.png"},
-		{id = "notes_sc_src", 	path = "parts/notes/4-1_scratch/*.png"},
+		{id = "notes_wh_src", 	path = "parts/notes" .. key_type .. "1-1_white/*.png"},
+		{id = "notes_bl_src", 	path = "parts/notes" .. key_type .. "2-1_blue/*.png"},
+		{id = "notes_ye_src", 	path = "parts/notes" .. key_type .. "3-1_yellow/*.png"},
+		{id = "notes_sc_src", 	path = "parts/notes" .. key_type .. "4-1_scratch/*.png"},
 
 		-- lnstart	
-		{id = "lnSt_wh_src", 	path = "parts/notes/1-2_white_lnSt/*.png"},
-		{id = "lnSt_bl_src", 	path = "parts/notes/2-2_blue_lnSt/*.png"},
-		{id = "lnSt_ye_src", 	path = "parts/notes/3-2_yellow_lnSt/*.png"},
-		{id = "lnSt_sc_src", 	path = "parts/notes/4-2_scratch_lnSt/*.png"},
+		{id = "lnSt_wh_src", 	path = "parts/notes" .. key_type .. "1-2_white_lnSt/*.png"},
+		{id = "lnSt_bl_src", 	path = "parts/notes" .. key_type .. "2-2_blue_lnSt/*.png"},
+		{id = "lnSt_ye_src", 	path = "parts/notes" .. key_type .. "3-2_yellow_lnSt/*.png"},
+		{id = "lnSt_sc_src", 	path = "parts/notes" .. key_type .. "4-2_scratch_lnSt/*.png"},
 
 		-- lnend	
-		{id = "lnEn_wh_src", 	path = "parts/notes/1-3_white_lnEn/*.png"},
-		{id = "lnEn_bl_src", 	path = "parts/notes/2-3_blue_lnEn/*.png"},
-		{id = "lnEn_ye_src", 	path = "parts/notes/3-3_yellow_lnEn/*.png"},
-		{id = "lnEn_sc_src", 	path = "parts/notes/4-3_scratch_lnEn/*.png"},
+		{id = "lnEn_wh_src", 	path = "parts/notes" .. key_type .. "1-3_white_lnEn/*.png"},
+		{id = "lnEn_bl_src", 	path = "parts/notes" .. key_type .. "2-3_blue_lnEn/*.png"},
+		{id = "lnEn_ye_src", 	path = "parts/notes" .. key_type .. "3-3_yellow_lnEn/*.png"},
+		{id = "lnEn_sc_src", 	path = "parts/notes" .. key_type .. "4-3_scratch_lnEn/*.png"},
 
 		-- lnbody	
-		{id = "lnBo_wh_src", 	path = "parts/notes/1-4_white_lnBo/*.png"},
-		{id = "lnBo_bl_src", 	path = "parts/notes/2-4_blue_lnBo/*.png"},
-		{id = "lnBo_ye_src", 	path = "parts/notes/3-4_yellow_lnBo/*.png"},
-		{id = "lnBo_sc_src", 	path = "parts/notes/4-4_scratch_lnBo/*.png"},
+		{id = "lnBo_wh_src", 	path = "parts/notes" .. key_type .. "1-4_white_lnBo/*.png"},
+		{id = "lnBo_bl_src", 	path = "parts/notes" .. key_type .. "2-4_blue_lnBo/*.png"},
+		{id = "lnBo_ye_src", 	path = "parts/notes" .. key_type .. "3-4_yellow_lnBo/*.png"},
+		{id = "lnBo_sc_src", 	path = "parts/notes" .. key_type .. "4-4_scratch_lnBo/*.png"},
 
 		-- lnactive
-		{id = "lnAc_wh_src", 	path = "parts/notes/1-5_white_lnAc/*.png"},
-		{id = "lnAc_bl_src", 	path = "parts/notes/2-5_blue_lnAc/*.png"},
-		{id = "lnAc_ye_src", 	path = "parts/notes/3-5_yellow_lnAc/*.png"},
-		{id = "lnAc_sc_src", 	path = "parts/notes/4-5_scratch_lnAc/*.png"},
+		{id = "lnAc_wh_src", 	path = "parts/notes" .. key_type .. "1-5_white_lnAc/*.png"},
+		{id = "lnAc_bl_src", 	path = "parts/notes" .. key_type .. "2-5_blue_lnAc/*.png"},
+		{id = "lnAc_ye_src", 	path = "parts/notes" .. key_type .. "3-5_yellow_lnAc/*.png"},
+		{id = "lnAc_sc_src", 	path = "parts/notes" .. key_type .. "4-5_scratch_lnAc/*.png"},
 
 		-- hcnstart	
-		{id = "hcSt_wh_src", 	path = "parts/notes/1-2_white_lnSt/*.png"},
-		{id = "hcSt_bl_src", 	path = "parts/notes/2-2_blue_lnSt/*.png"},
-		{id = "hcSt_ye_src", 	path = "parts/notes/3-2_yellow_lnSt/*.png"},
-		{id = "hcSt_sc_src", 	path = "parts/notes/4-2_scratch_lnSt/*.png"},
+		{id = "hcSt_wh_src", 	path = "parts/notes" .. key_type .. "1-2_white_lnSt/*.png"},
+		{id = "hcSt_bl_src", 	path = "parts/notes" .. key_type .. "2-2_blue_lnSt/*.png"},
+		{id = "hcSt_ye_src", 	path = "parts/notes" .. key_type .. "3-2_yellow_lnSt/*.png"},
+		{id = "hcSt_sc_src", 	path = "parts/notes" .. key_type .. "4-2_scratch_lnSt/*.png"},
 
 		-- hcnend	
-		{id = "hcEn_wh_src", 	path = "parts/notes/1-3_white_lnEn/*.png"},
-		{id = "hcEn_bl_src", 	path = "parts/notes/2-3_blue_lnEn/*.png"},
-		{id = "hcEn_ye_src", 	path = "parts/notes/3-3_yellow_lnEn/*.png"},
-		{id = "hcEn_sc_src", 	path = "parts/notes/4-3_scratch_lnEn/*.png"},
+		{id = "hcEn_wh_src", 	path = "parts/notes" .. key_type .. "1-3_white_lnEn/*.png"},
+		{id = "hcEn_bl_src", 	path = "parts/notes" .. key_type .. "2-3_blue_lnEn/*.png"},
+		{id = "hcEn_ye_src", 	path = "parts/notes" .. key_type .. "3-3_yellow_lnEn/*.png"},
+		{id = "hcEn_sc_src", 	path = "parts/notes" .. key_type .. "4-3_scratch_lnEn/*.png"},
 
 		-- hcnbody	
-		{id = "hcBo_wh_src", 	path = "parts/notes/1-4_white_lnBo/*.png"},
-		{id = "hcBo_bl_src", 	path = "parts/notes/2-4_blue_lnBo/*.png"},
-		{id = "hcBo_ye_src", 	path = "parts/notes/3-4_yellow_lnBo/*.png"},
-		{id = "hcBo_sc_src", 	path = "parts/notes/4-4_scratch_lnBo/*.png"},
+		{id = "hcBo_wh_src", 	path = "parts/notes" .. key_type .. "1-4_white_lnBo/*.png"},
+		{id = "hcBo_bl_src", 	path = "parts/notes" .. key_type .. "2-4_blue_lnBo/*.png"},
+		{id = "hcBo_ye_src", 	path = "parts/notes" .. key_type .. "3-4_yellow_lnBo/*.png"},
+		{id = "hcBo_sc_src", 	path = "parts/notes" .. key_type .. "4-4_scratch_lnBo/*.png"},
 
 		-- hcnactive
-		{id = "hcAc_wh_src", 	path = "parts/notes/1-5_white_lnAc/*.png"},
-		{id = "hcAc_bl_src", 	path = "parts/notes/2-5_blue_lnAc/*.png"},
-		{id = "hcAc_ye_src", 	path = "parts/notes/3-5_yellow_lnAc/*.png"},
-		{id = "hcAc_sc_src", 	path = "parts/notes/4-5_scratch_lnAc/*.png"},
+		{id = "hcAc_wh_src", 	path = "parts/notes" .. key_type .. "1-5_white_lnAc/*.png"},
+		{id = "hcAc_bl_src", 	path = "parts/notes" .. key_type .. "2-5_blue_lnAc/*.png"},
+		{id = "hcAc_ye_src", 	path = "parts/notes" .. key_type .. "3-5_yellow_lnAc/*.png"},
+		{id = "hcAc_sc_src", 	path = "parts/notes" .. key_type .. "4-5_scratch_lnAc/*.png"},
 
 		-- hcndamage
-		{id = "hcDm_wh_src", 	path = "parts/notes/1-4_white_lnBo/*.png"},
-		{id = "hcDm_bl_src", 	path = "parts/notes/2-4_blue_lnBo/*.png"},
-		{id = "hcDm_ye_src", 	path = "parts/notes/3-4_yellow_lnBo/*.png"},
-		{id = "hcDm_sc_src", 	path = "parts/notes/4-4_scratch_lnBo/*.png"},
+		{id = "hcDm_wh_src", 	path = "parts/notes" .. key_type .. "1-4_white_lnBo/*.png"},
+		{id = "hcDm_bl_src", 	path = "parts/notes" .. key_type .. "2-4_blue_lnBo/*.png"},
+		{id = "hcDm_ye_src", 	path = "parts/notes" .. key_type .. "3-4_yellow_lnBo/*.png"},
+		{id = "hcDm_sc_src", 	path = "parts/notes" .. key_type .. "4-4_scratch_lnBo/*.png"},
 
 		-- hcnreactive
-		{id = "hcRe_wh_src", 	path = "parts/notes/1-5_white_lnAc/*.png"},
-		{id = "hcRe_bl_src", 	path = "parts/notes/2-5_blue_lnAc/*.png"},
-		{id = "hcRe_ye_src", 	path = "parts/notes/3-5_yellow_lnAc/*.png"},
-		{id = "hcRe_sc_src", 	path = "parts/notes/4-5_scratch_lnAc/*.png"},
+		{id = "hcRe_wh_src", 	path = "parts/notes" .. key_type .. "1-5_white_lnAc/*.png"},
+		{id = "hcRe_bl_src", 	path = "parts/notes" .. key_type .. "2-5_blue_lnAc/*.png"},
+		{id = "hcRe_ye_src", 	path = "parts/notes" .. key_type .. "3-5_yellow_lnAc/*.png"},
+		{id = "hcRe_sc_src", 	path = "parts/notes" .. key_type .. "4-5_scratch_lnAc/*.png"},
 
 		-- mine
-		{id = "mine_wh_src", 	path = "parts/notes/1-6_white_mine/*.png"},
-		{id = "mine_bl_src", 	path = "parts/notes/2-6_blue_mine/*.png"},
-		{id = "mine_ye_src", 	path = "parts/notes/3-6_yellow_mine/*.png"},
-		{id = "mine_sc_src", 	path = "parts/notes/4-6_scratch_mine/*.png"},
+		{id = "mine_wh_src", 	path = "parts/notes" .. key_type .. "1-6_white_mine/*.png"},
+		{id = "mine_bl_src", 	path = "parts/notes" .. key_type .. "2-6_blue_mine/*.png"},
+		{id = "mine_ye_src", 	path = "parts/notes" .. key_type .. "3-6_yellow_mine/*.png"},
+		{id = "mine_sc_src", 	path = "parts/notes" .. key_type .. "4-6_scratch_mine/*.png"},
 
 		-- keybeam
 		{id = "keybeam_wh_src", path = "parts/keybeam/1_white/*.png"},
@@ -1028,6 +1360,8 @@ local function main()
 		-- judgeline
 		{id = "judgeline_src", 	path = "parts/colors/7_judgeline/*.png"}
 	}
+	key_type = nil
+
 	skin.font = {
 		{id = 0, 	path = "font/Mplus2-ExtraBold.ttf"},
 		{id = 1,	path = "font/Mplus2-Medium.ttf"},
@@ -1186,7 +1520,7 @@ local function main()
 		{id = "gauge-p3", src = "gaugeAsEasy_src", x = 0, y = 0, w = 10, h = 10},
 
 		-- other
-		{id = "hiddencover", src = "play_system_src", x = 652, y = 4, w = 10, h = 1000},
+		{id = "hiddencover", src = "play_system_src", x = 652, y = 4, w = 10, h = 1080},
 
 		{id = "replay", 	src = "play_system_src", x = 0, y = 16, w = 258, h = 35},
 		{id = "auto", 		src = "play_system_src", x = 259, y = 16, w = 348, h = 35},
@@ -1506,33 +1840,24 @@ local function main()
 	local _images = {}
 	do
 		local id = {"judge-pg", "judge-gr", "judge-gd", "judge-bd", "judge-pr", "judge-ms"}
-		local _x, _w, _h = 	GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-math.floor(660 * getJudgeSize() / 2)),
-							math.floor(660 * getJudgeSize()),
-							math.floor(120 * getJudgeSize())
+		local offsets = {JUDGE_PG_ALPHA, JUDGE_GR_ALPHA, JUDGE_GD_ALPHA, JUDGE_BD_ALPHA, JUDGE_PR_ALPHA, JUDGE_MS_ALPHA}
 		for i in ipairs(id) do
-			_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {JUDGE_POS_ALPHA}, dst = {
-				{time = 0, x = _x, y = GEOMETRY.JUDGE_Y, w = _w, h = _h, a = 64, acc = 2},
+			_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {JUDGE_POS, offsets[i]}, dst = {
+				{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
 				{time = 3000}
 			}}
 		end
 	end
-
 	local _numbers = {}
-	do
-		local _x = (math.floor(660 * getJudgeSize() / 2))
-		for i = 1, 6, 1 do
-			-- コンボ数のx,yは判定文字からの相対距離を指定
-			-- The value of x and y for the combo number specifies the relative distance from the judgment character.
-			_numbers[i] =
-				{id = "judge-num", loop = -1, timer = 46, offsets = {JUDGE_NUM_POS_ALPHA}, dst = {
-					{time = 0, x = _x, y = 156, w = 54, h = 100, a = 64, acc = 2},
-					{time = 3000}
-				}}
-		end
+	for i = 1, 6, 1 do
+		-- コンボ数のx,yは判定文字からの相対距離を指定
+		-- The value of x and y for the combo number specifies the relative distance from the judgment character.
+		_numbers[i] = {id = "judge-num", loop = -1, timer = 46, offsets = {JUDGE_NUM_POS_ALPHA}, dst = {
+				{time = 0, x = 330, y = 156, w = 54, h = 100, a = 64, acc = 2},
+				{time = 3000}
+			}}
 	end
-
-	skin.judge = {
-		{
+	skin.judge = {{
 			id = "judge",
 			index = 0,
 			images = _images,
@@ -1540,8 +1865,9 @@ local function main()
 			-- judgeとcomboを合わせて一つの定義とするか。二段に分ける場合はfalse
 			-- Whether judge and combo together constitute one definition. If dividing into two tiers, false.
 			shift = false
-		}
-	}
+		}}
+	_images, _numbers = nil, nil
+
 	skin.judgegraph = {{id = "notes-graph", noGap = 0, orderReverse = 1, type = 1, backTexOff = 1}}
 	skin.bpmgraph = {{id = "bpm-graph"}}
 	skin.bga = {id = "bga"}
@@ -1581,7 +1907,6 @@ local function main()
 		{id = -110, timer = 41, offset = BGA_DARKNESS, dst = {
 			{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H, a = 0}}}
 	}
-	_images, _numbers = nil, nil
 
 	---- <<< 曲情報エリア開始
 	---- <<< song infomation area start
@@ -1840,10 +2165,12 @@ local function main()
 
 	-- 判定ライン
 	-- judge line
-	table.insert(skin.destination,
-		{id = "judgeline", offsets = {3, JUDGELINE_POS, JUDGELINE_HEIGHT}, dst = {
+	local function processJudgeline(option)
+		table.insert(skin.destination, {id = "judgeline", offsets = {3, JUDGELINE_POS, JUDGELINE_HEIGHT}, op = option, dst = {
 			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 24}
-	}})
+		}})
+	end
+	processJudgeline({-273})
 
 	-- キービーム
 	-- keybeam
@@ -2090,9 +2417,10 @@ local function main()
 	-- hidden cover
 	table.insert(skin.destination,
 		{id = "hiddencover", offsets = {3, JUDGELINE_POS}, timer = 41, op = {273}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y + 24, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H * 0.6}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y + 24, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H * getKeybeamHeight()}
 		}
 	})
+	processJudgeline({273})
 	processKeybeam({273})
 
 	-- lanecover
@@ -2156,22 +2484,22 @@ local function main()
 		if isFSThresholdDef() and isFastSlowCenter() then
 			append_all(skin.destination, {
 				{id = "fast", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {1242}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slow", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {1243}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
 		elseif isFSThresholdDef() and isFastSlowRnL() then
 			append_all(skin.destination, {
 				{id = "fast", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {1242}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-250), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-250), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slow", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {1243}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 250 + (-148), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 250 + (-148), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
@@ -2180,13 +2508,13 @@ local function main()
 				{id = "fast", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateFast()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slow", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateSlow()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
@@ -2195,13 +2523,13 @@ local function main()
 				{id = "fast", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateFast()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-250), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-250), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slow", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateSlow()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 250 + (-148), y = GEOMETRY.JUDGE_Y + (-40), w = 148, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 250 + (-148), y = GEOMETRY.JUDGE_Y + (-35), w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
@@ -2211,7 +2539,7 @@ local function main()
 		if isFSThresholdDef() then
 			table.insert(skin.destination,	{
 				id = "fsms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}
 			})
@@ -2220,7 +2548,7 @@ local function main()
 				id = "fsms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateFast() or predicateSlow()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}
 			})
@@ -2233,11 +2561,11 @@ local function main()
 		if isFSThresholdDef() then
 			append_all(skin.destination, {
 				{id = "fsms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-300), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-300), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + 300 + (-170), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + 300 + (-170), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
@@ -2246,13 +2574,13 @@ local function main()
 				{id = "fsms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateFast()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-300), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-300), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slms-num", offsets = {32, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
 					return predicateSlow()
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 300 + (-170), y = GEOMETRY.JUDGE_Y + (-40), w = 34, h = 35, a = 64, acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 300 + (-170), y = GEOMETRY.JUDGE_Y + (-35), w = 34, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
@@ -2321,10 +2649,10 @@ local function main()
 	-- Rate display on lanes
 	if isScoreRateOn() then
 		append_all(skin.value, {
-			{id = "play-rate-num", 			src = "judgenum_src", x = 0, y = 101, w = 280, h = 50, divx = 10, digit = 3, align = 0, value = function()
+			{id = "play-rate-num", src = "judgenum_src", x = 0, y = 101, w = 280, h = 50, divx = 10, digit = 3, align = 0, value = function()
 				return getDummyNum(102)
 			end},
-			{id = "play-rate-adot-num", 	src = "judgenum_src", x = 0, y = 101, w = 308, h = 50, divx = 11, digit = 2, align = 0, value = function()
+			{id = "play-rate-adot-num", src = "judgenum_src", x = 0, y = 101, w = 308, h = 50, divx = 11, digit = 2, align = 0, value = function()
 				return getDummyNum(103)
 			end}
 		})
