@@ -1,7 +1,8 @@
 -------------------------------------
 "Rm-skin"
+ver 0.2.1
 Full HD (1920x1080) Playskin-5,7,9key for beatoraja
-(Last updated:04/20/2024)
+(Last updated:04/21/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -77,7 +78,7 @@ Specifically, the relevant files will be deemed compliant with
 "GNU General Public License v3.0 (GPLv3)"(https://choosealicense.com/licenses/gpl-3.0/).
 
 In addition to the above image files, this skin uses as the embedded fonts or fonts used as the basis for image files, 
-such as “Enigmatic”, “Kikakana-IO”, “Mplus1-2”, “mgenplus2c”, “RictyDiminished”, "Rounded Mplus1-2", “Squares Bold Free”, "x16y32pxGridGazer".
+such as “Enigmatic”, “Kikakana-IO”, “Mplus1-2”, “mgenplus2pp”, “RictyDiminished”, "Rounded Mplus1-2", “Squares Bold Free”, "x16y32pxGridGazer".
 Please refer to the license included in the package for more information.
 
 -------------------------------------
@@ -88,6 +89,7 @@ author:gibgib1212
 mail:kibmibgib.1212@gmail.com
 
 -------------------------------------
+
 Update History
 
 07062023
@@ -306,6 +308,9 @@ Update History
 	- Added option to switch judge display method
 	- Added new judge images made from "x16y32pxGridGazer"
 	- Update readme.txt
+
+04212024
+	- Update ver 0.2.1
 
 ---- ver 0.2.1
 
