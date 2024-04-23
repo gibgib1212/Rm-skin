@@ -298,7 +298,7 @@ local original_filepath = {
 	{name = "Yellow-Keybeam", 									path = "parts/keybeam/3_yellow/*.png", 				def = "Blue"},
 	{name = "Scratch-Keybeam", 									path = "parts/keybeam/4_scratch/*.png", 			def = "Blue"},
 
-	{name = "Judge : Rows1", 									path = "parts/judge/rows1/*.png", 					def = "Default"},
+	{name = "Judge : Rows1", 									path = "parts/judge/rows1/*.png", 					def = "Default_LightSteel"},
 	{name = "Judge : Rows2 : Perfect", 							path = "parts/judge/rows2/1_pg/*.png", 				def = "x50%_PERFECT_Rounded"},
 	{name = "Judge : Rows2 : Great", 							path = "parts/judge/rows2/2_gr/*.png", 				def = "x50%_GREAT_Rounded"},
 	{name = "Judge : Rows2 : Good",	 							path = "parts/judge/rows2/3_gd/*.png", 				def = "x50%_GOOD_Rounded"},
@@ -1856,17 +1856,17 @@ local function main()
 			{id = "judge-pg", src = "judge_src", x = 0, y = 0, w = 336, h = 672, divy = 6, cycle = 100},
 			{id = "judge-gr", src = "judge_src", x = 0, y = 673, w = 336, h = 224, divy = 2, cycle = 60},
 			{id = "judge-gd", src = "judge_src", x = 0, y = 898, w = 336, h = 224, divy = 2, cycle = 60},
-			{id = "judge-bd", src = "judge_src", x = 337, y = 898, w = 336, h = 224, divy = 2, cycle = 60},
-			{id = "judge-pr", src = "judge_src", x = 674, y = 898, w = 336, h = 224, divy = 2, cycle = 60},
-			{id = "judge-ms", src = "judge_src", x = 0, y = 1123, w = 336, h = 224, divy = 2, cycle = 60}
+			{id = "judge-bd", src = "judge_src", x = 0, y = 1123, w = 336, h = 224, divy = 2, cycle = 60},
+			{id = "judge-pr", src = "judge_src", x = 337, y = 1123, w = 336, h = 224, divy = 2, cycle = 60},
+			{id = "judge-ms", src = "judge_src", x = 674, y = 1123, w = 336, h = 224, divy = 2, cycle = 60}
 		})
 		append_all(skin.value, {
 			{id = "judgenum-pg", src = "judge_src", x = 337, y = 0, w = 800, h = 672, divx = 10, divy = 6, digit = 6, ref = 75, cycle = 100},
-			{id = "judgenum-gr", src = "judge_src", x = 337, y = 673, w = 800, h = 224, divx = 10, divy = 2, digit = 2, ref = 75, cycle = 60},
-			{id = "judgenum-gd", src = "judge_src", x = 337, y = 673, w = 800, h = 224, divx = 10, divy = 2, digit = 2, ref = 75, cycle = 60},
-			{id = "judgenum-bd", src = "judge_src", x = 337, y = 673, w = 800, h = 224, divx = 10, divy = 2, digit = 2, ref = 75, cycle = 60},
-			{id = "judgenum-pr", src = "judge_src", x = 337, y = 673, w = 800, h = 224, divx = 10, divy = 2, digit = 2, ref = 75, cycle = 60},
-			{id = "judgenum-ms", src = "judge_src", x = 337, y = 673, w = 800, h = 224, divx = 10, divy = 2, digit = 2, ref = 75, cycle = 60}
+			{id = "judgenum-gr", src = "judge_src", x = 337, y = 673, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+			{id = "judgenum-gd", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+			{id = "judgenum-bd", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+			{id = "judgenum-pr", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+			{id = "judgenum-ms", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
 		})
 		do
 			local id = {"-pg", "-gr", "-gd", "-bd", "-pr", "-ms"}
@@ -2630,7 +2630,7 @@ local function main()
 						{time = 500}
 					}},
 					{id = "slms-num", offsets = offsets, op = {-241}, loop = -1, timer = 46, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + 250 + (-170), y = GEOMETRY.FAST_SLOW_Y, w = 34, h = 35, a = 64, acc = 2},
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + 250 + (-140), y = GEOMETRY.FAST_SLOW_Y, w = 34, h = 35, a = 64, acc = 2},
 						{time = 500}
 					}}
 				})
@@ -2645,7 +2645,7 @@ local function main()
 					{id = "slms-num", offsets = offsets, loop = -1, timer = 46, draw = function()
 						return predicateSlow()
 					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 250 + (-170), y = GEOMETRY.FAST_SLOW_Y, w = 34, h = 35, a = 64, acc = 2},
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 250 + (-140), y = GEOMETRY.FAST_SLOW_Y, w = 34, h = 35, a = 64, acc = 2},
 						{time = 500}
 					}}
 				})
@@ -2695,7 +2695,7 @@ local function main()
 						return true
 					end
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 334 + (-204), y = GEOMETRY.TARGET_Y, w = 34, h = 35, a = 64, acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 334 + (-170), y = GEOMETRY.TARGET_Y, w = 34, h = 35, a = 64, acc = 2}
 				}}
 			})
 		elseif isTarget2On() and isTargetRank() then
@@ -2712,7 +2712,7 @@ local function main()
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-334), y = GEOMETRY.TARGET_Y, w = 34, h = 35, a = 64, acc = 2}
 				}},
 				{id = "diff-target", offsets = offsets, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 334 + (-204), y = GEOMETRY.TARGET_Y, w = 34, h = 35, a = 64, acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 334 + (-170), y = GEOMETRY.TARGET_Y, w = 34, h = 35, a = 64, acc = 2}
 				}}
 			})
 		end
@@ -3063,12 +3063,12 @@ local function main()
 		-- リプレイ表示
 		-- replay
 		{id = "replay", offsets = {3, JUDGELINE_POS}, op = {84}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-146), y = GEOMETRY.LANE_Y + 70, w = 258, h = 35}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-129), y = GEOMETRY.LANE_Y + 70, w = 258, h = 35}
 		}},
 		-- オートプレイ表示
 		-- auto play
 		{id = "auto", offsets = {3, JUDGELINE_POS}, op = {33}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-187), y = GEOMETRY.LANE_Y + 70, w = 348, h = 35}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-174), y = GEOMETRY.LANE_Y + 70, w = 348, h = 35}
 		}},
 		-- 曲終了表示
 		-- end of note
@@ -3077,10 +3077,10 @@ local function main()
 				return true
 			end
 		end,dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-212), y = GEOMETRY.LANE_Y + 520, w = 390, h = 35, r = 64, g = 64, b = 64}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.LANE_Y + 520, w = 390, h = 35, r = 64, g = 64, b = 64}
 		}},
 		{id = "eon", timer = 143, offsets = {3, 4}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-212), y = GEOMETRY.LANE_Y + 520, w = 390, h = 35}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.LANE_Y + 520, w = 390, h = 35}
 		}}
 	})
 

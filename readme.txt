@@ -2,7 +2,7 @@
 "Rm-skin"
 ver 0.2.1
 Full HD (1920x1080) Playskin-5,7,9key for beatoraja
-(Last updated:04/21/2024)
+(Last updated:04/23/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -24,7 +24,7 @@ In creating this skin, I have used code descriptions and images from other autho
 I would like to express our gratitude to the following.
 
 Dear 4228, "Rogan".
-	"play7main.lua" for this skin was produced based on "play7main.lua" for "Rogan".
+	"play.lua" for this skin was produced based on "play7main.lua" for "Rogan".
 	Thank you very much.
 
 Dear むにむにおじさん, "m-select".
@@ -314,3 +314,7 @@ Update History
 
 ---- ver 0.2.1
 
+04232024
+	- Fixed a bug where the combo display would not display properly when using the "1 Rows" option
+	- Adjusted Judge file shape and color, also added some patterns
+	- Update readme.txt
