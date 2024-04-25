@@ -2,7 +2,7 @@
 "Rm-skin"
 ver 0.2.1
 Full HD (1920x1080) Playskin-5,7,9key for beatoraja
-(Last updated:04/23/2024)
+(Last updated:04/25/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -10,12 +10,7 @@ This skin is a simple dark skin in "R-skin" format.
 To use the Rm-skin folder, place the Rm-skin-main folder as shown below.
 "beatorajaX.X.X/skin/Rm-skin..." (or "beatorajaX.X.X/skin/Rm-skin-main...")
 
-Also, as a reminder, the initial transparency values for some items are set to "0".
-I apologize for the inconvenience, but in the "beatoraja X.X.X configuration" skin tab,
-please enter any value for "a" in the field labeled "Transparence".
-Please see the included "User's manual.pdf" for details.
-
-In addition, I assume no responsibility for any malfunction of equipment, facilities, etc. 
+I assume no responsibility for any malfunction of equipment, facilities, etc. 
 caused by the use of this skin.
 
 -------------------------------------
@@ -317,4 +312,9 @@ Update History
 04232024
 	- Fixed a bug where the combo display would not display properly when using the "1 Rows" option
 	- Adjusted Judge file shape and color, also added some patterns
+	- Update readme.txt
+
+04252024
+	- Added "Lane Align" option
+	- Changed to a mechanism to load image files of keybeams separately for each key
 	- Update readme.txt
