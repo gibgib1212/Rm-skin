@@ -318,3 +318,7 @@ Update History
 	- Added "Lane Align" option
 	- Changed to a mechanism to load image files of keybeams separately for each key
 	- Update readme.txt
+
+04282024
+	- Formalized "1Rows" option
+	- Update readme.txt

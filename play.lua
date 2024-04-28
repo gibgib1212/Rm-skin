@@ -29,7 +29,8 @@ local NOTES_WIDTH_CUSTOM = 					optionCount()
 
 local JUDGE_ROWS_1_ST =						optionCount()
 local JUDGE_ROWS_1_CL =						optionCount()
-local JUDGE_ROWS_2 =						optionCount()
+local JUDGE_ROWS_2_FR =						optionCount()
+local JUDGE_ROWS_2_NR =						optionCount()
 
 local NOTES_5KEY_ALIGN_RL = 				optionCount()
 local NOTES_5KEY_ALIGN_CENTER = 			optionCount()
@@ -48,16 +49,14 @@ local KEYBEAM_DISPLAY_FAST = 				optionCount()
 local KEYBEAM_DISPLAY_SLOW = 				optionCount()
 
 local KEYBEAM_HEIGHT_MULUTIPLIER_x100 =		optionCount()
-local KEYBEAM_HEIGHT_MULUTIPLIER_x80 =		optionCount()
-local KEYBEAM_HEIGHT_MULUTIPLIER_x60 =		optionCount()
-local KEYBEAM_HEIGHT_MULUTIPLIER_x40 =		optionCount()
-local KEYBEAM_HEIGHT_MULUTIPLIER_x20 =		optionCount()
+local KEYBEAM_HEIGHT_MULUTIPLIER_x75 =		optionCount()
+local KEYBEAM_HEIGHT_MULUTIPLIER_x50 =		optionCount()
+local KEYBEAM_HEIGHT_MULUTIPLIER_x25 =		optionCount()
 
 local KEYBEAM_ALPHA_MULUTIPLIER_x100 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x80 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x60 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x40 =		optionCount()
-local KEYBEAM_ALPHA_MULUTIPLIER_x20 =		optionCount()
+local KEYBEAM_ALPHA_MULUTIPLIER_x75 =		optionCount()
+local KEYBEAM_ALPHA_MULUTIPLIER_x50 =		optionCount()
+local KEYBEAM_ALPHA_MULUTIPLIER_x25 =		optionCount()
 
 local TARGET_OFF = 							optionCount()
 local TARGET_MYBEST = 						optionCount()
@@ -92,7 +91,6 @@ local HI_SPEED_RELATIVE =					optionCount()
 local HI_SPEED_ABSOLUTE =					optionCount()
 
 local MASCOT_STOP = 						optionCount()
-local MASCOT_JUMP = 						optionCount()
 local MASCOT_FLOAT = 						optionCount()
 
 local OFFSET = 59
@@ -377,9 +375,9 @@ local original_property = {
 		{name = "Custom", 								op = NOTES_WIDTH_CUSTOM}
 	}},
 	{name = "Notes 5Key Align", 						item = {
-		{name = "Align Right / Left", 					op = NOTES_5KEY_ALIGN_RL},
+		{name = "Right / Left", 						op = NOTES_5KEY_ALIGN_RL},
 		{name = "Center", 								op = NOTES_5KEY_ALIGN_CENTER},
-		{name = "Enlarge (拡大)", 						op = NOTES_5KEY_ALIGN_ENLARGE}
+		{name = "Enlarge", 								op = NOTES_5KEY_ALIGN_ENLARGE}
 	}},
 	{name = "Notes Height", 							item = {
 		{name = "60 pixel", 							op = NOTES_HEIGHT_60_PIX},
@@ -394,7 +392,8 @@ local original_property = {
 	{name = "Judge Display Rows", 						item = {
 		{name = "1 Rows : Standard", 					op = JUDGE_ROWS_1_ST},
 		{name = "1 Rows : Classic", 					op = JUDGE_ROWS_1_CL},
-		{name = "2 Rows", 								op = JUDGE_ROWS_2}
+		{name = "2 Rows : Far", 						op = JUDGE_ROWS_2_FR},
+		{name = "2 Rows : Near", 						op = JUDGE_ROWS_2_NR}
 	}},
 	{name = "Keybeam Display", 							item = {
 		{name = "Fast", 								op = KEYBEAM_DISPLAY_FAST},
@@ -402,17 +401,15 @@ local original_property = {
 	}},
 	{name = "Keybeam Height Multiplier", 				item = {
 		{name = "100%", 								op = KEYBEAM_HEIGHT_MULUTIPLIER_x100},
-		{name = "80%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x80},
-		{name = "60%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x60},
-		{name = "40%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x40},
-		{name = "20%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x20}
+		{name = "75%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x75},
+		{name = "50%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x50},
+		{name = "25%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x25}
 	}},
 	{name = "Keybeam Alpha Multiplier", 				item = {
 		{name = "100%", 								op = KEYBEAM_ALPHA_MULUTIPLIER_x100},
-		{name = "80%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x80},
-		{name = "60%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x60},
-		{name = "40%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x40},
-		{name = "20%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x20}
+		{name = "75%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x75},
+		{name = "50%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x50},
+		{name = "25%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x25}
 	}},
 	{name = "Target", 									item = {
 		{name = "Off", 									op = TARGET_OFF},
@@ -423,25 +420,25 @@ local original_property = {
 		{name = "Off", 									op = TARGET2_OFF},
 		{name = "On", 									op = TARGET2_ON}
 	}},
+	{name = "Timing Visualizer", 						item = {
+		{name = "Off", 									op = TIMINGVISUALIZER_OFF},
+		{name = "On", 									op = TIMINGVISUALIZER_ON}
+	}},
 	{name = "Score Rate", 								item = {
 		{name = "Off", 									op = SCORE_RATE_OFF},
 		{name = "On", 									op = SCORE_RATE_ON}
 	}},
-	{name = "Fast / Slow", 								item = {
+	{name = "Fast/Slow Type", 							item = {
 		{name = "Sign : Center", 						op = FAST_SLOW_CENTER},
 		{name = "Sign : Right / Left",	 				op = FAST_SLOW_RL},
 		{name = "+-MS : Center", 						op = FAST_SLOW_MS_CENTER},
 		{name = "+-MS : Right / Left",					op = FAST_SLOW_MS_RL}
 	}},
-	{name = "Timing Visualizer", 						item = {
-		{name = "Off", 									op = TIMINGVISUALIZER_OFF},
-		{name = "On", 									op = TIMINGVISUALIZER_ON}
-	}},
-	{name = "F/S Count on the Lane",					item = {
+	{name = "Fast/Slow Counter",					item = {
 		{name = "Off", 									op = FAST_SLOW_COUNT_OFF},
 		{name = "On", 									op = FAST_SLOW_COUNT_ON}
 	}},
-	{name = "F/S Threshold (しきい値)",					item = {
+	{name = "Fast/Slow Threshold",							item = {
 		{name = "Default", 								op = FAST_SLOW_THRESHOLD_DEFAULT},
 		{name = "Custom", 								op = FAST_SLOW_THRESHOLD_CUSTOM}
 	}},
@@ -459,7 +456,6 @@ local original_property = {
 	}},
 	{name = "Mascot Display", 							item = {
 		{name = "Stop", 								op = MASCOT_STOP},
-		{name = "Jump", 								op = MASCOT_JUMP},
 		{name = "Float", 								op = MASCOT_FLOAT}
 	}}
 }
@@ -887,35 +883,32 @@ local function isNotesHeightCustom() 	return skin_config.option["Notes Height"] 
 
 local function isJudgeRows1St() 		return skin_config.option["Judge Display Rows"] == 			JUDGE_ROWS_1_ST end
 local function isJudgeRows1Cl() 		return skin_config.option["Judge Display Rows"] == 			JUDGE_ROWS_1_CL end
+local function isJudgeRows2Fr() 		return skin_config.option["Judge Display Rows"] == 			JUDGE_ROWS_2_FR end
 
 local function isKeybeamFast() 			return skin_config.option["Keybeam Display"] == 			KEYBEAM_DISPLAY_FAST end
 
 local function isKeybeamHeight_x100() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x100 end
-local function isKeybeamHeight_x80() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x80 end
-local function isKeybeamHeight_x60() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x60 end
-local function isKeybeamHeight_x40() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x40 end
+local function isKeybeamHeight_x75() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x75 end
+local function isKeybeamHeight_x50() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x50 end
 
 local function isKeybeamAlpha_x100() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x100 end
-local function isKeybeamAlpha_x80() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x80 end
-local function isKeybeamAlpha_x60() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x60 end
-local function isKeybeamAlpha_x40() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x40 end
+local function isKeybeamAlpha_x75() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x75 end
+local function isKeybeamAlpha_x50() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x50 end
 
 local function isTargetBest() 			return skin_config.option["Target"] == 						TARGET_MYBEST end
 local function isTargetRank() 			return skin_config.option["Target"] == 						TARGET_TARGET end
 local function isTarget2On() 			return skin_config.option["Target2 (Left)"] == 				TARGET2_ON end
 
+local function isTimingVisualizerOn() 	return skin_config.option["Timing Visualizer"] == 			TIMINGVISUALIZER_ON end
 local function isScoreRateOn() 			return skin_config.option["Score Rate"] == 					SCORE_RATE_ON end
 
-local function isFastSlowCenter() 		return skin_config.option["Fast/Slow"] == 					FAST_SLOW_CENTER end
-local function isFastSlowRnL() 			return skin_config.option["Fast/Slow"] == 					FAST_SLOW_RL end
-local function isFastSlowMSCenter() 	return skin_config.option["Fast/Slow"] == 					FAST_SLOW_MS_CENTER end
-local function isFastSlowMSRnL() 		return skin_config.option["Fast/Slow"] == 					FAST_SLOW_MS_RL end
+local function isFastSlowCenter() 		return skin_config.option["Fast/Slow Type"] == 				FAST_SLOW_CENTER end
+local function isFastSlowRnL() 			return skin_config.option["Fast/Slow Type"] == 				FAST_SLOW_RL end
+local function isFastSlowMSCenter() 	return skin_config.option["Fast/Slow Type"] == 				FAST_SLOW_MS_CENTER end
+local function isFastSlowMSRnL() 		return skin_config.option["Fast/Slow Type"] == 				FAST_SLOW_MS_RL end
 
-local function isTimingVisualizerOn() 	return skin_config.option["Timing Visualizer"] == 			TIMINGVISUALIZER_ON end
-
-local function isFSCountOnPlayOn() 		return skin_config.option["F/S Count on the Lane"] == 		FAST_SLOW_COUNT_ON end
-
-local function isFSThresholdDef() 		return skin_config.option["F/S Threshold (しきい値)"] == 	FAST_SLOW_THRESHOLD_DEFAULT end
+local function isFastSlowCounterOn() 	return skin_config.option["Fast/Slow Counter"] == 			FAST_SLOW_COUNT_ON end
+local function isFastSlowThresholdDef() return skin_config.option["Fast/Slow Threshold"] == 		FAST_SLOW_THRESHOLD_DEFAULT end
 
 local function isBombUnderTheGaugeOn() 	return skin_config.option["Bomb Under the Gauge"] == 		BOMB_UNDER_GAUGE_ON end
 local function isBombPropertyCustom()	return skin_config.option["Bomb Property"] == 				BOMB_PROPERTY_CUSTOM end
@@ -923,7 +916,6 @@ local function isBombPropertyCustom()	return skin_config.option["Bomb Property"]
 local function isHiSpeedRelative()		return skin_config.option["Hi-Speed Type"] == 				HI_SPEED_RELATIVE end
 
 local function isMascotStop() 			return skin_config.option["Mascot Display"] == 				MASCOT_STOP end
-local function isMascotJump() 			return skin_config.option["Mascot Display"] == 				MASCOT_JUMP end
 
 local function main()
 
@@ -1142,43 +1134,43 @@ local function main()
 
 	local function setDistanceWidth()
 		if isLaneCenterPosKey() and 	is7key() then
-			return math.floor(notesInfo.Ot_width * 3.5)
+			return math.floor(notesInfo.Ot_width * 3.5 * 0.75)
 		elseif isLaneCenterPosKey() and is5key() and not is5keyAlignEnlarge() and 	isNotesWidthTemplate() then
-			return math.floor(notesInfo.Ot_width * 3.5)
+			return math.floor(notesInfo.Ot_width * 3.5 * 0.75)
 		elseif isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and 		isNotesWidthTemplate() then
-			return math.floor(notesInfo.Ot_width * 2.5)
+			return math.floor(notesInfo.Ot_width * 2.5 * 0.75)
 		elseif isLaneCenterPosKey() and is5key() and 								isNotesWidthCustom() then
-			return math.floor(notesInfo.Ot_width * 2.5)
+			return math.floor(notesInfo.Ot_width * 2.5 * 0.75)
 		else
-			return 401
+			return 	300		-- 401 * 0.75 = 300.75
 		end
 	end
 
 	local function setJudgePos()
 		if isJudgeRows1St() then
-			return 208
+			return 198
 		elseif isJudgeRows1Cl() then
-			return 212
+			return 206
+		elseif isJudgeRows2Fr() then
+			return 260
 		else
 			return 780
 		end
 	end
 
-	local function setOutputPos()
-		if isJudgeRows1St() then
-			return 330
-		elseif isJudgeRows1Cl() then
-			return 321
+	local function setTracerPos()
+		if isJudgeRows1St() or isJudgeRows1Cl() then
+			return 320
 		else
-			return 745
+			return 544
 		end
 	end
 
 	local function setDetailPos()
 		if isJudgeRows1St() or isJudgeRows1Cl() then
-			return 370
+			return 167
 		else
-			return 270
+			return 350
 		end
 	end
 
@@ -1209,28 +1201,24 @@ local function main()
 	local function getKeybeamHeight()
 		if isKeybeamHeight_x100() then
 			return 1
-		elseif isKeybeamHeight_x80() then
-			return 0.8
-		elseif isKeybeamHeight_x60() then
-			return 0.6
-		elseif isKeybeamHeight_x40() then
-			return 0.4
+		elseif isKeybeamHeight_x75() then
+			return 0.75
+		elseif isKeybeamHeight_x50() then
+			return 0.5
 		else
-			return 0.2
+			return 0.25
 		end
 	end
 
 	local function getKeybeamAlpha(alpha)
 		if isKeybeamAlpha_x100() then
 			return math.floor(1 * alpha)
-		elseif isKeybeamAlpha_x80() then
-			return math.floor(0.8 * alpha)
-		elseif isKeybeamAlpha_x60() then
-			return math.floor(0.6 * alpha)
-		elseif isKeybeamAlpha_x40() then
-			return math.floor(0.4 * alpha)
+		elseif isKeybeamAlpha_x75() then
+			return math.floor(0.75 * alpha)
+		elseif isKeybeamAlpha_x50() then
+			return math.floor(0.5 * alpha)
 		else
-			return math.floor(0.2 * alpha)
+			return math.floor(0.25 * alpha)
 		end
 	end
 
@@ -1283,7 +1271,7 @@ local function main()
 	end
 
 	local FS_THRESHOLD
-	if not isFSThresholdDef() then
+	if not isFastSlowThresholdDef() then
 		local lua_path = skin_config.get_path("CUSTOMIZE.lua")
 		local status, result = pcall(function()
 			return dofile(lua_path).load("CUSTOM_FAST_SLOW_THRESHOLD")
@@ -1361,9 +1349,9 @@ local function main()
 		LANE_W = 		802,
 		LANE_H = 		1080,
 		LANE_CENTER = 	setCenterPos(),
-		LANE_DISTANCE = setDistanceWidth() - 125,
+		LANE_DISTANCE = setDistanceWidth(),
 		JUDGE_Y = 		setJudgePos(),
-		OUTPUT_Y =		setOutputPos(),
+		TRACER_Y =		setTracerPos(),
 		DETAIL_Y =		setDetailPos(),
 		BGA_X = 		68,
 		BGA_Y = 		465,
@@ -1744,7 +1732,13 @@ local function main()
 		---- # in playing
 		{id = "inplay-title", 		font = 2, size = 42, ref = 12, overflow = 1, align = getTitleAlign()},
 		{id = "inplay-artist", 		font = 1, size = 26, ref = 16, overflow = 1, align = getTitleAlign()},
-		{id = "inplay-table", 		font = 0, size = 26, ref = 1003, overflow = 1, align = getTitleAlign()}
+		{id = "inplay-table", 		font = 0, size = 26, overflow = 1, align = getTitleAlign(), value = function()
+			if main_state.text(1003) == "" then
+				return "LEVEL " .. tostring(main_state.number(96))
+			else
+				return main_state.text(1003)
+			end
+		end}
 	}
 	skin.slider = {
 		---- # play slider
@@ -1969,66 +1963,87 @@ local function main()
 	local _numbers = {}
 	local _shift
 	if isJudgeRows1St() then
-		table.insert(skin.source, {id = "judge_src", path = "parts/judge/rows1/standard/*.png"})
-		append_all(skin.image, {
-			{id = "judge-pg", src = "judge_src", x = 0, y = 0, w = 336, h = 672, divy = 6, cycle = 100},
-			{id = "judge-gr", src = "judge_src", x = 0, y = 673, w = 336, h = 224, divy = 2, cycle = 60},
-			{id = "judge-gd", src = "judge_src", x = 0, y = 898, w = 336, h = 224, divy = 2, cycle = 60},
-			{id = "judge-bd", src = "judge_src", x = 0, y = 1123, w = 336, h = 224, divy = 2, cycle = 60},
-			{id = "judge-pr", src = "judge_src", x = 337, y = 1123, w = 336, h = 224, divy = 2, cycle = 60},
-			{id = "judge-ms", src = "judge_src", x = 674, y = 1123, w = 336, h = 224, divy = 2, cycle = 60}
-		})
-		append_all(skin.value, {
-			{id = "judgenum-pg", src = "judge_src", x = 337, y = 0, w = 800, h = 672, divx = 10, divy = 6, digit = 6, ref = 75, cycle = 100},
-			{id = "judgenum-gr", src = "judge_src", x = 337, y = 673, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-			{id = "judgenum-gd", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-			{id = "judgenum-bd", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-			{id = "judgenum-pr", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-			{id = "judgenum-ms", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
-		})
 		do
+			local judge_w = {336, 336, 272, 208, 272, 244}
+			local judge_between = 26
+			table.insert(skin.source, {id = "judge_src", path = "parts/judge/rows1/standard/*.png"})
+			append_all(skin.image, {
+				{id = "judge-pg", src = "judge_src", x = 0, y = 0, w = judge_w[1], h = 672, divy = 6, cycle = 100},
+				{id = "judge-gr", src = "judge_src", x = 0, y = 673, w = judge_w[2], h = 224, divy = 2, cycle = 60},
+				{id = "judge-gd", src = "judge_src", x = 0, y = 898, w = judge_w[3], h = 224, divy = 2, cycle = 60},
+				{id = "judge-bd", src = "judge_src", x = 0, y = 1123, w = judge_w[4], h = 224, divy = 2, cycle = 60},
+				{id = "judge-pr", src = "judge_src", x = 209, y = 1123, w = judge_w[5], h = 224, divy = 2, cycle = 60},
+				{id = "judge-ms", src = "judge_src", x = 482, y = 1123, w = judge_w[6], h = 224, divy = 2, cycle = 60}
+			})
+			append_all(skin.value, {
+				{id = "judgenum-pg", src = "judge_src", x = 337, y = 0, w = 800, h = 672, divx = 10, divy = 6, digit = 6, ref = 75, cycle = 100},
+				{id = "judgenum-gr", src = "judge_src", x = 337, y = 673, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-gd", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-bd", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-pr", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-ms", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
+			})
 			local id = {"-pg", "-gr", "-gd", "-bd", "-pr", "-ms"}
 			local offsets = {JUDGE_PG_ALPHA, JUDGE_GR_ALPHA, JUDGE_GD_ALPHA, JUDGE_BD_ALPHA, JUDGE_PR_ALPHA, JUDGE_MS_ALPHA}
 			for i in ipairs(id) do
-				_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-182), y = GEOMETRY.JUDGE_Y, w = 336, h = 112, a = 64, acc = 2},
-					{time = 500}
-				}}
+				if i <= 3 then
+					-- コンボ数を伴う判定文字(PGからGD)のx座標を求める式は、「(判定文字の幅 + 判定文字とコンボ数との間隔) / 2」
+					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - ((judge_w[i] + judge_between) / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 112, a = 64, acc = 2},
+						{time = 500}
+					}}
+				else
+					-- コンボ数を伴わない判定文字(BDからMS)のx座標を求める式は、「判定文字の幅 / 2」
+					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 112, a = 64, acc = 2},
+						{time = 500}
+					}}
+				end
+				-- コンボ数のx座標を求める式は、「判定文字の幅 + 判定文字とコンボ数との間隔」
 				_numbers[i] = {id = "judgenum" .. id[i], loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-					{time = 0, x = 364, y = 0, w = 80, h = 112, a = 64, acc = 2},
+					{time = 0, x = judge_w[i] + judge_between, y = 0, w = 80, h = 112, a = 64, acc = 2},
 					{time = 500}
 				}}
 			end
 		end
 		_shift = true
 	elseif isJudgeRows1Cl() then
-		table.insert(skin.source, {id = "judge_src", path = "parts/judge/rows1/classic/*.png"})
-		append_all(skin.image, {
-			{id = "judge-pg", src = "judge_src", x = 0, y = 0, w = 328, h = 624, divy = 6, cycle = 100},
-			{id = "judge-gr", src = "judge_src", x = 0, y = 625, w = 328, h = 208, divy = 2, cycle = 60},
-			{id = "judge-gd", src = "judge_src", x = 0, y = 834, w = 328, h = 208, divy = 2, cycle = 60},
-			{id = "judge-bd", src = "judge_src", x = 0, y = 1043, w = 328, h = 208, divy = 2, cycle = 60},
-			{id = "judge-pr", src = "judge_src", x = 329, y = 1043, w = 328, h = 208, divy = 2, cycle = 60},
-			{id = "judge-ms", src = "judge_src", x = 658, y = 1043, w = 328, h = 208, divy = 2, cycle = 60}
-		})
-		append_all(skin.value, {
-			{id = "judgenum-pg", src = "judge_src", x = 329, y = 0, w = 720, h = 624, divx = 10, divy = 6, digit = 6, ref = 75, cycle = 100},
-			{id = "judgenum-gr", src = "judge_src", x = 329, y = 625, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-			{id = "judgenum-gd", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-			{id = "judgenum-bd", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-			{id = "judgenum-pr", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-			{id = "judgenum-ms", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
-		})
 		do
+			local judge_w = {328, 328, 264, 200, 264, 236}
+			local judge_between = 18
+			table.insert(skin.source, {id = "judge_src", path = "parts/judge/rows1/classic/*.png"})
+			append_all(skin.image, {
+				{id = "judge-pg", src = "judge_src", x = 0, y = 0, w = judge_w[1], h = 624, divy = 6, cycle = 100},
+				{id = "judge-gr", src = "judge_src", x = 0, y = 625, w = judge_w[2], h = 208, divy = 2, cycle = 60},
+				{id = "judge-gd", src = "judge_src", x = 0, y = 834, w = judge_w[3], h = 208, divy = 2, cycle = 60},
+				{id = "judge-bd", src = "judge_src", x = 0, y = 1043, w = judge_w[4], h = 208, divy = 2, cycle = 60},
+				{id = "judge-pr", src = "judge_src", x = 201, y = 1043, w = judge_w[5], h = 208, divy = 2, cycle = 60},
+				{id = "judge-ms", src = "judge_src", x = 466, y = 1043, w = judge_w[6], h = 208, divy = 2, cycle = 60}
+			})
+			append_all(skin.value, {
+				{id = "judgenum-pg", src = "judge_src", x = 329, y = 0, w = 720, h = 624, divx = 10, divy = 6, digit = 6, ref = 75, cycle = 100},
+				{id = "judgenum-gr", src = "judge_src", x = 329, y = 625, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-gd", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-bd", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-pr", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-ms", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
+			})
 			local id = {"-pg", "-gr", "-gd", "-bd", "-pr", "-ms"}
 			local offsets = {JUDGE_PG_ALPHA, JUDGE_GR_ALPHA, JUDGE_GD_ALPHA, JUDGE_BD_ALPHA, JUDGE_PR_ALPHA, JUDGE_MS_ALPHA}
 			for i in ipairs(id) do
-				_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-172), y = GEOMETRY.JUDGE_Y, w = 328, h = 104, a = 64, acc = 2},
-					{time = 500}
-				}}
+				if i <= 3 then
+					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - ((judge_w[i] + judge_between) / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 104, a = 64, acc = 2},
+						{time = 500}
+					}}
+				else
+					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 104, a = 64, acc = 2},
+						{time = 500}
+					}}
+				end
 				_numbers[i] = {id = "judgenum" .. id[i], loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-					{time = 0, x = 344, y = 0, w = 72, h = 104, a = 64, acc = 2},
+					{time = 0, x = judge_w[i] + judge_between, y = 0, w = 72, h = 104, a = 64, acc = 2},
 					{time = 500}
 				}}
 			end
@@ -2045,37 +2060,42 @@ local function main()
 			{id = "judgenum_src", 	path = "parts/judgenum/*.png"}
 		})
 		append_all(skin.image, {
-			{id = "judge-pg", src = "judge_pg_src", x = 0, y = 0, w = 660, h = 120},
-			{id = "judge-gr", src = "judge_gr_src", x = 0, y = 0, w = 660, h = 120},
-			{id = "judge-gd", src = "judge_gd_src", x = 0, y = 0, w = 660, h = 120},
-			{id = "judge-bd", src = "judge_bd_src", x = 0, y = 0, w = 660, h = 120},
-			{id = "judge-pr", src = "judge_pr_src", x = 0, y = 0, w = 660, h = 120},
-			{id = "judge-ms", src = "judge_ms_src", x = 0, y = 0, w = 660, h = 120}
+			{id = "judge-pg", src = "judge_pg_src", x = 0, y = 0, w = 660, h = 720, divy = 6, cycle = 100},
+			{id = "judge-gr", src = "judge_gr_src", x = 0, y = 0, w = 660, h = 240, divy = 2, cycle = 60},
+			{id = "judge-gd", src = "judge_gd_src", x = 0, y = 0, w = 660, h = 240, divy = 2, cycle = 60},
+			{id = "judge-bd", src = "judge_bd_src", x = 0, y = 0, w = 660, h = 240, divy = 2, cycle = 60},
+			{id = "judge-pr", src = "judge_pr_src", x = 0, y = 0, w = 660, h = 240, divy = 2, cycle = 60},
+			{id = "judge-ms", src = "judge_ms_src", x = 0, y = 0, w = 660, h = 240, divy = 2, cycle = 60}
 		})
 		table.insert(skin.value, {id = "judge-num", src = "judgenum_src", x = 0, y = 0, w = 540, h = 100, divx = 10, digit = 6, ref = 105, align = 2})
 		do
 			local id = {"judge-pg", "judge-gr", "judge-gd", "judge-bd", "judge-pr", "judge-ms"}
 			local offsets = {JUDGE_PG_ALPHA, JUDGE_GR_ALPHA, JUDGE_GD_ALPHA, JUDGE_BD_ALPHA, JUDGE_PR_ALPHA, JUDGE_MS_ALPHA}
+			local combo_y
+			if isJudgeRows2Fr() then
+				combo_y = 676
+			else
+				combo_y = 156
+			end
 			for i in ipairs(id) do
 				_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {4, JUDGE_POS, offsets[i]}, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
-					{time = 3000}
+					{time = 1500}
 				}}
 				_numbers[i] = {id = "judge-num", loop = -1, timer = 46, offsets = {4, JUDGE_NUM_POS_ALPHA}, dst = {
-					{time = 0, x = 330, y = 156, w = 54, h = 100, a = 64, acc = 2},
-					{time = 3000}
+					{time = 0, x = 330, y = combo_y, w = 54, h = 100, a = 64, acc = 2},
+					{time = 1500}
 				}}
 			end
 		end
 		_shift = false
 	end
+
 	skin.judge = {{
 			id = "judge",
 			index = 0,
 			images = _images,
 			numbers = _numbers,
-			-- judgeとcomboを合わせて一つの定義とするか。二段に分ける場合はfalse
-			-- Whether judge and combo together constitute one definition. If dividing into two tiers, false.
 			shift = _shift
 		}}
 	_images, _numbers, _shift = nil, nil, nil
@@ -2183,7 +2203,9 @@ local function main()
 				{id = id[i], src = "info_system_src", x = 838, y = 19 * (i - 1), w = 128, h = 19}
 			)
 			table.insert(skin.imageset,
-				{id = "gauge-op-tx", value = function() return main_state.gauge_type() end, images = { id[1], id[2], id[3], id[4], id[5], id[6], id[7], id[8], id[9] }
+				{id = "gauge-op-tx", value = function()
+					return main_state.gauge_type()
+				end, images = { id[1], id[2], id[3], id[4], id[5], id[6], id[7], id[8], id[9] }
 			})
 		end
 	end
@@ -2216,7 +2238,7 @@ local function main()
 
 	-- F/S しきい値
 	-- F/S Threshold
-	if isFSThresholdDef() then
+	if isFastSlowThresholdDef() then
 		table.insert(skin.destination, {id = "judgetiming-num", dst = {{x = GEOMETRY.INFO_POS + 113, y = 157, w = 15, h = 17}}})
 	else
 		table.insert(skin.image, {id = "threshold-sign", src = "info_system_src", x = 768, y = 145, w = 29, h = 17})
@@ -2305,33 +2327,16 @@ local function main()
 			end, dst = {
 				{x = GEOMETRY.SCORE_POS + GEOMETRY.MASCOT_X, y = GEOMETRY.MASCOT_Y, w = GEOMETRY.MASCOT_W, h = GEOMETRY.MASCOT_H}
 			}})
-		if isMascotJump() then
 			table.insert(skin.destination,
-				{id = "mascot", filter = 1, loop = 0, timer = 140, draw = function()
-					if main_state.timer(143) == main_state.timer_off_value then
-						return true
-					end
-				end, dst = {
-					{time = 0, x = GEOMETRY.SCORE_POS + GEOMETRY.MASCOT_X, 	y = GEOMETRY.MASCOT_Y, w = GEOMETRY.MASCOT_W, 	h = GEOMETRY.MASCOT_H, 			acc = 2},
-					{time = 275, 																							h = GEOMETRY.MASCOT_H + (-6), 	acc = 1},
-					{time = 500, 											y = GEOMETRY.MASCOT_Y + 10, 					h = GEOMETRY.MASCOT_H + 6},
-					{time = 650, 											y = GEOMETRY.MASCOT_Y, 							h = GEOMETRY.MASCOT_H, 			acc = 2},
-					{time = 700, 											y = GEOMETRY.MASCOT_Y, 							h = GEOMETRY.MASCOT_H + (-6), 	acc = 1},
-					{time = 800, 											y = GEOMETRY.MASCOT_Y, 							h = GEOMETRY.MASCOT_H, 			acc = 2},
-					{time = 1000}
-				}})
-		elseif not isMascotJump() then
-			table.insert(skin.destination,
-				{id = "mascot", filter = 1, loop = 0, timer = 140, draw = function()
-					if main_state.timer(143) == main_state.timer_off_value then
-						return true
-					end
-				end, dst = {
-					{time = 0, x = GEOMETRY.SCORE_POS + GEOMETRY.MASCOT_X, 	y = GEOMETRY.MASCOT_Y, w = GEOMETRY.MASCOT_W, h = GEOMETRY.MASCOT_H, acc = 2},
-					{time = 500, 											y = GEOMETRY.MASCOT_Y + 10},
-					{time = 1000, 											y = GEOMETRY.MASCOT_Y}
-				}})
-		end
+			{id = "mascot", filter = 1, loop = 0, timer = 140, draw = function()
+				if main_state.timer(143) == main_state.timer_off_value then
+					return true
+				end
+			end, dst = {
+				{time = 0, x = GEOMETRY.SCORE_POS + GEOMETRY.MASCOT_X, 	y = GEOMETRY.MASCOT_Y, w = GEOMETRY.MASCOT_W, h = GEOMETRY.MASCOT_H, acc = 2},
+				{time = 500, 											y = GEOMETRY.MASCOT_Y + 10},
+				{time = 1000, 											y = GEOMETRY.MASCOT_Y}
+			}})
 	end
 
 	-- notes graph
@@ -2686,249 +2691,264 @@ local function main()
 			{time = 1000, a = 255}
 		}})
 
-
 	-- judge
 	table.insert(skin.destination,{id = "judge"})
 
 	-- Fast/Slow
-	local function processFastSlow(offsets)
-		if not isFastSlowMSCenter() and not isFastSlowMSRnL() then
-			append_all(skin.image, {
-				{id = "fast", src = "fs_char_src", x = 0, y = 0, w = 148, h = 35},
-				{id = "slow", src = "fs_char_src", x = 0, y = 36, w = 148, h = 35}
+	if not isFastSlowMSCenter() and not isFastSlowMSRnL() then
+		append_all(skin.image, {
+			{id = "fast", src = "fs_char_src", x = 0, y = 0, w = 148, h = 35},
+			{id = "slow", src = "fs_char_src", x = 0, y = 36, w = 148, h = 35}
+		})
+		if isFastSlowThresholdDef() and isFastSlowCenter() then
+			append_all(skin.destination, {
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {1242}, loop = -1, timer = 46, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}},
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {1243}, loop = -1, timer = 46, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}}
 			})
-			if isFSThresholdDef() and isFastSlowCenter() then
-				append_all(skin.destination, {
-					{id = "fast", offsets = offsets, op = {1242}, loop = -1, timer = 46, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.OUTPUT_Y, w = 148, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}},
-					{id = "slow", offsets = offsets, op = {1243}, loop = -1, timer = 46, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.OUTPUT_Y, w = 148, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}}
-				})
-			elseif isFSThresholdDef() and isFastSlowRnL() then
-				append_all(skin.destination, {
-					{id = "fast", offsets = offsets, op = {1242}, loop = -1, timer = 46, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.OUTPUT_Y, w = 148, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}},
-					{id = "slow", offsets = offsets, op = {1243}, loop = -1, timer = 46, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.OUTPUT_Y, w = 148, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}}
-				})
-			elseif not isFSThresholdDef() and isFastSlowCenter() then
-				append_all(skin.destination, {
-					{id = "fast", offsets = offsets, loop = -1, timer = 46, draw = function()
-						return predicateFast()
-					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.OUTPUT_Y, w = 148, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}},
-					{id = "slow", offsets = offsets, loop = -1, timer = 46, draw = function()
-						return predicateSlow()
-					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.OUTPUT_Y, w = 148, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}}
-				})
-			elseif not isFSThresholdDef() and isFastSlowRnL() then
-				append_all(skin.destination, {
-					{id = "fast", offsets = offsets, loop = -1, timer = 46, draw = function()
-						return predicateFast()
-					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.OUTPUT_Y, w = 148, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}},
-					{id = "slow", offsets = offsets, loop = -1, timer = 46, draw = function()
-						return predicateSlow()
-					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.OUTPUT_Y, w = 148, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}}
-				})
-			end
-		elseif isFastSlowMSCenter() then
-			table.insert(skin.value, {id = "fsms-num", src = "fs_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 2})
-			if isFSThresholdDef() then
-				table.insert(skin.destination,	{
-					id = "fsms-num", offsets = offsets, op = {-241}, loop = -1, timer = 46, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}
-				})
-			elseif not isFSThresholdDef() then
-				table.insert(skin.destination,	{
-					id = "fsms-num", offsets = offsets, loop = -1, timer = 46, draw = function()
-						return predicateFast() or predicateSlow()
-					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}
-				})
-			end
-		elseif isFastSlowMSRnL() then
-			append_all(skin.value, {
-				{id = "fsms-num", src = "fs_num_src", x = 0, y = 71, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 1},
-				{id = "slms-num", src = "fs_num_src", x = 0, y = 142, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 0}
+		elseif isFastSlowThresholdDef() and isFastSlowRnL() then
+			append_all(skin.destination, {
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {1242}, loop = -1, timer = 46, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}},
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {1243}, loop = -1, timer = 46, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}}
 			})
-			if isFSThresholdDef() then
-				append_all(skin.destination, {
-					{id = "fsms-num", offsets = offsets, op = {-241}, loop = -1, timer = 46, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}},
-					{id = "slms-num", offsets = offsets, op = {-241}, loop = -1, timer = 46, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}}
-				})
-			elseif not isFSThresholdDef() then
-				append_all(skin.destination, {
-					{id = "fsms-num", offsets = offsets, loop = -1, timer = 46, draw = function()
-						return predicateFast()
-					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}},
-					{id = "slms-num", offsets = offsets, loop = -1, timer = 46, draw = function()
-						return predicateSlow()
-					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2},
-						{time = 500}
-					}}
-				})
-			end
+		elseif not isFastSlowThresholdDef() and isFastSlowCenter() then
+			append_all(skin.destination, {
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return predicateFast()
+				end, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}},
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return predicateSlow()
+				end, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}}
+			})
+		elseif not isFastSlowThresholdDef() and isFastSlowRnL() then
+			append_all(skin.destination, {
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return predicateFast()
+				end, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}},
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return predicateSlow()
+				end, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}}
+			})
+		end
+	elseif isFastSlowMSCenter() then
+		table.insert(skin.value, {id = "fsms-num", src = "fs_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 2})
+		if isFastSlowThresholdDef() then
+			table.insert(skin.destination,	{
+				id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}
+			})
+		elseif not isFastSlowThresholdDef() then
+			table.insert(skin.destination,	{
+				id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return predicateFast() or predicateSlow()
+				end, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}
+			})
+		end
+	elseif isFastSlowMSRnL() then
+		append_all(skin.value, {
+			{id = "fsms-num", src = "fs_num_src", x = 0, y = 71, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 1},
+			{id = "slms-num", src = "fs_num_src", x = 0, y = 142, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 0}
+		})
+		if isFastSlowThresholdDef() then
+			append_all(skin.destination, {
+				{id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}},
+				{id = "slms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}}
+			})
+		elseif not isFastSlowThresholdDef() then
+			append_all(skin.destination, {
+				{id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return predicateFast()
+				end, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}},
+				{id = "slms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return predicateSlow()
+				end, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+					{time = 500}
+				}}
+			})
 		end
 	end
-	if isJudgeRows1St() or isJudgeRows1Cl() then
-		processFastSlow({3, FAST_SLOW_POS_ALPHA, JUDGELINE_POS})
-	else
-		processFastSlow({4, FAST_SLOW_POS_ALPHA})
-	end
+
 
 	-- ターゲットとのスコア差
 	-- Score difference from target.
-	local function processTarget(offsets)
-		if not isTarget2On() and isTargetBest() then
-			table.insert(skin.value, {id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 2, value = function()
-				if main_state.float_number(113) ~= 0 then
-					return main_state.number(152)
-				else
-					return main_state.number(153)
-				end
-			end})
-			table.insert(skin.destination,	{
-				id = "diff-mybest", offsets = offsets, op = {32}, timer = 46, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2}
-				}
-			})
-		elseif not isTarget2On() and isTargetRank() then
-			table.insert(skin.value, {id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 2})
-			table.insert(skin.destination,	{
-				id = "diff-target", offsets = offsets, op = {32}, timer = 46, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2}
-				}
-			})
-		elseif isTarget2On() and isTargetBest() then
-			append_all(skin.value, {
-				{id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 1},
-				{id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 0}
-			})
-			append_all(skin.destination, {
-				{id = "diff-target", offsets = offsets, op = {32}, timer = 46, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2}
-				}},
-				{id = "diff-mybest", offsets = offsets, timer = 46, draw = function()
-					if main_state.float_number(113) ~= 0 and main_state.option(32) then
-						return true
-					end
-				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2}
-				}}
-			})
-		elseif isTarget2On() and isTargetRank() then
-			append_all(skin.value, {
-				{id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 1},
-				{id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 0}
-			})
-			append_all(skin.destination, {
-				{id = "diff-mybest", offsets = offsets, timer = 46, draw = function()
-					if main_state.float_number(113) ~= 0 and main_state.option(32) then
-						return true
-					end
-				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2}
-				}},
-				{id = "diff-target", offsets = offsets, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.OUTPUT_Y, w = 34, h = 35, a = 64, acc = 2}
-				}}
-			})
-		end
-	end
-	if isJudgeRows1St() and isJudgeRows1Cl() then
-		processTarget({3, TARGET_POS_ALPHA, JUDGELINE_POS})
-	else
-		processTarget({4, TARGET_POS_ALPHA})
-	end
-
-	-- レーン上でのレート表示
-	-- Rate display on lanes
-	if isScoreRateOn() then
-		if isJudgeRows1St() or isJudgeRows1Cl() then
-			table.insert(skin.source, {id = "judgenum_src", path = "parts/judgenum/*.png"})
-		end
-		append_all(skin.value, {
-			{id = "play-rate-num", src = "judgenum_src", x = 0, y = 101, w = 280, h = 50, divx = 10, digit = 3, align = 0, value = function()
-				return getDummyNum(102)
-			end},
-			{id = "play-rate-adot-num", src = "judgenum_src", x = 0, y = 101, w = 308, h = 50, divx = 11, digit = 2, align = 0, value = function()
-				return getDummyNum(103)
-			end}
+	if not isTarget2On() and isTargetBest() then
+		table.insert(skin.value, {id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 2, value = function()
+			if main_state.float_number(113) ~= 0 then
+				return main_state.number(152)
+			else
+				return main_state.number(153)
+			end
+		end})
+		table.insert(skin.destination,	{
+			id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, op = {32}, timer = 46, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
+			}
 		})
-		table.insert(skin.image, {id = "play-rate-dot", src = "judgenum_src", x = 309, y = 101, w = 16, h = 50})
+	elseif not isTarget2On() and isTargetRank() then
+		table.insert(skin.value, {id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 2})
+		table.insert(skin.destination,	{
+			id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, op = {32}, timer = 46, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
+			}
+		})
+	elseif isTarget2On() and isTargetBest() then
+		append_all(skin.value, {
+			{id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 1},
+			{id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 0}
+		})
 		append_all(skin.destination, {
-			{id = "play-rate-num", offsets = {3, SCORE_RATE_POS_ALPHA, JUDGELINE_POS}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8) + (-84), y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = 64, acc = 2}
+			{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, op = {32}, timer = 46, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
 			}},
-			{id = "play-rate-adot-num", offsets = {3, SCORE_RATE_POS_ALPHA, JUDGELINE_POS}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 8, y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = 64, acc = 2}
+			{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 46, draw = function()
+				if main_state.float_number(113) ~= 0 and main_state.option(32) then
+					return true
+				end
+			end, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
+			}}
+		})
+	elseif isTarget2On() and isTargetRank() then
+		append_all(skin.value, {
+			{id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 1},
+			{id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 0}
+		})
+		append_all(skin.destination, {
+			{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 46, draw = function()
+				if main_state.float_number(113) ~= 0 and main_state.option(32) then
+					return true
+				end
+			end, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
 			}},
-			{id = "play-rate-dot", offsets = {3, SCORE_RATE_POS_ALPHA, JUDGELINE_POS}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8), y = GEOMETRY.DETAIL_Y, w = 16, h = 50, a = 64, acc = 2}
+			{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, op = {32}, timer = 46, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
 			}}
 		})
 	end
 
 	-- Timing Visualizer
 	if isTimingVisualizerOn() then
-		skin.timingvisualizer = {{id = "timing-visualizer"}}
-		append_all(skin.destination, {
-			{id = "timing-visualizer", offsets = {3, TIMINGVISUALIZER_POS_ALPHA}, op = {32}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 150, y = GEOMETRY.DETAIL_Y + 120, w = -300, h = 15, a = 64, r = 230, g = 200, b = 255, acc = 2}
-			}}
-		})
+		do
+			skin.timingvisualizer = {{id = "timing-visualizer"}}
+			local _w = GEOMETRY.LANE_DISTANCE - 20
+			table.insert(skin.destination, {id = "timing-visualizer", offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS_ALPHA}, op = {32}, timer = 41, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + math.floor(_w / 2), y = GEOMETRY.DETAIL_Y + 139, w = -(_w), h = 15, a = 64, r = 230, g = 200, b = 255, acc = 2}
+			}})
+		end
+	end
+
+	-- レーン上でのレート表示
+	-- Rate display on lanes
+	if isScoreRateOn() then
+		if isJudgeRows1St() or isJudgeRows1Cl() then
+			table.insert(skin.image, {id = "play-rate-dot", src = "play_system_src", x = 82, y = 1063, w = 80, h = 21})
+			append_all(skin.value, {
+				{id = "play-rate-num", src = "play_system_src", x = 0, y = 178, w = 200, h = 21, divx = 10, digit = 3, align = 0, value = function()
+					return getDummyNum(102)
+				end},
+				{id = "play-rate-adot-num", src = "play_system_src", x = 0, y = 178, w = 220, h = 21, divx = 11, digit = 2, align = 0, value = function()
+					return getDummyNum(103)
+				end}
+			})
+			append_all(skin.destination, {
+				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-10), y = GEOMETRY.DETAIL_Y, w = 80, h = 21, a = 64, acc = 2}
+				}},
+				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-70), y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = 64, acc = 2}
+				}},
+				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 10, y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = 64, acc = 2}
+				}}
+			})
+		else
+			table.insert(skin.image, {id = "play-rate-dot", src = "judgenum_src", x = 309, y = 101, w = 16, h = 50})
+			append_all(skin.value, {
+				{id = "play-rate-num", src = "judgenum_src", x = 0, y = 101, w = 280, h = 50, divx = 10, digit = 3, align = 0, value = function()
+					return getDummyNum(102)
+				end},
+				{id = "play-rate-adot-num", src = "judgenum_src", x = 0, y = 101, w = 308, h = 50, divx = 11, digit = 2, align = 0, value = function()
+					return getDummyNum(103)
+				end}
+			})
+			append_all(skin.destination, {
+				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8), y = GEOMETRY.DETAIL_Y, w = 16, h = 50, a = 64, acc = 2}
+				}},
+				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8) + (-84), y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = 64, acc = 2}
+				}},
+				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 8, y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = 64, acc = 2}
+				}}
+			})
+		end
 	end
 
 	-- プレイエリア上でのFast/Slowカウンター
 	-- Fast/Slow counter on playground
-	if isFSCountOnPlayOn() then
-		table.insert(skin.image, {id = "fs-opg-frame", src = "play_system_src", x = 0, y = 1063, w = 600, h = 21})
+	if isFastSlowCounterOn() then
+		append_all(skin.image, {
+			{id = "fast-opg-frame", src = "play_system_src", x = 0, y = 1063, w = 40, h = 21},
+			{id = "slow-opg-frame", src = "play_system_src", x = 41, y = 1063, w = 40, h = 21}
+		})
 		append_all(skin.value, {
 			{id = "fast-opg-num", src = "play_system_src", x = 0, y = 134, w = 200, h = 21, divx = 10, digit = 4, ref = 423, align = 1},
 			{id = "slow-opg-num", src = "play_system_src", x = 0, y = 156, w = 200, h = 21, divx = 10, digit = 4, ref = 424, align = 0}
 		})
 		append_all(skin.destination, {
-			{id = "fs-opg-frame", offsets = {3, FAST_SLOW_COUNT_POS_ALPHA, JUDGELINE_POS}, op = {32}, timer = 46, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-300), y = GEOMETRY.DETAIL_Y + 26, w = 600, h = 21, a = 64, acc = 2}
+			-- fast
+			{id = "fast-opg-frame", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS_ALPHA}, op = {32}, timer = 41, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.DETAIL_Y, w = 40, h = 21, a = 64, acc = 2}
 			}},
-			{id = "fast-opg-num", offsets = {3, FAST_SLOW_COUNT_POS_ALPHA, JUDGELINE_POS}, op = {32}, timer = 46, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-300), y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = 64, acc = 2}
+			{id = "fast-opg-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS_ALPHA}, op = {32}, timer = 41, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.DETAIL_Y + (-26), w = 20, h = 21, a = 64, acc = 2}
 			}},
-			{id = "slow-opg-num", offsets = {3, FAST_SLOW_COUNT_POS_ALPHA, JUDGELINE_POS}, op = {32}, timer = 46, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 300 - 80, y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = 64, acc = 2}
+			-- slow
+			{id = "slow-opg-frame", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS_ALPHA}, op = {32}, timer = 41, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-40), y = GEOMETRY.DETAIL_Y, w = 40, h = 21, a = 64, acc = 2}
+			}},
+			{id = "slow-opg-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS_ALPHA}, op = {32}, timer = 41, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-80), y = GEOMETRY.DETAIL_Y + (-26), w = 20, h = 21, a = 64, acc = 2}
 			}}
 		})
 	end
@@ -3223,15 +3243,15 @@ local function main()
 		}},
 		-- 曲終了表示
 		-- end of note
-		{id = "eon", offsets = {3, 4}, draw = function()
+		{id = "eon", offsets = {3, 4, JUDGELINE_POS}, draw = function()
 			if main_state.timer(143) == main_state.timer_off_value and getRemainNotes() == 0 then
 				return true
 			end
 		end,dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.LANE_Y + 520, w = 390, h = 35, r = 64, g = 64, b = 64}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.LANE_Y + 620, w = 390, h = 35, r = 64, g = 64, b = 64}
 		}},
-		{id = "eon", timer = 143, offsets = {3, 4}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.LANE_Y + 520, w = 390, h = 35}
+		{id = "eon", timer = 143, offsets = {3, 4, JUDGELINE_POS}, dst = {
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.LANE_Y + 620, w = 390, h = 35}
 		}}
 	})
 
@@ -3241,11 +3261,11 @@ local function main()
 			{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 0, w = GEOMETRY.LANE_W, h = 1080, a = 128},
 			{time = 2100, y = 100, a = 0}
 		}},
-		{id = "fullcombo", offsets = {3, 4}, loop = -1, timer = 48, dst = {
-			{time = 550, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-180), y = GEOMETRY.LANE_Y + 460, w = 360, h = 36, a = 0},
+		{id = "fullcombo", offsets = {3, 4, JUDGELINE_POS}, loop = -1, timer = 48, dst = {
+			{time = 550, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-180), y = GEOMETRY.LANE_Y + 560, w = 360, h = 36, a = 0},
 			{time = 650, a = 255},
 			{time = 1600},
-			{time = 1800, y = GEOMETRY.LANE_Y + 430, a = 0}
+			{time = 1800, y = GEOMETRY.LANE_Y + 530, a = 0}
 		}},
 	})
 
@@ -3255,125 +3275,136 @@ local function main()
 	---- <<< ロード中曲情報開始
 	---- <<< song infomation in loading start
 
-	-- 枠
-	-- background
-	table.insert(skin.destination,
-	{id = -110, loop = 600, op = {80}, dst = {
-		{time = 0, x = 0, y = 360, w = 1920, h = 360, a = 0},
-		{time = 300},
-		{time = 600, a = 150}
-	}})
-
-	-- ロード終了
-	-- loading end		
-	table.insert(skin.destination,
-	{id = -110, timer = 40, loop = 300, op = {81}, dst = {
-		{time = 0, x = 0, y = 360, w = 1920, h = 360, a = 150},
-		{time = 300, a = 0}
-	}})
-
-	-- ジャンル名・曲名・アーティスト名
-	-- genre, title, artist
-	table.insert(skin.destination,
-	{id = "inload-genre", loop = 600, op = {80}, filter = 1, dst = {
-		{time = 0, x = 445, y = 608, w = 1405, h = 27, a = 0},
-		{time = 300},
-		{time = 600, a = 255}
-	}})
-
-	table.insert(skin.destination,
-	{id = "inload-title", loop = 600, op = {80}, filter = 1, dst = {
-		{time = 0, x = 445, y = 520, w = 1405, h = 73, a = 0},
-		{time = 300},
-		{time = 600, a = 255}
-	}})
-
-	table.insert(skin.destination,
-	{id = "inload-artist", loop = 600, op = {80}, filter = 1, dst = {
-		{time = 0, x = 445, y = 425, w = 1405, h = 41, a = 0},
-		{time = 300},
-		{time = 600, a = 255}
-	}})
-
-	-- ロード終了
-	-- loading end
-	table.insert(skin.destination,
-	{id = "inload-genre", timer = 40,loop = 300, op = {81}, filter = 1, dst = {
-		{time = 0, x = 445, y = 608, w = 1405, h = 27, a = 255},
-		{time = 300, a = 0}
-	}})
-
-	table.insert(skin.destination,
-	{id = "inload-title", tiemr = 40, loop = 300, op = {81}, filter = 1, dst = {
-		{time = 0, x = 445, y = 520, w = 1405, h = 73, a = 255},
-		{time = 300, a = 0}
-	}})
-
-	table.insert(skin.destination,
-	{id = "inload-artist", timer = 40, loop = 300, op = {81}, filter = 1, dst = {
-		{time = 0, x = 445, y = 425, w = 1405, h = 41, a = 255},
-		{time = 300, a = 0}
-	}})
-
-	-- ステージファイル
-	-- stagefile
-	table.insert(skin.destination,
-	{id = -100, loop = 600, filter = 1, op = {80, 191}, dst = {
-		{time = 0, x = 50, y = 420, w = 320, h = 240, a = 0},
-		{time = 300},
-		{time = 600, a = 255}
-	}})
-
-	-- ロード終了
-	-- loading end
-	table.insert(skin.destination,
-	{id = -100, timer = 40, loop = 300, filter = 1, op = {81, 191}, dst = {
-		{time = 0, x = 50, y = 420, w = 320, h = 240, a = 255},
-		{time = 300, a = 0}
-	}})
-
-	-- ステージファイルが無い時
-	-- no stagefile
-	table.insert(skin.destination,
-	{id = "alt-stagefile", loop = 600, filter = 1, op = {80, 190}, dst = {
-		{time = 0, x = 50, y = 420, w = 320, h = 240, a = 0},
-		{time = 300},
-		{time = 600, a = 255}
-	}})
-
-	-- ロード終了
-	-- loading end
-	table.insert(skin.destination,
-	{id = "alt-stagefile", timer = 40, loop = 300, filter = 1, op = {81, 190}, dst = {
-		{time = 0, x = 50, y = 420, w = 320, h = 240, a = 255},
-		{time = 300, a = 0}
-	}})
-
-	-- 曲名下の線
-	-- line under the song title
-	table.insert(skin.destination,
-		{id = "inload-titleline", loop = 900, op = {80}, dst = {
-			{time = 0, x = 400, y = 505, w = 0, h = 3, a = 100, acc = 2},
-			{time = 300, w = 0},
-			{time = 400},
-			{time = 900, w = 1450}
-		}})
-	table.insert(skin.destination,
-		{id = "inload-progress", loop = 900, op = {80}, dst = {
-			{time = 0, x = 400, y = 505, w = 0, h = 3, acc = 2},
-			{time = 300, w = 0},
-			{time = 400},
-			{time = 900, w = 1450}
+	do
+		local loading_pos = {}
+		if isScratchRight() then
+			loading_pos.text = 75
+			loading_pos.stagefile = 1500
+			loading_pos.titleline = 30
+		else
+			loading_pos.text = 445
+			loading_pos.stagefile = 50
+			loading_pos.titleline = 400
+		end
+		-- 枠
+		-- background
+		table.insert(skin.destination,
+		{id = -110, loop = 600, op = {80}, dst = {
+			{time = 0, x = 0, y = 360, w = 1920, h = 360, a = 0},
+			{time = 300},
+			{time = 600, a = 150}
 		}})
 
-	-- ロード終了
-	-- loading end
-	table.insert(skin.destination,
-		{id = "inload-progress", timer = 40, loop = 300, op = {81}, dst = {
-			{time = 0, x = 400, y = 505, w = 1450, h = 3, a = 100},
+		-- ロード終了
+		-- loading end		
+		table.insert(skin.destination,
+		{id = -110, timer = 40, loop = 300, op = {81}, dst = {
+			{time = 0, x = 0, y = 360, w = 1920, h = 360, a = 150},
 			{time = 300, a = 0}
 		}})
 
+		-- ジャンル名・曲名・アーティスト名
+		-- genre, title, artist
+		table.insert(skin.destination,
+		{id = "inload-genre", loop = 600, op = {80}, filter = 1, dst = {
+			{time = 0, x = loading_pos.text, y = 608, w = 1405, h = 27, a = 0},
+			{time = 300},
+			{time = 600, a = 255}
+		}})
+
+		table.insert(skin.destination,
+		{id = "inload-title", loop = 600, op = {80}, filter = 1, dst = {
+			{time = 0, x = loading_pos.text, y = 520, w = 1405, h = 73, a = 0},
+			{time = 300},
+			{time = 600, a = 255}
+		}})
+
+		table.insert(skin.destination,
+		{id = "inload-artist", loop = 600, op = {80}, filter = 1, dst = {
+			{time = 0, x = loading_pos.text, y = 425, w = 1405, h = 41, a = 0},
+			{time = 300},
+			{time = 600, a = 255}
+		}})
+
+		-- ロード終了
+		-- loading end
+		table.insert(skin.destination,
+		{id = "inload-genre", timer = 40,loop = 300, op = {81}, filter = 1, dst = {
+			{time = 0, x = loading_pos.text, y = 608, w = 1405, h = 27, a = 255},
+			{time = 300, a = 0}
+		}})
+
+		table.insert(skin.destination,
+		{id = "inload-title", tiemr = 40, loop = 300, op = {81}, filter = 1, dst = {
+			{time = 0, x = loading_pos.text, y = 520, w = 1405, h = 73, a = 255},
+			{time = 300, a = 0}
+		}})
+
+		table.insert(skin.destination,
+		{id = "inload-artist", timer = 40, loop = 300, op = {81}, filter = 1, dst = {
+			{time = 0, x = loading_pos.text, y = 425, w = 1405, h = 41, a = 255},
+			{time = 300, a = 0}
+		}})
+
+		-- ステージファイル
+		-- stagefile
+		table.insert(skin.destination,
+		{id = -100, loop = 600, filter = 1, op = {80, 191}, dst = {
+			{time = 0, x = loading_pos.stagefile, y = 420, w = 320, h = 240, a = 0},
+			{time = 300},
+			{time = 600, a = 255}
+		}})
+
+		-- ロード終了
+		-- loading end
+		table.insert(skin.destination,
+		{id = -100, timer = 40, loop = 300, filter = 1, op = {81, 191}, dst = {
+			{time = 0, x = loading_pos.stagefile, y = 420, w = 320, h = 240, a = 255},
+			{time = 300, a = 0}
+		}})
+
+		-- ステージファイルが無い時
+		-- no stagefile
+		table.insert(skin.destination,
+		{id = "alt-stagefile", loop = 600, filter = 1, op = {80, 190}, dst = {
+			{time = 0, x = loading_pos.stagefile, y = 420, w = 320, h = 240, a = 0},
+			{time = 300},
+			{time = 600, a = 255}
+		}})
+
+		-- ロード終了
+		-- loading end
+		table.insert(skin.destination,
+		{id = "alt-stagefile", timer = 40, loop = 300, filter = 1, op = {81, 190}, dst = {
+			{time = 0, x = loading_pos.stagefile, y = 420, w = 320, h = 240, a = 255},
+			{time = 300, a = 0}
+		}})
+
+		-- 曲名下の線
+		-- line under the song title
+		table.insert(skin.destination,
+			{id = "inload-titleline", loop = 900, op = {80}, dst = {
+				{time = 0, x = loading_pos.titleline, y = 505, w = 0, h = 3, a = 100, acc = 2},
+				{time = 300, w = 0},
+				{time = 400},
+				{time = 900, w = 1450}
+			}})
+		table.insert(skin.destination,
+			{id = "inload-progress", loop = 900, op = {80}, dst = {
+				{time = 0, x = loading_pos.titleline, y = 505, w = 0, h = 3, acc = 2},
+				{time = 300, w = 0},
+				{time = 400},
+				{time = 900, w = 1450}
+			}})
+
+		-- ロード終了
+		-- loading end
+		table.insert(skin.destination,
+			{id = "inload-progress", timer = 40, loop = 300, op = {81}, dst = {
+				{time = 0, x = loading_pos.titleline, y = 505, w = 1450, h = 3, a = 100},
+				{time = 300, a = 0}
+			}})
+	end
 	---- ロード中曲情報終了 >>>
 	---- song infomation in loading end >>>
 
