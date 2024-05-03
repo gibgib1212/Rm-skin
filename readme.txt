@@ -54,8 +54,19 @@ Dear Retsukiya, "R-skin".
 
 Dear ric(@Aoi_psy), "ECFN".
 	Some bombs in this skin are 1.5x enlargement of ECFN's "default" and color processed.
+	And the lane cover design is also based on the ECFN design.
 	Thank you very much.
 	- "ECFN\play\bomb\default.png"
+	- "ECFN\play\lanecover\default.png"
+
+Dear wisp.(@wisp_13), "WMIX-HD"
+	The Judge design is based on the ”W-Mix” design.
+	Thank you very much.
+	- "WMIX_HD\play\parts\judge\perfectdark.png"
+
+Dear 時々雨, "https://tokidokiame.com/galleryhouse/"
+	Some lanecovers design are based on 時々雨's illastration.
+	Thank you verymuch.
 
 -------------------------------------
 
@@ -321,4 +332,10 @@ Update History
 
 04282024
 	- Formalized "1Rows" option
+	- Update readme.txt
+
+05042024
+	- Adjustment of the judge image file when the "1Rows" option is used
+	- Deleted "1Rows : Classic" and "2Rows : Far"
+	- Added some lanecover files
 	- Update readme.txt

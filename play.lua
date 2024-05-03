@@ -27,10 +27,8 @@ local LANE_CENTER_NOTES = 					optionCount()
 local NOTES_WIDTH_TEMPLATE = 				optionCount()
 local NOTES_WIDTH_CUSTOM = 					optionCount()
 
-local JUDGE_ROWS_1_ST =						optionCount()
-local JUDGE_ROWS_1_CL =						optionCount()
-local JUDGE_ROWS_2_FR =						optionCount()
-local JUDGE_ROWS_2_NR =						optionCount()
+local JUDGE_ROWS_1 =						optionCount()
+local JUDGE_ROWS_2 =						optionCount()
 
 local NOTES_5KEY_ALIGN_RL = 				optionCount()
 local NOTES_5KEY_ALIGN_CENTER = 			optionCount()
@@ -127,12 +125,12 @@ local original_offset = {
 	{name = "BGA Darkness", 							id = BGA_DARKNESS, 																	a = true},
 	{name = "Barline Alpha", 							id = BARLINE_ALPHA, 																a = true},
 	{name = "Judge Position", 							id = JUDGE_POS, 					x = true, 	y = true},
-	{name = "Judge Perfect Alpha", 						id = JUDGE_PG_ALPHA, 																a = true},
-	{name = "Judge Great Alpha", 						id = JUDGE_GR_ALPHA, 																a = true},
-	{name = "Judge Good Alpha", 						id = JUDGE_GD_ALPHA, 																a = true},
-	{name = "Judge Bad Alpha", 							id = JUDGE_BD_ALPHA, 																a = true},
-	{name = "Judge Poor Alpha", 						id = JUDGE_PR_ALPHA, 																a = true},
-	{name = "Judge Miss Alpha", 						id = JUDGE_MS_ALPHA, 																a = true},
+	{name = "Judge : Perfect Alpha", 					id = JUDGE_PG_ALPHA, 																a = true},
+	{name = "Judge : Great Alpha", 						id = JUDGE_GR_ALPHA, 																a = true},
+	{name = "Judge : Good Alpha", 						id = JUDGE_GD_ALPHA, 																a = true},
+	{name = "Judge : Bad Alpha", 						id = JUDGE_BD_ALPHA, 																a = true},
+	{name = "Judge : Poor Alpha", 						id = JUDGE_PR_ALPHA, 																a = true},
+	{name = "Judge : Miss Alpha", 						id = JUDGE_MS_ALPHA, 																a = true},
 	{name = "Combo Number Position & Alpha", 			id = JUDGE_NUM_POS_ALPHA, 			x = true, 	y = true, 							a = true},
 	{name = "F/S Position & Alpha", 					id = FAST_SLOW_POS_ALPHA, 			x = true, 	y = true, 							a = true},
 	{name = "Target Position & Alpha", 					id = TARGET_POS_ALPHA, 				x = true, 	y = true, 							a = true},
@@ -326,8 +324,7 @@ local original_filepath = {
 	{name = "Custom : Yellow-Keybeam", 							path = "parts/keybeam/custom/3_yellow/*.png", 		def = "Blue"},
 	{name = "Custom : Scratch-Keybeam", 						path = "parts/keybeam/custom/4_scratch/*.png", 		def = "Blue"},
 
-	{name = "Rows1 : Standard : Judge & Combo Number", 			path = "parts/judge/rows1/standard/*.png", 			def = "Default"},
-	{name = "Rows1 : Classic : Judge & Combo Number", 			path = "parts/judge/rows1/classic/*.png", 			def = "Default"},
+	{name = "Rows1 : Judge & Combo Number", 					path = "parts/judge/rows1/*.png", 					def = "Degital_#ColorScheme_G_B_W"},
 
 	{name = "Rows2 : Judge : Perfect", 							path = "parts/judge/rows2/1_pg/*.png", 				def = "x50%_PERFECT_Rounded"},
 	{name = "Rows2 : Judge : Great", 							path = "parts/judge/rows2/2_gr/*.png", 				def = "x50%_GREAT_Rounded"},
@@ -346,7 +343,7 @@ local original_filepath = {
 
 	{name = "Judge Line", 										path = "parts/colors/7_judgeline/*.png", 			def = "White4_#a3d1ff"},
 	{name = "Bomb", 											path = "parts/!_bomb/*.png", 						def = "!_x150%_White_clear_ring_SCUROed"},
-	{name = "Lane Cover", 										path = "parts/lanecover/*.png", 					def = "Simple"},
+	{name = "Lane Cover", 										path = "parts/lanecover/*.png", 					def = "Default"},
 	{name = "Fast/Slow: Character", 							path = "parts/fast_slow/character/*.png", 			def = "Fast_Slow"},
 	{name = "Fast/Slow: Number", 								path = "parts/fast_slow/number/*.png", 				def = "Default"},
 	{name = "Mybest Number", 									path = "parts/scorenum/mybest/*.png", 				def = "Default"},
@@ -390,10 +387,8 @@ local original_property = {
 		{name = "Custom", 								op = NOTES_HEIGHT_CUSTOM}
 	}},
 	{name = "Judge Display Rows", 						item = {
-		{name = "1 Rows : Standard", 					op = JUDGE_ROWS_1_ST},
-		{name = "1 Rows : Classic", 					op = JUDGE_ROWS_1_CL},
-		{name = "2 Rows : Far", 						op = JUDGE_ROWS_2_FR},
-		{name = "2 Rows : Near", 						op = JUDGE_ROWS_2_NR}
+		{name = "1 Rows", 								op = JUDGE_ROWS_1},
+		{name = "2 Rows", 								op = JUDGE_ROWS_2}
 	}},
 	{name = "Keybeam Display", 							item = {
 		{name = "Fast", 								op = KEYBEAM_DISPLAY_FAST},
@@ -836,7 +831,7 @@ local header = {
 		4:9keys
 	--]]
 	type = 		nil, -- set in ".luaskin"
-	name = 		"Rm-skin ver 0.2.1",
+	name = 		"Rm-skin ver 0.2.2",
 	w = 		1920,
 	h = 		1080,
 	loadend = 	3000,
@@ -881,9 +876,7 @@ local function isNotesHeight_35() 		return skin_config.option["Notes Height"] ==
 local function isNotesHeight_30() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_30_PIX end
 local function isNotesHeightCustom() 	return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_CUSTOM end
 
-local function isJudgeRows1St() 		return skin_config.option["Judge Display Rows"] == 			JUDGE_ROWS_1_ST end
-local function isJudgeRows1Cl() 		return skin_config.option["Judge Display Rows"] == 			JUDGE_ROWS_1_CL end
-local function isJudgeRows2Fr() 		return skin_config.option["Judge Display Rows"] == 			JUDGE_ROWS_2_FR end
+local function isJudgeRows1() 			return skin_config.option["Judge Display Rows"] == 			JUDGE_ROWS_1 end
 
 local function isKeybeamFast() 			return skin_config.option["Keybeam Display"] == 			KEYBEAM_DISPLAY_FAST end
 
@@ -1147,28 +1140,24 @@ local function main()
 	end
 
 	local function setJudgePos()
-		if isJudgeRows1St() then
-			return 198
-		elseif isJudgeRows1Cl() then
-			return 206
-		elseif isJudgeRows2Fr() then
-			return 260
+		if isJudgeRows1() then
+			return 205
 		else
 			return 780
 		end
 	end
 
 	local function setTracerPos()
-		if isJudgeRows1St() or isJudgeRows1Cl() then
-			return 320
+		if isJudgeRows1() then
+			return 330
 		else
 			return 544
 		end
 	end
 
 	local function setDetailPos()
-		if isJudgeRows1St() or isJudgeRows1Cl() then
-			return 167
+		if isJudgeRows1() then
+			return 177
 		else
 			return 350
 		end
@@ -1725,16 +1714,46 @@ local function main()
 	}
 	skin.text = {
 		---- # in loading
-		{id = "inload-genre", 		font = 0, size = 27, ref = 13, overflow = 1},
-		{id = "inload-title", 		font = 2, size = 73, ref = 12, overflow = 1},
-		{id = "inload-artist", 		font = 1, size = 41, ref = 16, overflow = 1},
+		{id = "inload-genre", font = 0, size = 27, overflow = 1, value = function()
+			if main_state.text(13) == "" then
+				return "# No-Genre"
+			else
+				return main_state.text(13)
+			end
+		end},
+		{id = "inload-title", font = 2, size = 73, overflow = 1, value = function()
+			if main_state.text(12) == "" then
+				return "# No-Title"
+			else
+				return main_state.text(12)
+			end
+		end},
+		{id = "inload-artist", font = 1, size = 41, overflow = 1, value = function()
+			if main_state.text(16) == "" then
+				return "# No-Artist"
+			else
+				return main_state.text(16)
+			end
+		end},
 
 		---- # in playing
-		{id = "inplay-title", 		font = 2, size = 42, ref = 12, overflow = 1, align = getTitleAlign()},
-		{id = "inplay-artist", 		font = 1, size = 26, ref = 16, overflow = 1, align = getTitleAlign()},
-		{id = "inplay-table", 		font = 0, size = 26, overflow = 1, align = getTitleAlign(), value = function()
+		{id = "inplay-title", font = 2, size = 42, overflow = 1, align = getTitleAlign(), value = function()
+			if main_state.text(12) == "" then
+				return "# No-Title"
+			else
+				return main_state.text(12)
+			end
+		end},
+		{id = "inplay-artist", font = 1, size = 26, overflow = 1, align = getTitleAlign(), value = function()
+			if main_state.text(16) == "" then
+				return "# No-Artist"
+			else
+				return main_state.text(16)
+			end
+		end},
+		{id = "inplay-table", font = 0, size = 26, overflow = 1, align = getTitleAlign(), value = function()
 			if main_state.text(1003) == "" then
-				return "LEVEL " .. tostring(main_state.number(96))
+				return "# No-Table"
 			else
 				return main_state.text(1003)
 			end
@@ -1742,7 +1761,7 @@ local function main()
 	}
 	skin.slider = {
 		---- # play slider
-		{id = "song-progress", 	src = "play_system_src", x = 639, y = 4, w = 12, h = 21, angle = 2, range = 600, type = 6},
+		{id = "song-progress", 	src = "play_system_src", x = 628, y = 4, w = 12, h = 21, angle = 2, range = 600, type = 6},
 		{id = "lanecover", 		src = "lanecover_src", x = 0, y = 0, w = -1, h = -1, angle = 2, range = GEOMETRY.LANE_H, type = 4}
 	}
 	skin.graph = {
@@ -1962,26 +1981,26 @@ local function main()
 	local _images = {}
 	local _numbers = {}
 	local _shift
-	if isJudgeRows1St() then
+	if isJudgeRows1() then
 		do
-			local judge_w = {336, 336, 272, 208, 272, 244}
-			local judge_between = 26
-			table.insert(skin.source, {id = "judge_src", path = "parts/judge/rows1/standard/*.png"})
+			local judge_w = {356, 356, 288, 220, 288, 260}
+			local judge_between = 24
+			table.insert(skin.source, {id = "judge_src", path = "parts/judge/rows1/*.png"})
 			append_all(skin.image, {
-				{id = "judge-pg", src = "judge_src", x = 0, y = 0, w = judge_w[1], h = 672, divy = 6, cycle = 100},
-				{id = "judge-gr", src = "judge_src", x = 0, y = 673, w = judge_w[2], h = 224, divy = 2, cycle = 60},
-				{id = "judge-gd", src = "judge_src", x = 0, y = 898, w = judge_w[3], h = 224, divy = 2, cycle = 60},
-				{id = "judge-bd", src = "judge_src", x = 0, y = 1123, w = judge_w[4], h = 224, divy = 2, cycle = 60},
-				{id = "judge-pr", src = "judge_src", x = 209, y = 1123, w = judge_w[5], h = 224, divy = 2, cycle = 60},
-				{id = "judge-ms", src = "judge_src", x = 482, y = 1123, w = judge_w[6], h = 224, divy = 2, cycle = 60}
+				{id = "judge-pg", src = "judge_src", x = 0, y = 0, w = judge_w[1], h = 720, divy = 6, cycle = 100},
+				{id = "judge-gr", src = "judge_src", x = 0, y = 721, w = judge_w[2], h = 240, divy = 2, cycle = 60},
+				{id = "judge-gd", src = "judge_src", x = 0, y = 962, w = judge_w[3], h = 240, divy = 2, cycle = 60},
+				{id = "judge-bd", src = "judge_src", x = 0, y = 1203, w = judge_w[4] * 2, h = 120, divx = 2, cycle = 60},
+				{id = "judge-pr", src = "judge_src", x = 0, y = 1324, w = judge_w[5] * 2, h = 120, divx = 2, cycle = 60},
+				{id = "judge-ms", src = "judge_src", x = 0, y = 1445, w = judge_w[6] * 2, h = 120, divx = 2, cycle = 60}
 			})
 			append_all(skin.value, {
-				{id = "judgenum-pg", src = "judge_src", x = 337, y = 0, w = 800, h = 672, divx = 10, divy = 6, digit = 6, ref = 75, cycle = 100},
-				{id = "judgenum-gr", src = "judge_src", x = 337, y = 673, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-gd", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-bd", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-pr", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-ms", src = "judge_src", x = 337, y = 898, w = 800, h = 224, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
+				{id = "judgenum-pg", src = "judge_src", x = 357, y = 0, w = 840, h = 720, divx = 10, divy = 6, digit = 6, ref = 75, cycle = 100},
+				{id = "judgenum-gr", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-gd", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-bd", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-pr", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+				{id = "judgenum-ms", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
 			})
 			local id = {"-pg", "-gr", "-gd", "-bd", "-pr", "-ms"}
 			local offsets = {JUDGE_PG_ALPHA, JUDGE_GR_ALPHA, JUDGE_GD_ALPHA, JUDGE_BD_ALPHA, JUDGE_PR_ALPHA, JUDGE_MS_ALPHA}
@@ -1989,61 +2008,19 @@ local function main()
 				if i <= 3 then
 					-- コンボ数を伴う判定文字(PGからGD)のx座標を求める式は、「(判定文字の幅 + 判定文字とコンボ数との間隔) / 2」
 					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - ((judge_w[i] + judge_between) / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 112, a = 64, acc = 2},
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - ((judge_w[i] + judge_between) / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 64, acc = 2},
 						{time = 500}
 					}}
 				else
 					-- コンボ数を伴わない判定文字(BDからMS)のx座標を求める式は、「判定文字の幅 / 2」
 					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 112, a = 64, acc = 2},
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 64, acc = 2},
 						{time = 500}
 					}}
 				end
 				-- コンボ数のx座標を求める式は、「判定文字の幅 + 判定文字とコンボ数との間隔」
 				_numbers[i] = {id = "judgenum" .. id[i], loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-					{time = 0, x = judge_w[i] + judge_between, y = 0, w = 80, h = 112, a = 64, acc = 2},
-					{time = 500}
-				}}
-			end
-		end
-		_shift = true
-	elseif isJudgeRows1Cl() then
-		do
-			local judge_w = {328, 328, 264, 200, 264, 236}
-			local judge_between = 18
-			table.insert(skin.source, {id = "judge_src", path = "parts/judge/rows1/classic/*.png"})
-			append_all(skin.image, {
-				{id = "judge-pg", src = "judge_src", x = 0, y = 0, w = judge_w[1], h = 624, divy = 6, cycle = 100},
-				{id = "judge-gr", src = "judge_src", x = 0, y = 625, w = judge_w[2], h = 208, divy = 2, cycle = 60},
-				{id = "judge-gd", src = "judge_src", x = 0, y = 834, w = judge_w[3], h = 208, divy = 2, cycle = 60},
-				{id = "judge-bd", src = "judge_src", x = 0, y = 1043, w = judge_w[4], h = 208, divy = 2, cycle = 60},
-				{id = "judge-pr", src = "judge_src", x = 201, y = 1043, w = judge_w[5], h = 208, divy = 2, cycle = 60},
-				{id = "judge-ms", src = "judge_src", x = 466, y = 1043, w = judge_w[6], h = 208, divy = 2, cycle = 60}
-			})
-			append_all(skin.value, {
-				{id = "judgenum-pg", src = "judge_src", x = 329, y = 0, w = 720, h = 624, divx = 10, divy = 6, digit = 6, ref = 75, cycle = 100},
-				{id = "judgenum-gr", src = "judge_src", x = 329, y = 625, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-gd", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-bd", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-pr", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-ms", src = "judge_src", x = 329, y = 834, w = 720, h = 208, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
-			})
-			local id = {"-pg", "-gr", "-gd", "-bd", "-pr", "-ms"}
-			local offsets = {JUDGE_PG_ALPHA, JUDGE_GR_ALPHA, JUDGE_GD_ALPHA, JUDGE_BD_ALPHA, JUDGE_PR_ALPHA, JUDGE_MS_ALPHA}
-			for i in ipairs(id) do
-				if i <= 3 then
-					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - ((judge_w[i] + judge_between) / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 104, a = 64, acc = 2},
-						{time = 500}
-					}}
-				else
-					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 104, a = 64, acc = 2},
-						{time = 500}
-					}}
-				end
-				_numbers[i] = {id = "judgenum" .. id[i], loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-					{time = 0, x = judge_w[i] + judge_between, y = 0, w = 72, h = 104, a = 64, acc = 2},
+					{time = 0, x = judge_w[i] + judge_between, y = 0, w = 84, h = 120, a = 64, acc = 2},
 					{time = 500}
 				}}
 			end
@@ -2060,30 +2037,24 @@ local function main()
 			{id = "judgenum_src", 	path = "parts/judgenum/*.png"}
 		})
 		append_all(skin.image, {
-			{id = "judge-pg", src = "judge_pg_src", x = 0, y = 0, w = 660, h = 720, divy = 6, cycle = 100},
-			{id = "judge-gr", src = "judge_gr_src", x = 0, y = 0, w = 660, h = 240, divy = 2, cycle = 60},
-			{id = "judge-gd", src = "judge_gd_src", x = 0, y = 0, w = 660, h = 240, divy = 2, cycle = 60},
-			{id = "judge-bd", src = "judge_bd_src", x = 0, y = 0, w = 660, h = 240, divy = 2, cycle = 60},
-			{id = "judge-pr", src = "judge_pr_src", x = 0, y = 0, w = 660, h = 240, divy = 2, cycle = 60},
-			{id = "judge-ms", src = "judge_ms_src", x = 0, y = 0, w = 660, h = 240, divy = 2, cycle = 60}
+			{id = "judge-pg", src = "judge_pg_src", x = 0, y = 0, w = 660, h = 120},
+			{id = "judge-gr", src = "judge_gr_src", x = 0, y = 0, w = 660, h = 120},
+			{id = "judge-gd", src = "judge_gd_src", x = 0, y = 0, w = 660, h = 120},
+			{id = "judge-bd", src = "judge_bd_src", x = 0, y = 0, w = 660, h = 120},
+			{id = "judge-pr", src = "judge_pr_src", x = 0, y = 0, w = 660, h = 120},
+			{id = "judge-ms", src = "judge_ms_src", x = 0, y = 0, w = 660, h = 120}
 		})
 		table.insert(skin.value, {id = "judge-num", src = "judgenum_src", x = 0, y = 0, w = 540, h = 100, divx = 10, digit = 6, ref = 105, align = 2})
 		do
 			local id = {"judge-pg", "judge-gr", "judge-gd", "judge-bd", "judge-pr", "judge-ms"}
 			local offsets = {JUDGE_PG_ALPHA, JUDGE_GR_ALPHA, JUDGE_GD_ALPHA, JUDGE_BD_ALPHA, JUDGE_PR_ALPHA, JUDGE_MS_ALPHA}
-			local combo_y
-			if isJudgeRows2Fr() then
-				combo_y = 676
-			else
-				combo_y = 156
-			end
 			for i in ipairs(id) do
 				_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {4, JUDGE_POS, offsets[i]}, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
 					{time = 1500}
 				}}
 				_numbers[i] = {id = "judge-num", loop = -1, timer = 46, offsets = {4, JUDGE_NUM_POS_ALPHA}, dst = {
-					{time = 0, x = 330, y = combo_y, w = 54, h = 100, a = 64, acc = 2},
+					{time = 0, x = 330, y = 156, w = 54, h = 100, a = 64, acc = 2},
 					{time = 1500}
 				}}
 			end
@@ -2379,10 +2350,10 @@ local function main()
 	-- レーン枠
 	-- lane frame
 	if isLaneFrameOn() then
-		table.insert(skin.image, {id = "lane-frame", src = "play_system_src", x = 0, y = 0, w = 10, h = 10})
+		table.insert(skin.image, {id = "lane-frame", src = "play_system_src", x = 641, y = 4, w = 10, h = 1080})
 		append_all(skin.destination, {
 			{id = "lane-frame", loop = 600, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + (-15), y = 0, w = 15, h = 0, acc = 2},
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 0, w = -15, h = 0, acc = 2},
 				{time = 600, h = 1080}
 			}},
 			{id = "lane-frame", loop = 600, dst = {
@@ -2871,7 +2842,7 @@ local function main()
 			skin.timingvisualizer = {{id = "timing-visualizer"}}
 			local _w = GEOMETRY.LANE_DISTANCE - 20
 			table.insert(skin.destination, {id = "timing-visualizer", offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS_ALPHA}, op = {32}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + math.floor(_w / 2), y = GEOMETRY.DETAIL_Y + 139, w = -(_w), h = 15, a = 64, r = 230, g = 200, b = 255, acc = 2}
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + math.floor(_w / 2), y = GEOMETRY.DETAIL_Y + 163, w = -(_w), h = 15, a = 64, r = 230, g = 200, b = 255, acc = 2}
 			}})
 		end
 	end
@@ -2879,7 +2850,7 @@ local function main()
 	-- レーン上でのレート表示
 	-- Rate display on lanes
 	if isScoreRateOn() then
-		if isJudgeRows1St() or isJudgeRows1Cl() then
+		if isJudgeRows1() then
 			table.insert(skin.image, {id = "play-rate-dot", src = "play_system_src", x = 82, y = 1063, w = 80, h = 21})
 			append_all(skin.value, {
 				{id = "play-rate-num", src = "play_system_src", x = 0, y = 178, w = 200, h = 21, divx = 10, digit = 3, align = 0, value = function()

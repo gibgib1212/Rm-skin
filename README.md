@@ -40,12 +40,4 @@
 
 ## Sample Picture
 
-![Judge_Rows_1](_image/Judge_Rows_1.png)
-
-![7key-Left](_image/7key_Left.png)
-
-![7key-Right](_image/7key_Right.png)
-
-![5key](_image/5key.png)
-
-![9key](_image/9key.png)
+![Judge_Rows_1](_image/SAMPLE.png)
