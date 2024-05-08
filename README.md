@@ -35,9 +35,17 @@
 - Also, please refer to the license included with the fonts for information on font handling.
    - "Rm-skin/font/LICENSE_..."
 
-## [Sample Movie](https://www.youtube.com/watch?v=UInLj27s08A "Sample Movie")
+## Sample Movie
+
+ [Judge : 1Rows / 7key-Left / -Right](https://www.youtube.com/watch?v=pqbMGWq4SSE "Sample Movie1")
+
+ [Judge : 2Rows / 5key / 9key](https://www.youtube.com/watch?v=UInLj27s08A "Sample Movie2")
+
+
 \* This Sample Movie is an early version. Some of them may differ from the current specifications.
 
 ## Sample Picture
 
-![Judge_Rows_1](_image/SAMPLE.png)
+![SAMPLE1](_image/SAMPLE1.png)
+
+![SAMPLE2](_image/SAMPLE2.png)

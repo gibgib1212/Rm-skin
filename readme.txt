@@ -1,8 +1,8 @@
 -------------------------------------
 "Rm-skin"
-ver 0.2.1
+ver 0.2.2
 Full HD (1920x1080) Playskin-5,7,9key for beatoraja
-(Last updated:04/25/2024)
+(Last updated:05/08/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -18,11 +18,11 @@ caused by the use of this skin.
 In creating this skin, I have used code descriptions and images from other authors.
 I would like to express our gratitude to the following.
 
-Dear 4228, "Rogan".
+Dear 4228(@4228_r), "Rogan".
 	"play.lua" for this skin was produced based on "play7main.lua" for "Rogan".
 	Thank you very much.
 
-Dear むにむにおじさん, "m-select".
+Dear むにむにおじさん(@mnpyprrn), "m-select".
 	Most of the materials in my skin are borrowed from and processed by "m-select".
 	Thank you very much.
 	The following is a list of materials borrowed.
@@ -43,13 +43,13 @@ Dear むにむにおじさん, "m-select".
 	- "m_select\play\antique\system\image\rank.png"
 	- "m_select\result\system.png"
 
-Dear KASAKO, "Modern_Chic".
+Dear KASAKO(@kasakonkon), "Modern_Chic".
 	Some bombs in this skin are 1.5x enlargement of Modern_Chic's "clear ring_blue SCUROed" and color processed.
 	Thank you very much.
 	- "ModernChic\Play\parts\common\bomb\clear ring_blue SCUROed..png"
 
 Dear Retsukiya, "R-skin".
-	Inspired by "R-skin" by Retsukiya, i developed this skin.
+	Inspired by "R-skin" by Retsukiya, I developed this skin.
 	Thank you very much.
 
 Dear ric(@Aoi_psy), "ECFN".
@@ -60,11 +60,11 @@ Dear ric(@Aoi_psy), "ECFN".
 	- "ECFN\play\lanecover\default.png"
 
 Dear wisp.(@wisp_13), "WMIX-HD"
-	The Judge design is based on the ”W-Mix” design.
+	The Judge design is based on the ”WMIX-HD” design.
 	Thank you very much.
 	- "WMIX_HD\play\parts\judge\perfectdark.png"
 
-Dear 時々雨, "https://tokidokiame.com/galleryhouse/"
+Dear 時々雨(@inoha1), "https://tokidokiame.com/galleryhouse/"
 	Some lanecovers design are based on 時々雨's illastration.
 	Thank you verymuch.
 
@@ -339,3 +339,12 @@ Update History
 	- Deleted "1Rows : Classic" and "2Rows : Far"
 	- Added some lanecover files
 	- Update readme.txt
+
+05052024
+	- Adjusted Judge images
+	- Update readme.txt
+
+05082024
+	- Update ver 0.2.2
+
+---- ver 0.2.2

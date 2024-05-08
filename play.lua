@@ -324,7 +324,7 @@ local original_filepath = {
 	{name = "Custom : Yellow-Keybeam", 							path = "parts/keybeam/custom/3_yellow/*.png", 		def = "Blue"},
 	{name = "Custom : Scratch-Keybeam", 						path = "parts/keybeam/custom/4_scratch/*.png", 		def = "Blue"},
 
-	{name = "Rows1 : Judge & Combo Number", 					path = "parts/judge/rows1/*.png", 					def = "Degital_#ColorScheme_G_B_W"},
+	{name = "Rows1 : Judge & Combo Number", 					path = "parts/judge/rows1/*.png", 					def = "Default_#ColorScheme_G_B_W"},
 
 	{name = "Rows2 : Judge : Perfect", 							path = "parts/judge/rows2/1_pg/*.png", 				def = "x50%_PERFECT_Rounded"},
 	{name = "Rows2 : Judge : Great", 							path = "parts/judge/rows2/2_gr/*.png", 				def = "x50%_GREAT_Rounded"},
@@ -343,7 +343,7 @@ local original_filepath = {
 
 	{name = "Judge Line", 										path = "parts/colors/7_judgeline/*.png", 			def = "White4_#a3d1ff"},
 	{name = "Bomb", 											path = "parts/!_bomb/*.png", 						def = "!_x150%_White_clear_ring_SCUROed"},
-	{name = "Lane Cover", 										path = "parts/lanecover/*.png", 					def = "Default"},
+	{name = "Lane Cover", 										path = "parts/lanecover/*.png", 					def = "WaterColor_LightBlue"},
 	{name = "Fast/Slow: Character", 							path = "parts/fast_slow/character/*.png", 			def = "Fast_Slow"},
 	{name = "Fast/Slow: Number", 								path = "parts/fast_slow/number/*.png", 				def = "Default"},
 	{name = "Mybest Number", 									path = "parts/scorenum/mybest/*.png", 				def = "Default"},
@@ -1157,7 +1157,7 @@ local function main()
 
 	local function setDetailPos()
 		if isJudgeRows1() then
-			return 177
+			return 179
 		else
 			return 350
 		end
@@ -1273,7 +1273,7 @@ local function main()
 	end
 
 	local function predicateFast()
-		if main_state.number(525) >= FS_THRESHOLD and main_state.number(525) >= 0  then
+		if main_state.number(525) >= FS_THRESHOLD and main_state.number(525) >= 0 then
 			return true
 		else
 			return false
@@ -1281,11 +1281,15 @@ local function main()
 	end
 
 	local function predicateSlow()
-		if main_state.number(525) <= -FS_THRESHOLD and main_state.number(525) <= 0  then
+		if main_state.number(525) <= -FS_THRESHOLD and main_state.number(525) <= 0 then
 			return true
 		else
 			return false
 		end
+	end
+
+	local function eliminateZeroNumber(number)
+		return main_state.number(number) ~= 0
 	end
 
 	local function getFpsAlign()
@@ -1321,11 +1325,11 @@ local function main()
 		return getRemainNotes() / main_state.number(106)
 	end
 
-	local function getDummyNum(num)
+	local function getDummyNumber(number)
 		if main_state.number(101) < 1 then
 			return 0
 		else
-			return main_state.number(num)
+			return main_state.number(number)
 		end
 	end
 
@@ -1460,10 +1464,6 @@ local function main()
 		-- other
 		{id = "bomb_src", 		path = "parts/!_bomb/*.png"},
 		{id = "lanecover_src", 	path = "parts/lanecover/*.png"},
-		{id = "fs_char_src", 	path = "parts/fast_slow/character/*.png"},
-		{id = "fs_num_src", 	path = "parts/fast_slow/number/*.png"},
-		{id = "mybest_num_src", path = "parts/scorenum/mybest/*.png"},
-		{id = "target_num_src", path = "parts/scorenum/target/*.png"},
 
 		-- gauge
 		{id = "gaugeHazard_src", 	path = "parts/colors/1_hazard/*.png"},
@@ -1497,11 +1497,14 @@ local function main()
 		{id = "bf-info-frame", src = "info_system_src", x = 0, y = 0, w = 616, h = 480},
 		{id = "af-info-frame", src = "info_system_src", x = 0, y = 481, w = 616, h = 480},
 		{id = "info-rate-DnP", src = "info_system_src", x = 617, y = 481, w = 74, h = 21},
+		{id = "zero-judgetiming", src = "info_system_src", x = 798, y = 110, w = 30, h = 17},
 
 		---- # score image
 		{id = "score-frame", 		src = "score_system_src", x = 0, y = 0, w = 372, h = 1080},
 		{id = "score-time-colon", 	src = "score_system_src", x = 373, y = 994, w = 68, h = 21},
 		{id = "score-rate-DnP", 	src = "score_system_src", x = 373, y = 1016, w = 76, h = 22},
+
+		{id = "score-diff-zero", 	src = "score_system_src", x = 690, y = 1059, w = 40, h = 21},
 
 		{id = "graph-aaa", 	src = "score_system_src", x = 373, y = 1039, w = 316, h = 13},
 		{id = "graph-aa", 	src = "score_system_src", x = 373, y = 1053, w = 316, h = 13},
@@ -1658,10 +1661,10 @@ local function main()
 		{id = "br-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 4, ref = 425, align = 0},
 
 		{id = "info-rate-num", 		src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 3, align = 0, value = function()
-			return getDummyNum(102)
+			return getDummyNumber(102)
 		end},
 		{id = "info-rate-adot-num", src = "info_system_src", x = 617, y = 0, w = 220, h = 21, divx = 11, digit = 2, align = 0, value = function()
-			return getDummyNum(103)
+			return getDummyNumber(103)
 		end},
 
 		{id = "judgetiming-num", src = "info_system_src", x = 617, y = 110, w = 180, h = 34, divx = 12, divy = 2, digit = 3, ref = 12, align = 1},
@@ -1680,14 +1683,14 @@ local function main()
 		{id = "fps-num", 				src = "score_system_src", x = 373, y = 22, w = 200, h = 21, divx = 10, digit = 4, ref = 20, align = getFpsAlign()},
 
 		{id = "score-rate-num", 		src = "score_system_src", x = 373, y = 130, w = 200, h = 24, divx = 10, digit = 3, align = 0, value = function()
-			return getDummyNum(102)
+			return getDummyNumber(102)
 		end},
 		{id = "score-rate-adot-num", 	src = "score_system_src", x = 373, y = 130, w = 220, h = 24, divx = 11, digit = 2, align = 0, value = function()
-			return getDummyNum(103)
+			return getDummyNumber(103)
 		end},
 
 		{id = "score-score", 			src = "score_system_src", x = 373, y = 0, w = 200, h = 21, divx = 10, digit = 5, align = 0, value = function()
-			return getDummyNum(101)
+			return getDummyNumber(101)
 		end},
 		{id = "score-diff-best", 	src = "score_system_src", x = 373, y = 44, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 152, align = 0},
 		{id = "score-diff-target", 	src = "score_system_src", x = 373, y = 87, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 153, align = 0},
@@ -1715,21 +1718,21 @@ local function main()
 	skin.text = {
 		---- # in loading
 		{id = "inload-genre", font = 0, size = 27, overflow = 1, value = function()
-			if main_state.text(13) == "" then
+			if not main_state.text(13) or main_state.text(13) == "" then
 				return "# No-Genre"
 			else
 				return main_state.text(13)
 			end
 		end},
 		{id = "inload-title", font = 2, size = 73, overflow = 1, value = function()
-			if main_state.text(12) == "" then
+			if not main_state.text(12) or main_state.text(12) == "" then
 				return "# No-Title"
 			else
 				return main_state.text(12)
 			end
 		end},
 		{id = "inload-artist", font = 1, size = 41, overflow = 1, value = function()
-			if main_state.text(16) == "" then
+			if not main_state.text(16) or main_state.text(16) == "" then
 				return "# No-Artist"
 			else
 				return main_state.text(16)
@@ -1738,21 +1741,21 @@ local function main()
 
 		---- # in playing
 		{id = "inplay-title", font = 2, size = 42, overflow = 1, align = getTitleAlign(), value = function()
-			if main_state.text(12) == "" then
+			if not main_state.text(12) or main_state.text(12) == "" then
 				return "# No-Title"
 			else
 				return main_state.text(12)
 			end
 		end},
 		{id = "inplay-artist", font = 1, size = 26, overflow = 1, align = getTitleAlign(), value = function()
-			if main_state.text(16) == "" then
+			if not main_state.text(16) or main_state.text(16) == "" then
 				return "# No-Artist"
 			else
 				return main_state.text(16)
 			end
 		end},
 		{id = "inplay-table", font = 0, size = 26, overflow = 1, align = getTitleAlign(), value = function()
-			if main_state.text(1003) == "" then
+			if not main_state.text(1003) or main_state.text(1003) == "" then
 				return "# No-Table"
 			else
 				return main_state.text(1003)
@@ -1761,7 +1764,7 @@ local function main()
 	}
 	skin.slider = {
 		---- # play slider
-		{id = "song-progress", 	src = "play_system_src", x = 628, y = 4, w = 12, h = 21, angle = 2, range = 600, type = 6},
+		{id = "song-progress", 	src = "play_system_src", x = 623, y = 4, w = 12, h = 21, angle = 2, range = 600, type = 6},
 		{id = "lanecover", 		src = "lanecover_src", x = 0, y = 0, w = -1, h = -1, angle = 2, range = GEOMETRY.LANE_H, type = 4}
 	}
 	skin.graph = {
@@ -2009,19 +2012,19 @@ local function main()
 					-- コンボ数を伴う判定文字(PGからGD)のx座標を求める式は、「(判定文字の幅 + 判定文字とコンボ数との間隔) / 2」
 					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
 						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - ((judge_w[i] + judge_between) / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 64, acc = 2},
-						{time = 500}
+						{time = 1000}
 					}}
 				else
 					-- コンボ数を伴わない判定文字(BDからMS)のx座標を求める式は、「判定文字の幅 / 2」
 					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
 						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 64, acc = 2},
-						{time = 500}
+						{time = 1000}
 					}}
 				end
 				-- コンボ数のx座標を求める式は、「判定文字の幅 + 判定文字とコンボ数との間隔」
 				_numbers[i] = {id = "judgenum" .. id[i], loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
 					{time = 0, x = judge_w[i] + judge_between, y = 0, w = 84, h = 120, a = 64, acc = 2},
-					{time = 500}
+					{time = 1000}
 				}}
 			end
 		end
@@ -2051,11 +2054,11 @@ local function main()
 			for i in ipairs(id) do
 				_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {4, JUDGE_POS, offsets[i]}, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
-					{time = 1500}
+					{time = 2000}
 				}}
 				_numbers[i] = {id = "judge-num", loop = -1, timer = 46, offsets = {4, JUDGE_NUM_POS_ALPHA}, dst = {
 					{time = 0, x = 330, y = 156, w = 54, h = 100, a = 64, acc = 2},
-					{time = 1500}
+					{time = 2000}
 				}}
 			end
 		end
@@ -2080,7 +2083,7 @@ local function main()
 		-- BGA関連 
 		-- BGA related
 		{id = -110, dst = {{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H}}},
-		{id = "bga", stretch = 1, dst = {	{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H}}},
+		{id = "bga", stretch = 1, dst = {{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H}}},
 		{id = -101, loop = 400, op = {80, 195}, filter = 1, stretch = 1, dst = {
 			{time = 0, x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H, a = 0},
 			{time = 400, a = 255}}},
@@ -2210,16 +2213,28 @@ local function main()
 	-- F/S しきい値
 	-- F/S Threshold
 	if isFastSlowThresholdDef() then
-		table.insert(skin.destination, {id = "judgetiming-num", dst = {{x = GEOMETRY.INFO_POS + 113, y = 157, w = 15, h = 17}}})
+		append_all(skin.destination, {
+			{id = "zero-judgetiming", draw = function()
+				return not eliminateZeroNumber(12)
+			end, dst = {{x = GEOMETRY.INFO_POS + 113, y = 157, w = 30, h = 17}}},
+			{id = "judgetiming-num", draw = function()
+				return eliminateZeroNumber(12)
+			end, dst = {{x = GEOMETRY.INFO_POS + 113, y = 157, w = 15, h = 17}}},
+		})
 	else
-		table.insert(skin.image, {id = "threshold-sign", src = "info_system_src", x = 768, y = 145, w = 29, h = 17})
+		table.insert(skin.image, {id = "threshold-sign", src = "info_system_src", x = 768, y = 145, w = 15, h = 17})
 		table.insert(skin.value, {id = "threshold-num", src = "info_system_src", x = 617, y = 145, w = 150, h = 17, divx = 10, digit = 3, align = 1, value = function()
 			return FS_THRESHOLD
 		end})
 		append_all(skin.destination, {
-			{id = "judgetiming-num", dst = {{x = GEOMETRY.INFO_POS + 75, y = 157, w = 15, h = 17}}},
-			{id = "threshold-sign",	dst = {{x = GEOMETRY.INFO_POS + 126, y = 157, w = 29, h = 17}}},
-			{id = "threshold-num", dst = {{x = GEOMETRY.INFO_POS + 155, y = 157, w = 15, h = 17}}}
+			{id = "zero-judgetiming", draw = function()
+				return not eliminateZeroNumber(12)
+			end, dst = {{x = GEOMETRY.INFO_POS + 81, y = 157, w = 30, h = 17}}},
+			{id = "judgetiming-num", draw = function()
+				return eliminateZeroNumber(12)
+			end, dst = {{x = GEOMETRY.INFO_POS + 81, y = 157, w = 15, h = 17}}},
+			{id = "threshold-sign",	dst = {{x = GEOMETRY.INFO_POS + 131, y = 157, w = 15, h = 17}}},
+			{id = "threshold-num", dst = {{x = GEOMETRY.INFO_POS + 146, y = 157, w = 15, h = 17}}}
 		})
 	end
 
@@ -2237,8 +2252,14 @@ local function main()
 		{id = "score-rate-num", 		timer = 41, dst = {{x = GEOMETRY.SCORE_POS + 28, 					y = 992, w = 20, h = 24}}},
 		{id = "score-rate-adot-num", 	timer = 41, dst = {{x = GEOMETRY.SCORE_POS + 102, 					y = 992, w = 20, h = 24}}},
 		{id = "score-score", 			timer = 41, dst = {{x = GEOMETRY.SCORE_POS + 244, 					y = 961, w = 20, h = 21}}},
-		{id = "score-diff-best", 		timer = 41, dst = {{x = GEOMETRY.SCORE_POS + 224, 					y = 935, w = 20, h = 21}}},
-		{id = "score-diff-target", 		timer = 41, dst = {{x = GEOMETRY.SCORE_POS + 224, 					y = 909, w = 20, h = 21}}},
+		{id = "score-diff-zero", 		timer = 41, draw = function() return not eliminateZeroNumber(152) end,
+													dst = {{x = GEOMETRY.SCORE_POS + 304, 					y = 935, w = 40, h = 21}}},
+		{id = "score-diff-best", 		timer = 41, draw = function() return eliminateZeroNumber(152) end,
+													dst = {{x = GEOMETRY.SCORE_POS + 224, 					y = 935, w = 20, h = 21}}},
+		{id = "score-diff-zero", 		timer = 41, draw = function() return not eliminateZeroNumber(153) end,
+													dst = {{x = GEOMETRY.SCORE_POS + 304, 					y = 909, w = 40, h = 21}}},
+		{id = "score-diff-target", 		timer = 41, draw = function() return eliminateZeroNumber(153) end,
+													dst = {{x = GEOMETRY.SCORE_POS + 224, 					y = 909, w = 20, h = 21}}},
 		{id = "graph-final", 			timer = 41, dst = {{x = GEOMETRY.SCORE_POS + GEOMETRY.GRAPH_BLUE, 	y = 102, w = 80, h = 800}}},
 		{id = "graph-now", 				timer = 41, dst = {{x = GEOMETRY.SCORE_POS + GEOMETRY.GRAPH_BLUE, 	y = 102, w = 80, h = 800}}},
 		{id = "graph-best-final", 		timer = 41, dst = {{x = GEOMETRY.SCORE_POS + 168, 					y = 102, w = 80, h = 800}}},
@@ -2350,15 +2371,15 @@ local function main()
 	-- レーン枠
 	-- lane frame
 	if isLaneFrameOn() then
-		table.insert(skin.image, {id = "lane-frame", src = "play_system_src", x = 641, y = 4, w = 10, h = 1080})
+		table.insert(skin.image, {id = "lane-frame", src = "play_system_src", x = 636, y = 4, w = 15, h = GEOMETRY.LANE_H})
 		append_all(skin.destination, {
 			{id = "lane-frame", loop = 600, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 0, w = -15, h = 0, acc = 2},
-				{time = 600, h = 1080}
+				{time = 600, h = GEOMETRY.LANE_H}
 			}},
 			{id = "lane-frame", loop = 600, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_W, y = 0, w = 15, h = 0, acc = 2},
-				{time = 600, h = 1080}
+				{time = 600, h = GEOMETRY.LANE_H}
 			}}
 		})
 	end
@@ -2667,28 +2688,37 @@ local function main()
 
 	-- Fast/Slow
 	if not isFastSlowMSCenter() and not isFastSlowMSRnL() then
+		table.insert(skin.source, {id = "fs_char_src", 	path = "parts/fast_slow/character/*.png"})
 		append_all(skin.image, {
 			{id = "fast", src = "fs_char_src", x = 0, y = 0, w = 148, h = 35},
 			{id = "slow", src = "fs_char_src", x = 0, y = 36, w = 148, h = 35}
 		})
 		if isFastSlowThresholdDef() and isFastSlowCenter() then
 			append_all(skin.destination, {
-				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {1242}, loop = -1, timer = 46, dst = {
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return main_state.option(1242) and eliminateZeroNumber(525)
+				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
-				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {1243}, loop = -1, timer = 46, dst = {
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return main_state.option(1243) and eliminateZeroNumber(525)
+				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
 		elseif isFastSlowThresholdDef() and isFastSlowRnL() then
 			append_all(skin.destination, {
-				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {1242}, loop = -1, timer = 46, dst = {
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return main_state.option(1242) and eliminateZeroNumber(525)
+				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
-				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {1243}, loop = -1, timer = 46, dst = {
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+					return main_state.option(1243) and eliminateZeroNumber(525)
+				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
@@ -2696,13 +2726,13 @@ local function main()
 		elseif not isFastSlowThresholdDef() and isFastSlowCenter() then
 			append_all(skin.destination, {
 				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
-					return predicateFast()
+					return predicateFast() and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
-					return predicateSlow()
+					return predicateSlow() and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
@@ -2711,138 +2741,209 @@ local function main()
 		elseif not isFastSlowThresholdDef() and isFastSlowRnL() then
 			append_all(skin.destination, {
 				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
-					return predicateFast()
+					return predicateFast() and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}},
 				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
-					return predicateSlow()
+					return predicateSlow() and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 64, acc = 2},
 					{time = 500}
 				}}
 			})
 		end
-	elseif isFastSlowMSCenter() then
-		table.insert(skin.value, {id = "fsms-num", src = "fs_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 2})
-		if isFastSlowThresholdDef() then
-			table.insert(skin.destination,	{
-				id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
-					{time = 500}
-				}
+	else
+		table.insert(skin.source, {id = "fsms_num_src", path = "parts/fast_slow/number/*.png"})
+		if isFastSlowMSCenter() then
+			table.insert(skin.value, {id = "fsms-num", src = "fsms_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 2})
+			if isFastSlowThresholdDef() then
+				table.insert(skin.destination,	{
+					id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+						return not main_state.option(241) and eliminateZeroNumber(525)
+					end, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+						{time = 500}
+					}
+				})
+			elseif not isFastSlowThresholdDef() then
+				table.insert(skin.destination,	{
+					id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+						if eliminateZeroNumber(525) then
+							return predicateFast() or predicateSlow()
+						end
+					end, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+						{time = 500}
+					}
+				})
+			end
+		elseif isFastSlowMSRnL() then
+			append_all(skin.value, {
+				{id = "fast-ms-num", src = "fsms_num_src", x = 0, y = 71, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 1},
+				{id = "slow-ms-num", src = "fsms_num_src", x = 0, y = 142, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 0}
 			})
-		elseif not isFastSlowThresholdDef() then
-			table.insert(skin.destination,	{
-				id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
-					return predicateFast() or predicateSlow()
-				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
-					{time = 500}
-				}
-			})
-		end
-	elseif isFastSlowMSRnL() then
-		append_all(skin.value, {
-			{id = "fsms-num", src = "fs_num_src", x = 0, y = 71, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 1},
-			{id = "slms-num", src = "fs_num_src", x = 0, y = 142, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 0}
-		})
-		if isFastSlowThresholdDef() then
-			append_all(skin.destination, {
-				{id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
-					{time = 500}
-				}},
-				{id = "slms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, op = {-241}, loop = -1, timer = 46, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
-					{time = 500}
-				}}
-			})
-		elseif not isFastSlowThresholdDef() then
-			append_all(skin.destination, {
-				{id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
-					return predicateFast()
-				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
-					{time = 500}
-				}},
-				{id = "slms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
-					return predicateSlow()
-				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
-					{time = 500}
-				}}
-			})
+			if isFastSlowThresholdDef() then
+				append_all(skin.destination, {
+					{id = "fast-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+						return not main_state.option(241) and eliminateZeroNumber(525)
+					end, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+						{time = 500}
+					}},
+					{id = "slow-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+						return not main_state.option(241) and eliminateZeroNumber(525)
+					end, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+						{time = 500}
+					}}
+				})
+			elseif not isFastSlowThresholdDef() then
+				append_all(skin.destination, {
+					{id = "fast-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+						return predicateFast() and eliminateZeroNumber(525)
+					end, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+						{time = 500}
+					}},
+					{id = "slow-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS_ALPHA}, loop = -1, timer = 46, draw = function()
+						return predicateSlow() and eliminateZeroNumber(525)
+					end, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2},
+						{time = 500}
+					}}
+				})
+			end
 		end
 	end
-
 
 	-- ターゲットとのスコア差
 	-- Score difference from target.
 	if not isTarget2On() and isTargetBest() then
-		table.insert(skin.value, {id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 2, value = function()
-			if main_state.float_number(113) ~= 0 then
-				return main_state.number(152)
-			else
-				return main_state.number(153)
-			end
-		end})
-		table.insert(skin.destination,	{
-			id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, op = {32}, timer = 46, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
-			}
-		})
+		do
+			local _number
+			table.insert(skin.source, {id = "mybest_num_src", path = "parts/scorenum/mybest/*.png"})
+			table.insert(skin.image, {id = "zero-mybest", src = "mybest_num_src", x = 0, y = 70, w = 68, h = 35})
+			table.insert(skin.value, {id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, align = 2, value = function()
+				if main_state.float_number(113) ~= 0 then
+					_number = 152	-- NUMBER_DIFF_HIGHSCORE
+					return main_state.number(_number)
+				else
+					_number = 153	-- NUMBER_DIFF_TARGETSCORE
+					return main_state.number(_number)
+				end
+			end})
+			append_all(skin.destination, {
+				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+					return not eliminateZeroNumber(_number)
+				end, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-34), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 64, acc = 2}
+				}},
+				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+					return eliminateZeroNumber(_number)
+				end, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
+				}}
+			})
+		end
 	elseif not isTarget2On() and isTargetRank() then
+		table.insert(skin.source, {id = "target_num_src", path = "parts/scorenum/target/*.png"})
+		table.insert(skin.image, {id = "zero-target", src = "target_num_src", x = 0, y = 70, w = 68, h = 35})
 		table.insert(skin.value, {id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 2})
-		table.insert(skin.destination,	{
-			id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, op = {32}, timer = 46, dst = {
+		append_all(skin.destination, {
+			{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+				return not eliminateZeroNumber(153)
+			end, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-34), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 64, acc = 2}
+			}},
+			{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+				return eliminateZeroNumber(153)
+			end, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
-			}
-		})
-	elseif isTarget2On() and isTargetBest() then
-		append_all(skin.value, {
-			{id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 1},
-			{id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 0}
-		})
-		append_all(skin.destination, {
-			{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, op = {32}, timer = 46, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
-			}},
-			{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 46, draw = function()
-				if main_state.float_number(113) ~= 0 and main_state.option(32) then
-					return true
-				end
-			end, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
 			}}
 		})
-	elseif isTarget2On() and isTargetRank() then
-		append_all(skin.value, {
-			{id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 1},
-			{id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 0}
+	elseif isTarget2On() then
+		append_all(skin.source, {
+			{id = "target_num_src", path = "parts/scorenum/target/*.png"},
+			{id = "mybest_num_src", path = "parts/scorenum/mybest/*.png"}
 		})
-		append_all(skin.destination, {
-			{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 46, draw = function()
-				if main_state.float_number(113) ~= 0 and main_state.option(32) then
-					return true
-				end
-			end, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
-			}},
-			{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, op = {32}, timer = 46, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
-			}}
+		append_all(skin.image, {
+			{id = "zero-target", src = "target_num_src", x = 0, y = 70, w = 68, h = 35},
+			{id = "zero-mybest", src = "mybest_num_src", x = 0, y = 70, w = 68, h = 35}
 		})
+		if isTargetBest() then
+			append_all(skin.value, {
+				{id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 1},
+				{id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 0}
+			})
+			append_all(skin.destination, {
+				{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+					return not eliminateZeroNumber(153)
+				end, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 64, acc = 2}
+				}},
+				{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+					return eliminateZeroNumber(153)
+				end, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
+				}},
+				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+					if main_state.float_number(113) ~= 0 then
+						return not eliminateZeroNumber(152)
+					end
+				end, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-68), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 64, acc = 2}
+				}},
+				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+					if main_state.float_number(113) ~= 0 then
+						return eliminateZeroNumber(152)
+					end
+				end, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
+				}}
+			})
+		elseif isTargetRank() then
+			append_all(skin.value, {
+				{id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 1},
+				{id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 0}
+			})
+			append_all(skin.destination, {
+				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+					if main_state.float_number(113) ~= 0 then
+						return not eliminateZeroNumber(152)
+					end
+				end, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 64, acc = 2}
+				}},
+				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+					if main_state.float_number(113) ~= 0 then
+						return eliminateZeroNumber(152)
+					end
+				end, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
+				}},
+				{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+					return not eliminateZeroNumber(153)
+				end, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-68), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 64, acc = 2}
+				}},
+				{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS_ALPHA}, timer = 41, draw = function()
+					return eliminateZeroNumber(153)
+				end, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 64, acc = 2}
+				}}
+			})
+		end
 	end
 
 	-- Timing Visualizer
 	if isTimingVisualizerOn() then
 		do
 			skin.timingvisualizer = {{id = "timing-visualizer"}}
-			local _w = GEOMETRY.LANE_DISTANCE - 20
+			local _width = GEOMETRY.LANE_DISTANCE - 20
 			table.insert(skin.destination, {id = "timing-visualizer", offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS_ALPHA}, op = {32}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + math.floor(_w / 2), y = GEOMETRY.DETAIL_Y + 163, w = -(_w), h = 15, a = 64, r = 230, g = 200, b = 255, acc = 2}
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + math.floor(_width / 2), y = GEOMETRY.DETAIL_Y + 161, w = -(_width), h = 15, a = 64, r = 230, g = 200, b = 255, acc = 2}
 			}})
 		end
 	end
@@ -2854,10 +2955,10 @@ local function main()
 			table.insert(skin.image, {id = "play-rate-dot", src = "play_system_src", x = 82, y = 1063, w = 80, h = 21})
 			append_all(skin.value, {
 				{id = "play-rate-num", src = "play_system_src", x = 0, y = 178, w = 200, h = 21, divx = 10, digit = 3, align = 0, value = function()
-					return getDummyNum(102)
+					return getDummyNumber(102)
 				end},
 				{id = "play-rate-adot-num", src = "play_system_src", x = 0, y = 178, w = 220, h = 21, divx = 11, digit = 2, align = 0, value = function()
-					return getDummyNum(103)
+					return getDummyNumber(103)
 				end}
 			})
 			append_all(skin.destination, {
@@ -2875,10 +2976,10 @@ local function main()
 			table.insert(skin.image, {id = "play-rate-dot", src = "judgenum_src", x = 309, y = 101, w = 16, h = 50})
 			append_all(skin.value, {
 				{id = "play-rate-num", src = "judgenum_src", x = 0, y = 101, w = 280, h = 50, divx = 10, digit = 3, align = 0, value = function()
-					return getDummyNum(102)
+					return getDummyNumber(102)
 				end},
 				{id = "play-rate-adot-num", src = "judgenum_src", x = 0, y = 101, w = 308, h = 50, divx = 11, digit = 2, align = 0, value = function()
-					return getDummyNum(103)
+					return getDummyNumber(103)
 				end}
 			})
 			append_all(skin.destination, {
