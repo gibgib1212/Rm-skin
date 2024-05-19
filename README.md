@@ -37,12 +37,21 @@
 
 ## Sample Movie
 
- [Judge : 1Rows / 7key-Left / -Right](https://www.youtube.com/watch?v=pqbMGWq4SSE "Sample Movie1")
+ [Judge : Type A / 7key-Left / -Right](https://www.youtube.com/watch?v=pqbMGWq4SSE "Sample Movie1")
 
- [Judge : 2Rows / 5key / 9key](https://www.youtube.com/watch?v=UInLj27s08A "Sample Movie2")
-
+ [Judge : Type C / 5key / 9key](https://www.youtube.com/watch?v=UInLj27s08A "Sample Movie2")
 
 \* This Sample Movie is an early version. Some of them may differ from the current specifications.
+
+## Description for "Adjusted cover"
+
+[Movie](https://www.youtube.com/watch?v=6HqDn00ie58 "Sample Movie3")
+
+"Adjusted Lanecover" is a function that automatically adjusts lane cover in response to changes in BPM.
+Turning on "Hiddencover" and setting HS-Fix to "MAXBPM" will enable this function.
+Adjusted-cover multiplier is calculated based on the difference between MAXBPM and current BPM. Therefore, it does not work effectively on "songs with extremely high MAXBPM" or "songs with wildly fluctuating BPM".
+Since this skin does not implement normal the hiddencover, it would be easier to use if you always turn on the hiddencover and use "MAXBPM" and "MAINBPM" according to the song.
+
 
 ## Sample Picture
 

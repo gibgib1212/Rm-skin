@@ -1,8 +1,8 @@
 -------------------------------------
 "Rm-skin"
-ver 0.2.2
-Full HD (1920x1080) Playskin-5,7,9key for beatoraja
-(Last updated:05/08/2024)
+ver 0.2.3
+Full HD (1920x1080) Playskin-5,7,9 key for beatoraja
+(Last updated:05/19/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -231,7 +231,7 @@ Update History
 	- Other minor adjustments and code optimization.
 	- Update readme.txt
 
----- v0.1.0	
+---- ver 0.1.0	
 
 03212024
 	- Changed lane height 1035 to 1080 pixel (If you do not set the lift, the gauge will appear before the judgeline)
@@ -276,7 +276,7 @@ Update History
 	- Added the function to freely change the height and width of notes
 	- Update readme.txt
 
----- ver0.2.0
+---- ver 0.2.0
 
 04112024
 
@@ -348,3 +348,16 @@ Update History
 	- Update ver 0.2.2
 
 ---- ver 0.2.2
+
+05182024
+
+	- Added the function for auto-adjusting the lean cover
+	- Rename "1Rows" to "Type A", "2Rows" to "Type C". and Added the "Type B" option
+	- Added some judge files 
+	- Update readme.txt
+
+05192024
+
+	- Update ver 0.2.3
+
+---- ver 0.2.3

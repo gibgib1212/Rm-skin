@@ -27,8 +27,9 @@ local LANE_CENTER_NOTES = 					optionCount()
 local NOTES_WIDTH_TEMPLATE = 				optionCount()
 local NOTES_WIDTH_CUSTOM = 					optionCount()
 
-local JUDGE_ROWS_1 =						optionCount()
-local JUDGE_ROWS_2 =						optionCount()
+local JUDGE_TYPE_A =						optionCount()
+local JUDGE_TYPE_B =						optionCount()
+local JUDGE_TYPE_C =						optionCount()
 
 local NOTES_5KEY_ALIGN_RL = 				optionCount()
 local NOTES_5KEY_ALIGN_CENTER = 			optionCount()
@@ -120,17 +121,21 @@ local BOMB_POS_ALPHA = 						offsetCount()
 local GAUGE_POS = 							offsetCount()
 local GAUGE_ALPHA = 						offsetCount()
 
+-- ========================================================================================================================================================	
+
+-- # offset, filepath, property
+
 local original_offset = {
 	{name = "Background Darkness", 						id = BG_DARKNESS, 																	a = true},
 	{name = "BGA Darkness", 							id = BGA_DARKNESS, 																	a = true},
 	{name = "Barline Alpha", 							id = BARLINE_ALPHA, 																a = true},
 	{name = "Judge Position", 							id = JUDGE_POS, 					x = true, 	y = true},
-	{name = "Judge : Perfect Alpha", 					id = JUDGE_PG_ALPHA, 																a = true},
-	{name = "Judge : Great Alpha", 						id = JUDGE_GR_ALPHA, 																a = true},
-	{name = "Judge : Good Alpha", 						id = JUDGE_GD_ALPHA, 																a = true},
-	{name = "Judge : Bad Alpha", 						id = JUDGE_BD_ALPHA, 																a = true},
-	{name = "Judge : Poor Alpha", 						id = JUDGE_PR_ALPHA, 																a = true},
-	{name = "Judge : Miss Alpha", 						id = JUDGE_MS_ALPHA, 																a = true},
+	{name = "Judge PG Alpha", 							id = JUDGE_PG_ALPHA, 																a = true},
+	{name = "Judge GR Alpha", 							id = JUDGE_GR_ALPHA, 																a = true},
+	{name = "Judge GD Alpha", 							id = JUDGE_GD_ALPHA, 																a = true},
+	{name = "Judge BD Alpha", 							id = JUDGE_BD_ALPHA, 																a = true},
+	{name = "Judge PR Alpha", 							id = JUDGE_PR_ALPHA, 																a = true},
+	{name = "Judge MS Alpha", 							id = JUDGE_MS_ALPHA, 																a = true},
 	{name = "Combo Number Position & Alpha", 			id = JUDGE_NUM_POS_ALPHA, 			x = true, 	y = true, 							a = true},
 	{name = "F/S Position & Alpha", 					id = FAST_SLOW_POS_ALPHA, 			x = true, 	y = true, 							a = true},
 	{name = "Target Position & Alpha", 					id = TARGET_POS_ALPHA, 				x = true, 	y = true, 							a = true},
@@ -324,15 +329,16 @@ local original_filepath = {
 	{name = "Custom : Yellow-Keybeam", 							path = "parts/keybeam/custom/3_yellow/*.png", 		def = "Blue"},
 	{name = "Custom : Scratch-Keybeam", 						path = "parts/keybeam/custom/4_scratch/*.png", 		def = "Blue"},
 
-	{name = "Rows1 : Judge & Combo Number", 					path = "parts/judge/rows1/*.png", 					def = "Default_#ColorScheme_G_B_W"},
+	{name = "Type A_B : Judge & Combo Number", 					path = "parts/judge/type_ab/*.png", 				def = "Default_#ColorScheme_TypeA"},
 
-	{name = "Rows2 : Judge : Perfect", 							path = "parts/judge/rows2/1_pg/*.png", 				def = "x50%_PERFECT_Rounded"},
-	{name = "Rows2 : Judge : Great", 							path = "parts/judge/rows2/2_gr/*.png", 				def = "x50%_GREAT_Rounded"},
-	{name = "Rows2 : Judge : Good",	 							path = "parts/judge/rows2/3_gd/*.png", 				def = "x50%_GOOD_Rounded"},
-	{name = "Rows2 : Judge : Bad", 								path = "parts/judge/rows2/4_bd/*.png", 				def = "x50%_BAD_Rounded"},
-	{name = "Rows2 : Judge : Poor", 							path = "parts/judge/rows2/5_pr/*.png", 				def = "x50%_POOR_Rounded"},
-	{name = "Rows2 : Judge : Miss",	 							path = "parts/judge/rows2/6_ms/*.png",				def = "x50%_MISS_Rounded"},
-	{name = "Rows2 : Combo Number & Score Rate", 				path = "parts/judgenum/*.png", 						def = "Default_Rounded"},
+	{name = "Type B_C : Combo Number & Score Rate", 			path = "parts/judgenum/*.png", 						def = "Default_Rounded"},
+
+	{name = "Type C : Judge : Perfect", 						path = "parts/judge/type_c/1_pg/*.png", 			def = "x50%_PG_Rounded"},
+	{name = "Type C : Judge : Great", 							path = "parts/judge/type_c/2_gr/*.png", 			def = "x50%_GR_Rounded"},
+	{name = "Type C : Judge : Good",	 						path = "parts/judge/type_c/3_gd/*.png", 			def = "x50%_GD_Rounded"},
+	{name = "Type C : Judge : Bad", 							path = "parts/judge/type_c/4_bd/*.png", 			def = "x50%_BD_Rounded"},
+	{name = "Type C : Judge : Poor", 							path = "parts/judge/type_c/5_pr/*.png", 			def = "x50%_PR_Rounded"},
+	{name = "Type C : Judge : Miss",	 						path = "parts/judge/type_c/6_ms/*.png",				def = "x50%_MS_Rounded"},
 
 	{name = "Gauge: Hazard", 									path = "parts/colors/1_hazard/*.png", 				def = "Blue1_#389eff"},
 	{name = "Gauge: Ex-Hard", 									path = "parts/colors/2_exhard/*.png", 				def = "Yellow1_#ffff40"},
@@ -386,9 +392,10 @@ local original_property = {
 		{name = "30 pixel", 							op = NOTES_HEIGHT_30_PIX},
 		{name = "Custom", 								op = NOTES_HEIGHT_CUSTOM}
 	}},
-	{name = "Judge Display Rows", 						item = {
-		{name = "1 Rows", 								op = JUDGE_ROWS_1},
-		{name = "2 Rows", 								op = JUDGE_ROWS_2}
+	{name = "Judge Display", 							item = {
+		{name = "Type A", 								op = JUDGE_TYPE_A},
+		{name = "Type B", 								op = JUDGE_TYPE_B},
+		{name = "Type C", 								op = JUDGE_TYPE_C}
 	}},
 	{name = "Keybeam Display", 							item = {
 		{name = "Fast", 								op = KEYBEAM_DISPLAY_FAST},
@@ -454,6 +461,10 @@ local original_property = {
 		{name = "Float", 								op = MASCOT_FLOAT}
 	}}
 }
+
+-- ========================================================================================================================================================	
+
+-- # startup process + header
 
 local function createTable(original_table, exclude_names, category_name)
     local t = {}
@@ -831,7 +842,7 @@ local header = {
 		4:9keys
 	--]]
 	type = 		nil, -- set in ".luaskin"
-	name = 		"Rm-skin ver 0.2.2",
+	name = 		"Rm-skin ver 0.2.3",
 	w = 		1920,
 	h = 		1080,
 	loadend = 	3000,
@@ -846,6 +857,10 @@ local header = {
 	category = 	nil,
 	process = 	processHeader
 }
+
+-- ========================================================================================================================================================	
+
+-- isXXFunctions
 
 local function is7key() return header.type == 0 end
 local function is5key() return header.type == 1 end
@@ -876,7 +891,8 @@ local function isNotesHeight_35() 		return skin_config.option["Notes Height"] ==
 local function isNotesHeight_30() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_30_PIX end
 local function isNotesHeightCustom() 	return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_CUSTOM end
 
-local function isJudgeRows1() 			return skin_config.option["Judge Display Rows"] == 			JUDGE_ROWS_1 end
+local function isJudgeTypeA()	 		return skin_config.option["Judge Display"] == 				JUDGE_TYPE_A end
+local function isJudgeTypeB() 			return skin_config.option["Judge Display"] == 				JUDGE_TYPE_B end
 
 local function isKeybeamFast() 			return skin_config.option["Keybeam Display"] == 			KEYBEAM_DISPLAY_FAST end
 
@@ -909,6 +925,10 @@ local function isBombPropertyCustom()	return skin_config.option["Bomb Property"]
 local function isHiSpeedRelative()		return skin_config.option["Hi-Speed Type"] == 				HI_SPEED_RELATIVE end
 
 local function isMascotStop() 			return skin_config.option["Mascot Display"] == 				MASCOT_STOP end
+
+-- ========================================================================================================================================================	
+
+-- # main function + original functions
 
 local function main()
 
@@ -1140,7 +1160,7 @@ local function main()
 	end
 
 	local function setJudgePos()
-		if isJudgeRows1() then
+		if isJudgeTypeA() or isJudgeTypeB() then
 			return 205
 		else
 			return 780
@@ -1148,7 +1168,7 @@ local function main()
 	end
 
 	local function setTracerPos()
-		if isJudgeRows1() then
+		if isJudgeTypeA() or isJudgeTypeB() then
 			return 330
 		else
 			return 544
@@ -1156,7 +1176,7 @@ local function main()
 	end
 
 	local function setDetailPos()
-		if isJudgeRows1() then
+		if isJudgeTypeA() or isJudgeTypeB() then
 			return 179
 		else
 			return 350
@@ -1333,6 +1353,10 @@ local function main()
 		end
 	end
 
+-- ========================================================================================================================================================	
+
+-- # GEOMETRY
+
 	local GEOMETRY = {
 		PLAY_POS = 		setPlayPos(),
 		SCORE_POS = 	setScorePos(),
@@ -1358,29 +1382,29 @@ local function main()
 		MASCOT_H = 		256
 	}
 
+-- ========================================================================================================================================================	
+
+-- skin.XX
+
 	local key_type
-	if isNotesWidthCustom() then
-		key_type = "/custom/"
-	elseif is5key() and is5keyAlignEnlarge() then
-		key_type = "/5keyL/"
-	elseif is9key() then
-		key_type = "/9key/"
-	else
-		key_type = "/7key/"
+	if isNotesWidthCustom() then 					key_type = "/custom/"
+	elseif is5key() and is5keyAlignEnlarge() then 	key_type = "/5keyL/"
+	elseif is9key() then 							key_type = "/9key/"
+	else 											key_type = "/7key/"
 	end
 	skin.source = {
-		---- # common src
+		-- # common src
 		{id = "bg_src", 			path = "parts/bg/*.png"},
 		{id = "alt_image_src", 		path = "!_common/!_alt_image.png"},
 
-		---- # infomation src
+		-- # infomation src
 		{id = "info_system_src", 	path = "!_common/!_info_system.png"},
 
-		---- # score src
+		-- # score src
 		{id = "score_system_src", 	path = "!_common/!_score_system.png"},
 		{id = "mascot_src", 		path = "parts/!_mascot/*.png"},
 
-		---- # play src
+		-- # play src
 		{id = "play_system_src", 	path = "!_common/!_play_system.png"},
 
 		-- note
@@ -1484,7 +1508,7 @@ local function main()
 		{id = 2, path = "font/mgenplus-2pp-heavy.ttf"}
 	}
 	skin.image = {
-		---- # common image
+		-- # common image
 		{id = "bg", 			src = "bg_src", x = 0, y = 0, w = -1, h = -1},
 		{id = "alt-bga-1", 		src = "alt_image_src", x = 0, y = 0, w = 480, h = 480},
 		{id = "alt-bga-2", 		src = "alt_image_src", x = 0, y = 481, w = 480, h = 480},
@@ -1493,13 +1517,13 @@ local function main()
 		{id = "inload-titleline", src = "play_system_src", x = 15, y = 0, w = 1450, h = 3},
 		{id = "alt-stagefile", 	src = "alt_image_src", x = 0, y = 962, w = 320, h = 240},
 
-		---- # infomation image
+		-- # infomation image
 		{id = "bf-info-frame", src = "info_system_src", x = 0, y = 0, w = 616, h = 480},
 		{id = "af-info-frame", src = "info_system_src", x = 0, y = 481, w = 616, h = 480},
 		{id = "info-rate-DnP", src = "info_system_src", x = 617, y = 481, w = 74, h = 21},
 		{id = "zero-judgetiming", src = "info_system_src", x = 798, y = 110, w = 30, h = 17},
 
-		---- # score image
+		-- # score image
 		{id = "score-frame", 		src = "score_system_src", x = 0, y = 0, w = 372, h = 1080},
 		{id = "score-time-colon", 	src = "score_system_src", x = 373, y = 994, w = 68, h = 21},
 		{id = "score-rate-DnP", 	src = "score_system_src", x = 373, y = 1016, w = 76, h = 22},
@@ -1512,7 +1536,9 @@ local function main()
 
 		{id = "mascot", 	src = "mascot_src", x = 0, y = 0, w = -1, h = -1},
 
-		---- # play image
+		-- # play image
+		{id = "adjusted-rate-dot", 	src = "play_system_src", x = 176, y = 1025, w = 69, h = 18},
+		{id = "remain-rate-dot", 	src = "play_system_src", x = 166, y = 1025, w = 9, h = 18},
 		{id = "remain-rate-dot", 	src = "play_system_src", x = 166, y = 1025, w = 9, h = 18},
 		{id = "song-time-colon", 	src = "play_system_src", x = 166, y = 1044, w = 9, h = 18},
 		{id = "song-progress-bar",	src = "play_system_src", x = 10, y = 0, w = 4, h = 10},
@@ -1631,8 +1657,6 @@ local function main()
 		{id = "gauge-p3", src = "gaugeAsEasy_src", x = 0, y = 0, w = 10, h = 10},
 
 		-- other
-		{id = "hiddencover", src = "play_system_src", x = 652, y = 4, w = 10, h = 1080},
-
 		{id = "replay", 	src = "play_system_src", x = 0, y = 16, w = 258, h = 35},
 		{id = "auto", 		src = "play_system_src", x = 259, y = 16, w = 348, h = 35},
 		{id = "eon", 		src = "play_system_src", x = 0, y = 52, w = 390, h = 35},
@@ -1642,7 +1666,7 @@ local function main()
 	}
 	skin.imageset = {}
 	skin.value = {
-		---- # infomation valus
+		-- # infomation valus
 		{id = "pf-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 5, ref = 110, align = 0},
 		{id = "gr-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 5, ref = 111, align = 0},
 		{id = "gd-num", src = "info_system_src", x = 617, y = 0, w = 200, h = 21, divx = 10, digit = 5, ref = 112, align = 0},
@@ -1676,7 +1700,7 @@ local function main()
 		{id = "bpm-max", src = "info_system_src", x = 617, y = 371, w = 360, h = 36, divx = 10, digit = 3, ref = 90, align = 0},
 		{id = "bpm-min", src = "info_system_src", x = 617, y = 371, w = 360, h = 36, divx = 10, digit = 3, ref = 91, align = 0},
 
-		---- # score values
+		-- # score values
 		{id = "score-time-hour-num", 	src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 27, align = 1},
 		{id = "score-time-minute-num", src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 28, align = 1},
 		{id = "score-time-second-num", src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 29, align = 1},
@@ -1695,7 +1719,14 @@ local function main()
 		{id = "score-diff-best", 	src = "score_system_src", x = 373, y = 44, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 152, align = 0},
 		{id = "score-diff-target", 	src = "score_system_src", x = 373, y = 87, w = 240, h = 42, divx = 12, divy = 2, digit = 6, ref = 153, align = 0},
 
-		---- # play values
+		-- # play values
+		{id = "adjusted-rate-num", 		src = "play_system_src", x = 0, y = 1025, w = 150, h = 18, divx = 10, digit = 1, align = 0, value = function()
+			return main_state.number(160) / main_state.number(90)
+		end},
+		{id = "adjusted-rate-adot-num", src = "play_system_src", x = 0, y = 1044, w = 165, h = 18, divx = 11, digit = 2, align = 0, value = function()
+			return math.floor(main_state.number(160) / main_state.number(90) * 100 + 0.5)
+		end},
+
 		{id = "remain-rate-num", 		src = "play_system_src", x = 0, y = 1025, w = 150, h = 18, divx = 10, digit = 3, align = 0, value = function()
 			return getRemainNotesRate() * 100
 		end},
@@ -1711,12 +1742,32 @@ local function main()
 		{id = "song-remain-s", 			src = "play_system_src", x = 0, y = 1025, w = 165, h = 18, divx = 11, digit = 2, ref = 164, align = 0},
 
 		{id = "lanecover-value", 		src = "play_system_src", x = 0, y = 178, w = 200, h = 21, divx = 10, digit = 4, ref = 14, align = 0},
-		{id = "lanecover-green", 		src = "play_system_src", x = 0, y = 200, w = 200, h = 21, divx = 10, digit = 4, ref = 313, align = 0},
-		{id = "lanecover-duration", 	src = "play_system_src", x = 0, y = 222, w = 200, h = 21, divx = 10, digit = 4, ref = 312, align = 0},
+		{id = "lanecover-green", 		src = "play_system_src", x = 0, y = 200, w = 200, h = 21, divx = 10, digit = 4, align = 0, value = function()
+			if main_state.event_index(55) == 2 and main_state.option(273) then
+				if main_state.option(90) == 0 then
+					return main_state.number(312) * 3 / 5
+				else
+					return main_state.number(312) * main_state.number(160) / main_state.number(90) * 3 / 5
+				end
+			else
+				return main_state.number(312) * 3 / 5
+			end
+		end},
+		{id = "lanecover-duration", 	src = "play_system_src", x = 0, y = 222, w = 200, h = 21, divx = 10, digit = 4, align = 0, value = function()
+			if main_state.event_index(55) == 2 and main_state.option(273) then
+				if main_state.number(90) == 0 then
+					return main_state.number(312)
+				else
+					return main_state.number(312) * main_state.number(160) / main_state.number(90)
+				end
+			else
+				return main_state.number(312)
+			end
+		end},
 		{id = "lift-value", 			src = "play_system_src", x = 0, y = 178, w = 200, h = 21, divx = 10, digit = 4, ref = 314, align = 0}
 	}
 	skin.text = {
-		---- # in loading
+		-- # in loading
 		{id = "inload-genre", font = 0, size = 27, overflow = 1, value = function()
 			if not main_state.text(13) or main_state.text(13) == "" then
 				return "# No-Genre"
@@ -1739,7 +1790,7 @@ local function main()
 			end
 		end},
 
-		---- # in playing
+		-- # in playing
 		{id = "inplay-title", font = 2, size = 42, overflow = 1, align = getTitleAlign(), value = function()
 			if not main_state.text(12) or main_state.text(12) == "" then
 				return "# No-Title"
@@ -1763,12 +1814,23 @@ local function main()
 		end}
 	}
 	skin.slider = {
-		---- # play slider
-		{id = "song-progress", 	src = "play_system_src", x = 623, y = 4, w = 12, h = 21, angle = 2, range = 600, type = 6},
-		{id = "lanecover", 		src = "lanecover_src", x = 0, y = 0, w = -1, h = -1, angle = 2, range = GEOMETRY.LANE_H, type = 4}
+		-- # play slider
+		{id = "song-progress", 	src = "play_system_src", x = 634, y = 4, w = 12, h = 21, angle = 2, range = 600, type = 6},
+		{id = "lanecover", 		src = "lanecover_src", x = 0, y = 0, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, angle = 2, range = GEOMETRY.LANE_H, type = 4},
+		{id = "adjustedcover", 	src = "lanecover_src", x = 0, y = 0, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, angle = 2, range = GEOMETRY.LANE_H, value = function()
+			-- BUTTON_HSFIX = 55;	0:OFF, 1:START, 2:MAX, 3:MAIN, 4:MIN
+			if main_state.event_index(55) == 2 and main_state.option(273) then
+				-- NUMBER_LANECOVER1 = 	14;
+				-- NUMBER_LIFT1 = 		314;
+				local visible_area = 1 - (main_state.number(14) + main_state.number(314)) / 1000
+				-- NUMBER_MAXBPM = 		90;
+				-- NUMBER_NOWBPM = 		160;
+				return visible_area - visible_area * main_state.number(160) / main_state.number(90)
+			end
+		end}
 	}
 	skin.graph = {
-		---- # score graph
+		-- # score graph
 		{id = "graph-now", 			src = "score_system_src", x = 699, y = 0, w = 10, h = 800, angle = 1, type = 110},
 		{id = "graph-final", 		src = "score_system_src", x = 732, y = 0, w = 10, h = 800, angle = 1, type = 111},
 		{id = "graph-best-now", 	src = "score_system_src", x = 710, y = 0, w = 10, h = 800, angle = 1, type = 112},
@@ -1776,10 +1838,10 @@ local function main()
 		{id = "graph-target-now", 	src = "score_system_src", x = 721, y = 0, w = 10, h = 800, angle = 1, type = 114},
 		{id = "graph-target-final", src = "score_system_src", x = 732, y = 0, w = 10, h = 800, angle = 1, type = 115},
 
-		---- # play graph
+		-- # play graph
 		{id = "song-progress-fin", 	src = "play_system_src", x = 10, y = 0, w = 4, h = 10, angle = 1, type = 101},
 
-		---- # in loading
+		-- # in loading
 		{id = "inload-progress", 		src = "play_system_src", x = 15, y = 0, w = 1450, h = 3, angle = 0, type = 102}
 	}
 	skin.note = {
@@ -1957,26 +2019,19 @@ local function main()
 	skin.gauge = {
 		id = "gauge",
 		nodes = {
-		-- 並び順はoverclear(明),underclear(明),overclear(暗),underclear(暗),先端の色(明),先端の色(暗)
 		-- Order: overclear(light),underclear(light),overclear(dark),underclear(dark),tip color(light),tip color(dark)
 
-		-- アシストイージーゲージ 
 		-- assist easy gauge
 		"gauge-r1","gauge-p1","gauge-r2","gauge-p2","gauge-r3","gauge-p3",
-		-- イージーゲージ 
 		-- easy gauge
 		"gauge-r1","gauge-g1","gauge-r2","gauge-g2","gauge-r3","gauge-g3",
-		-- ノーマルゲージ 
 		-- normal gauge
 		"gauge-r1","gauge-b1","gauge-r2","gauge-b2","gauge-r3","gauge-b3",
-		-- ハードゲージ(2,4,6番目はダミー？) 
-		-- hard gauge(Are the second, fourth, and sixth dummies?)
+		-- hard gauge(Are the 2, 4, and 6 dummies?)
 		"gauge-r1","gauge-p1","gauge-r2","gauge-p2","gauge-r3","gauge-p3",
-		-- EXハードゲージ(2,4,6番目はダミー？) 
-		-- ex hard gauge(Are the second, fourth, and sixth dummies?)
+		-- ex hard gauge(Are the 2, 4, and 6 dummies?)
 		"gauge-y1","gauge-p1","gauge-y2","gauge-p2","gauge-y3","gauge-p3",
-		-- ハザードゲージ(2,4,6番目はダミー？) 
-		-- hazard gauge(Are the second, fourth, and sixth dummies?)
+		-- hazard gauge(Are the 2, 4, and 6 dummies?)
 		"gauge-w1","gauge-w1","gauge-w2","gauge-w2","gauge-w3","gauge-w3"
 		}
 	}
@@ -1984,11 +2039,11 @@ local function main()
 	local _images = {}
 	local _numbers = {}
 	local _shift
-	if isJudgeRows1() then
-		do
+	do
+		if isJudgeTypeA() or isJudgeTypeB() then
 			local judge_w = {356, 356, 288, 220, 288, 260}
-			local judge_between = 24
-			table.insert(skin.source, {id = "judge_src", path = "parts/judge/rows1/*.png"})
+			local offsets = {JUDGE_PG_ALPHA, JUDGE_GR_ALPHA, JUDGE_GD_ALPHA, JUDGE_BD_ALPHA, JUDGE_PR_ALPHA, JUDGE_MS_ALPHA}
+			table.insert(skin.source, {id = "judge_src", path = "parts/judge/type_ab/*.png"})
 			append_all(skin.image, {
 				{id = "judge-pg", src = "judge_src", x = 0, y = 0, w = judge_w[1], h = 720, divy = 6, cycle = 100},
 				{id = "judge-gr", src = "judge_src", x = 0, y = 721, w = judge_w[2], h = 240, divy = 2, cycle = 60},
@@ -1997,58 +2052,75 @@ local function main()
 				{id = "judge-pr", src = "judge_src", x = 0, y = 1324, w = judge_w[5] * 2, h = 120, divx = 2, cycle = 60},
 				{id = "judge-ms", src = "judge_src", x = 0, y = 1445, w = judge_w[6] * 2, h = 120, divx = 2, cycle = 60}
 			})
-			append_all(skin.value, {
-				{id = "judgenum-pg", src = "judge_src", x = 357, y = 0, w = 840, h = 720, divx = 10, divy = 6, digit = 6, ref = 75, cycle = 100},
-				{id = "judgenum-gr", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-gd", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-bd", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-pr", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
-				{id = "judgenum-ms", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
-			})
-			local id = {"-pg", "-gr", "-gd", "-bd", "-pr", "-ms"}
-			local offsets = {JUDGE_PG_ALPHA, JUDGE_GR_ALPHA, JUDGE_GD_ALPHA, JUDGE_BD_ALPHA, JUDGE_PR_ALPHA, JUDGE_MS_ALPHA}
-			for i in ipairs(id) do
-				if i <= 3 then
-					-- コンボ数を伴う判定文字(PGからGD)のx座標を求める式は、「(判定文字の幅 + 判定文字とコンボ数との間隔) / 2」
-					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - ((judge_w[i] + judge_between) / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 64, acc = 2},
-						{time = 1000}
-					}}
-				else
-					-- コンボ数を伴わない判定文字(BDからMS)のx座標を求める式は、「判定文字の幅 / 2」
-					_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 64, acc = 2},
+			if isJudgeTypeA() then
+				append_all(skin.value, {
+					{id = "judgenum-pg", src = "judge_src", x = 357, y = 0, w = 840, h = 720, divx = 10, divy = 6, digit = 6, ref = 75, cycle = 100},
+					{id = "judgenum-gr", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+					{id = "judgenum-gd", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+					{id = "judgenum-bd", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+					{id = "judgenum-pr", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60},
+					{id = "judgenum-ms", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
+				})
+				local id = {"-pg", "-gr", "-gd", "-bd", "-pr", "-ms"}
+				local judge_between = 24
+				for i in ipairs(id) do
+					if i <= 3 then
+						-- コンボ数を伴う判定文字(PGからGD)のx座標を求める式は、「(判定文字の幅 + 判定文字とコンボ数との間隔) / 2」
+						_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - ((judge_w[i] + judge_between) / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 64, acc = 2},
+							{time = 1000}
+						}}
+					else
+						-- コンボ数を伴わない判定文字(BDからMS)のx座標を求める式は、「判定文字の幅 / 2」
+						_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 64, acc = 2},
+							{time = 1000}
+						}}
+					end
+					-- コンボ数のx座標を求める式は、「判定文字の幅 + 判定文字とコンボ数との間隔」
+					_numbers[i] = {id = "judgenum" .. id[i], loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+						{time = 0, x = judge_w[i] + judge_between, y = 0, w = 84, h = 120, a = 64, acc = 2},
 						{time = 1000}
 					}}
 				end
-				-- コンボ数のx座標を求める式は、「判定文字の幅 + 判定文字とコンボ数との間隔」
-				_numbers[i] = {id = "judgenum" .. id[i], loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
-					{time = 0, x = judge_w[i] + judge_between, y = 0, w = 84, h = 120, a = 64, acc = 2},
-					{time = 1000}
-				}}
+				_shift = true
+			else
+				table.insert(skin.source, {id = "judgenum_src", path = "parts/judgenum/*.png"})
+				table.insert(skin.value, {id = "judgenum", src = "judgenum_src", x = 0, y = 0, w = 540, h = 100, divx = 10, digit = 6, ref = 105, align = 2})
+				local id = {"judge-pg", "judge-gr", "judge-gd", "judge-bd", "judge-pr", "judge-ms"}
+				for i in ipairs(id) do
+					-- コンボ数を伴わない判定文字のx座標を求める式は、「判定文字の幅 / 2」
+					_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 64, acc = 2},
+						{time = 1000}
+					}}
+					-- コンボ数のx座標を求める式は、「判定文字の幅 / 2」
+					_numbers[i] = {id = "judgenum", loop = -1, timer = 46, offsets = {3, JUDGE_NUM_POS_ALPHA}, dst = {
+						{time = 0, x = judge_w[i] / 2, y = 482, w = 54, h = 100, a = 64, acc = 2},
+						{time = 1000}
+					}}
+				end
+				_shift = false
 			end
-		end
-		_shift = true
-	else
-		append_all(skin.source, {
-			{id = "judge_pg_src", 	path = "parts/judge/rows2/1_pg/*.png"},
-			{id = "judge_gr_src", 	path = "parts/judge/rows2/2_gr/*.png"},
-			{id = "judge_gd_src", 	path = "parts/judge/rows2/3_gd/*.png"},
-			{id = "judge_bd_src", 	path = "parts/judge/rows2/4_bd/*.png"},
-			{id = "judge_pr_src", 	path = "parts/judge/rows2/5_pr/*.png"},
-			{id = "judge_ms_src", 	path = "parts/judge/rows2/6_ms/*.png"},
-			{id = "judgenum_src", 	path = "parts/judgenum/*.png"}
-		})
-		append_all(skin.image, {
-			{id = "judge-pg", src = "judge_pg_src", x = 0, y = 0, w = 660, h = 120},
-			{id = "judge-gr", src = "judge_gr_src", x = 0, y = 0, w = 660, h = 120},
-			{id = "judge-gd", src = "judge_gd_src", x = 0, y = 0, w = 660, h = 120},
-			{id = "judge-bd", src = "judge_bd_src", x = 0, y = 0, w = 660, h = 120},
-			{id = "judge-pr", src = "judge_pr_src", x = 0, y = 0, w = 660, h = 120},
-			{id = "judge-ms", src = "judge_ms_src", x = 0, y = 0, w = 660, h = 120}
-		})
-		table.insert(skin.value, {id = "judge-num", src = "judgenum_src", x = 0, y = 0, w = 540, h = 100, divx = 10, digit = 6, ref = 105, align = 2})
-		do
+		else
+			append_all(skin.source, {
+				{id = "judge_pg_src", 	path = "parts/judge/type_c/1_pg/*.png"},
+				{id = "judge_gr_src", 	path = "parts/judge/type_c/2_gr/*.png"},
+				{id = "judge_gd_src", 	path = "parts/judge/type_c/3_gd/*.png"},
+				{id = "judge_bd_src", 	path = "parts/judge/type_c/4_bd/*.png"},
+				{id = "judge_pr_src", 	path = "parts/judge/type_c/5_pr/*.png"},
+				{id = "judge_ms_src", 	path = "parts/judge/type_c/6_ms/*.png"},
+				{id = "judgenum_src", 	path = "parts/judgenum/*.png"}
+			})
+			append_all(skin.image, {
+				{id = "judge-pg", src = "judge_pg_src", x = 0, y = 0, w = 660, h = 120},
+				{id = "judge-gr", src = "judge_gr_src", x = 0, y = 0, w = 660, h = 120},
+				{id = "judge-gd", src = "judge_gd_src", x = 0, y = 0, w = 660, h = 120},
+				{id = "judge-bd", src = "judge_bd_src", x = 0, y = 0, w = 660, h = 120},
+				{id = "judge-pr", src = "judge_pr_src", x = 0, y = 0, w = 660, h = 120},
+				{id = "judge-ms", src = "judge_ms_src", x = 0, y = 0, w = 660, h = 120}
+			})
+			table.insert(skin.value, {id = "judgenum", src = "judgenum_src", x = 0, y = 0, w = 540, h = 100, divx = 10, digit = 6, ref = 105, align = 2})
 			local id = {"judge-pg", "judge-gr", "judge-gd", "judge-bd", "judge-pr", "judge-ms"}
 			local offsets = {JUDGE_PG_ALPHA, JUDGE_GR_ALPHA, JUDGE_GD_ALPHA, JUDGE_BD_ALPHA, JUDGE_PR_ALPHA, JUDGE_MS_ALPHA}
 			for i in ipairs(id) do
@@ -2056,13 +2128,13 @@ local function main()
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 64, acc = 2},
 					{time = 2000}
 				}}
-				_numbers[i] = {id = "judge-num", loop = -1, timer = 46, offsets = {4, JUDGE_NUM_POS_ALPHA}, dst = {
-					{time = 0, x = 330, y = 156, w = 54, h = 100, a = 64, acc = 2},
+				_numbers[i] = {id = "judgenum", loop = -1, timer = 46, offsets = {4, JUDGE_NUM_POS_ALPHA}, dst = {
+					{time = 0, x = 330, y = 140, w = 54, h = 100, a = 64, acc = 2},
 					{time = 2000}
 				}}
 			end
+			_shift = false
 		end
-		_shift = false
 	end
 
 	skin.judge = {{
@@ -2080,7 +2152,6 @@ local function main()
 	skin.destination = {
 		{id = "bg", stretch = 1, dst = {{x = 0, y = 0, w = 1920, h = 1080, a = 255}}},
 		{id = -110, offset = BG_DARKNESS, dst = {{x = 0, y = 0, w = 1920, h = 1080, a = 0}}},
-		-- BGA関連 
 		-- BGA related
 		{id = -110, dst = {{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H}}},
 		{id = "bga", stretch = 1, dst = {{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H}}},
@@ -2107,11 +2178,11 @@ local function main()
 		{id = -110, timer = 41, offset = BGA_DARKNESS, dst = {{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H, a = 0}}}
 	}
 
-	---- <<< 曲情報エリア開始
-	---- <<< song infomation area start
+-- ========================================================================================================================================================	
 
-	-- ジャンル名・曲名 
-	-- genre,title
+-- # song infomation area
+
+	-- genre, title
 	if isScratchRight() then
 		append_all(skin.destination, {
 			{id = "inplay-title", 	timer = 41, filter = 1, dst = 	{{x = GEOMETRY.INFO_POS + 8, y = 1033, w = 600, h = 42}}},
@@ -2126,7 +2197,6 @@ local function main()
 		})
 	end
 
-	-- 判定情報・曲情報・BPM・ゲージの値など
 	-- Judge information, song information, BPM, gauge values, etc.
 	append_all(skin.destination, {
 		{id = "bf-info-frame", 					dst = {{x = GEOMETRY.INFO_POS, 			y = 0, w = 616, h = 480}}},
@@ -2154,7 +2224,6 @@ local function main()
 		{id = "bpm-max", 						dst = {{x = GEOMETRY.INFO_POS + 426, 	y = 10, w = 36, h = 36}}}
 	})
 
-	-- 判定レベル
 	-- judge level
 	do
 		local id = {"jd-veasy-tx", "jd-easy-tx", "jd-normal-tx", "jd-hard-tx", "jd-vhard-tx"}
@@ -2168,7 +2237,6 @@ local function main()
 		end
 	end
 
-	-- ゲージの種類
 	-- gauge type
 	do
 		local id = {"ga-aeasy-tx", "ga-easy-tx", "ga-nor-tx", "ga-hard-tx", "ga-exh-tx", "ga-haz-tx", "ga-gra", "ga-egra", "ga-ehgra"}
@@ -2185,7 +2253,6 @@ local function main()
 	end
 	table.insert(skin.destination, {id = "gauge-op-tx", dst = {{x = GEOMETRY.INFO_POS + 244, y = 184, w = 128, h = 19}}})
 
-	-- ランダムの種類
 	-- random type
 	do
 		local id = {"la-orig-tx", "la-mir-tx", "laran-tx", "la-rran-tx", "la-sran-tx", "la-spir-tx", "la-hran-tx", "la-alls-tx", "la-exran-tx", "la-exs-tx"}
@@ -2200,17 +2267,71 @@ local function main()
 	end
 	table.insert(skin.destination, {id = "lane-op-tx", dst = {{x = GEOMETRY.INFO_POS + 407, y = 184, w = 146, h = 19}}})
 
-	-- ハイスピードの表示
-	-- Hi-Speed Type
+	-- Hi-Speed type
 	if isHiSpeedRelative() then
-		table.insert(skin.value, {id = "relative-num", src = "info_system_src", x = 617, y = 66, w = 200, h = 21, divx = 10, digit = 4, ref = 313, align = 0})
-		table.insert(skin.destination, {id = "relative-num", dst = {{x = GEOMETRY.INFO_POS + 86, y = 182, w = 20, h = 21}}})
+		table.insert(skin.image, {id = "relative-dot", src = "info_system_src", x = 692, y = 481, w = 20, h = 21})
+		append_all(skin.value, {
+			{id = "relative-num", src = "info_system_src", x = 617, y = 66, w = 200, h = 21, divx = 10, digit = 4, align = 0, value = function()
+				if main_state.event_index(55) == 2 and main_state.option(273) then
+					if main_state.number(90) == 0 then
+						return main_state.number(312) * 3 / 5
+					else
+						return main_state.number(312) * main_state.number(160) / main_state.number(90) * 3 / 5
+					end
+				else
+					return main_state.number(312) * 3 / 5
+				end
+			end},
+			{id = "relative-adot-num", src = "info_system_src", x = 617, y = 66, w = 220, h = 21, divx = 11, digit = 2, align = 0, value = function()
+				if main_state.event_index(55) == 2 and main_state.option(273) then
+					if main_state.number(90) == 0 then
+						return math.floor(main_state.number(312) * 3 / 5 * 100 + 0.5)
+					else
+						return math.floor(main_state.number(312) * main_state.number(160) / main_state.number(90) * 3 / 5 * 100 + 0.5)
+					end
+				else
+					return math.floor(main_state.number(312) * 3 / 5 * 100 + 0.5)
+				end
+			end}
+		})
+		append_all(skin.destination, {
+			{id = "relative-num", dst = {{x = GEOMETRY.INFO_POS + 56, y = 182, w = 20, h = 21}}},
+			{id = "relative-dot", dst = {{x = GEOMETRY.INFO_POS + 136, y = 182, w = 20, h = 21}}},
+			{id = "relative-adot-num", dst = {{x = GEOMETRY.INFO_POS + 156, y = 182, w = 20, h = 21}}},
+		})
 	else
-		table.insert(skin.value, {id = "absolute-num", src = "info_system_src", x = 617, y = 88, w = 200, h = 21, divx = 10, digit = 4, ref = 312, align = 0})
-		table.insert(skin.destination, {id = "absolute-num", dst = {{x = GEOMETRY.INFO_POS + 86, y = 182, w = 20, h = 21}}})
+		table.insert(skin.image, {id = "absolute-dot", src = "info_system_src", x = 713, y = 481, w = 20, h = 21})
+		append_all(skin.value, {
+			{id = "absolute-num", src = "info_system_src", x = 617, y = 88, w = 200, h = 21, divx = 10, digit = 4, align = 0, value = function()
+				if main_state.event_index(55) == 2 and main_state.option(273) then
+					if main_state.number(90) == 0 then
+						return main_state.number(312)
+					else
+						return main_state.number(312) * main_state.number(160) / main_state.number(90)
+					end
+				else
+					return main_state.number(312)
+				end
+			end},
+			{id = "absolute-adot-num", src = "info_system_src", x = 617, y = 88, w = 220, h = 21, divx = 11, digit = 2, align = 0, value = function()
+				if main_state.event_index(55) == 2 and main_state.option(273) then
+					if main_state.number(90) == 0 then
+						return math.floor(main_state.number(312) * 100 + 0.5)
+					else
+						return math.floor(main_state.number(312) * main_state.number(160) / main_state.number(90) * 100 + 0.5)
+					end
+				else
+					return math.floor(main_state.number(312) * 100 + 0.5)
+				end
+			end}
+		})
+		append_all(skin.destination, {
+			{id = "absolute-num", dst = {{x = GEOMETRY.INFO_POS + 56, y = 182, w = 20, h = 21}}},
+			{id = "absolute-dot", dst = {{x = GEOMETRY.INFO_POS + 136, y = 182, w = 20, h = 21}}},
+			{id = "absolute-adot-num", dst = {{x = GEOMETRY.INFO_POS + 156, y = 182, w = 20, h = 21}}},
+		})
 	end
 
-	-- F/S しきい値
 	-- F/S Threshold
 	if isFastSlowThresholdDef() then
 		append_all(skin.destination, {
@@ -2238,13 +2359,10 @@ local function main()
 		})
 	end
 
-	---- 曲情報エリア終了 >>>
-	---- song infomation area finish >>>
+-- ========================================================================================================================================================
 
-	---- <<< スコアエリア開始
-	---- <<< score area start
+-- # score area start
 
-	-- 操作時間・フレームレート・グラフなど
 	-- Operation time, frame rate, graphs, etc.
 	append_all(skin.destination, {
 		{id = "score-frame", 			timer = 41, dst = {{x = GEOMETRY.SCORE_POS,							y = 0, w = 372, h = 1080}}},
@@ -2336,20 +2454,16 @@ local function main()
 	-- BPM graph
 	table.insert(skin.destination,{id = "bpm-graph", dst = {{x = GEOMETRY.SCORE_POS + 10, y = 0, w = 352, h = 100}}})
 
-	---- スコアエリア終了 >>>
-	---- score area end >>>
+-- ========================================================================================================================================================
 
-	---- <<< プレイエリア開始
-	---- <<< play area start
+-- # play area start
 
-	-- レーン背景
 	-- lane background
 	append_all(skin.destination, {
 		{id = -110, loop = -1, dst = {
 			{timer = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 0, w = GEOMETRY.LANE_W, h = 0, a = 255, acc = 2},
 			{timer = 600, h = GEOMETRY.LANE_H}
 		}},
-		-- 演出
 		-- effect
 		{id = -111, offsets = {3, JUDGELINE_POS}, loop = 1400, dst = {
 			{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 2160, a = 0, acc = 2},
@@ -2359,19 +2473,14 @@ local function main()
 		}}
 	})
 
-	-- 判定ライン
 	-- judge line
-	local function processJudgeline(option)
-		table.insert(skin.destination, {id = "judgeline", offsets = {3, JUDGELINE_POS, JUDGELINE_HEIGHT}, op = option, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 24}
-		}})
-	end
-	processJudgeline({-273})
+	table.insert(skin.destination, {id = "judgeline", offsets = {3, JUDGELINE_POS, JUDGELINE_HEIGHT}, dst = {
+		{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 24}
+	}})
 
-	-- レーン枠
 	-- lane frame
 	if isLaneFrameOn() then
-		table.insert(skin.image, {id = "lane-frame", src = "play_system_src", x = 636, y = 4, w = 15, h = GEOMETRY.LANE_H})
+		table.insert(skin.image, {id = "lane-frame", src = "play_system_src", x = 647, y = 4, w = 15, h = GEOMETRY.LANE_H})
 		append_all(skin.destination, {
 			{id = "lane-frame", loop = 600, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 0, w = -15, h = 0, acc = 2},
@@ -2384,7 +2493,6 @@ local function main()
 		})
 	end
 
-	-- キービーム
 	-- keybeam
 	local kb_h = math.floor(GEOMETRY.LANE_H * getKeybeamHeight())
 	local kb_w = 		{}
@@ -2567,84 +2675,88 @@ local function main()
 		}
 	end
 
-	-- Keybeam function
-	local function processKeybeam(option)
-		if isKeybeamFast() then
-			-- キーが押された時
-			-- When a key is pressed.
-			do
-				for i = 1, #kb_type, 1 do
-					table.insert(skin.destination,	{
-						id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], blend = 1, op = option, dst = {
-							{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)}
-						}
-					})
-				end
+	-- keybeam display fast
+	if isKeybeamFast() then
+		-- when a key is pressed
+		do
+			for i = 1, #kb_type, 1 do
+				table.insert(skin.destination,	{
+					id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], blend = 1, dst = {
+						{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)}
+					}
+				})
 			end
-			-- キーが離された時
-			-- When a key is released.
-			do
-				for i = 1, #kb_type, 1 do
-					table.insert(skin.destination,	{
-						id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_offTimer[i], loop = -1, blend = 1, op = option, dst = {
-							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)},
-							{time = 100, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
-						}
-					})
-				end
+		end
+		-- when a key is released
+		do
+			for i = 1, #kb_type, 1 do
+				table.insert(skin.destination,	{
+					id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)},
+						{time = 100, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
+					}
+				})
 			end
-		-- Keybeam slow
-		else
-			-- キーが押された時
-			-- When a key is pressed.
-			do
-				for i = 1, #kb_type, 1 do
-					table.insert(skin.destination,	{
-						id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], loop = 33, blend = 1, op = option, dst = {
-							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = 0},
-							{time = 33, a = getKeybeamAlpha(255)}
-						}
-					})
-				end
+		end
+
+	-- keybeam display slow
+	else
+		-- when a key is pressed
+		do
+			for i = 1, #kb_type, 1 do
+				table.insert(skin.destination,	{
+					id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], loop = 33, blend = 1, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = 0},
+						{time = 33, a = getKeybeamAlpha(255)}
+					}
+				})
 			end
-			-- キーが離された時
-			-- When a key is released.
-			do
-				for i = 1, #kb_type, 1 do
-					table.insert(skin.destination,	{
-						id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_offTimer[i], loop = -1, blend = 1, op = option, dst = {
-							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = math.floor(kb_h * 1.2), a = getKeybeamAlpha(200)},
-							{time = 200, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
-						}
-					})
-				end
+		end
+		-- when a key is released
+		do
+			for i = 1, #kb_type, 1 do
+				table.insert(skin.destination,	{
+					id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = math.floor(kb_h * 1.2), a = getKeybeamAlpha(200)},
+						{time = 200, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
+					}
+				})
 			end
 		end
 	end
-	processKeybeam({-273})
 
 	-- notes
 	table.insert(skin.destination,{id = "notes", offset = 30})
 
-	-- hidden cover
-	table.insert(skin.destination,
-		{id = "hiddencover", offsets = {3, JUDGELINE_POS}, timer = 41, op = {273}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y + 24, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H * getKeybeamHeight()}
-		}
-	})
-	processJudgeline({273})
-	processKeybeam({273})
-
 	-- lanecover
 	table.insert(skin.destination,
 		{id = "lanecover", loop = 1700, dst = {
-			{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 1500, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, acc = 2},
+			{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 2160, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, acc = 2},
 			{time = 1300},
 			{time = 1700, y = 1080}
 		}})
 
-	-- レーンカバーの数値周り
-	-- values for lane cover
+	-- adjustedcover
+	append_all(skin.destination, {
+		{id = "adjustedcover", offset = 4, loop = 1600, draw = function()
+			if main_state.event_index(55) == 2 and main_state.option(273) and main_state.timer(41) == main_state.timer_off_value then
+				return true
+			end
+		end, dst = {
+			{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 2160, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, acc = 2},
+			{time = 1200},
+			{time = 1600, y = 1080}
+		}},
+		{id = "adjustedcover", offset = 4, timer = 41, draw = function()
+			if main_state.event_index(55) == 2 and main_state.option(273) then
+				return true
+			end
+		end, dst = {
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 1080, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, acc = 2}
+		}}
+	})
+
+	-- values for lanecover
 	do
 		local id = {"lanecover-value", "lanecover-green", "lanecover-duration"}
 		local dst_x = {68, 342, 616}
@@ -2663,7 +2775,6 @@ local function main()
 			{time = 1000, a = 255}
 		}})
 
-	-- リフトの数値周り
 	-- values for lift
 	do
 		local id = {"lift-value", "lanecover-green", "lanecover-duration"}
@@ -2686,7 +2797,7 @@ local function main()
 	-- judge
 	table.insert(skin.destination,{id = "judge"})
 
-	-- Fast/Slow
+	-- fast/slow
 	if not isFastSlowMSCenter() and not isFastSlowMSRnL() then
 		table.insert(skin.source, {id = "fs_char_src", 	path = "parts/fast_slow/character/*.png"})
 		append_all(skin.image, {
@@ -2818,8 +2929,7 @@ local function main()
 		end
 	end
 
-	-- ターゲットとのスコア差
-	-- Score difference from target.
+	-- score difference from target
 	if not isTarget2On() and isTargetBest() then
 		do
 			local _number
@@ -2937,21 +3047,20 @@ local function main()
 		end
 	end
 
-	-- Timing Visualizer
+	-- timing visualizer
 	if isTimingVisualizerOn() then
 		do
 			skin.timingvisualizer = {{id = "timing-visualizer"}}
 			local _width = GEOMETRY.LANE_DISTANCE - 20
 			table.insert(skin.destination, {id = "timing-visualizer", offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS_ALPHA}, op = {32}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + math.floor(_width / 2), y = GEOMETRY.DETAIL_Y + 161, w = -(_width), h = 15, a = 64, r = 230, g = 200, b = 255, acc = 2}
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + math.floor(_width / 2 + 0.5), y = GEOMETRY.DETAIL_Y + 161, w = -(_width), h = 15, a = 64, r = 230, g = 200, b = 255, acc = 2}
 			}})
 		end
 	end
 
-	-- レーン上でのレート表示
-	-- Rate display on lanes
+	-- rate display on lanes
 	if isScoreRateOn() then
-		if isJudgeRows1() then
+		if isJudgeTypeA() or isJudgeTypeB() then
 			table.insert(skin.image, {id = "play-rate-dot", src = "play_system_src", x = 82, y = 1063, w = 80, h = 21})
 			append_all(skin.value, {
 				{id = "play-rate-num", src = "play_system_src", x = 0, y = 178, w = 200, h = 21, divx = 10, digit = 3, align = 0, value = function()
@@ -2962,11 +3071,11 @@ local function main()
 				end}
 			})
 			append_all(skin.destination, {
-				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-10), y = GEOMETRY.DETAIL_Y, w = 80, h = 21, a = 64, acc = 2}
-				}},
 				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-70), y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = 64, acc = 2}
+				}},
+				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-10), y = GEOMETRY.DETAIL_Y, w = 80, h = 21, a = 64, acc = 2}
 				}},
 				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 10, y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = 64, acc = 2}
@@ -2983,11 +3092,11 @@ local function main()
 				end}
 			})
 			append_all(skin.destination, {
-				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8), y = GEOMETRY.DETAIL_Y, w = 16, h = 50, a = 64, acc = 2}
-				}},
 				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8) + (-84), y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = 64, acc = 2}
+				}},
+				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8), y = GEOMETRY.DETAIL_Y, w = 16, h = 50, a = 64, acc = 2}
 				}},
 				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS_ALPHA}, timer = 41, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 8, y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = 64, acc = 2}
@@ -2996,8 +3105,7 @@ local function main()
 		end
 	end
 
-	-- プレイエリア上でのFast/Slowカウンター
-	-- Fast/Slow counter on playground
+	-- fast/slow counter on playground
 	if isFastSlowCounterOn() then
 		append_all(skin.image, {
 			{id = "fast-opg-frame", src = "play_system_src", x = 0, y = 1063, w = 40, h = 21},
@@ -3025,7 +3133,7 @@ local function main()
 		})
 	end
 
-	-- Gauge function
+	-- gauge function
 	local function processGauge()
 		if isScratchRight() then
 			append_all(skin.destination, {
@@ -3073,7 +3181,6 @@ local function main()
 		bombTimer = 	{51, 52, 53, 54, 55, 56, 57, 50}
 		lnBombTimer = 	{71, 72, 73, 74, 75, 76, 77, 70}
 
-		-- ボム中心点
 		-- center of bomb
 		if isScratchRight() then
 			bombPosX = {
@@ -3103,7 +3210,6 @@ local function main()
 		bombTimer = 	{51, 52, 53, 54, 55, 50}
 		lnBombTimer = 	{71, 72, 73, 74, 75, 70}
 
-		-- ボム中心点
 		-- center of bomb
 
 		-- SC_RIGHT
@@ -3175,9 +3281,7 @@ local function main()
 		bombTimer = 	{51, 52, 53, 54, 55, 56, 57, 58, 59}
 		lnBombTimer = 	{71, 72, 73, 74, 75, 76, 77, 78, 79}
 
-		-- ボム中心点
 		-- center of bomb
-
 		bombPosX = {
 			notesInfo.Sc_width / 2,
 			notesInfo.Sc_width + notesInfo.Ot_width / 2,
@@ -3191,7 +3295,6 @@ local function main()
 		}
 	end
 
-	-- ボム切り出し
 	-- cutting out bomb
 	table.insert(skin.image, {
 		id = "bomb", src = "bomb_src", x = 0, y = 0, w = -1, h = -1
@@ -3202,7 +3305,6 @@ local function main()
 		})
 	end
 
-	-- LNボム切り出し
 	-- cutting out LNbomb
 	table.insert(skin.image, {id = "lnbomb", src = "bomb_src", x = 0, y = 0, w = -1, h = -1})
 	for i = 1, #b_init, 1 do
@@ -3211,18 +3313,10 @@ local function main()
 		})
 	end
 
-	-- ボム配置
-	-- bomb placement
-
-	-- ボム先読み
 	-- bomb preload
 	table.insert(skin.destination, {id = "bomb", dst = {{x = 0, y = 0, w = 1, h = 1}}})
 	table.insert(skin.destination, {id = "lnbomb", dst = {{x = 0, y = 0, w = 1, h = 1}}})
 
-	-- 爆発エフェクト
-	-- Explosion effect
-
-	-- 通常爆発エフェクトの配置
 	-- Normal explosion effect placement
 	for i = 1, #b_init, 1 do
 		table.insert(skin.destination, {
@@ -3237,7 +3331,6 @@ local function main()
 		})
 	end
 
-	-- LN爆発エフェクトの配置
 	-- LN explosion effect placement
 	for i = 1, #b_init, 1 do
 		table.insert(skin.destination,	{
@@ -3252,28 +3345,38 @@ local function main()
 		})
 	end
 
-	-- ゲージ
 	-- gauge
 	if isBombUnderTheGaugeOn() then processGauge() end
 
-	-- 曲の長さ + 残りノーツ
 	-- song length + remain notes
 	if isScratchRight() then
 		append_all(skin.destination, {
-			-- 残りノーツ パーセント
+			-- adjusted cover persent
+			{id = "adjusted-rate-num", 				draw = function()
+				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+					return true
+				end
+			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 53, y = 1002, w = 15, h = 18}}},
+			{id = "adjusted-rate-adot-num", 		draw = function()
+				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+					return true
+				end
+			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 77, y = 1002, w = 15, h = 18}}},
+			{id = "adjusted-rate-dot", 				draw = function()
+				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+					return true
+				end
+			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 38, y = 1002, w = 69, h = 18}}},
 			-- remain notes persent
 			{id = "remain-rate-num", 				dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 23, y = 74, w = 15, h = 18}}},
 			{id = "remain-rate-adot-num", 			dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 77, y = 74, w = 15, h = 18}}},
 			{id = "remain-rate-dot", 				dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 68, y = 74, w = 9, h = 18}}},
-			-- 残りノーツ
 			-- remain notes
 			{id = "remain-notes", 					dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 32, y = 44, w = 15, h = 18}}},
-			-- 残り時間
 			-- time left
 			{id = "song-remain-m", 					dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 38, y = 10, w = 15, h = 18}}},
 			{id = "song-remain-s", 					dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 77, y = 10, w = 15, h = 18}}},
 			{id = "song-time-colon", 				dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 68, y = 10, w = 9, h = 18}}},
-			-- 曲の長さスライダー
 			-- song length slider
 			{id = "song-progress-bar", 	timer = 41, dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 74, y = 330, w = 4, h = 600, a = 100}}},
 			{id = "song-progress-fin", 	timer = 41, dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 74, y = 930, w = 4, h = -600}}},
@@ -3281,20 +3384,32 @@ local function main()
 		})
 	else
 		append_all(skin.destination, {
-			-- 残りノーツ パーセント
+			-- adjusted cover persent
+			{id = "adjusted-rate-num", 				draw = function()
+				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+					return true
+				end
+			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-89), y = 1002, w = 15, h = 18}}},
+			{id = "adjusted-rate-adot-num", 		draw = function()
+				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+					return true
+				end
+			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-65), y = 1002, w = 15, h = 18}}},
+			{id = "adjusted-rate-dot", 				draw = function()
+				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+					return true
+				end
+			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-104), y = 1002, w = 69, h = 18}}},
 			-- remain notes persent
 			{id = "remain-rate-num", 				dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-104), y = 74, w = 15, h = 18}}},
 			{id = "remain-rate-adot-num", 			dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-50), y = 74, w = 15, h = 18}}},
 			{id = "remain-rate-dot", 				dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-59), y = 74, w = 9, h = 18}}},
-			-- 残りノーツ
 			-- remain notes
 			{id = "remain-notes", 					dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-95), y = 44, w = 15, h = 18}}},
-			-- 残り時間
 			-- time left	
 			{id = "song-remain-m", 					dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-89), y = 10, w = 15, h = 18}}},
 			{id = "song-remain-s", 					dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-50), y = 10, w = 15, h = 18}}},
 			{id = "song-time-colon", 				dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-59), y = 10, w = 9, h = 18}}},
-			-- 曲の長さスライダー
 			-- song length slider		
 			{id = "song-progress-bar", 	timer = 41, dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-78), y = 330, w = 4, h = 600, a = 100}}},
 			{id = "song-progress-fin", 	timer = 41, dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-78), y = 930, w = 4, h = -600}}},
@@ -3303,27 +3418,24 @@ local function main()
 	end
 
 	append_all(skin.destination, {
-		-- リプレイ表示
 		-- replay
 		{id = "replay", offsets = {3, JUDGELINE_POS}, op = {84}, dst = {
 			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-129), y = GEOMETRY.LANE_Y + 70, w = 258, h = 35}
 		}},
-		-- オートプレイ表示
 		-- auto play
 		{id = "auto", offsets = {3, JUDGELINE_POS}, op = {33}, dst = {
 			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-174), y = GEOMETRY.LANE_Y + 70, w = 348, h = 35}
 		}},
-		-- 曲終了表示
 		-- end of note
 		{id = "eon", offsets = {3, 4, JUDGELINE_POS}, draw = function()
 			if main_state.timer(143) == main_state.timer_off_value and getRemainNotes() == 0 then
 				return true
 			end
 		end,dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.LANE_Y + 620, w = 390, h = 35, r = 64, g = 64, b = 64}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.DETAIL_Y + 326, w = 390, h = 35, r = 64, g = 64, b = 64}
 		}},
 		{id = "eon", timer = 143, offsets = {3, 4, JUDGELINE_POS}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.LANE_Y + 620, w = 390, h = 35}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.DETAIL_Y + 326, w = 390, h = 35}
 		}}
 	})
 
@@ -3334,18 +3446,16 @@ local function main()
 			{time = 2100, y = 100, a = 0}
 		}},
 		{id = "fullcombo", offsets = {3, 4, JUDGELINE_POS}, loop = -1, timer = 48, dst = {
-			{time = 550, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-180), y = GEOMETRY.LANE_Y + 560, w = 360, h = 36, a = 0},
+			{time = 550, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-180), y = GEOMETRY.DETAIL_Y + 270, w = 360, h = 36, a = 0},
 			{time = 650, a = 255},
 			{time = 1600},
-			{time = 1800, y = GEOMETRY.LANE_Y + 530, a = 0}
+			{time = 1800, y = GEOMETRY.DETAIL_Y + 240, a = 0}
 		}},
 	})
 
-	---- プレイエリア終了 >>>
-	---- play area end >>>
+-- ========================================================================================================================================================	
 
-	---- <<< ロード中曲情報開始
-	---- <<< song infomation in loading start
+	-- # song infomation in loading start
 
 	do
 		local loading_pos = {}
@@ -3358,7 +3468,6 @@ local function main()
 			loading_pos.stagefile = 50
 			loading_pos.titleline = 400
 		end
-		-- 枠
 		-- background
 		table.insert(skin.destination,
 		{id = -110, loop = 600, op = {80}, dst = {
@@ -3366,16 +3475,12 @@ local function main()
 			{time = 300},
 			{time = 600, a = 150}
 		}})
-
-		-- ロード終了
 		-- loading end		
 		table.insert(skin.destination,
 		{id = -110, timer = 40, loop = 300, op = {81}, dst = {
 			{time = 0, x = 0, y = 360, w = 1920, h = 360, a = 150},
 			{time = 300, a = 0}
 		}})
-
-		-- ジャンル名・曲名・アーティスト名
 		-- genre, title, artist
 		table.insert(skin.destination,
 		{id = "inload-genre", loop = 600, op = {80}, filter = 1, dst = {
@@ -3383,42 +3488,34 @@ local function main()
 			{time = 300},
 			{time = 600, a = 255}
 		}})
-
 		table.insert(skin.destination,
 		{id = "inload-title", loop = 600, op = {80}, filter = 1, dst = {
 			{time = 0, x = loading_pos.text, y = 520, w = 1405, h = 73, a = 0},
 			{time = 300},
 			{time = 600, a = 255}
 		}})
-
 		table.insert(skin.destination,
 		{id = "inload-artist", loop = 600, op = {80}, filter = 1, dst = {
 			{time = 0, x = loading_pos.text, y = 425, w = 1405, h = 41, a = 0},
 			{time = 300},
 			{time = 600, a = 255}
 		}})
-
-		-- ロード終了
 		-- loading end
 		table.insert(skin.destination,
 		{id = "inload-genre", timer = 40,loop = 300, op = {81}, filter = 1, dst = {
 			{time = 0, x = loading_pos.text, y = 608, w = 1405, h = 27, a = 255},
 			{time = 300, a = 0}
 		}})
-
 		table.insert(skin.destination,
 		{id = "inload-title", tiemr = 40, loop = 300, op = {81}, filter = 1, dst = {
 			{time = 0, x = loading_pos.text, y = 520, w = 1405, h = 73, a = 255},
 			{time = 300, a = 0}
 		}})
-
 		table.insert(skin.destination,
 		{id = "inload-artist", timer = 40, loop = 300, op = {81}, filter = 1, dst = {
 			{time = 0, x = loading_pos.text, y = 425, w = 1405, h = 41, a = 255},
 			{time = 300, a = 0}
 		}})
-
-		-- ステージファイル
 		-- stagefile
 		table.insert(skin.destination,
 		{id = -100, loop = 600, filter = 1, op = {80, 191}, dst = {
@@ -3426,16 +3523,12 @@ local function main()
 			{time = 300},
 			{time = 600, a = 255}
 		}})
-
-		-- ロード終了
 		-- loading end
 		table.insert(skin.destination,
 		{id = -100, timer = 40, loop = 300, filter = 1, op = {81, 191}, dst = {
 			{time = 0, x = loading_pos.stagefile, y = 420, w = 320, h = 240, a = 255},
 			{time = 300, a = 0}
 		}})
-
-		-- ステージファイルが無い時
 		-- no stagefile
 		table.insert(skin.destination,
 		{id = "alt-stagefile", loop = 600, filter = 1, op = {80, 190}, dst = {
@@ -3443,16 +3536,12 @@ local function main()
 			{time = 300},
 			{time = 600, a = 255}
 		}})
-
-		-- ロード終了
 		-- loading end
 		table.insert(skin.destination,
 		{id = "alt-stagefile", timer = 40, loop = 300, filter = 1, op = {81, 190}, dst = {
 			{time = 0, x = loading_pos.stagefile, y = 420, w = 320, h = 240, a = 255},
 			{time = 300, a = 0}
 		}})
-
-		-- 曲名下の線
 		-- line under the song title
 		table.insert(skin.destination,
 			{id = "inload-titleline", loop = 900, op = {80}, dst = {
@@ -3468,8 +3557,6 @@ local function main()
 				{time = 400},
 				{time = 900, w = 1450}
 			}})
-
-		-- ロード終了
 		-- loading end
 		table.insert(skin.destination,
 			{id = "inload-progress", timer = 40, loop = 300, op = {81}, dst = {
@@ -3477,10 +3564,11 @@ local function main()
 				{time = 300, a = 0}
 			}})
 	end
-	---- ロード中曲情報終了 >>>
-	---- song infomation in loading end >>>
 
-	-- フェードイン
+-- ========================================================================================================================================================	
+
+	-- # other
+
 	-- fade in
 	table.insert(skin.destination,
 		{id = -110, loop = 250, dst = {
@@ -3488,15 +3576,13 @@ local function main()
 			{time = 250, a = 0}
 		}})
 
-	-- 閉店
-	-- shut
+	-- shut out
 	table.insert(skin.destination,
 		{id = -110, timer = 3, loop = 250, dst = {
 			{time = 0, x = 0, y = 0, w = 1920, h = 1080, a = 0},
 			{time = 250, a = 255}
 		}})
 
-	-- フェードアウト
 	-- fade out
 	table.insert(skin.destination,
 		{id = -110, loop = 250, timer = 2, dst = {
