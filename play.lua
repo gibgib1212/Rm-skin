@@ -1744,7 +1744,7 @@ local function main()
 		{id = "lanecover-value", 		src = "play_system_src", x = 0, y = 178, w = 200, h = 21, divx = 10, digit = 4, ref = 14, align = 0},
 		{id = "lanecover-green", 		src = "play_system_src", x = 0, y = 200, w = 200, h = 21, divx = 10, digit = 4, align = 0, value = function()
 			if main_state.event_index(55) == 2 and main_state.option(273) then
-				if main_state.option(90) == 0 then
+				if main_state.number(90) == 0 then
 					return main_state.number(312) * 3 / 5
 				else
 					return main_state.number(312) * main_state.number(160) / main_state.number(90) * 3 / 5
