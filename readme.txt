@@ -2,7 +2,7 @@
 "Rm-skin"
 ver 0.2.3
 Full HD (1920x1080) Playskin-5,7,9 key for beatoraja
-(Last updated:05/20/2024)
+(Last updated:05/30/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -84,7 +84,7 @@ Specifically, the relevant files will be deemed compliant with
 "GNU General Public License v3.0 (GPLv3)"(https://choosealicense.com/licenses/gpl-3.0/).
 
 In addition to the above image files, this skin uses as the embedded fonts or fonts used as the basis for image files, 
-such as “Enigmatic”, “Kikakana-IO”, “Mplus1-2”, “mgenplus2pp”, “RictyDiminished”, "Rounded Mplus1-2", “Squares Bold Free”, "x16y32pxGridGazer".
+such as “Enigmatic”, “Kikakana-IO”, “Mplus1-2”, “RictyDiminished”, "Rounded Mplus1-2", “Squares Bold Free”, "x16y32pxGridGazer".
 Please refer to the license included in the package for more information.
 
 -------------------------------------
@@ -366,3 +366,11 @@ Update History
 
 	- Fix a bug about green-num
 	- Update readme.txt
+
+05302024
+
+	- Changed some fonts
+	- Changed to color-code by table
+	- FS Threshold setting changed from absolute to relative
+	- Update readme.txt
+

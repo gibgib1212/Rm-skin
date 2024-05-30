@@ -33,7 +33,7 @@
      - ".../!_Default_Inverted.png"
 - Other Files : ["GNU General Public License v3.0 (GPLv3)"](https://choosealicense.com/licenses/gpl-3.0/ "GPLv3")
 - Also, please refer to the license included with the fonts for information on font handling.
-   - "Rm-skin/font/LICENSE_..."
+   - "Rm-skin/font/LICENSE/..."
 
 ## Sample Movie
 

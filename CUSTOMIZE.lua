@@ -3,20 +3,19 @@
 
     - The value is not nil.
     - The type of the value is "number".
-    - The value is an integer.
+    - The value is an integer(except CUSTOM_BOMB_PROPERTY:1-4).
     - The value must be within the specified range.
     - OTHER_WIDTH * n + SCRATCH_WIDTH = 802 (only for XX_WIDTH).
 
     If the entered value does not meet these conditions, the value of the “Template” option (if it’s a 7key, OTHER_WIDTH = 94, SCRATCH_WIDTH = 144)
-    will be used. and Don’t forget the ‘,’ (comma) when entering!
+    will be used. and Don’t forget the ‘,’ (comma) when entering !
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-
     変数に代入する値は、以下の条件を満たすものにしてください。
 
     - 値が nil でないこと
     - 値の型が "number" であること
-    - 値が整数であること
+    - 値が整数であること（CUSTOM_BOMB_PROPERTY:1～4以外）
     - 値が指定の範囲内であること
     - OTHER_WIDTH * n + SCRATCH_WIDTH = 802 であること ※～WIDTHのみ
 
@@ -45,31 +44,31 @@ local CUSTOM_NOTES_WIDTH_9KEY = {
     SCRATCH_WIDTH = 107
 }
 
--- Value from 1 to 256
+-- Value from 1 to 255
 -- Default : CUSTOM_NOTES_HEIGHT = 64
 local CUSTOM_NOTES_HEIGHT_7KEY = {
     CUSTOM_NOTES_HEIGHT = 64
 }
 
--- Value from 1 to 256
+-- Value from 1 to 255
 -- Default : CUSTOM_NOTES_HEIGHT = 64
 local CUSTOM_NOTES_HEIGHT_5KEY = {
     CUSTOM_NOTES_HEIGHT = 64
 }
 
--- Value from 1 to 256
+-- Value from 1 to 255
 -- Default : CUSTOM_NOTES_HEIGHT = 64
 local CUSTOM_NOTES_HEIGHT_9KEY = {
     CUSTOM_NOTES_HEIGHT = 64
 }
 
--- Value from 1 to 256
--- Default : CUSTOM_THRESHOLD = 15
+-- Value from -255 to 255
+-- Default : FS_THRESHOLD_DELTA = -3
 local CUSTOM_FAST_SLOW_THRESHOLD = {
-    CUSTOM_THRESHOLD = 15
+    FS_THRESHOLD_DELTA = -3
 }
 
--- 1 to 4 : Value from 0.1 to 9.9
+-- 1 to 4 : Value from 0.1 to 10.0
 -- 5 to 10 : Value from 1 to 255
 -- Default : 
 --[[
