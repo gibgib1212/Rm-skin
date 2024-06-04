@@ -975,7 +975,7 @@ local function isMascotStop() 			return skin_config.option["Mascot Display"] == 
 
 -- ========================================================================================================================================================	
 
--- # main function + original functions
+-- # main function
 
 local function main()
 
@@ -983,6 +983,12 @@ local function main()
 	for k, v in pairs(header) do
 		skin[k] = v
 	end
+
+	local TIMER_OFF = main_state.timer_off_value
+
+-- ========================================================================================================================================================	
+
+	-- # notesInfo
 
 	local notesInfo = {}
 
@@ -1136,133 +1142,120 @@ local function main()
 		end
 	end
 
-	local function setPlayPos()
-		if isScratchRight() and isLaneAlignCenter() then
-			return 616
-		elseif isScratchRight() and not isLaneAlignCenter() then
-			return 988
-		elseif isScratchLeft() and isLaneAlignCenter() then
-			return 372
-		else
-			return 0
-		end
+-- ========================================================================================================================================================	
+
+	-- # GEOMETRY
+
+	local GEOMETRY = {
+		-- PLAY_POS = 		nil,
+		-- SCORE_POS = 		nil,
+		-- INFO_POS = 		nil,
+		-- LANE_X = 		nil,
+		LANE_Y = 		0,
+		LANE_W = 		802,
+		LANE_H = 		1080,
+		-- LANE_CENTER = 	nil,
+		-- LANE_DISTANCE = 	nil,
+		-- JUDGE_Y = 		nil,
+		-- TRACER_Y =		nil,
+		-- DETAIL_Y =		nil,
+		BGA_X = 		68,
+		BGA_Y = 		457,
+		BGA_W = 		480,
+		BGA_H = 		480,
+		-- GRAPH_BLUE = 	nil,
+		-- GRAPH_RED = 		nil,
+		MASCOT_X =		58,
+		MASCOT_Y = 		102,
+		MASCOT_W = 		256,
+		MASCOT_H = 		256
+	}
+
+	local fps_align
+	if isScratchRight() and isLaneAlignCenter() then
+		GEOMETRY.PLAY_POS =  616
+		GEOMETRY.SCORE_POS = 1550
+		GEOMETRY.GRAPH_BLUE = 72
+		GEOMETRY.GRAPH_RED = 264
+		fps_align = 0
+	elseif isScratchRight() and not isLaneAlignCenter() then
+		GEOMETRY.PLAY_POS = 988
+		GEOMETRY.SCORE_POS = 616
+		GEOMETRY.GRAPH_BLUE = 264
+		GEOMETRY.GRAPH_RED = 72
+		fps_align = 1
+	elseif isScratchLeft() and isLaneAlignCenter() then
+		GEOMETRY.PLAY_POS = 372
+		GEOMETRY.SCORE_POS = 0
+		GEOMETRY.GRAPH_BLUE = 264
+		GEOMETRY.GRAPH_RED = 72
+		fps_align = 1
+	else
+		GEOMETRY.PLAY_POS = 0
+		GEOMETRY.SCORE_POS = 932
+		GEOMETRY.GRAPH_BLUE = 72
+		GEOMETRY.GRAPH_RED = 264
+		fps_align = 0
 	end
 
-	local function setScorePos()
-		if isScratchRight() and isLaneAlignCenter() then
-			return 1550
-		elseif isScratchRight() and not isLaneAlignCenter() then
-			return 616
-		elseif isScratchLeft() and isLaneAlignCenter() then
-			return 0
-		else
-			return 932
-		end
+	local title_align
+	if isScratchRight() then
+		GEOMETRY.INFO_POS = 0
+		GEOMETRY.LANE_X = 15
+		title_align = 0
+	else
+		GEOMETRY.INFO_POS = 1304
+		GEOMETRY.LANE_X = 115
+		title_align = 2
 	end
 
-	local function setInfoPos()
-		if isScratchRight() then
-			return 0
-		else
-			return 1304
-		end
+	if isScratchRight() and 	isLaneCenterPosKey() and is7key() then
+		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 3.5)
+	elseif isScratchLeft() and 	isLaneCenterPosKey() and is7key() then
+		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 3.5 + notesInfo.Sc_width)
+	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignRL() and 		isNotesWidthTemplate() then
+		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Ot_width * 2)
+	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignRL() and 		isNotesWidthTemplate() then
+		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Sc_width)
+	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignCenter() and 	isNotesWidthTemplate() then
+		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 3.5)
+	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignCenter() and 	isNotesWidthTemplate() then
+		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 3.5 + notesInfo.Sc_width)
+	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and 	isNotesWidthTemplate() then
+		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5)
+	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and 	isNotesWidthTemplate() then
+		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Sc_width)
+	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and 							isNotesWidthCustom() then
+		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5)
+	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and 							isNotesWidthCustom() then
+		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Sc_width)
+	else
+		GEOMETRY.LANE_CENTER = 401
 	end
 
-	local function setBlankWidth()
-		if isScratchRight() then
-			return 15
-		else
-			return 115
-		end
+	if isLaneCenterPosKey() and 	is7key() then
+		GEOMETRY.LANE_DISTANCE = math.floor(notesInfo.Ot_width * 3.5 * 0.75)
+	elseif isLaneCenterPosKey() and is5key() and not is5keyAlignEnlarge() and 	isNotesWidthTemplate() then
+		GEOMETRY.LANE_DISTANCE = math.floor(notesInfo.Ot_width * 3.5 * 0.75)
+	elseif isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and 		isNotesWidthTemplate() then
+		GEOMETRY.LANE_DISTANCE = math.floor(notesInfo.Ot_width * 2.5 * 0.75)
+	elseif isLaneCenterPosKey() and is5key() and 								isNotesWidthCustom() then
+		GEOMETRY.LANE_DISTANCE = math.floor(notesInfo.Ot_width * 2.5 * 0.75)
+	else
+		GEOMETRY.LANE_DISTANCE = 	300		-- 401 * 0.75 = 300.75
 	end
 
-	local function setCenterPos()
-		if isScratchRight() and 	isLaneCenterPosKey() and is7key() then
-			return math.floor(notesInfo.Ot_width * 3.5)
-		elseif isScratchLeft() and 	isLaneCenterPosKey() and is7key() then
-			return math.floor(notesInfo.Ot_width * 3.5 + notesInfo.Sc_width)
-		elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignRL() and 		isNotesWidthTemplate() then
-			return math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Ot_width * 2)
-		elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignRL() and 		isNotesWidthTemplate() then
-			return math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Sc_width)
-		elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignCenter() and 	isNotesWidthTemplate() then
-			return math.floor(notesInfo.Ot_width * 3.5)
-		elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignCenter() and 	isNotesWidthTemplate() then
-			return math.floor(notesInfo.Ot_width * 3.5 + notesInfo.Sc_width)
-		elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and 	isNotesWidthTemplate() then
-			return math.floor(notesInfo.Ot_width * 2.5)
-		elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and 	isNotesWidthTemplate() then
-			return math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Sc_width)
-		elseif isScratchRight() and isLaneCenterPosKey() and is5key() and 							isNotesWidthCustom() then
-			return math.floor(notesInfo.Ot_width * 2.5)
-		elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and 							isNotesWidthCustom() then
-			return math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Sc_width)
-		else
-			return 401
-		end
+	if isJudgeTypeA() or isJudgeTypeB() then
+		GEOMETRY.JUDGE_Y = 205
+		GEOMETRY.TRACER_Y = 330
+		GEOMETRY.DETAIL_Y = 179
+	else
+		GEOMETRY.JUDGE_Y = 780
+		GEOMETRY.TRACER_Y = 544
+		GEOMETRY.DETAIL_Y = 350
 	end
 
-	local function setDistanceWidth()
-		if isLaneCenterPosKey() and 	is7key() then
-			return math.floor(notesInfo.Ot_width * 3.5 * 0.75)
-		elseif isLaneCenterPosKey() and is5key() and not is5keyAlignEnlarge() and 	isNotesWidthTemplate() then
-			return math.floor(notesInfo.Ot_width * 3.5 * 0.75)
-		elseif isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and 		isNotesWidthTemplate() then
-			return math.floor(notesInfo.Ot_width * 2.5 * 0.75)
-		elseif isLaneCenterPosKey() and is5key() and 								isNotesWidthCustom() then
-			return math.floor(notesInfo.Ot_width * 2.5 * 0.75)
-		else
-			return 	300		-- 401 * 0.75 = 300.75
-		end
-	end
-
-	local function setJudgePos()
-		if isJudgeTypeA() or isJudgeTypeB() then
-			return 205
-		else
-			return 780
-		end
-	end
-
-	local function setTracerPos()
-		if isJudgeTypeA() or isJudgeTypeB() then
-			return 330
-		else
-			return 544
-		end
-	end
-
-	local function setDetailPos()
-		if isJudgeTypeA() or isJudgeTypeB() then
-			return 179
-		else
-			return 350
-		end
-	end
-
-	local function setGraphBluePos()
-		if isScratchRight() and isLaneAlignCenter() then
-			return 72
-		elseif isScratchRight() and not isLaneAlignCenter() then
-			return 264
-		elseif isScratchLeft() and isLaneAlignCenter() then
- 			return 264
-		else
-			return 72
-		end
-	end
-
-	local function setGraphRedPos()
-		if isScratchRight() and isLaneAlignCenter() then
-			return 264
-		elseif isScratchRight() and not isLaneAlignCenter() then
-			return 72
-		elseif isScratchLeft() and isLaneAlignCenter() then
-			return 72
-		else
-			return 264
-		end
-	end
+-- ========================================================================================================================================================	
 
 	local function getKeybeamHeight()
 		if isKeybeamHeight_x100() then
@@ -1389,26 +1382,6 @@ local function main()
 		return main_state.number(number) ~= 0
 	end
 
-	local function getFpsAlign()
-		if isScratchRight() and isLaneAlignCenter() then
-			return 0
-		elseif isScratchRight() and not isLaneAlignCenter() then
-			return 1
-		elseif isScratchLeft() and isLaneAlignCenter() then
-			return 1
-		else
-			return 0
-		end
-	end
-
-	local function getTitleAlign()
-		if isScratchRight() then
-			return 0
-		else
-			return 2
-		end
-	end
-
 	local function getRemainNotes()
 		return main_state.number(106)
 			- main_state.number(110)
@@ -1416,10 +1389,6 @@ local function main()
 			- main_state.number(112)
 			- main_state.number(113)
 			- main_state.number(114)
-	end
-
-	local function getRemainNotesRate()
-		return getRemainNotes() / main_state.number(106)
 	end
 
 	local function getDummyNumber(number)
@@ -1430,38 +1399,30 @@ local function main()
 		end
 	end
 
+	local function getHiSpeed()
+		local event = main_state.event_index(55)
+		if main_state.option(177) then
+			if event == 2 and main_state.option(273) then
+				if main_state.number(90) == 0 then
+					return main_state.number(312)
+				else
+					return main_state.number(312) * main_state.number(160) / main_state.number(90)
+				end
+			elseif event == 3 and main_state.option(273) then
+				if main_state.number(92) == 0 then
+					return main_state.number(312)
+				else
+					return main_state.number(312) * main_state.number(160) / main_state.number(92)
+				end
+			end
+		else
+			return main_state.number(312)
+		end
+	end
+
 	local function getDarkness(offset)
 		return 255 - main_state.offset(offset).a
 	end
-
--- ========================================================================================================================================================	
-
--- # GEOMETRY
-
-	local GEOMETRY = {
-		PLAY_POS = 		setPlayPos(),
-		SCORE_POS = 	setScorePos(),
-		INFO_POS = 		setInfoPos(),
-		LANE_X = 		setBlankWidth(),
-		LANE_Y = 		0,
-		LANE_W = 		802,
-		LANE_H = 		1080,
-		LANE_CENTER = 	setCenterPos(),
-		LANE_DISTANCE = setDistanceWidth(),
-		JUDGE_Y = 		setJudgePos(),
-		TRACER_Y =		setTracerPos(),
-		DETAIL_Y =		setDetailPos(),
-		BGA_X = 		68,
-		BGA_Y = 		457,
-		BGA_W = 		480,
-		BGA_H = 		480,
-		GRAPH_BLUE = 	setGraphBluePos(),
-		GRAPH_RED = 	setGraphRedPos(),
-		MASCOT_X =		58,
-		MASCOT_Y = 		102,
-		MASCOT_W = 		256,
-		MASCOT_H = 		256
-	}
 
 -- ========================================================================================================================================================	
 
@@ -1785,7 +1746,7 @@ local function main()
 		{id = "score-time-hour-num", 	src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 27, align = 1},
 		{id = "score-time-minute-num", src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 28, align = 1},
 		{id = "score-time-second-num", src = "score_system_src", x = 373, y = 0, w = 220, h = 21, divx = 11, digit = 2, ref = 29, align = 1},
-		{id = "fps-num", 				src = "score_system_src", x = 373, y = 22, w = 200, h = 21, divx = 10, digit = 4, ref = 20, align = getFpsAlign()},
+		{id = "fps-num", 				src = "score_system_src", x = 373, y = 22, w = 200, h = 21, divx = 10, digit = 4, ref = 20, align = fps_align},
 
 		{id = "score-rate-num", 		src = "score_system_src", x = 373, y = 130, w = 200, h = 24, divx = 10, digit = 3, align = 0, value = function()
 			return getDummyNumber(102)
@@ -1802,17 +1763,37 @@ local function main()
 
 		-- # play values
 		{id = "adjusted-rate-num", 		src = "play_system_src", x = 0, y = 1025, w = 150, h = 18, divx = 10, digit = 1, align = 0, value = function()
-			return main_state.number(160) / main_state.number(90)
+			local event = main_state.event_index(55)
+			if event == 2 and main_state.option(273) then
+				return main_state.number(160) / main_state.number(90)
+			elseif event == 3 and main_state.option(273) then
+				local magnifcation = main_state.number(160) / main_state.number(92)
+				if magnifcation > 1 then
+					return 1
+				else
+					return magnifcation
+				end
+			end
 		end},
 		{id = "adjusted-rate-adot-num", src = "play_system_src", x = 0, y = 1044, w = 165, h = 18, divx = 11, digit = 2, align = 0, value = function()
-			return math.floor(main_state.number(160) / main_state.number(90) * 100 + 0.5)
+			local event = main_state.event_index(55)
+			if event == 2 and main_state.option(273) then
+				return math.floor(main_state.number(160) / main_state.number(90) * 100 + 0.5)
+			elseif event == 3 and main_state.option(273) then
+				local magnifcation = math.floor(main_state.number(160) / main_state.number(92) * 100 + 0.5)
+				if magnifcation > 100 then
+					return 100
+				else
+					return magnifcation
+				end
+			end
 		end},
 
 		{id = "remain-rate-num", 		src = "play_system_src", x = 0, y = 1025, w = 150, h = 18, divx = 10, digit = 3, align = 0, value = function()
-			return getRemainNotesRate() * 100
+			return getRemainNotes() / main_state.number(106) * 100
 		end},
 		{id = "remain-rate-adot-num", 	src = "play_system_src", x = 0, y = 1044, w = 165, h = 18, divx = 11, digit = 2, align = 0, value = function()
-			return getRemainNotesRate() * 10000
+			return getRemainNotes() / main_state.number(106) * 10000
 		end},
 
 		{id = "remain-notes",	 		src = "play_system_src", x = 0, y = 1025, w = 150, h = 18, divx = 10, digit = 5, align = 0, value = function()
@@ -1824,64 +1805,53 @@ local function main()
 
 		{id = "lanecover-value", 		src = "play_system_src", x = 0, y = 178, w = 200, h = 21, divx = 10, digit = 4, ref = 14, align = 0},
 		{id = "lanecover-green", 		src = "play_system_src", x = 0, y = 200, w = 200, h = 21, divx = 10, digit = 4, align = 0, value = function()
-			if main_state.event_index(55) == 2 and main_state.option(273) then
-				if main_state.number(90) == 0 then
-					return main_state.number(312) * 3 / 5
-				else
-					return main_state.number(312) * main_state.number(160) / main_state.number(90) * 3 / 5
-				end
-			else
-				return main_state.number(312) * 3 / 5
-			end
+			return getHiSpeed() * 0.6
 		end},
 		{id = "lanecover-duration", 	src = "play_system_src", x = 0, y = 222, w = 200, h = 21, divx = 10, digit = 4, align = 0, value = function()
-			if main_state.event_index(55) == 2 and main_state.option(273) then
-				if main_state.number(90) == 0 then
-					return main_state.number(312)
-				else
-					return main_state.number(312) * main_state.number(160) / main_state.number(90)
-				end
-			else
-				return main_state.number(312)
-			end
+			return getHiSpeed()
 		end},
 		{id = "lift-value", 			src = "play_system_src", x = 0, y = 178, w = 200, h = 21, divx = 10, digit = 4, ref = 314, align = 0}
 	}
 	skin.text = {
 		-- # in loading
 		{id = "inload-genre", font = 0, size = 26, overflow = 1, value = function()
-			if not main_state.text(13) or main_state.text(13) == "" then
+			local tx = main_state.text(13)
+			if not tx or tx == "" then
 				return "# No-Genre"
 			else
-				return main_state.text(13)
+				return tx
 			end
 		end},
 		{id = "inload-title", font = 2, size = 73, overflow = 1, value = function()
-			if not main_state.text(12) or main_state.text(12) == "" then
+			local tx = main_state.text(12)
+			if not tx or tx == "" then
 				return "# No-Title"
 			else
-				return main_state.text(12)
+				return tx
 			end
 		end},
 		{id = "inload-artist", font = 1, size = 42, overflow = 1, value = function()
-			if not main_state.text(16) or main_state.text(16) == "" then
+			local tx = main_state.text(16)
+			if not tx or tx == "" then
 				return "# No-Artist"
 			else
-				return main_state.text(16)
+				return tx
 			end
 		end},
 
 		-- # common
-		{id = "table", font = 1, size = 31, overflow = 1, align = getTitleAlign(), value = function()
+		{id = "table", font = 1, size = 31, overflow = 1, align = title_align, value = function()
 			if not main_state.option(290) then
-				if not main_state.text(1001) or main_state.text(1001) == "" and not main_state.text(1002) or main_state.text(1002) == "" then
-					if not main_state.text(1003) or main_state.text(1003) == "" then
+				local tx1, tx2 = main_state.text(1001), main_state.text(1002)
+				if not tx1 or tx1 == "" and not tx2 or tx2 == "" then
+					local tx3 = main_state.text(1003)
+					if not tx3 or tx3 == "" then
 						return "# No-Table"
 					else
-						return main_state.text(1003)
+						return tx3
 					end
 				else
-					return main_state.text(1001) .. " > " .. main_state.text(1002)
+					return tx1 .. " > " .. tx2
 				end
 			else
 				if main_state.option(289) then
@@ -1899,18 +1869,20 @@ local function main()
 		end},
 
 		-- # in playing
-		{id = "inplay-title", font = 2, size = 42, overflow = 1, align = getTitleAlign(), value = function()
-			if not main_state.text(12) or main_state.text(12) == "" then
+		{id = "inplay-title", font = 2, size = 42, overflow = 1, align = title_align, value = function()
+			local tx = main_state.text(12)
+			if not tx or tx == "" then
 				return "# No-Title"
 			else
-				return main_state.text(12)
+				return tx
 			end
 		end},
-		{id = "inplay-artist", font = 0, size = 26, overflow = 1, align = getTitleAlign(), value = function()
-			if not main_state.text(16) or main_state.text(16) == "" then
+		{id = "inplay-artist", font = 0, size = 26, overflow = 1, align = title_align, value = function()
+			local tx = main_state.text(16)
+			if not tx or tx == "" then
 				return "# No-Artist"
 			else
-				return main_state.text(16)
+				return tx
 			end
 		end}
 	}
@@ -1920,13 +1892,19 @@ local function main()
 		{id = "lanecover", 		src = "lanecover_src", x = 0, y = 0, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, angle = 2, range = GEOMETRY.LANE_H, type = 4},
 		{id = "adjustedcover", 	src = "lanecover_src", x = 0, y = 0, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, angle = 2, range = GEOMETRY.LANE_H, value = function()
 			-- BUTTON_HSFIX = 55;	0:OFF, 1:START, 2:MAX, 3:MAIN, 4:MIN
-			if main_state.event_index(55) == 2 and main_state.option(273) then
+			if main_state.option(273) then
 				-- NUMBER_LANECOVER1 = 	14;
 				-- NUMBER_LIFT1 = 		314;
 				local visible_area = 1 - (main_state.number(14) + main_state.number(314)) / 1000
-				-- NUMBER_MAXBPM = 		90;
-				-- NUMBER_NOWBPM = 		160;
-				return visible_area - visible_area * main_state.number(160) / main_state.number(90)
+				local event = main_state.event_index(55)
+				if event == 2 then
+					-- NUMBER_MAXBPM = 		90;
+					-- NUMBER_NOWBPM = 		160;
+					return visible_area - visible_area * main_state.number(160) / main_state.number(90)
+				elseif event == 3 then
+					-- NUMBER_MAINBPM = 	92;
+					return visible_area - visible_area * main_state.number(160) / main_state.number(92)
+				end
 			end
 		end}
 	}
@@ -2283,6 +2261,7 @@ local function main()
 
 -- # song infomation area
 
+	-- table colors
 	do
 		local table_color = {}
 		local table_name = main_state.text(1003)
@@ -2323,11 +2302,11 @@ local function main()
 			table_color.g = 140
 			table_color.b = 158
 		elseif string.find(table_name, "Stella") then
-			table_color.r = 0
+			table_color.r = 87
 			table_color.g = 191
 			table_color.b = 255
 		elseif string.find(table_name, "Satellite") then
-			table_color.r = 136
+			table_color.r = 116
 			table_color.g = 206
 			table_color.b = 250
 		elseif string.find(table_name, "Starlight") then
@@ -2339,13 +2318,23 @@ local function main()
 			table_color.g = 231
 			table_color.b = 255
 		elseif string.find(table_name, "16分乱打難易度表") then
-			table_color.r = 125
-			table_color.g = 171
-			table_color.b = 255
+			if string.find(main_state.text(1002), "乱打") then
+				table_color.r = 156
+				table_color.g = 197
+				table_color.b = 255
+			else
+				table_color.r = 125
+				table_color.g = 171
+				table_color.b = 255
+			end
 		elseif string.find(table_name, "LN難易度") then
 			table_color.r = 163
 			table_color.g = 255
 			table_color.b = 163
+		elseif string.find(table_name, "META-") then
+			table_color.r = 146
+			table_color.g = 240
+			table_color.b = 144
 		elseif string.find(table_name, "5KEYS AERY") then
 			table_color.r = 255
 			table_color.g = 216
@@ -2364,7 +2353,7 @@ local function main()
 			table_color.b = 128
 		end
 
-		-- genre, title
+		-- table, title, artist
 		if isScratchRight() then
 			append_all(skin.destination, {
 				{id = "table", 						filter = 1, dst = 	{{x = GEOMETRY.INFO_POS + 8, y = 1044, w = 600, h = 31, r = table_color.r, g = table_color.g, b = table_color.b}}},
@@ -2455,26 +2444,10 @@ local function main()
 		table.insert(skin.image, {id = "relative-dot", src = "info_system_src", x = 692, y = 481, w = 20, h = 21})
 		append_all(skin.value, {
 			{id = "relative-num", src = "info_system_src", x = 617, y = 66, w = 200, h = 21, divx = 10, digit = 4, align = 0, value = function()
-				if main_state.event_index(55) == 2 and main_state.option(273) then
-					if main_state.number(90) == 0 then
-						return main_state.number(312) * 3 / 5
-					else
-						return main_state.number(312) * main_state.number(160) / main_state.number(90) * 3 / 5
-					end
-				else
-					return main_state.number(312) * 3 / 5
-				end
+				return getHiSpeed() * 0.6
 			end},
 			{id = "relative-adot-num", src = "info_system_src", x = 617, y = 66, w = 220, h = 21, divx = 11, digit = 2, align = 0, value = function()
-				if main_state.event_index(55) == 2 and main_state.option(273) then
-					if main_state.number(90) == 0 then
-						return math.floor(main_state.number(312) * 3 / 5 * 100 + 0.5)
-					else
-						return math.floor(main_state.number(312) * main_state.number(160) / main_state.number(90) * 3 / 5 * 100 + 0.5)
-					end
-				else
-					return math.floor(main_state.number(312) * 3 / 5 * 100 + 0.5)
-				end
+				return math.floor(getHiSpeed()  * 60 + 0.5)
 			end}
 		})
 		append_all(skin.destination, {
@@ -2486,26 +2459,10 @@ local function main()
 		table.insert(skin.image, {id = "absolute-dot", src = "info_system_src", x = 713, y = 481, w = 20, h = 21})
 		append_all(skin.value, {
 			{id = "absolute-num", src = "info_system_src", x = 617, y = 88, w = 200, h = 21, divx = 10, digit = 4, align = 0, value = function()
-				if main_state.event_index(55) == 2 and main_state.option(273) then
-					if main_state.number(90) == 0 then
-						return main_state.number(312)
-					else
-						return main_state.number(312) * main_state.number(160) / main_state.number(90)
-					end
-				else
-					return main_state.number(312)
-				end
+				return getHiSpeed()
 			end},
 			{id = "absolute-adot-num", src = "info_system_src", x = 617, y = 88, w = 220, h = 21, divx = 11, digit = 2, align = 0, value = function()
-				if main_state.event_index(55) == 2 and main_state.option(273) then
-					if main_state.number(90) == 0 then
-						return math.floor(main_state.number(312) * 100 + 0.5)
-					else
-						return math.floor(main_state.number(312) * main_state.number(160) / main_state.number(90) * 100 + 0.5)
-					end
-				else
-					return math.floor(main_state.number(312) * 100 + 0.5)
-				end
+					return math.floor(getHiSpeed() * 100 + 0.5)
 			end}
 		})
 		append_all(skin.destination, {
@@ -2610,9 +2567,9 @@ local function main()
 	else
 		table.insert(skin.destination,
 			{id = "mascot", filter = 1, draw = function()
-				if main_state.timer(41) == main_state.timer_off_value then
+				if main_state.timer(41) == TIMER_OFF then
 					return true
-				elseif main_state.timer(143) ~= main_state.timer_off_value then
+				elseif main_state.timer(143) ~= TIMER_OFF then
 					return true
 				end
 			end, dst = {
@@ -2620,7 +2577,7 @@ local function main()
 			}})
 			table.insert(skin.destination,
 			{id = "mascot", filter = 1, loop = 0, timer = 140, draw = function()
-				if main_state.timer(143) == main_state.timer_off_value then
+				if main_state.timer(143) == TIMER_OFF then
 					return true
 				end
 			end, dst = {
@@ -2920,7 +2877,7 @@ local function main()
 	-- adjustedcover
 	append_all(skin.destination, {
 		{id = "adjustedcover", offset = 4, loop = 1600, draw = function()
-			if main_state.event_index(55) == 2 and main_state.option(273) and main_state.timer(41) == main_state.timer_off_value then
+			if main_state.timer(41) == TIMER_OFF then
 				return true
 			end
 		end, dst = {
@@ -2928,11 +2885,7 @@ local function main()
 			{time = 1200},
 			{time = 1600, y = 1080}
 		}},
-		{id = "adjustedcover", offset = 4, timer = 41, draw = function()
-			if main_state.event_index(55) == 2 and main_state.option(273) then
-				return true
-			end
-		end, dst = {
+		{id = "adjustedcover", offset = 4, timer = 41,  dst = {
 			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 1080, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, acc = 2}
 		}}
 	})
@@ -3525,17 +3478,17 @@ local function main()
 		append_all(skin.destination, {
 			-- adjusted cover persent
 			{id = "adjusted-rate-num", 				draw = function()
-				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 53, y = 1002, w = 15, h = 18}}},
 			{id = "adjusted-rate-adot-num", 		draw = function()
-				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 77, y = 1002, w = 15, h = 18}}},
 			{id = "adjusted-rate-dot", 				draw = function()
-				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 38, y = 1002, w = 69, h = 18}}},
@@ -3558,17 +3511,17 @@ local function main()
 		append_all(skin.destination, {
 			-- adjusted cover persent
 			{id = "adjusted-rate-num", 				draw = function()
-				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-89), y = 1002, w = 15, h = 18}}},
 			{id = "adjusted-rate-adot-num", 		draw = function()
-				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-65), y = 1002, w = 15, h = 18}}},
 			{id = "adjusted-rate-dot", 				draw = function()
-				if main_state.event_index(55) == 2 and main_state.option(273) and main_state.option(177) then
+				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-104), y = 1002, w = 69, h = 18}}},
@@ -3600,7 +3553,7 @@ local function main()
 		}},
 		-- end of note
 		{id = "eon", offsets = {3, 4, JUDGELINE_POS}, draw = function()
-			if main_state.timer(143) == main_state.timer_off_value and getRemainNotes() == 0 then
+			if main_state.timer(143) == TIMER_OFF and getRemainNotes() == 0 then
 				return true
 			end
 		end,dst = {

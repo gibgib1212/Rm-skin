@@ -374,3 +374,8 @@ Update History
 	- FS Threshold setting changed from absolute to relative
 	- Update readme.txt
 
+06042024
+
+	- Organized functions
+	- Adjust table color
+	- Update readme.txt
