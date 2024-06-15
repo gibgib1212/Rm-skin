@@ -2,11 +2,11 @@ local t = require("play")
 t.header.type = 1
 t.header.name = t.header.name .. " for5key"
 
-local _header, _category = 	t.processHeader(t.header.type)
-t.header.property = 		_header.property
-t.header.filepath = 		_header.filepath
-t.header.offset = 			_header.offset
-t.header.category = 		_category
+local h, c = 			t.processHeader(t.header.type)
+t.header.property = 	h.property
+t.header.filepath = 	h.filepath
+t.header.offset = 		h.offset
+t.header.category = 	c
 
 if skin_config then
 	return t.main()

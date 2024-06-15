@@ -10,11 +10,6 @@
 
 ## About Licenses
 - Files with the prefix "!" : ["Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)"](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.en "CC BY-NC-ND 4.0")
-   - "Rm-skin-main/!_common/..."
-     - ".../!_alt_image.png"
-     - ".../!_info_system.png"
-     - ".../!_play_system.png"
-     - ".../!_score_system.png"
    - "Rm-skin-main/parts/!_bomb/..."
      - ".../!_x150%_Aqua_clear_ring_SCUROed.png"
      - ".../!_x150%_Blue_clear_ring_SCUROed.png"
@@ -28,12 +23,17 @@
      - ".../!_x150%_Red_ECFN_Default.png"
      - ".../!_x150%_White_ECFN_Default.png"
      - ".../!_x150%_Yellow_ECFN_Default.png"
+   - "Rm-skin-main/parts/!_common/..."
+     - ".../!_alt_image.png"
+     - ".../!_info_system.png"
+     - ".../!_play_system.png"
+     - ".../!_score_system.png"
    - "Rm-skin-main/parts/!_mascot/..."
      - ".../!_Default.png"
      - ".../!_Default_Inverted.png"
 - Other Files : ["GNU General Public License v3.0 (GPLv3)"](https://choosealicense.com/licenses/gpl-3.0/ "GPLv3")
 - Also, please refer to the license included with the fonts for information on font handling.
-   - "Rm-skin/font/LICENSE/..."
+   - "Rm-skin/_license/font_License/..."
 
 ## Sample Movie
 
@@ -45,16 +45,23 @@
 
 ## Description for "Adjusted cover"
 
-[Movie](https://www.youtube.com/watch?v=6HqDn00ie58 "Sample Movie3")
+[Sample Movie](https://www.youtube.com/watch?v=6HqDn00ie58 "Sample Movie3")
 
 "Adjusted Lanecover" is a function that automatically adjusts lane cover in response to changes in BPM.
-Turning on "Hiddencover" and setting HS-Fix to "MAXBPM" will enable this function.
-Adjusted-cover multiplier is calculated based on the difference between MAXBPM and current BPM. Therefore, it does not work effectively on "songs with extremely high MAXBPM" or "songs with wildly fluctuating BPM".
-Since this skin does not implement normal the hiddencover, it would be easier to use if you always turn on the hiddencover and use "MAXBPM" and "MAINBPM" according to the song.
-
+Turning on "Hiddencover" and setting HS-Fix to "MAINBPM" or "MAXBPM" will enable this function.
 
 ## Sample Picture
 
 ![SAMPLE1](_image/SAMPLE1.png)
 
 ![SAMPLE2](_image/SAMPLE2.png)
+
+## Other
+
+- How to use : Property
+
+![DISCRIPTION1](_image/How_to_use_Property.png)
+
+- How to use : CUSTOMIZE.lua
+
+![DISCRIPTION2](_image/How_to_use_CUSTOMIZE.png)

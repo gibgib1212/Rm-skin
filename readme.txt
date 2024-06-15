@@ -2,7 +2,7 @@
 "Rm-skin"
 ver 0.2.3
 Full HD (1920x1080) Playskin-5,7,9 key for beatoraja
-(Last updated:05/30/2024)
+(Last updated:06/14/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -378,4 +378,10 @@ Update History
 
 	- Organized functions
 	- Adjust table color
+	- Update readme.txt
+
+06142024
+
+	- Created TABLE_COLOR.lua
+	- Organized the file hierarchy
 	- Update readme.txt

@@ -94,7 +94,7 @@ local HI_SPEED_RELATIVE =					optionCount()
 local HI_SPEED_ABSOLUTE =					optionCount()
 
 local MASCOT_STOP = 						optionCount()
-local MASCOT_FLOAT = 						optionCount()
+local MASCOT_ACTIVE = 						optionCount()
 
 -- ========================================================================================================================================================	
 
@@ -505,7 +505,7 @@ local original_property = {
 	}},
 	{name = "Mascot Display", 							item = {
 		{name = "Stop", 								op = MASCOT_STOP},
-		{name = "Float", 								op = MASCOT_FLOAT}
+		{name = "Active", 								op = MASCOT_ACTIVE}
 	}}
 }
 
@@ -554,330 +554,339 @@ end
 local function processHeader(type)
 	do
 		local exclude_names = 	{}
-		local _tmp = 			{}
-		local _header = 		{}
-		local _category = 		{}
+		local h = 				{}
+		local c = 				{}
 
 		if type == 0 then	-- 7key
 
-			_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
-			_category.Offset = _tmp
+			-- 1 : property
+			do
+				exclude_names = {"Notes 5Key Align"}
+				h.property, c.property = createTable(original_property, exclude_names, "property")
+			end
 
-			exclude_names = {
-				-- Notes : 5key : Normal
-				"Temeplate_5key : Normal : White-Notes",
-				"Temeplate_5key : Normal : White-Long-Start",
-				"Temeplate_5key : Normal : White-Long-End",
-				"Temeplate_5key : Normal : White-Long-Body",
-				"Temeplate_5key : Normal : White-Long-Active",
-				"Temeplate_5key : Normal : White-Mine",
+			-- 2 : filepath
+			do
+				exclude_names = {
+					-- Notes : 5key : Normal
+					"Temeplate_5key : Normal : White-Notes",
+					"Temeplate_5key : Normal : White-Long-Start",
+					"Temeplate_5key : Normal : White-Long-End",
+					"Temeplate_5key : Normal : White-Long-Body",
+					"Temeplate_5key : Normal : White-Long-Active",
+					"Temeplate_5key : Normal : White-Mine",
 
-				"Temeplate_5key : Normal : Blue-Notes",
-				"Temeplate_5key : Normal : Blue-Long-Start",
-				"Temeplate_5key : Normal : Blue-Long-End",
-				"Temeplate_5key : Normal : Blue-Long-Body",
-				"Temeplate_5key : Normal : Blue-Long-Active",
-				"Temeplate_5key : Normal : Blue-Mine",
+					"Temeplate_5key : Normal : Blue-Notes",
+					"Temeplate_5key : Normal : Blue-Long-Start",
+					"Temeplate_5key : Normal : Blue-Long-End",
+					"Temeplate_5key : Normal : Blue-Long-Body",
+					"Temeplate_5key : Normal : Blue-Long-Active",
+					"Temeplate_5key : Normal : Blue-Mine",
 
-				"Temeplate_5key : Normal : Yellow-Notes",
-				"Temeplate_5key : Normal : Yellow-Long-Start",
-				"Temeplate_5key : Normal : Yellow-Long-End",
-				"Temeplate_5key : Normal : Yellow-Long-Body",
-				"Temeplate_5key : Normal : Yellow-Long-Active",
-				"Temeplate_5key : Normal : Yellow-Mine",
+					"Temeplate_5key : Normal : Yellow-Notes",
+					"Temeplate_5key : Normal : Yellow-Long-Start",
+					"Temeplate_5key : Normal : Yellow-Long-End",
+					"Temeplate_5key : Normal : Yellow-Long-Body",
+					"Temeplate_5key : Normal : Yellow-Long-Active",
+					"Temeplate_5key : Normal : Yellow-Mine",
 
-				"Temeplate_5key : Normal : Scratch-Notes",
-				"Temeplate_5key : Normal : Scratch-Long-Start",
-				"Temeplate_5key : Normal : Scratch-Long-End",
-				"Temeplate_5key : Normal : Scratch-Long-Body",
-				"Temeplate_5key : Normal : Scratch-Long-Active",
-				"Temeplate_5key : Normal : Scratch-Mine",
+					"Temeplate_5key : Normal : Scratch-Notes",
+					"Temeplate_5key : Normal : Scratch-Long-Start",
+					"Temeplate_5key : Normal : Scratch-Long-End",
+					"Temeplate_5key : Normal : Scratch-Long-Body",
+					"Temeplate_5key : Normal : Scratch-Long-Active",
+					"Temeplate_5key : Normal : Scratch-Mine",
 
-				-- Notes : 5key : Enlarge
-				"Temeplate_5key : Enlarge : White-Notes",
-				"Temeplate_5key : Enlarge : White-Long-Start",
-				"Temeplate_5key : Enlarge : White-Long-End",
-				"Temeplate_5key : Enlarge : White-Long-Body",
-				"Temeplate_5key : Enlarge : White-Long-Active",
-				"Temeplate_5key : Enlarge : White-Mine",
+					-- Notes : 5key : Enlarge
+					"Temeplate_5key : Enlarge : White-Notes",
+					"Temeplate_5key : Enlarge : White-Long-Start",
+					"Temeplate_5key : Enlarge : White-Long-End",
+					"Temeplate_5key : Enlarge : White-Long-Body",
+					"Temeplate_5key : Enlarge : White-Long-Active",
+					"Temeplate_5key : Enlarge : White-Mine",
 
-				"Temeplate_5key : Enlarge : Blue-Notes",
-				"Temeplate_5key : Enlarge : Blue-Long-Start",
-				"Temeplate_5key : Enlarge : Blue-Long-End",
-				"Temeplate_5key : Enlarge : Blue-Long-Body",
-				"Temeplate_5key : Enlarge : Blue-Long-Active",
-				"Temeplate_5key : Enlarge : Blue-Mine",
+					"Temeplate_5key : Enlarge : Blue-Notes",
+					"Temeplate_5key : Enlarge : Blue-Long-Start",
+					"Temeplate_5key : Enlarge : Blue-Long-End",
+					"Temeplate_5key : Enlarge : Blue-Long-Body",
+					"Temeplate_5key : Enlarge : Blue-Long-Active",
+					"Temeplate_5key : Enlarge : Blue-Mine",
 
-				"Temeplate_5key : Enlarge : Yellow-Notes",
-				"Temeplate_5key : Enlarge : Yellow-Long-Start",
-				"Temeplate_5key : Enlarge : Yellow-Long-End",
-				"Temeplate_5key : Enlarge : Yellow-Long-Body",
-				"Temeplate_5key : Enlarge : Yellow-Long-Active",
-				"Temeplate_5key : Enlarge : Yellow-Mine",
+					"Temeplate_5key : Enlarge : Yellow-Notes",
+					"Temeplate_5key : Enlarge : Yellow-Long-Start",
+					"Temeplate_5key : Enlarge : Yellow-Long-End",
+					"Temeplate_5key : Enlarge : Yellow-Long-Body",
+					"Temeplate_5key : Enlarge : Yellow-Long-Active",
+					"Temeplate_5key : Enlarge : Yellow-Mine",
 
-				"Temeplate_5key : Enlarge : Scratch-Notes",
-				"Temeplate_5key : Enlarge : Scratch-Long-Start",
-				"Temeplate_5key : Enlarge : Scratch-Long-End",
-				"Temeplate_5key : Enlarge : Scratch-Long-Body",
-				"Temeplate_5key : Enlarge : Scratch-Long-Active",
-				"Temeplate_5key : Enlarge : Scratch-Mine",
+					"Temeplate_5key : Enlarge : Scratch-Notes",
+					"Temeplate_5key : Enlarge : Scratch-Long-Start",
+					"Temeplate_5key : Enlarge : Scratch-Long-End",
+					"Temeplate_5key : Enlarge : Scratch-Long-Body",
+					"Temeplate_5key : Enlarge : Scratch-Long-Active",
+					"Temeplate_5key : Enlarge : Scratch-Mine",
 
-				-- Notes : 9key
-				"Temeplate_9key : White-Notes",
-				"Temeplate_9key : White-Long-Start",
-				"Temeplate_9key : White-Long-End",
-				"Temeplate_9key : White-Long-Body",
-				"Temeplate_9key : White-Long-Active",
-				"Temeplate_9key : White-Mine",
+					-- Notes : 9key
+					"Temeplate_9key : White-Notes",
+					"Temeplate_9key : White-Long-Start",
+					"Temeplate_9key : White-Long-End",
+					"Temeplate_9key : White-Long-Body",
+					"Temeplate_9key : White-Long-Active",
+					"Temeplate_9key : White-Mine",
 
-				"Temeplate_9key : Blue-Notes",
-				"Temeplate_9key : Blue-Long-Start",
-				"Temeplate_9key : Blue-Long-End",
-				"Temeplate_9key : Blue-Long-Body",
-				"Temeplate_9key : Blue-Long-Active",
-				"Temeplate_9key : Blue-Mine",
+					"Temeplate_9key : Blue-Notes",
+					"Temeplate_9key : Blue-Long-Start",
+					"Temeplate_9key : Blue-Long-End",
+					"Temeplate_9key : Blue-Long-Body",
+					"Temeplate_9key : Blue-Long-Active",
+					"Temeplate_9key : Blue-Mine",
 
-				"Temeplate_9key : Yellow-Notes",
-				"Temeplate_9key : Yellow-Long-Start",
-				"Temeplate_9key : Yellow-Long-End",
-				"Temeplate_9key : Yellow-Long-Body",
-				"Temeplate_9key : Yellow-Long-Active",
-				"Temeplate_9key : Yellow-Mine",
+					"Temeplate_9key : Yellow-Notes",
+					"Temeplate_9key : Yellow-Long-Start",
+					"Temeplate_9key : Yellow-Long-End",
+					"Temeplate_9key : Yellow-Long-Body",
+					"Temeplate_9key : Yellow-Long-Active",
+					"Temeplate_9key : Yellow-Mine",
 
-				"Temeplate_9key : Scratch-Notes",
-				"Temeplate_9key : Scratch-Long-Start",
-				"Temeplate_9key : Scratch-Long-End",
-				"Temeplate_9key : Scratch-Long-Body",
-				"Temeplate_9key : Scratch-Long-Active",
-				"Temeplate_9key : Scratch-Mine",
+					"Temeplate_9key : Scratch-Notes",
+					"Temeplate_9key : Scratch-Long-Start",
+					"Temeplate_9key : Scratch-Long-End",
+					"Temeplate_9key : Scratch-Long-Body",
+					"Temeplate_9key : Scratch-Long-Active",
+					"Temeplate_9key : Scratch-Mine",
 
-				-- Keybeam : 5key : Normal
-				"Temeplate_5key : Normal : White-Keybeam",
-				"Temeplate_5key : Normal : Blue-Keybeam",
-				"Temeplate_5key : Normal : Yellow-Keybeam",
-				"Temeplate_5key : Normal : Scratch-Keybeam",
+					-- Keybeam : 5key : Normal
+					"Temeplate_5key : Normal : White-Keybeam",
+					"Temeplate_5key : Normal : Blue-Keybeam",
+					"Temeplate_5key : Normal : Yellow-Keybeam",
+					"Temeplate_5key : Normal : Scratch-Keybeam",
 
-				-- Keybeam : 5key : Enlarge
-				"Temeplate_5key : Enlarge : White-Keybeam",
-				"Temeplate_5key : Enlarge : Blue-Keybeam",
-				"Temeplate_5key : Enlarge : Yellow-Keybeam",
-				"Temeplate_5key : Enlarge : Scratch-Keybeam",
+					-- Keybeam : 5key : Enlarge
+					"Temeplate_5key : Enlarge : White-Keybeam",
+					"Temeplate_5key : Enlarge : Blue-Keybeam",
+					"Temeplate_5key : Enlarge : Yellow-Keybeam",
+					"Temeplate_5key : Enlarge : Scratch-Keybeam",
 
-				-- Keybeam : 9key
-				"Temeplate_9key : White-Keybeam",
-				"Temeplate_9key : Blue-Keybeam",
-				"Temeplate_9key : Yellow-Keybeam",
-				"Temeplate_9key : Scratch-Keybeam"
-			}
-			_header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
-			_category.Filepath = _tmp
+					-- Keybeam : 9key
+					"Temeplate_9key : White-Keybeam",
+					"Temeplate_9key : Blue-Keybeam",
+					"Temeplate_9key : Yellow-Keybeam",
+					"Temeplate_9key : Scratch-Keybeam"
+				}
+				h.filepath, c.filepath = createTable(original_filepath, exclude_names, "filepath")
+			end
 
-			exclude_names = {"Notes 5Key Align"}
-			_header.property, _tmp = createTable(original_property, exclude_names, "Property")
-			_category.Property = _tmp
+			-- 3 : offset
+			h.offset, c.offset = createTable(original_offset, exclude_names, "offset")
 
 		elseif type == 1 then	-- 5key
 
-			_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
-			_category.Offset = _tmp
+			-- 1 : property
+			h.property, c.property = createTable(original_property, exclude_names, "property")
 
-			exclude_names = {
-				-- Notes : 7key
-				"Temeplate_7key : White-Notes",
-				"Temeplate_7key : White-Long-Start",
-				"Temeplate_7key : White-Long-End",
-				"Temeplate_7key : White-Long-Body",
-				"Temeplate_7key : White-Long-Active",
-				"Temeplate_7key : White-Mine",
+			-- 2 : filepath
+			do
+				exclude_names = {
+					-- Notes : 7key
+					"Temeplate_7key : White-Notes",
+					"Temeplate_7key : White-Long-Start",
+					"Temeplate_7key : White-Long-End",
+					"Temeplate_7key : White-Long-Body",
+					"Temeplate_7key : White-Long-Active",
+					"Temeplate_7key : White-Mine",
 
-				"Temeplate_7key : Blue-Notes",
-				"Temeplate_7key : Blue-Long-Start",
-				"Temeplate_7key : Blue-Long-End",
-				"Temeplate_7key : Blue-Long-Body",
-				"Temeplate_7key : Blue-Long-Active",
-				"Temeplate_7key : Blue-Mine",
+					"Temeplate_7key : Blue-Notes",
+					"Temeplate_7key : Blue-Long-Start",
+					"Temeplate_7key : Blue-Long-End",
+					"Temeplate_7key : Blue-Long-Body",
+					"Temeplate_7key : Blue-Long-Active",
+					"Temeplate_7key : Blue-Mine",
 
-				"Temeplate_7key : Yellow-Notes",
-				"Temeplate_7key : Yellow-Long-Start",
-				"Temeplate_7key : Yellow-Long-End",
-				"Temeplate_7key : Yellow-Long-Body",
-				"Temeplate_7key : Yellow-Long-Active",
-				"Temeplate_7key : Yellow-Mine",
+					"Temeplate_7key : Yellow-Notes",
+					"Temeplate_7key : Yellow-Long-Start",
+					"Temeplate_7key : Yellow-Long-End",
+					"Temeplate_7key : Yellow-Long-Body",
+					"Temeplate_7key : Yellow-Long-Active",
+					"Temeplate_7key : Yellow-Mine",
 
-				"Temeplate_7key : Scratch-Notes",
-				"Temeplate_7key : Scratch-Long-Start",
-				"Temeplate_7key : Scratch-Long-End",
-				"Temeplate_7key : Scratch-Long-Body",
-				"Temeplate_7key : Scratch-Long-Active",
-				"Temeplate_7key : Scratch-Mine",
+					"Temeplate_7key : Scratch-Notes",
+					"Temeplate_7key : Scratch-Long-Start",
+					"Temeplate_7key : Scratch-Long-End",
+					"Temeplate_7key : Scratch-Long-Body",
+					"Temeplate_7key : Scratch-Long-Active",
+					"Temeplate_7key : Scratch-Mine",
 
-				-- Notes : 9key
-				"Temeplate_9key : White-Notes",
-				"Temeplate_9key : White-Long-Start",
-				"Temeplate_9key : White-Long-End",
-				"Temeplate_9key : White-Long-Body",
-				"Temeplate_9key : White-Long-Active",
-				"Temeplate_9key : White-Mine",
+					-- Notes : 9key
+					"Temeplate_9key : White-Notes",
+					"Temeplate_9key : White-Long-Start",
+					"Temeplate_9key : White-Long-End",
+					"Temeplate_9key : White-Long-Body",
+					"Temeplate_9key : White-Long-Active",
+					"Temeplate_9key : White-Mine",
 
-				"Temeplate_9key : Blue-Notes",
-				"Temeplate_9key : Blue-Long-Start",
-				"Temeplate_9key : Blue-Long-End",
-				"Temeplate_9key : Blue-Long-Body",
-				"Temeplate_9key : Blue-Long-Active",
-				"Temeplate_9key : Blue-Mine",
+					"Temeplate_9key : Blue-Notes",
+					"Temeplate_9key : Blue-Long-Start",
+					"Temeplate_9key : Blue-Long-End",
+					"Temeplate_9key : Blue-Long-Body",
+					"Temeplate_9key : Blue-Long-Active",
+					"Temeplate_9key : Blue-Mine",
 
-				"Temeplate_9key : Yellow-Notes",
-				"Temeplate_9key : Yellow-Long-Start",
-				"Temeplate_9key : Yellow-Long-End",
-				"Temeplate_9key : Yellow-Long-Body",
-				"Temeplate_9key : Yellow-Long-Active",
-				"Temeplate_9key : Yellow-Mine",
+					"Temeplate_9key : Yellow-Notes",
+					"Temeplate_9key : Yellow-Long-Start",
+					"Temeplate_9key : Yellow-Long-End",
+					"Temeplate_9key : Yellow-Long-Body",
+					"Temeplate_9key : Yellow-Long-Active",
+					"Temeplate_9key : Yellow-Mine",
 
-				"Temeplate_9key : Scratch-Notes",
-				"Temeplate_9key : Scratch-Long-Start",
-				"Temeplate_9key : Scratch-Long-End",
-				"Temeplate_9key : Scratch-Long-Body",
-				"Temeplate_9key : Scratch-Long-Active",
-				"Temeplate_9key : Scratch-Mine",
+					"Temeplate_9key : Scratch-Notes",
+					"Temeplate_9key : Scratch-Long-Start",
+					"Temeplate_9key : Scratch-Long-End",
+					"Temeplate_9key : Scratch-Long-Body",
+					"Temeplate_9key : Scratch-Long-Active",
+					"Temeplate_9key : Scratch-Mine",
 
-				-- Keybeam : 7key
-				"Temeplate_7key : White-Keybeam",
-				"Temeplate_7key : Blue-Keybeam",
-				"Temeplate_7key : Yellow-Keybeam",
-				"Temeplate_7key : Scratch-Keybeam",
+					-- Keybeam : 7key
+					"Temeplate_7key : White-Keybeam",
+					"Temeplate_7key : Blue-Keybeam",
+					"Temeplate_7key : Yellow-Keybeam",
+					"Temeplate_7key : Scratch-Keybeam",
 
-				-- Keybeam : 9key
-				"Temeplate_9key : White-Keybeam",
-				"Temeplate_9key : Blue-Keybeam",
-				"Temeplate_9key : Yellow-Keybeam",
-				"Temeplate_9key : Scratch-Keybeam"
-			}
-			_header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
-			_category.Filepath = _tmp
+					-- Keybeam : 9key
+					"Temeplate_9key : White-Keybeam",
+					"Temeplate_9key : Blue-Keybeam",
+					"Temeplate_9key : Yellow-Keybeam",
+					"Temeplate_9key : Scratch-Keybeam"
+				}
+				h.filepath, c.filepath = createTable(original_filepath, exclude_names, "filepath")
+			end
 
-			_header.property, _tmp = createTable(original_property, exclude_names, "Property")
-			_category.Property = _tmp
+			-- 3 : offset
+			h.offset, c.offset = createTable(original_offset, exclude_names, "offset")
 
 		elseif type == 4 then	-- 9key
 
-			_header.offset, _tmp = createTable(original_offset, exclude_names, "Offset")
-			_category.Offset = _tmp
+			-- 1 : property
+			do
+				exclude_names = {"Lane Center", "Notes 5Key Align"}
+				h.property, c.property = createTable(original_property, exclude_names, "property")
+			end
 
-			exclude_names = {
-				-- Notes : 7key
-				"Temeplate_7key : White-Notes",
-				"Temeplate_7key : White-Long-Start",
-				"Temeplate_7key : White-Long-End",
-				"Temeplate_7key : White-Long-Body",
-				"Temeplate_7key : White-Long-Active",
-				"Temeplate_7key : White-Mine",
+			-- 2 : filepath
+			do
+				exclude_names = {
+					-- Notes : 7key
+					"Temeplate_7key : White-Notes",
+					"Temeplate_7key : White-Long-Start",
+					"Temeplate_7key : White-Long-End",
+					"Temeplate_7key : White-Long-Body",
+					"Temeplate_7key : White-Long-Active",
+					"Temeplate_7key : White-Mine",
 
-				"Temeplate_7key : Blue-Notes",
-				"Temeplate_7key : Blue-Long-Start",
-				"Temeplate_7key : Blue-Long-End",
-				"Temeplate_7key : Blue-Long-Body",
-				"Temeplate_7key : Blue-Long-Active",
-				"Temeplate_7key : Blue-Mine",
+					"Temeplate_7key : Blue-Notes",
+					"Temeplate_7key : Blue-Long-Start",
+					"Temeplate_7key : Blue-Long-End",
+					"Temeplate_7key : Blue-Long-Body",
+					"Temeplate_7key : Blue-Long-Active",
+					"Temeplate_7key : Blue-Mine",
 
-				"Temeplate_7key : Yellow-Notes",
-				"Temeplate_7key : Yellow-Long-Start",
-				"Temeplate_7key : Yellow-Long-End",
-				"Temeplate_7key : Yellow-Long-Body",
-				"Temeplate_7key : Yellow-Long-Active",
-				"Temeplate_7key : Yellow-Mine",
+					"Temeplate_7key : Yellow-Notes",
+					"Temeplate_7key : Yellow-Long-Start",
+					"Temeplate_7key : Yellow-Long-End",
+					"Temeplate_7key : Yellow-Long-Body",
+					"Temeplate_7key : Yellow-Long-Active",
+					"Temeplate_7key : Yellow-Mine",
 
-				"Temeplate_7key : Scratch-Notes",
-				"Temeplate_7key : Scratch-Long-Start",
-				"Temeplate_7key : Scratch-Long-End",
-				"Temeplate_7key : Scratch-Long-Body",
-				"Temeplate_7key : Scratch-Long-Active",
-				"Temeplate_7key : Scratch-Mine",
+					"Temeplate_7key : Scratch-Notes",
+					"Temeplate_7key : Scratch-Long-Start",
+					"Temeplate_7key : Scratch-Long-End",
+					"Temeplate_7key : Scratch-Long-Body",
+					"Temeplate_7key : Scratch-Long-Active",
+					"Temeplate_7key : Scratch-Mine",
 
-				-- Notes : 5key : Normal
-				"Temeplate_5key : Normal : White-Notes",
-				"Temeplate_5key : Normal : White-Long-Start",
-				"Temeplate_5key : Normal : White-Long-End",
-				"Temeplate_5key : Normal : White-Long-Body",
-				"Temeplate_5key : Normal : White-Long-Active",
-				"Temeplate_5key : Normal : White-Mine",
+					-- Notes : 5key : Normal
+					"Temeplate_5key : Normal : White-Notes",
+					"Temeplate_5key : Normal : White-Long-Start",
+					"Temeplate_5key : Normal : White-Long-End",
+					"Temeplate_5key : Normal : White-Long-Body",
+					"Temeplate_5key : Normal : White-Long-Active",
+					"Temeplate_5key : Normal : White-Mine",
 
-				"Temeplate_5key : Normal : Blue-Notes",
-				"Temeplate_5key : Normal : Blue-Long-Start",
-				"Temeplate_5key : Normal : Blue-Long-End",
-				"Temeplate_5key : Normal : Blue-Long-Body",
-				"Temeplate_5key : Normal : Blue-Long-Active",
-				"Temeplate_5key : Normal : Blue-Mine",
+					"Temeplate_5key : Normal : Blue-Notes",
+					"Temeplate_5key : Normal : Blue-Long-Start",
+					"Temeplate_5key : Normal : Blue-Long-End",
+					"Temeplate_5key : Normal : Blue-Long-Body",
+					"Temeplate_5key : Normal : Blue-Long-Active",
+					"Temeplate_5key : Normal : Blue-Mine",
 
-				"Temeplate_5key : Normal : Yellow-Notes",
-				"Temeplate_5key : Normal : Yellow-Long-Start",
-				"Temeplate_5key : Normal : Yellow-Long-End",
-				"Temeplate_5key : Normal : Yellow-Long-Body",
-				"Temeplate_5key : Normal : Yellow-Long-Active",
-				"Temeplate_5key : Normal : Yellow-Mine",
+					"Temeplate_5key : Normal : Yellow-Notes",
+					"Temeplate_5key : Normal : Yellow-Long-Start",
+					"Temeplate_5key : Normal : Yellow-Long-End",
+					"Temeplate_5key : Normal : Yellow-Long-Body",
+					"Temeplate_5key : Normal : Yellow-Long-Active",
+					"Temeplate_5key : Normal : Yellow-Mine",
 
-				"Temeplate_5key : Normal : Scratch-Notes",
-				"Temeplate_5key : Normal : Scratch-Long-Start",
-				"Temeplate_5key : Normal : Scratch-Long-End",
-				"Temeplate_5key : Normal : Scratch-Long-Body",
-				"Temeplate_5key : Normal : Scratch-Long-Active",
-				"Temeplate_5key : Normal : Scratch-Mine",
+					"Temeplate_5key : Normal : Scratch-Notes",
+					"Temeplate_5key : Normal : Scratch-Long-Start",
+					"Temeplate_5key : Normal : Scratch-Long-End",
+					"Temeplate_5key : Normal : Scratch-Long-Body",
+					"Temeplate_5key : Normal : Scratch-Long-Active",
+					"Temeplate_5key : Normal : Scratch-Mine",
 
-				-- Notes : 5key : Enlarge
-				"Temeplate_5key : Enlarge : White-Notes",
-				"Temeplate_5key : Enlarge : White-Long-Start",
-				"Temeplate_5key : Enlarge : White-Long-End",
-				"Temeplate_5key : Enlarge : White-Long-Body",
-				"Temeplate_5key : Enlarge : White-Long-Active",
-				"Temeplate_5key : Enlarge : White-Mine",
+					-- Notes : 5key : Enlarge
+					"Temeplate_5key : Enlarge : White-Notes",
+					"Temeplate_5key : Enlarge : White-Long-Start",
+					"Temeplate_5key : Enlarge : White-Long-End",
+					"Temeplate_5key : Enlarge : White-Long-Body",
+					"Temeplate_5key : Enlarge : White-Long-Active",
+					"Temeplate_5key : Enlarge : White-Mine",
 
-				"Temeplate_5key : Enlarge : Blue-Notes",
-				"Temeplate_5key : Enlarge : Blue-Long-Start",
-				"Temeplate_5key : Enlarge : Blue-Long-End",
-				"Temeplate_5key : Enlarge : Blue-Long-Body",
-				"Temeplate_5key : Enlarge : Blue-Long-Active",
-				"Temeplate_5key : Enlarge : Blue-Mine",
+					"Temeplate_5key : Enlarge : Blue-Notes",
+					"Temeplate_5key : Enlarge : Blue-Long-Start",
+					"Temeplate_5key : Enlarge : Blue-Long-End",
+					"Temeplate_5key : Enlarge : Blue-Long-Body",
+					"Temeplate_5key : Enlarge : Blue-Long-Active",
+					"Temeplate_5key : Enlarge : Blue-Mine",
 
-				"Temeplate_5key : Enlarge : Yellow-Notes",
-				"Temeplate_5key : Enlarge : Yellow-Long-Start",
-				"Temeplate_5key : Enlarge : Yellow-Long-End",
-				"Temeplate_5key : Enlarge : Yellow-Long-Body",
-				"Temeplate_5key : Enlarge : Yellow-Long-Active",
-				"Temeplate_5key : Enlarge : Yellow-Mine",
+					"Temeplate_5key : Enlarge : Yellow-Notes",
+					"Temeplate_5key : Enlarge : Yellow-Long-Start",
+					"Temeplate_5key : Enlarge : Yellow-Long-End",
+					"Temeplate_5key : Enlarge : Yellow-Long-Body",
+					"Temeplate_5key : Enlarge : Yellow-Long-Active",
+					"Temeplate_5key : Enlarge : Yellow-Mine",
 
-				"Temeplate_5key : Enlarge : Scratch-Notes",
-				"Temeplate_5key : Enlarge : Scratch-Long-Start",
-				"Temeplate_5key : Enlarge : Scratch-Long-End",
-				"Temeplate_5key : Enlarge : Scratch-Long-Body",
-				"Temeplate_5key : Enlarge : Scratch-Long-Active",
-				"Temeplate_5key : Enlarge : Scratch-Mine",
+					"Temeplate_5key : Enlarge : Scratch-Notes",
+					"Temeplate_5key : Enlarge : Scratch-Long-Start",
+					"Temeplate_5key : Enlarge : Scratch-Long-End",
+					"Temeplate_5key : Enlarge : Scratch-Long-Body",
+					"Temeplate_5key : Enlarge : Scratch-Long-Active",
+					"Temeplate_5key : Enlarge : Scratch-Mine",
 
-				-- Keybeam : 7key
-				"Temeplate_7key : White-Keybeam",
-				"Temeplate_7key : Blue-Keybeam",
-				"Temeplate_7key : Yellow-Keybeam",
-				"Temeplate_7key : Scratch-Keybeam",
+					-- Keybeam : 7key
+					"Temeplate_7key : White-Keybeam",
+					"Temeplate_7key : Blue-Keybeam",
+					"Temeplate_7key : Yellow-Keybeam",
+					"Temeplate_7key : Scratch-Keybeam",
 
-				-- Keybeam : 5key : Normal
-				"Temeplate_5key : Normal : White-Keybeam",
-				"Temeplate_5key : Normal : Blue-Keybeam",
-				"Temeplate_5key : Normal : Yellow-Keybeam",
-				"Temeplate_5key : Normal : Scratch-Keybeam",
+					-- Keybeam : 5key : Normal
+					"Temeplate_5key : Normal : White-Keybeam",
+					"Temeplate_5key : Normal : Blue-Keybeam",
+					"Temeplate_5key : Normal : Yellow-Keybeam",
+					"Temeplate_5key : Normal : Scratch-Keybeam",
 
-				-- Keybeam : 5key : Enlarge
-				"Temeplate_5key : Enlarge : White-Keybeam",
-				"Temeplate_5key : Enlarge : Blue-Keybeam",
-				"Temeplate_5key : Enlarge : Yellow-Keybeam",
-				"Temeplate_5key : Enlarge : Scratch-Keybeam"
-			}
-			_header.filepath, _tmp = createTable(original_filepath, exclude_names, "Filepath")
-			_category.Filepath = _tmp
+					-- Keybeam : 5key : Enlarge
+					"Temeplate_5key : Enlarge : White-Keybeam",
+					"Temeplate_5key : Enlarge : Blue-Keybeam",
+					"Temeplate_5key : Enlarge : Yellow-Keybeam",
+					"Temeplate_5key : Enlarge : Scratch-Keybeam"
+				}
+				h.filepath, c.filepath = createTable(original_filepath, exclude_names, "filepath")
+			end
 
-			exclude_names = {"Lane Center", "Notes 5Key Align"}
-			_header.property, _tmp = createTable(original_property, exclude_names, "Property")
-			_category.Property = _tmp
+			-- 3 : offset
+			h.offset, c.offset = createTable(original_offset, exclude_names, "offset")
 
 		end
-		return _header, _category
+		return h, c
 	end
 end
 
@@ -1033,7 +1042,7 @@ local function main()
 
 	do
 		if isNotesWidthCustom() and is7key() then
-			local lua_path = skin_config.get_path("CUSTOMIZE.lua")
+			local lua_path = skin_config.get_path("customize/CUSTOMIZE.lua")
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_NOTES_WIDTH_7KEY")
 			end)
@@ -1048,7 +1057,7 @@ local function main()
 				setDefaultNotesWidth()
 			end
 		elseif isNotesWidthCustom() and is5key() then
-			local lua_path = skin_config.get_path("CUSTOMIZE.lua")
+			local lua_path = skin_config.get_path("customize/CUSTOMIZE.lua")
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_NOTES_WIDTH_5KEY")
 			end)
@@ -1063,7 +1072,7 @@ local function main()
 				setDefaultNotesWidth()
 			end
 		elseif isNotesWidthCustom() and is9key() then
-			local lua_path = skin_config.get_path("CUSTOMIZE.lua")
+			local lua_path = skin_config.get_path("customize/CUSTOMIZE.lua")
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_NOTES_WIDTH_9KEY")
 			end)
@@ -1098,7 +1107,7 @@ local function main()
 		elseif isNotesHeight_30() then
 			notesInfo.height = 30
 		elseif isNotesHeightCustom() and is7key() then
-			local lua_path = skin_config.get_path("CUSTOMIZE.lua")
+			local lua_path = skin_config.get_path("customize/CUSTOMIZE.lua")
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_NOTES_HEIGHT_7KEY")
 			end)
@@ -1112,7 +1121,7 @@ local function main()
 				notesInfo.height = 64
 			end
 		elseif isNotesHeightCustom() and is5key() then
-			local lua_path = skin_config.get_path("CUSTOMIZE.lua")
+			local lua_path = skin_config.get_path("customize/CUSTOMIZE.lua")
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_NOTES_HEIGHT_5KEY")
 			end)
@@ -1126,7 +1135,7 @@ local function main()
 				notesInfo.height = 64
 			end
 		elseif isNotesHeightCustom() and is9key() then
-			local lua_path = skin_config.get_path("CUSTOMIZE.lua")
+			local lua_path = skin_config.get_path("customize/CUSTOMIZE.lua")
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_NOTES_HEIGHT_9KEY")
 			end)
@@ -1295,7 +1304,7 @@ local function main()
 			LNBOMB_BLUE =	            255
 		}
 		if isBombPropertyCustom() then
-			local lua_path = skin_config.get_path("CUSTOMIZE.lua")
+			local lua_path = skin_config.get_path("customize/CUSTOMIZE.lua")
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_BOMB_PROPERTY")
 			end)
@@ -1330,27 +1339,25 @@ local function main()
 	end
 
 	local FS_THRESHOLD
-	if not isFastSlowThresholdDef() then
-		if is5key() or is7key() then
-			if main_state.option(180) then
-				FS_THRESHOLD = 5
-			elseif main_state.option(181) then
-				FS_THRESHOLD = 10
-			elseif main_state.option(182) then
-				FS_THRESHOLD = 15
-			elseif main_state.option(183) then
-				FS_THRESHOLD = 20
-			else
-				FS_THRESHOLD = 25
-			end
-		else
+	if is5key() or is7key() then
+		if main_state.option(183) then
 			FS_THRESHOLD = 20
+		elseif main_state.option(182) then
+			FS_THRESHOLD = 15
+		elseif main_state.option(181) then
+			FS_THRESHOLD = 10
+		elseif main_state.option(180) then
+			FS_THRESHOLD = 5
+		else
+			FS_THRESHOLD = 25
 		end
+	else
+		FS_THRESHOLD = 20
 	end
 
 	if not isFastSlowThresholdDef() then
 		do
-			local lua_path = skin_config.get_path("CUSTOMIZE.lua")
+			local lua_path = skin_config.get_path("customize/CUSTOMIZE.lua")
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_FAST_SLOW_THRESHOLD")
 			end)
@@ -1403,17 +1410,21 @@ local function main()
 		local event = main_state.event_index(55)
 		if main_state.option(177) then
 			if event == 2 and main_state.option(273) then
-				if main_state.number(90) == 0 then
+				local maxbpm = main_state.number(90)
+				if maxbpm == 0 then
 					return main_state.number(312)
 				else
-					return main_state.number(312) * main_state.number(160) / main_state.number(90)
+					return main_state.number(312) * main_state.number(160) / maxbpm
 				end
 			elseif event == 3 and main_state.option(273) then
-				if main_state.number(92) == 0 then
+				local mainbpm = main_state.number(92)
+				if mainbpm == 0 then
 					return main_state.number(312)
 				else
-					return main_state.number(312) * main_state.number(160) / main_state.number(92)
+					return main_state.number(312) * main_state.number(160) / mainbpm
 				end
+			else
+				return main_state.number(312)
 			end
 		else
 			return main_state.number(312)
@@ -1429,25 +1440,29 @@ local function main()
 -- skin.XX
 
 	local key_type
-	if isNotesWidthCustom() then 					key_type = "/custom/"
-	elseif is5key() and is5keyAlignEnlarge() then 	key_type = "/5keyL/"
-	elseif is9key() then 							key_type = "/9key/"
-	else 											key_type = "/7key/"
+	if isNotesWidthCustom() then
+		key_type = "/custom/"
+	elseif is5key() and is5keyAlignEnlarge() then
+		key_type = "/5keyL/"
+	elseif is9key() then
+		key_type = "/9key/"
+	else
+		key_type = "/7key/"
 	end
 	skin.source = {
 		-- # common src
 		{id = "bg_src", 			path = "parts/bg/*.png"},
-		{id = "alt_image_src", 		path = "!_common/!_alt_image.png"},
+		{id = "alt_image_src", 		path = "parts/!_common/!_alt_image.png"},
 
 		-- # infomation src
-		{id = "info_system_src", 	path = "!_common/!_info_system.png"},
+		{id = "info_system_src", 	path = "parts/!_common/!_info_system.png"},
 
 		-- # score src
-		{id = "score_system_src", 	path = "!_common/!_score_system.png"},
+		{id = "score_system_src", 	path = "parts/!_common/!_score_system.png"},
 		{id = "mascot_src", 		path = "parts/!_mascot/*.png"},
 
 		-- # play src
-		{id = "play_system_src", 	path = "!_common/!_play_system.png"},
+		{id = "play_system_src", 	path = "parts/!_common/!_play_system.png"},
 
 		-- note
 		{id = "notes_wh_src", 	path = "parts/notes" .. key_type .. "1-1_white/*.png"},
@@ -2261,92 +2276,15 @@ local function main()
 
 -- # song infomation area
 
-	-- table colors
 	do
+		-- table colors
 		local table_color = {}
-		local table_name = main_state.text(1003)
-		if main_state.option(290) then
-			table_color.r = 255
-			table_color.g = 130
-			table_color.b = 31
-		elseif string.find(table_name, "難度推定表 EASY") then
-			table_color.r = 163
-			table_color.g = 255
-			table_color.b = 163
-		elseif string.find(table_name, "難度推定表 NORMAL") then
-			table_color.r = 136
-			table_color.g = 206
-			table_color.b = 250
-		elseif string.find(table_name, "難度推定表 HARD") then
-			table_color.r = 255
-			table_color.g = 140
-			table_color.b = 158
-		elseif string.find(table_name, "難度推定表 FC") then
-			table_color.r = 155
-			table_color.g = 230
-			table_color.b = 255
-		elseif string.find(table_name, "★★") then
-			table_color.r = 157
-			table_color.g = 112
-			table_color.b = 219
-		elseif string.find(table_name, "★") then
-			table_color.r = 176
-			table_color.g = 95
-			table_color.b = 219
-		elseif string.find(table_name, "第2発狂難易度") then
-			table_color.r = 255
-			table_color.g = 94
-			table_color.b = 113
-		elseif string.find(table_name, "第2通常難易度") then
-			table_color.r = 255
-			table_color.g = 140
-			table_color.b = 158
-		elseif string.find(table_name, "Stella") then
-			table_color.r = 87
-			table_color.g = 191
-			table_color.b = 255
-		elseif string.find(table_name, "Satellite") then
-			table_color.r = 116
-			table_color.g = 206
-			table_color.b = 250
-		elseif string.find(table_name, "Starlight") then
-			table_color.r = 128
-			table_color.g = 220
-			table_color.b = 250
-		elseif string.find(table_name, "Stardust") then
-			table_color.r = 171
-			table_color.g = 231
-			table_color.b = 255
-		elseif string.find(table_name, "16分乱打難易度表") then
-			if string.find(main_state.text(1002), "乱打") then
-				table_color.r = 156
-				table_color.g = 197
-				table_color.b = 255
-			else
-				table_color.r = 125
-				table_color.g = 171
-				table_color.b = 255
-			end
-		elseif string.find(table_name, "LN難易度") then
-			table_color.r = 163
-			table_color.g = 255
-			table_color.b = 163
-		elseif string.find(table_name, "META-") then
-			table_color.r = 146
-			table_color.g = 240
-			table_color.b = 144
-		elseif string.find(table_name, "5KEYS AERY") then
-			table_color.r = 255
-			table_color.g = 216
-			table_color.b = 128
-		elseif string.find(table_name, "PMS難易度表") then
-			table_color.r = 255
-			table_color.g = 142
-			table_color.b = 198
-		elseif string.find(table_name, "PMSデータベース") then
-			table_color.r = 255
-			table_color.g = 173
-			table_color.b = 214
+		local lua_path = skin_config.get_path("customize/TABLE_COLOR.lua")
+		local status, result = pcall(function()
+			return dofile(lua_path).load()
+		end)
+		if status and result and type(result) == "table" then
+			table_color = result
 		else
 			table_color.r = 255
 			table_color.g = 191
@@ -2473,17 +2411,14 @@ local function main()
 	end
 
 	-- F/S Threshold
-	if isFastSlowThresholdDef() then
-		append_all(skin.destination, {
-			{id = "zero-judgetiming", draw = function()
-				return not eliminateZeroNumber(12)
-			end, dst = {{x = GEOMETRY.INFO_POS + 113, y = 157, w = 30, h = 17}}},
-			{id = "judgetiming-num", draw = function()
-				return eliminateZeroNumber(12)
-			end, dst = {{x = GEOMETRY.INFO_POS + 113, y = 157, w = 15, h = 17}}},
-		})
-	else
-		table.insert(skin.value, {id = "threshold-num", src = "info_system_src", x = 617, y = 145, w = 180, h = 34, divx = 12, divy = 2, digit = 4, align = 1, value = function()
+	do
+		local threshold_y
+		if isFastSlowThresholdDef() then
+			threshold_y = 145
+		else
+			threshold_y = 163
+		end
+		table.insert(skin.value, {id = "threshold-num", src = "info_system_src", x = 617, y = threshold_y, w = 180, h = 34, divx = 12, divy = 2, digit = 4, align = 1, value = function()
 				return FS_THRESHOLD
 		end})
 		append_all(skin.destination, {
