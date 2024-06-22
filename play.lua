@@ -181,7 +181,7 @@ local original_offset = {
 	{name = "Score Rate Position", 				id = SCORE_RATE_POS, 				x = true, 	y = true},
 	{name = "Score Rate Darkness", 				id = SCORE_RATE_DARKNESS, 															a = true},
 
-	{name = "T-Visualizer Position & Size", 	id = TIMINGVISUALIZER_POS,			x = true, 	y = true, 	w = true, 	h = true},
+	{name = "T-Visualizer Position",		 	id = TIMINGVISUALIZER_POS,			x = true, 	y = true},
 	{name = "T-Visualizer Darkness", 			id = TIMINGVISUALIZER_DARKNESS,														a = true},
 
 	{name = "F/S Count Position", 				id = FAST_SLOW_COUNT_POS, 			x = true, 	y = true},
@@ -3108,11 +3108,130 @@ local function main()
 	-- timing visualizer
 	if isTimingVisualizerOn() then
 		do
-			skin.timingvisualizer = {{id = "timing-visualizer"}}
-			local _width = GEOMETRY.LANE_DISTANCE - 20
-			table.insert(skin.destination, {id = "timing-visualizer", offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + math.floor(_width / 2 + 0.5), y = GEOMETRY.DETAIL_Y + 161, w = -(_width), h = 15, a = getDarkness(TIMINGVISUALIZER_DARKNESS), r = 230, g = 200, b = 255, acc = 2}
-			}})
+			local timingvisualizer_colors = {}
+			local centerline_colors = {}
+			local pg_line_colors = {}
+			local gr_line_colors = {}
+
+			local lua_path = skin_config.get_path("customize/TIMINGVISUALIZER_COLOR.lua")
+			local status, _timingvisualizer_colors, _centerline_colors, _pg_line_colors, _gr_line_colors = pcall(function()
+				return dofile(lua_path).load()
+			end)
+			if status and _timingvisualizer_colors and type(_timingvisualizer_colors) == "table"
+					and _centerline_colors and type(_centerline_colors) == "table"
+					and _pg_line_colors and type(_pg_line_colors) == "table"
+					and _gr_line_colors and type(_gr_line_colors) == "table"
+			then
+				timingvisualizer_colors = _timingvisualizer_colors
+				centerline_colors = _centerline_colors
+				pg_line_colors = _pg_line_colors
+				gr_line_colors = _gr_line_colors
+			else
+				timingvisualizer_colors.lineColor = "FFFFFFFF"
+				timingvisualizer_colors.PGColor = "00000000"
+				timingvisualizer_colors.GRColor = "00000000"
+				timingvisualizer_colors.GDColor = "00000000"
+				timingvisualizer_colors.BDColor = "00000000"
+				timingvisualizer_colors.PRColor = "00000000"
+				centerline_colors.r = 255
+				centerline_colors.g = 0
+				centerline_colors.b = 0
+				pg_line_colors.r = 0
+				pg_line_colors.g = 191
+				pg_line_colors.b = 255
+				gr_line_colors.r = 0
+				gr_line_colors.g = 255
+				gr_line_colors.b = 0
+			end
+
+			skin.timingvisualizer = {{
+				id = "timing-visualizer",
+				width = 402,
+				judgeWidthMillis = 100,
+				lineWidth = 2,
+				lineColor = timingvisualizer_colors.lineColor,
+				centerColor = "00000000",
+				PGColor = timingvisualizer_colors.PGColor,
+				GRColor = timingvisualizer_colors.GRColor,
+				GDColor = timingvisualizer_colors.GDColor,
+				BDColor = timingvisualizer_colors.BDColor,
+				PRColor = timingvisualizer_colors.PRColor,
+				transparent = 0,
+				drawDecay = 0
+			}}
+			table.insert(skin.image, {id = "timing-visualizer-bg", src = "play_system_src", x = 244, y = 1054, w = 402, h = 30})
+
+			local pg_range
+			local gr_range
+
+			if is5key() or is7key() then
+				if main_state.option(180) then
+					pg_range = 5
+					gr_range = 15
+				elseif main_state.option(181) then
+					pg_range = 10
+					gr_range = 30
+				elseif main_state.option(182) then
+					pg_range = 15
+					gr_range = 45
+				elseif main_state.option(183) then
+					pg_range = 20
+					gr_range = 60
+				else
+					pg_range = 25
+					gr_range = 75
+				end
+			else
+				if main_state.option(180) then
+					pg_range = 20
+					gr_range = 16
+				elseif main_state.option(181) then
+					pg_range = 20
+					gr_range = 25
+				elseif main_state.option(182) then
+					pg_range = 20
+					gr_range = 35
+				elseif main_state.option(183) then
+					pg_range = 20
+					gr_range = 50
+				else
+					pg_range = 20
+					gr_range = 66
+				end
+			end
+
+			local _alpha = getDarkness(TIMINGVISUALIZER_DARKNESS)
+
+			append_all(skin.destination, {
+				-- bg
+				{id = "timing-visualizer-bg", offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-201), y = GEOMETRY.DETAIL_Y - 70, w = 402, h = 30, a = 62, acc = 2}
+				}},
+				-- body
+				{id = "timing-visualizer", offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 201, y = GEOMETRY.DETAIL_Y - 70, w = - 402, h = 30, a = _alpha, acc = 2}
+				}},
+				-- great : right
+				{id = -111, offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (- gr_range * 2) - 3, y = GEOMETRY.DETAIL_Y - 73, w = 6, h = 36, r = gr_line_colors.r, g = gr_line_colors.g, b = gr_line_colors.b, a = _alpha, acc = 2}
+				}},
+				-- great : left
+				{id = -111, offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + gr_range * 2 - 3, y = GEOMETRY.DETAIL_Y - 73, w = 6, h = 36, r = gr_line_colors.r, g = gr_line_colors.g, b = gr_line_colors.b, a = _alpha, acc = 2}
+				}},
+				-- p-great : right
+				{id = -111, offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (- pg_range * 2) - 3, y = GEOMETRY.DETAIL_Y - 76, w = 6, h = 42, r = pg_line_colors.r, g = pg_line_colors.g, b = pg_line_colors.b, a = _alpha, acc = 2}
+				}},
+				-- p-great : left
+				{id = -111, offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + pg_range * 2 - 3, y = GEOMETRY.DETAIL_Y - 76, w = 6, h = 42, r = pg_line_colors.r, g = pg_line_colors.g, b = pg_line_colors.b, a = _alpha, acc = 2}
+				}},
+				-- centerline
+				{id = -111, offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-4), y = GEOMETRY.DETAIL_Y - 80, w = 8, h = 50, r = centerline_colors.r, g = centerline_colors.g, b = centerline_colors.b, a = _alpha, acc = 2}
+				}}
+			})
 		end
 	end
 
@@ -3480,18 +3599,18 @@ local function main()
 	append_all(skin.destination, {
 		-- replay
 		{id = "replay", offsets = {3, JUDGELINE_POS}, op = {84}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-129), y = GEOMETRY.LANE_Y + 70, w = 258, h = 35}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-129), y = GEOMETRY.LANE_Y + 40, w = 258, h = 35}
 		}},
 		-- auto play
 		{id = "auto", offsets = {3, JUDGELINE_POS}, op = {33}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-174), y = GEOMETRY.LANE_Y + 70, w = 348, h = 35}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-174), y = GEOMETRY.LANE_Y + 40, w = 348, h = 35}
 		}},
 		-- end of note
 		{id = "eon", offsets = {3, 4, JUDGELINE_POS}, draw = function()
 			if main_state.timer(143) == TIMER_OFF and getRemainNotes() == 0 then
 				return true
 			end
-		end,dst = {
+		end, dst = {
 			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.DETAIL_Y + 326, w = 390, h = 35, r = 64, g = 64, b = 64}
 		}},
 		{id = "eon", timer = 143, offsets = {3, 4, JUDGELINE_POS}, dst = {
