@@ -48,6 +48,9 @@ local NOTES_HEIGHT_35_PIX = 				optionCount()
 local NOTES_HEIGHT_30_PIX = 				optionCount()
 local NOTES_HEIGHT_CUSTOM = 				optionCount()
 
+local INPUT_DEVICE_KEYBORAD =				optionCount()
+local INPUT_DEVICE_CONTROLLER =				optionCount()
+
 local KEYBEAM_DISPLAY_FAST = 				optionCount()
 local KEYBEAM_DISPLAY_SLOW = 				optionCount()
 
@@ -443,6 +446,10 @@ local original_property = {
 		{name = "Type A", 								op = JUDGE_TYPE_A},
 		{name = "Type B", 								op = JUDGE_TYPE_B},
 		{name = "Type C", 								op = JUDGE_TYPE_C}
+	}},
+	{name = "Input Device", 							item = {
+		{name = "Keyboard", 							op = INPUT_DEVICE_KEYBORAD},
+		{name = "Controller", 							op = INPUT_DEVICE_CONTROLLER}
 	}},
 	{name = "Keybeam Display", 							item = {
 		{name = "Fast", 								op = KEYBEAM_DISPLAY_FAST},
@@ -898,7 +905,7 @@ local header = {
 		4:9keys
 	--]]
 	type = 		nil, -- set in ".luaskin"
-	name = 		"Rm-skin ver 0.2.3",
+	name = 		"Rm-skin ver 0.2.4",
 	w = 		1920,
 	h = 		1080,
 	loadend = 	3000,
@@ -949,6 +956,8 @@ local function isNotesHeightCustom() 	return skin_config.option["Notes Height"] 
 
 local function isJudgeTypeA()	 		return skin_config.option["Judge Display"] == 				JUDGE_TYPE_A end
 local function isJudgeTypeB() 			return skin_config.option["Judge Display"] == 				JUDGE_TYPE_B end
+
+local function isInputKeyboard() 		return skin_config.option["Input Device"] == 				INPUT_DEVICE_KEYBORAD end
 
 local function isKeybeamFast() 			return skin_config.option["Keybeam Display"] == 			KEYBEAM_DISPLAY_FAST end
 
@@ -2753,22 +2762,51 @@ local function main()
 		-- when a key is pressed
 		do
 			for i = 1, #kb_type, 1 do
-				table.insert(skin.destination,	{
-					id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], blend = 1, dst = {
-						{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)}
-					}
-				})
+				if not isInputKeyboard() and not is9key() then
+					if kb_type[i] == "s" then
+						table.insert(skin.destination,
+						{id = "keybeam-s", offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], loop = -1, blend = 1, dst = {
+								{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)},
+								{time = 66},
+								{time = 200, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
+							}
+						})
+					else
+						table.insert(skin.destination,
+						{id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], blend = 1, dst = {
+								{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)}
+							}
+						})
+					end
+				else
+					table.insert(skin.destination,
+					{id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], blend = 1, dst = {
+							{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)}
+						}
+					})
+				end
 			end
 		end
 		-- when a key is released
 		do
 			for i = 1, #kb_type, 1 do
-				table.insert(skin.destination,	{
-					id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)},
-						{time = 100, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
-					}
-				})
+				if not isInputKeyboard() and not is9key() then
+					if kb_type[i] ~= "s" then
+						table.insert(skin.destination,
+						{id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
+								{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)},
+								{time = 100, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
+							}
+						})
+					end
+				else
+					table.insert(skin.destination,
+					{id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
+							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = getKeybeamAlpha(255)},
+							{time = 100, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
+						}
+					})
+				end
 			end
 		end
 
@@ -2777,23 +2815,54 @@ local function main()
 		-- when a key is pressed
 		do
 			for i = 1, #kb_type, 1 do
-				table.insert(skin.destination,	{
-					id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], loop = 33, blend = 1, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = 0},
-						{time = 33, a = getKeybeamAlpha(255)}
-					}
-				})
+				if not isInputKeyboard() and not is9key() then
+					if kb_type[i] == "s" then
+						table.insert(skin.destination,
+						{id = "keybeam-s", offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], loop = -1, blend = 1, dst = {
+								{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = 0},
+								{time = 33, a = getKeybeamAlpha(255)},
+								{time = 66, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = math.floor(kb_h * 1.2), a = getKeybeamAlpha(200)},
+								{time = 200, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
+							}
+						})
+					else
+						table.insert(skin.destination,
+						{id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], loop = 33, blend = 1, dst = {
+								{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = 0},
+								{time = 33, a = getKeybeamAlpha(255)}
+							}
+						})
+					end
+				else
+					table.insert(skin.destination,
+					{id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_onTimer[i], loop = 33, blend = 1, dst = {
+							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = kb_h, a = 0},
+							{time = 33, a = getKeybeamAlpha(255)}
+						}
+					})
+				end
 			end
 		end
 		-- when a key is released
 		do
 			for i = 1, #kb_type, 1 do
-				table.insert(skin.destination,	{
-					id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = math.floor(kb_h * 1.2), a = getKeybeamAlpha(200)},
-						{time = 200, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
-					}
-				})
+				if not isInputKeyboard() and not is9key() then
+					if kb_type[i] ~= "s" then
+						table.insert(skin.destination,
+						{id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
+								{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = math.floor(kb_h * 1.2), a = getKeybeamAlpha(200)},
+								{time = 200, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
+							}
+						})
+					end
+				else
+					table.insert(skin.destination,
+					{id = "keybeam-"..kb_type[i], offsets = {3, JUDGELINE_POS}, timer = kb_offTimer[i], loop = -1, blend = 1, dst = {
+							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i], y = GEOMETRY.LANE_Y, w = kb_w[i], h = math.floor(kb_h * 1.2), a = getKeybeamAlpha(200)},
+							{time = 200, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + kb_x[i] + kb_move_x[i], w = 0, a = 0}
+						}
+					})
+				end
 			end
 		end
 	end
