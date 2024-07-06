@@ -1,4 +1,4 @@
-main_state = require("main_state")
+ main_state = require("main_state")
 
 local function append_all(list, list1)
 	for _, v in ipairs(list1) do
@@ -79,8 +79,8 @@ local FAST_SLOW_RL = 						optionCount()
 local FAST_SLOW_MS_CENTER = 				optionCount()
 local FAST_SLOW_MS_RL = 					optionCount()
 
-local TIMINGVISUALIZER_OFF = 				optionCount()
-local TIMINGVISUALIZER_ON = 				optionCount()
+local HITERRORVISUALIZER_OFF = 				optionCount()
+local HITERRORVISUALIZER_ON = 				optionCount()
 
 local FAST_SLOW_COUNT_OFF = 				optionCount()
 local FAST_SLOW_COUNT_ON = 					optionCount()
@@ -109,47 +109,37 @@ local function offsetCount()
 	return OFFSET
 end
 
+local JUDGE_POS = 							offsetCount()
+local JUDGE_NUM_POS = 						offsetCount()
+local FAST_SLOW_POS = 						offsetCount()
+local TARGET_POS = 							offsetCount()
+local TARGET2_POS = 						offsetCount()
+local SCORE_RATE_POS = 						offsetCount()
+local HITERRORVISUALIZER_POS =			 	offsetCount()
+local FAST_SLOW_COUNT_POS = 				offsetCount()
+local JUDGELINE_POS = 						offsetCount()
+local JUDGELINE_HEIGHT = 					offsetCount()
+local BOMB_POS = 							offsetCount()
+local GAUGE_POS = 							offsetCount()
+
 local BG_DARKNESS = 						offsetCount()
 local BGA_DARKNESS = 						offsetCount()
 local BARLINE_DARKNESS = 					offsetCount()
-
-local JUDGE_POS = 							offsetCount()
-
 local JUDGE_PG_DARKNESS = 					offsetCount()
 local JUDGE_GR_DARKNESS = 					offsetCount()
 local JUDGE_GD_DARKNESS = 					offsetCount()
 local JUDGE_BD_DARKNESS = 					offsetCount()
 local JUDGE_PR_DARKNESS = 					offsetCount()
 local JUDGE_MS_DARKNESS = 					offsetCount()
-
-local JUDGE_NUM_POS = 						offsetCount()
 local JUDGE_NUM_DARKNESS = 					offsetCount()
-
-local FAST_SLOW_POS = 						offsetCount()
 local FAST_SLOW_DARKNESS = 					offsetCount()
-
-local TARGET_POS = 							offsetCount()
 local TARGET_DARKNESS = 					offsetCount()
-
-local TARGET2_POS = 						offsetCount()
 local TARGET2_DARKNESS = 					offsetCount()
-
-local SCORE_RATE_POS = 						offsetCount()
 local SCORE_RATE_DARKNESS = 				offsetCount()
-
-local TIMINGVISUALIZER_POS =			 	offsetCount()
-local TIMINGVISUALIZER_DARKNESS =		 	offsetCount()
-
-local FAST_SLOW_COUNT_POS = 				offsetCount()
+local HITERRORVISUALIZER_DARKNESS =			offsetCount()
+local HITERRORVISUALIZER_BG_DARKNESS =		offsetCount()
 local FAST_SLOW_COUNT_DARKNESS = 			offsetCount()
-
-local JUDGELINE_POS = 						offsetCount()
-local JUDGELINE_HEIGHT = 					offsetCount()
-
-local BOMB_POS = 							offsetCount()
 local BOMB_DARKNESS = 						offsetCount()
-
-local GAUGE_POS = 							offsetCount()
 local GAUGE_DARKNESS = 						offsetCount()
 
 -- ========================================================================================================================================================	
@@ -157,47 +147,38 @@ local GAUGE_DARKNESS = 						offsetCount()
 -- # offset, filepath, property
 
 local original_offset = {
-	{name = "Background Darkness", 				id = BG_DARKNESS,																	a = true},
-	{name = "BGA Darkness", 					id = BGA_DARKNESS,																	a = true},
-	{name = "Barline Darkness", 				id = BARLINE_DARKNESS,																a = true},
+	{name = "Judge Position", 					id = JUDGE_POS, 				x = true, 	y = true},
+	{name = "Combo Number Position", 			id = JUDGE_NUM_POS, 			x = true, 	y = true},
+	{name = "F/S Position", 					id = FAST_SLOW_POS, 			x = true, 	y = true},
+	{name = "Target Position", 					id = TARGET_POS, 				x = true, 	y = true},
+	{name = "Target2 Position", 				id = TARGET2_POS, 				x = true, 	y = true},
+	{name = "Score Rate Position", 				id = SCORE_RATE_POS, 			x = true, 	y = true},
+	{name = "Hit Error Visualizer Position",	id = HITERRORVISUALIZER_POS,	x = true, 	y = true},
+	{name = "F/S Count Position", 				id = FAST_SLOW_COUNT_POS, 		x = true, 	y = true},
+	{name = "Judgeline Position", 				id = JUDGELINE_POS, 			y = true},
+	{name = "Judgeline Height", 				id = JUDGELINE_HEIGHT, 												h = true},
+	{name = "Bomb Position", 					id = BOMB_POS,	 				y = true},
+	{name = "Gauge Position", 					id = GAUGE_POS, 				x = true, 	y = true, 	w = true, 	h = true},
 
-	{name = "Judge Position", 					id = JUDGE_POS, 					x = true, 	y = true},
-	{name = "Judge PG Darkness", 				id = JUDGE_PG_DARKNESS, 															a = true},
-	{name = "Judge GR Darkness", 				id = JUDGE_GR_DARKNESS, 															a = true},
-	{name = "Judge GD Darkness",				id = JUDGE_GD_DARKNESS,																a = true},
-	{name = "Judge BD Darkness", 				id = JUDGE_BD_DARKNESS, 															a = true},
-	{name = "Judge PR Darkness", 				id = JUDGE_PR_DARKNESS, 															a = true},
-	{name = "Judge MS Darkness",				id = JUDGE_MS_DARKNESS, 															a = true},
-
-	{name = "Combo Number Position", 			id = JUDGE_NUM_POS, 				x = true, 	y = true},
-	{name = "Combo Number Darkness",			id = JUDGE_NUM_DARKNESS, 															a = true},
-
-	{name = "F/S Position", 					id = FAST_SLOW_POS, 				x = true, 	y = true},
-	{name = "F/S Darkness", 					id = FAST_SLOW_DARKNESS, 															a = true},
-
-	{name = "Target Position", 					id = TARGET_POS, 					x = true, 	y = true},
-	{name = "Target Darkness", 					id = TARGET_DARKNESS, 																a = true},
-
-	{name = "Target2 Position", 				id = TARGET2_POS, 					x = true, 	y = true},
-	{name = "Target2 Darkness", 				id = TARGET2_DARKNESS, 																a = true},
-
-	{name = "Score Rate Position", 				id = SCORE_RATE_POS, 				x = true, 	y = true},
-	{name = "Score Rate Darkness", 				id = SCORE_RATE_DARKNESS, 															a = true},
-
-	{name = "T-Visualizer Position",		 	id = TIMINGVISUALIZER_POS,			x = true, 	y = true},
-	{name = "T-Visualizer Darkness", 			id = TIMINGVISUALIZER_DARKNESS,														a = true},
-
-	{name = "F/S Count Position", 				id = FAST_SLOW_COUNT_POS, 			x = true, 	y = true},
-	{name = "F/S Count Darkness", 				id = FAST_SLOW_COUNT_DARKNESS,														a = true},
-
-	{name = "Judgeline Position", 				id = JUDGELINE_POS, 							y = true},
-	{name = "Judgeline Height", 				id = JUDGELINE_HEIGHT, 													h = true},
-
-	{name = "Bomb Position", 					id = BOMB_POS,	 								y = true},
-	{name = "Bomb Darkness", 					id = BOMB_DARKNESS,		 															a = true},
-
-	{name = "Gauge Position", 					id = GAUGE_POS, 					x = true, 	y = true, 	w = true, 	h = true},
-	{name = "Gauge Darkness", 					id = GAUGE_DARKNESS, 																a = true}
+	{name = "Background Darkness (-255 to 0)", 					id = BG_DARKNESS,							a = true},
+	{name = "BGA Darkness (-255 to 0)", 						id = BGA_DARKNESS,							a = true},
+	{name = "Barline Darkness (-255 to 0)", 					id = BARLINE_DARKNESS,						a = true},
+	{name = "Judge PG Darkness (-255 to 0)", 					id = JUDGE_PG_DARKNESS, 					a = true},
+	{name = "Judge GR Darkness (-255 to 0)", 					id = JUDGE_GR_DARKNESS, 					a = true},
+	{name = "Judge GD Darkness (-255 to 0)",					id = JUDGE_GD_DARKNESS,						a = true},
+	{name = "Judge BD Darkness (-255 to 0)", 					id = JUDGE_BD_DARKNESS, 					a = true},
+	{name = "Judge PR Darkness (-255 to 0)", 					id = JUDGE_PR_DARKNESS, 					a = true},
+	{name = "Judge MS Darkness (-255 to 0)",					id = JUDGE_MS_DARKNESS, 					a = true},
+	{name = "Combo Number Darkness (-255 to 0)",				id = JUDGE_NUM_DARKNESS, 					a = true},
+	{name = "F/S Darkness (-255 to 0)", 						id = FAST_SLOW_DARKNESS, 					a = true},
+	{name = "Target Darkness (-255 to 0)", 						id = TARGET_DARKNESS, 						a = true},
+	{name = "Target2 Darkness (-255 to 0)", 					id = TARGET2_DARKNESS, 						a = true},
+	{name = "Score Rate Darkness (-255 to 0)", 					id = SCORE_RATE_DARKNESS, 					a = true},
+	{name = "Hit Error Visualizer Darkness (-255 to 0)", 		id = HITERRORVISUALIZER_DARKNESS,			a = true},
+	{name = "Hit Error Visualizer BG Darkness (-255 to 0)", 	id = HITERRORVISUALIZER_BG_DARKNESS,		a = true},
+	{name = "F/S Count Darkness (-255 to 0)", 					id = FAST_SLOW_COUNT_DARKNESS,				a = true},
+	{name = "Bomb Darkness (-255 to 0)", 						id = BOMB_DARKNESS,		 					a = true},
+	{name = "Gauge Darkness (-255 to 0)", 						id = GAUGE_DARKNESS, 						a = true}
 }
 
 local original_filepath = {
@@ -476,9 +457,9 @@ local original_property = {
 		{name = "Off", 									op = TARGET2_OFF},
 		{name = "On", 									op = TARGET2_ON}
 	}},
-	{name = "Timing Visualizer", 						item = {
-		{name = "Off", 									op = TIMINGVISUALIZER_OFF},
-		{name = "On", 									op = TIMINGVISUALIZER_ON}
+	{name = "Hiterror Visualizer", 					item = {
+		{name = "Off", 									op = HITERRORVISUALIZER_OFF},
+		{name = "On", 									op = HITERRORVISUALIZER_ON}
 	}},
 	{name = "Score Rate", 								item = {
 		{name = "Off", 									op = SCORE_RATE_OFF},
@@ -566,13 +547,13 @@ local function processHeader(type)
 
 		if type == 0 then	-- 7key
 
-			-- 1 : property
+			-- 1 : property -> Option
 			do
 				exclude_names = {"Notes 5Key Align"}
-				h.property, c.property = createTable(original_property, exclude_names, "property")
+				h.property, c.property = createTable(original_property, exclude_names, "Option")
 			end
 
-			-- 2 : filepath
+			-- 2 : filepath -> Image
 			do
 				exclude_names = {
 					-- Notes : 5key : Normal
@@ -680,18 +661,18 @@ local function processHeader(type)
 					"Temeplate_9key : Yellow-Keybeam",
 					"Temeplate_9key : Scratch-Keybeam"
 				}
-				h.filepath, c.filepath = createTable(original_filepath, exclude_names, "filepath")
+				h.filepath, c.filepath = createTable(original_filepath, exclude_names, "Image")
 			end
 
-			-- 3 : offset
-			h.offset, c.offset = createTable(original_offset, exclude_names, "offset")
+			-- 3 : offset -> Offset
+			h.offset, c.offset = createTable(original_offset, exclude_names, "Offset")
 
 		elseif type == 1 then	-- 5key
 
-			-- 1 : property
-			h.property, c.property = createTable(original_property, exclude_names, "property")
+			-- 1 : property -> Option
+			h.property, c.property = createTable(original_property, exclude_names, "Option")
 
-			-- 2 : filepath
+			-- 2 : filepath -> Image
 			do
 				exclude_names = {
 					-- Notes : 7key
@@ -764,21 +745,21 @@ local function processHeader(type)
 					"Temeplate_9key : Yellow-Keybeam",
 					"Temeplate_9key : Scratch-Keybeam"
 				}
-				h.filepath, c.filepath = createTable(original_filepath, exclude_names, "filepath")
+				h.filepath, c.filepath = createTable(original_filepath, exclude_names, "Image")
 			end
 
-			-- 3 : offset
-			h.offset, c.offset = createTable(original_offset, exclude_names, "offset")
+			-- 3 : offset -> Offset
+			h.offset, c.offset = createTable(original_offset, exclude_names, "Offset")
 
 		elseif type == 4 then	-- 9key
 
-			-- 1 : property
+			-- 1 : property -> Option
 			do
 				exclude_names = {"Lane Center", "Notes 5Key Align"}
-				h.property, c.property = createTable(original_property, exclude_names, "property")
+				h.property, c.property = createTable(original_property, exclude_names, "Option")
 			end
 
-			-- 2 : filepath
+			-- 2 : filepath -> Image
 			do
 				exclude_names = {
 					-- Notes : 7key
@@ -886,11 +867,11 @@ local function processHeader(type)
 					"Temeplate_5key : Enlarge : Yellow-Keybeam",
 					"Temeplate_5key : Enlarge : Scratch-Keybeam"
 				}
-				h.filepath, c.filepath = createTable(original_filepath, exclude_names, "filepath")
+				h.filepath, c.filepath = createTable(original_filepath, exclude_names, "Image")
 			end
 
-			-- 3 : offset
-			h.offset, c.offset = createTable(original_offset, exclude_names, "offset")
+			-- 3 : offset -> Offset
+			h.offset, c.offset = createTable(original_offset, exclude_names, "Offset")
 
 		end
 		return h, c
@@ -905,7 +886,7 @@ local header = {
 		4:9keys
 	--]]
 	type = 		nil, -- set in ".luaskin"
-	name = 		"Rm-skin ver 0.2.4",
+	name = 		"Rm-skin ver 0.2.5.a",
 	w = 		1920,
 	h = 		1080,
 	loadend = 	3000,
@@ -973,7 +954,7 @@ local function isTargetBest() 			return skin_config.option["Target"] == 						TA
 local function isTargetRank() 			return skin_config.option["Target"] == 						TARGET_TARGET end
 local function isTarget2On() 			return skin_config.option["Target2 (Left)"] == 				TARGET2_ON end
 
-local function isTimingVisualizerOn() 	return skin_config.option["Timing Visualizer"] == 			TIMINGVISUALIZER_ON end
+local function isHitErrorVisualizerOn() return skin_config.option["Hiterror Visualizer"] == 		HITERRORVISUALIZER_ON end
 local function isScoreRateOn() 			return skin_config.option["Score Rate"] == 					SCORE_RATE_ON end
 
 local function isFastSlowCenter() 		return skin_config.option["Fast/Slow Type"] == 				FAST_SLOW_CENTER end
@@ -1438,10 +1419,6 @@ local function main()
 		else
 			return main_state.number(312)
 		end
-	end
-
-	local function getDarkness(offset)
-		return 255 - main_state.offset(offset).a
 	end
 
 -- ========================================================================================================================================================	
@@ -1964,23 +1941,23 @@ local function main()
 		hidden = 		{},
 		processed = 	{},
 		group = {
-			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS}, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 5, r = 255, g = 255, b = 255, a = getDarkness(BARLINE_DARKNESS), acc = 2}
+			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_DARKNESS}, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 5, r = 255, g = 255, b = 255, a = 255, acc = 2}
 			}}
 		},
 		time = {
-			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS}, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 15, r = 100, g = 100, b = 255, a = getDarkness(BARLINE_DARKNESS), acc = 2}
+			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_DARKNESS}, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 15, r = 100, g = 100, b = 255, a = 255, acc = 2}
 			}}
 		},
 		bpm = {
-			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS}, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 15, r = 100, g = 255, b = 100, a = getDarkness(BARLINE_DARKNESS), acc = 2}
+			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_DARKNESS}, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 15, r = 100, g = 255, b = 100, a = 255, acc = 2}
 			}}
 		},
 		stop = {
-			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS}, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 15, r = 255, g = 100, b = 100, a = getDarkness(BARLINE_DARKNESS), acc = 2}
+			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_DARKNESS}, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 15, r = 255, g = 100, b = 100, a = 255, acc = 2}
 			}}
 		}
 	}
@@ -2136,7 +2113,10 @@ local function main()
 		"gauge-y1","gauge-p1","gauge-y2","gauge-p2","gauge-y3","gauge-p3",
 		-- hazard gauge(Are the 2, 4, and 6 dummies?)
 		"gauge-w1","gauge-w1","gauge-w2","gauge-w2","gauge-w3","gauge-w3"
-		}
+		},
+		parts = 10000,
+		range = 0,
+		cycle = 0
 	}
 
 	local _images = {}
@@ -2169,20 +2149,20 @@ local function main()
 				for i in ipairs(id) do
 					if i <= 3 then
 						-- コンボ数を伴う判定文字(PGからGD)のx座標を求める式は、「(判定文字の幅 + 判定文字とコンボ数との間隔) / 2」
-						_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS}, dst = {
-							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - ((judge_w[i] + judge_between) / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = getDarkness(offsets[i]), acc = 2},
+						_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - ((judge_w[i] + judge_between) / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 255, acc = 2},
 							{time = 1000}
 						}}
 					else
 						-- コンボ数を伴わない判定文字(BDからMS)のx座標を求める式は、「判定文字の幅 / 2」
-						_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS}, dst = {
-							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = getDarkness(offsets[i]), acc = 2},
+						_images[i] = {id = "judge" .. id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+							{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 255, acc = 2},
 							{time = 1000}
 						}}
 					end
 					-- コンボ数のx座標を求める式は、「判定文字の幅 + 判定文字とコンボ数との間隔」
-					_numbers[i] = {id = "judgenum" .. id[i], loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS}, dst = {
-						{time = 0, x = judge_w[i] + judge_between, y = 0, w = 84, h = 120, a = getDarkness(offsets[i]), acc = 2},
+					_numbers[i] = {id = "judgenum" .. id[i], loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+						{time = 0, x = judge_w[i] + judge_between, y = 0, w = 84, h = 120, a = 255, acc = 2},
 						{time = 1000}
 					}}
 				end
@@ -2193,13 +2173,13 @@ local function main()
 				local id = {"judge-pg", "judge-gr", "judge-gd", "judge-bd", "judge-pr", "judge-ms"}
 				for i in ipairs(id) do
 					-- コンボ数を伴わない判定文字のx座標を求める式は、「判定文字の幅 / 2」
-					_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS}, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = getDarkness(offsets[i]), acc = 2},
+					_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {3, JUDGE_POS, JUDGELINE_POS, offsets[i]}, dst = {
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (judge_w[i] / 2), y = GEOMETRY.JUDGE_Y, w = judge_w[i], h = 120, a = 255, acc = 2},
 						{time = 1000}
 					}}
 					-- コンボ数のx座標を求める式は、「判定文字の幅 / 2」
-					_numbers[i] = {id = "judgenum", loop = -1, timer = 46, offsets = {3, JUDGE_NUM_POS}, dst = {
-						{time = 0, x = judge_w[i] / 2, y = 482, w = 54, h = 100, a = getDarkness(JUDGE_NUM_DARKNESS), acc = 2},
+					_numbers[i] = {id = "judgenum", loop = -1, timer = 46, offsets = {3, JUDGE_NUM_POS, offsets[i]}, dst = {
+						{time = 0, x = judge_w[i] / 2, y = 482, w = 54, h = 100, a = 255, acc = 2},
 						{time = 1000}
 					}}
 				end
@@ -2227,12 +2207,12 @@ local function main()
 			local id = {"judge-pg", "judge-gr", "judge-gd", "judge-bd", "judge-pr", "judge-ms"}
 			local offsets = {JUDGE_PG_DARKNESS, JUDGE_GR_DARKNESS, JUDGE_GD_DARKNESS, JUDGE_BD_DARKNESS, JUDGE_PR_DARKNESS, JUDGE_MS_DARKNESS}
 			for i in ipairs(id) do
-				_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {4, JUDGE_POS}, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = getDarkness(offsets[i]), acc = 2},
+				_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {4, JUDGE_POS, offsets[i]}, dst = {
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 255, acc = 2},
 					{time = 2000}
 				}}
-				_numbers[i] = {id = "judgenum", loop = -1, timer = 46, offsets = {4, JUDGE_NUM_POS}, dst = {
-					{time = 0, x = 330, y = 140, w = 54, h = 100, a = getDarkness(JUDGE_NUM_DARKNESS), acc = 2},
+				_numbers[i] = {id = "judgenum", loop = -1, timer = 46, offsets = {4, JUDGE_NUM_POS, JUDGE_NUM_DARKNESS}, dst = {
+					{time = 0, x = 330, y = 140, w = 54, h = 100, a = 255, acc = 2},
 					{time = 2000}
 				}}
 			end
@@ -2933,61 +2913,61 @@ local function main()
 		})
 		if isFastSlowThresholdDef() and isFastSlowCenter() then
 			append_all(skin.destination, {
-				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 					return main_state.option(1242) and eliminateZeroNumber(525)
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}},
-				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 					return main_state.option(1243) and eliminateZeroNumber(525)
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}}
 			})
 		elseif isFastSlowThresholdDef() and isFastSlowRnL() then
 			append_all(skin.destination, {
-				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 					return main_state.option(1242) and eliminateZeroNumber(525)
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}},
-				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 					return main_state.option(1243) and eliminateZeroNumber(525)
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}}
 			})
 		elseif not isFastSlowThresholdDef() and isFastSlowCenter() then
 			append_all(skin.destination, {
-				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 					return predicateFast() and eliminateZeroNumber(525)
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}},
-				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 					return predicateSlow() and eliminateZeroNumber(525)
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}}
 			})
 		elseif not isFastSlowThresholdDef() and isFastSlowRnL() then
 			append_all(skin.destination, {
-				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 					return predicateFast() and eliminateZeroNumber(525)
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}},
-				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 					return predicateSlow() and eliminateZeroNumber(525)
 				end, dst = {
-					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}}
 			})
@@ -2998,21 +2978,21 @@ local function main()
 			table.insert(skin.value, {id = "fsms-num", src = "fsms_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 2})
 			if isFastSlowThresholdDef() then
 				table.insert(skin.destination,	{
-					id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+					id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 						return not main_state.option(241) and eliminateZeroNumber(525)
 					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
 						{time = 500}
 					}
 				})
 			elseif not isFastSlowThresholdDef() then
 				table.insert(skin.destination,	{
-					id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+					id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 						if eliminateZeroNumber(525) then
 							return predicateFast() or predicateSlow()
 						end
 					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
 						{time = 500}
 					}
 				})
@@ -3024,31 +3004,31 @@ local function main()
 			})
 			if isFastSlowThresholdDef() then
 				append_all(skin.destination, {
-					{id = "fast-ms-num", offsets = {3, JUDGELINE_POS}, loop = -1, timer = 46, draw = function()
+					{id = "fast-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 						return not main_state.option(241) and eliminateZeroNumber(525)
 					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
 						{time = 500}
 					}},
-					{id = "slow-ms-num", offsets = {3, JUDGELINE_POS}, loop = -1, timer = 46, draw = function()
+					{id = "slow-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 						return not main_state.option(241) and eliminateZeroNumber(525)
 					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
 						{time = 500}
 					}}
 				})
 			elseif not isFastSlowThresholdDef() then
 				append_all(skin.destination, {
-					{id = "fast-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+					{id = "fast-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 						return predicateFast() and eliminateZeroNumber(525)
 					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
 						{time = 500}
 					}},
-					{id = "slow-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS}, loop = -1, timer = 46, draw = function()
+					{id = "slow-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
 						return predicateSlow() and eliminateZeroNumber(525)
 					end, dst = {
-						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(FAST_SLOW_DARKNESS), acc = 2},
+						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
 						{time = 500}
 					}}
 				})
@@ -3072,15 +3052,15 @@ local function main()
 				end
 			end})
 			append_all(skin.destination, {
-				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS}, timer = 41, draw = function()
+				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
 					return not eliminateZeroNumber(_number)
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-34), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = getDarkness(TARGET_DARKNESS), acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-34), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 				}},
-				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS}, timer = 41, draw = function()
+				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
 					return eliminateZeroNumber(_number)
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(TARGET_DARKNESS), acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
 				}}
 			})
 		end
@@ -3089,15 +3069,15 @@ local function main()
 		table.insert(skin.image, {id = "zero-target", src = "target_num_src", x = 0, y = 70, w = 68, h = 35})
 		table.insert(skin.value, {id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 2})
 		append_all(skin.destination, {
-			{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS}, timer = 41, draw = function()
+			{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
 				return not eliminateZeroNumber(153)
 			end, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-34), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = getDarkness(TARGET_DARKNESS), acc = 2}
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-34), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 			}},
-			{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS}, timer = 41, draw = function()
+			{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
 				return eliminateZeroNumber(153)
 			end, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(TARGET_DARKNESS), acc = 2}
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
 			}}
 		})
 	elseif isTarget2On() then
@@ -3115,29 +3095,29 @@ local function main()
 				{id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 0}
 			})
 			append_all(skin.destination, {
-				{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET2_POS}, timer = 41, draw = function()
+				{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
 					return not eliminateZeroNumber(153)
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = getDarkness(TARGET2_DARKNESS), acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 				}},
-				{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET2_POS}, timer = 41, draw = function()
+				{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
 					return eliminateZeroNumber(153)
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(TARGET2_DARKNESS), acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
 				}},
-				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS}, timer = 41, draw = function()
+				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
 					if main_state.float_number(113) ~= 0 then
 						return not eliminateZeroNumber(152)
 					end
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-68), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = getDarkness(TARGET_DARKNESS), acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-68), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 				}},
-				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS}, timer = 41, draw = function()
+				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
 					if main_state.float_number(113) ~= 0 then
 						return eliminateZeroNumber(152)
 					end
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(TARGET_DARKNESS), acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
 				}}
 			})
 		elseif isTargetRank() then
@@ -3146,160 +3126,104 @@ local function main()
 				{id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 0}
 			})
 			append_all(skin.destination, {
-				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET2_POS}, timer = 41, draw = function()
+				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
 					if main_state.float_number(113) ~= 0 then
 						return not eliminateZeroNumber(152)
 					end
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = getDarkness(TARGET2_DARKNESS), acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 				}},
-				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET2_POS}, timer = 41, draw = function()
+				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
 					if main_state.float_number(113) ~= 0 then
 						return eliminateZeroNumber(152)
 					end
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(TARGET2_DARKNESS), acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
 				}},
-				{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS}, timer = 41, draw = function()
+				{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
 					return not eliminateZeroNumber(153)
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-68), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = getDarkness(TARGET_DARKNESS), acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-68), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 				}},
-				{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS}, timer = 41, draw = function()
+				{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
 					return eliminateZeroNumber(153)
 				end, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = getDarkness(TARGET_DARKNESS), acc = 2}
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
 				}}
 			})
 		end
 	end
 
-	-- timing visualizer
-	if isTimingVisualizerOn() then
+	-- hiterror visualizer
+	if isHitErrorVisualizerOn() then
 		do
-			local timingvisualizer_colors = {}
-			local centerline_colors = {}
-			local pg_line_colors = {}
-			local gr_line_colors = {}
-
-			local lua_path = skin_config.get_path("customize/TIMINGVISUALIZER_COLOR.lua")
-			local status, _timingvisualizer_colors, _centerline_colors, _pg_line_colors, _gr_line_colors = pcall(function()
-				return dofile(lua_path).load()
-			end)
-			if status and _timingvisualizer_colors and type(_timingvisualizer_colors) == "table"
-					and _centerline_colors and type(_centerline_colors) == "table"
-					and _pg_line_colors and type(_pg_line_colors) == "table"
-					and _gr_line_colors and type(_gr_line_colors) == "table"
-			then
-				timingvisualizer_colors = _timingvisualizer_colors
-				centerline_colors = _centerline_colors
-				pg_line_colors = _pg_line_colors
-				gr_line_colors = _gr_line_colors
-			else
-				timingvisualizer_colors.lineColor = "FFFFFFFF"
-				timingvisualizer_colors.PGColor = "00000000"
-				timingvisualizer_colors.GRColor = "00000000"
-				timingvisualizer_colors.GDColor = "00000000"
-				timingvisualizer_colors.BDColor = "00000000"
-				timingvisualizer_colors.PRColor = "00000000"
-				centerline_colors.r = 255
-				centerline_colors.g = 0
-				centerline_colors.b = 0
-				pg_line_colors.r = 0
-				pg_line_colors.g = 191
-				pg_line_colors.b = 255
-				gr_line_colors.r = 0
-				gr_line_colors.g = 255
-				gr_line_colors.b = 0
-			end
-
-			skin.timingvisualizer = {{
-				id = "timing-visualizer",
-				width = 402,
+			skin.hiterrorvisualizer = {{
+				id = "hiterror-visualizer",
+				width = 406,
 				judgeWidthMillis = 100,
-				lineWidth = 2,
-				lineColor = timingvisualizer_colors.lineColor,
-				centerColor = "00000000",
-				PGColor = timingvisualizer_colors.PGColor,
-				GRColor = timingvisualizer_colors.GRColor,
-				GDColor = timingvisualizer_colors.GDColor,
-				BDColor = timingvisualizer_colors.BDColor,
-				PRColor = timingvisualizer_colors.PRColor,
-				transparent = 0,
-				drawDecay = 0
+				lineWidth = 6,
+				colorMode = 0,
+				-- hiterrorMode = 1,
+				-- emaMode = 1,
+				lineColor = "DDFFFFDD",
+				centerColor = "0090FFFF",
+				-- PGColor = "00000000",
+				-- GRColor = "00000000",
+				-- GDColor = "00000000",
+				-- BDColor = "00000000",
+				-- PRColor = "00000000",
+				emaColor = "FF0000FF",
+				-- alpha = 0.1,
+				windowLength = 50,
+				-- transparent = 0,
+				-- drawDecay = 1
 			}}
-			table.insert(skin.image, {id = "timing-visualizer-bg", src = "play_system_src", x = 244, y = 1054, w = 402, h = 30})
 
-			local pg_range
-			local gr_range
-
+			local bg_y
 			if is5key() or is7key() then
 				if main_state.option(180) then
-					pg_range = 5
-					gr_range = 15
+					-- veryhard
+					bg_y = 178
 				elseif main_state.option(181) then
-					pg_range = 10
-					gr_range = 30
+					-- hard
+					bg_y = 167
 				elseif main_state.option(182) then
-					pg_range = 15
-					gr_range = 45
+					-- normal
+					bg_y = 156
 				elseif main_state.option(183) then
-					pg_range = 20
-					gr_range = 60
+					-- easy
+					bg_y = 145
 				else
-					pg_range = 25
-					gr_range = 75
+					-- veryeasy
+					bg_y = 134
 				end
 			else
 				if main_state.option(180) then
-					pg_range = 20
-					gr_range = 16
+					-- veryhard
+					bg_y = 233
 				elseif main_state.option(181) then
-					pg_range = 20
-					gr_range = 25
+					-- hard
+					bg_y = 222
 				elseif main_state.option(182) then
-					pg_range = 20
-					gr_range = 35
+					-- normal
+					bg_y = 211
 				elseif main_state.option(183) then
-					pg_range = 20
-					gr_range = 50
+					-- easy
+					bg_y = 200
 				else
-					pg_range = 20
-					gr_range = 66
+					-- veryeasy
+					bg_y = 189
 				end
 			end
 
-			local _alpha = getDarkness(TIMINGVISUALIZER_DARKNESS)
-
+			table.insert(skin.image, {id = "hiterror-visualizer-bg", src = "play_system_src", x = 240, y = bg_y, w = 406, h = 10})
 			append_all(skin.destination, {
-				-- bg
-				{id = "timing-visualizer-bg", offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-201), y = GEOMETRY.DETAIL_Y - 70, w = 402, h = 30, a = 62, acc = 2}
+				{id = "hiterror-visualizer-bg", offsets = {3, JUDGELINE_POS, HITERRORVISUALIZER_POS, HITERRORVISUALIZER_BG_DARKNESS}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-203), y = GEOMETRY.DETAIL_Y - 65, w = 406, h = 10, a = 255, acc = 2}
 				}},
-				-- body
-				{id = "timing-visualizer", offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 201, y = GEOMETRY.DETAIL_Y - 70, w = - 402, h = 30, a = _alpha, acc = 2}
+				{id = "hiterror-visualizer", offsets = {3, JUDGELINE_POS, HITERRORVISUALIZER_POS, HITERRORVISUALIZER_DARKNESS}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (203), y = GEOMETRY.DETAIL_Y - 85, w =  406, h = 50, a = 255, acc = 2}
 				}},
-				-- great : right
-				{id = -111, offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (- gr_range * 2) - 3, y = GEOMETRY.DETAIL_Y - 73, w = 6, h = 36, r = gr_line_colors.r, g = gr_line_colors.g, b = gr_line_colors.b, a = _alpha, acc = 2}
-				}},
-				-- great : left
-				{id = -111, offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + gr_range * 2 - 3, y = GEOMETRY.DETAIL_Y - 73, w = 6, h = 36, r = gr_line_colors.r, g = gr_line_colors.g, b = gr_line_colors.b, a = _alpha, acc = 2}
-				}},
-				-- p-great : right
-				{id = -111, offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (- pg_range * 2) - 3, y = GEOMETRY.DETAIL_Y - 76, w = 6, h = 42, r = pg_line_colors.r, g = pg_line_colors.g, b = pg_line_colors.b, a = _alpha, acc = 2}
-				}},
-				-- p-great : left
-				{id = -111, offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + pg_range * 2 - 3, y = GEOMETRY.DETAIL_Y - 76, w = 6, h = 42, r = pg_line_colors.r, g = pg_line_colors.g, b = pg_line_colors.b, a = _alpha, acc = 2}
-				}},
-				-- centerline
-				{id = -111, offsets = {3, JUDGELINE_POS, TIMINGVISUALIZER_POS}, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-4), y = GEOMETRY.DETAIL_Y - 80, w = 8, h = 50, r = centerline_colors.r, g = centerline_colors.g, b = centerline_colors.b, a = _alpha, acc = 2}
-				}}
 			})
 		end
 	end
@@ -3317,14 +3241,14 @@ local function main()
 				end}
 			})
 			append_all(skin.destination, {
-				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-70), y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = getDarkness(SCORE_RATE_DARKNESS), acc = 2}
+				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-70), y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = 255, acc = 2}
 				}},
-				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-10), y = GEOMETRY.DETAIL_Y, w = 80, h = 21, a = getDarkness(SCORE_RATE_DARKNESS), acc = 2}
+				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-10), y = GEOMETRY.DETAIL_Y, w = 80, h = 21, a = 255, acc = 2}
 				}},
-				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 10, y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = getDarkness(SCORE_RATE_DARKNESS), acc = 2}
+				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 10, y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = 255, acc = 2}
 				}}
 			})
 		else
@@ -3338,14 +3262,14 @@ local function main()
 				end}
 			})
 			append_all(skin.destination, {
-				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8) + (-84), y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = getDarkness(SCORE_RATE_DARKNESS), acc = 2}
+				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8) + (-84), y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = 255, acc = 2}
 				}},
-				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8), y = GEOMETRY.DETAIL_Y, w = 16, h = 50, a = getDarkness(SCORE_RATE_DARKNESS), acc = 2}
+				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8), y = GEOMETRY.DETAIL_Y, w = 16, h = 50, a = 255, acc = 2}
 				}},
-				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 8, y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = getDarkness(SCORE_RATE_DARKNESS), acc = 2}
+				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 8, y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = 255, acc = 2}
 				}}
 			})
 		end
@@ -3363,18 +3287,18 @@ local function main()
 		})
 		append_all(skin.destination, {
 			-- fast
-			{id = "fast-opg-frame", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS}, op = {32}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.DETAIL_Y, w = 40, h = 21, a = getDarkness(FAST_SLOW_COUNT_DARKNESS), acc = 2}
+			{id = "fast-opg-frame", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_DARKNESS}, op = {32}, timer = 41, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.DETAIL_Y, w = 40, h = 21, a = 255, acc = 2}
 			}},
-			{id = "fast-opg-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS}, op = {32}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.DETAIL_Y + (-26), w = 20, h = 21, a = getDarkness(FAST_SLOW_COUNT_DARKNESS), acc = 2}
+			{id = "fast-opg-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_DARKNESS}, op = {32}, timer = 41, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.DETAIL_Y + (-26), w = 20, h = 21, a = 255, acc = 2}
 			}},
 			-- slow
-			{id = "slow-opg-frame", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS}, op = {32}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-40), y = GEOMETRY.DETAIL_Y, w = 40, h = 21, a = getDarkness(FAST_SLOW_COUNT_DARKNESS), acc = 2}
+			{id = "slow-opg-frame", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_DARKNESS}, op = {32}, timer = 41, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-40), y = GEOMETRY.DETAIL_Y, w = 40, h = 21, a = 255, acc = 2}
 			}},
-			{id = "slow-opg-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS}, op = {32}, timer = 41, dst = {
-				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-80), y = GEOMETRY.DETAIL_Y + (-26), w = 20, h = 21, a = getDarkness(FAST_SLOW_COUNT_DARKNESS), acc = 2}
+			{id = "slow-opg-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_DARKNESS}, op = {32}, timer = 41, dst = {
+				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-80), y = GEOMETRY.DETAIL_Y + (-26), w = 20, h = 21, a = 255, acc = 2}
 			}}
 		})
 	end
@@ -3388,8 +3312,8 @@ local function main()
 					{time = 200},
 					{time = 250, h = 25}
 				}},
-				{id = "gauge", offsets = {GAUGE_POS}, loop = 250, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 750 + 26, y = 0, w = -750, h = 0, a = getDarkness(GAUGE_DARKNESS), acc = 2},
+				{id = "gauge", offsets = {GAUGE_POS, GAUGE_DARKNESS}, loop = 250, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 750 + 26, y = 0, w = -750, h = 0, a = 255, acc = 2},
 					{time = 200},
 					{time = 250, h = 25}
 				}}
@@ -3401,8 +3325,8 @@ local function main()
 					{time = 200},
 					{time = 250, h = 25}
 				}},
-				{id = "gauge", offsets = {GAUGE_POS}, loop = 250, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 26, y = 0, w = 750, h = 0, a = getDarkness(GAUGE_DARKNESS), acc = 2},
+				{id = "gauge", offsets = {GAUGE_POS, GAUGE_DARKNESS}, loop = 250, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 26, y = 0, w = 750, h = 0, a = 255, acc = 2},
 					{time = 200},
 					{time = 250, h = 25}
 				}}
@@ -3568,12 +3492,12 @@ local function main()
 	-- Normal explosion effect placement
 	for i = 1, #b_init, 1 do
 		table.insert(skin.destination, {
-			id = "bomb-"..b_init[i], offsets = {3, JUDGELINE_POS, BOMB_POS}, loop = -1, filter = 1, timer = bombTimer[i], blend = 2, dst = {
+			id = "bomb-"..b_init[i], offsets = {3, JUDGELINE_POS, BOMB_POS, BOMB_DARKNESS}, loop = -1, filter = 1, timer = bombTimer[i], blend = 2, dst = {
 				{time = 0, 	x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + bombPosX[i] - bombWidth / 2,
 							y = GEOMETRY.LANE_Y - (bombHeight / 2),
 							w = bombWidth,
 							h = bombHeight,
-							a = getDarkness(BOMB_DARKNESS), r = bombProperty.BOMB_RED, g = bombProperty.BOMB_GREEN, b = bombProperty.BOMB_BLUE, acc = 2},
+							a = 255, r = bombProperty.BOMB_RED, g = bombProperty.BOMB_GREEN, b = bombProperty.BOMB_BLUE, acc = 2},
 				{time = bombCycle - 1}
 			}
 		})
@@ -3582,12 +3506,12 @@ local function main()
 	-- LN explosion effect placement
 	for i = 1, #b_init, 1 do
 		table.insert(skin.destination,	{
-			id = "lnbomb-"..b_init[i], offsets = {3, JUDGELINE_POS, BOMB_POS}, filter = 1, timer = lnBombTimer[i], blend = 2, dst = {
+			id = "lnbomb-"..b_init[i], offsets = {3, JUDGELINE_POS, BOMB_POS, BOMB_DARKNESS}, filter = 1, timer = lnBombTimer[i], blend = 2, dst = {
 				{time = 0, x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + bombPosX[i] - bombWidth / 2,
 							y = GEOMETRY.LANE_Y - (bombHeight / 2),
 							w = bombWidth,
 							h = bombHeight,
-							a = getDarkness(BOMB_DARKNESS), r = bombProperty.LNBOMB_RED, g = bombProperty.LNBOMB_GREEN, b = bombProperty.LNBOMB_BLUE, acc = 2},
+							a = 255, r = bombProperty.LNBOMB_RED, g = bombProperty.LNBOMB_GREEN, b = bombProperty.LNBOMB_BLUE, acc = 2},
 				{time = lnbombCycle - 1}
 			}
 		})

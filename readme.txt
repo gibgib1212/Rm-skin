@@ -1,8 +1,8 @@
 -------------------------------------
 "Rm-skin"
-ver 0.2.4
+ver 0.2.5.a
 Full HD (1920x1080) Playskin-5,7,9 key for beatoraja
-(Last updated:06/26/2024)
+(Last updated:07/06/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -399,4 +399,11 @@ Update History
 
 	- Corrected a mistake in version notation
 	- Added "Input Device" option
+	- Update readme.txt
+
+07062024
+
+	- Fixed transparency issues
+	- Changed from timing visualizer to hit error visualizer and delete "TIMIMIMGVISUALIZER_COLOR.lua" accordingly
+	- Minor modifications to other image parts
 	- Update readme.txt
