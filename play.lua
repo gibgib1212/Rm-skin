@@ -1,4 +1,4 @@
- main_state = require("main_state")
+main_state = require("main_state")
 
 local function append_all(list, list1)
 	for _, v in ipairs(list1) do
@@ -34,6 +34,7 @@ local NOTES_WIDTH_CUSTOM = 					optionCount()
 local JUDGE_TYPE_A =						optionCount()
 local JUDGE_TYPE_B =						optionCount()
 local JUDGE_TYPE_C =						optionCount()
+local JUDGE_TYPE_D =						optionCount()
 
 local NOTES_5KEY_ALIGN_RL = 				optionCount()
 local NOTES_5KEY_ALIGN_CENTER = 			optionCount()
@@ -122,25 +123,25 @@ local JUDGELINE_HEIGHT = 					offsetCount()
 local BOMB_POS = 							offsetCount()
 local GAUGE_POS = 							offsetCount()
 
-local BG_DARKNESS = 						offsetCount()
-local BGA_DARKNESS = 						offsetCount()
-local BARLINE_DARKNESS = 					offsetCount()
-local JUDGE_PG_DARKNESS = 					offsetCount()
-local JUDGE_GR_DARKNESS = 					offsetCount()
-local JUDGE_GD_DARKNESS = 					offsetCount()
-local JUDGE_BD_DARKNESS = 					offsetCount()
-local JUDGE_PR_DARKNESS = 					offsetCount()
-local JUDGE_MS_DARKNESS = 					offsetCount()
-local JUDGE_NUM_DARKNESS = 					offsetCount()
-local FAST_SLOW_DARKNESS = 					offsetCount()
-local TARGET_DARKNESS = 					offsetCount()
-local TARGET2_DARKNESS = 					offsetCount()
-local SCORE_RATE_DARKNESS = 				offsetCount()
-local HITERRORVISUALIZER_DARKNESS =			offsetCount()
-local HITERRORVISUALIZER_BG_DARKNESS =		offsetCount()
-local FAST_SLOW_COUNT_DARKNESS = 			offsetCount()
-local BOMB_DARKNESS = 						offsetCount()
-local GAUGE_DARKNESS = 						offsetCount()
+local BG_TRANSPARENCY = 					offsetCount()
+local BGA_TRANSPARENCY = 					offsetCount()
+local BARLINE_TRANSPARENCY = 				offsetCount()
+local JUDGE_PG_TRANSPARENCY = 				offsetCount()
+local JUDGE_GR_TRANSPARENCY = 				offsetCount()
+local JUDGE_GD_TRANSPARENCY = 				offsetCount()
+local JUDGE_BD_TRANSPARENCY = 				offsetCount()
+local JUDGE_PR_TRANSPARENCY = 				offsetCount()
+local JUDGE_MS_TRANSPARENCY = 				offsetCount()
+local JUDGE_NUM_TRANSPARENCY = 				offsetCount()
+local FAST_SLOW_TRANSPARENCY = 				offsetCount()
+local TARGET_TRANSPARENCY = 				offsetCount()
+local TARGET2_TRANSPARENCY = 				offsetCount()
+local SCORE_RATE_TRANSPARENCY = 			offsetCount()
+local HITERRORVISUALIZER_TRANSPARENCY =		offsetCount()
+local HITERRORVISUALIZER_BG_TRANSPARENCY =	offsetCount()
+local FAST_SLOW_COUNT_TRANSPARENCY = 		offsetCount()
+local BOMB_TRANSPARENCY = 					offsetCount()
+local GAUGE_TRANSPARENCY = 					offsetCount()
 
 -- ========================================================================================================================================================	
 
@@ -160,25 +161,25 @@ local original_offset = {
 	{name = "Bomb Position", 					id = BOMB_POS,	 				y = true},
 	{name = "Gauge Position", 					id = GAUGE_POS, 				x = true, 	y = true, 	w = true, 	h = true},
 
-	{name = "Background Darkness (-255 to 0)", 					id = BG_DARKNESS,							a = true},
-	{name = "BGA Darkness (-255 to 0)", 						id = BGA_DARKNESS,							a = true},
-	{name = "Barline Darkness (-255 to 0)", 					id = BARLINE_DARKNESS,						a = true},
-	{name = "Judge PG Darkness (-255 to 0)", 					id = JUDGE_PG_DARKNESS, 					a = true},
-	{name = "Judge GR Darkness (-255 to 0)", 					id = JUDGE_GR_DARKNESS, 					a = true},
-	{name = "Judge GD Darkness (-255 to 0)",					id = JUDGE_GD_DARKNESS,						a = true},
-	{name = "Judge BD Darkness (-255 to 0)", 					id = JUDGE_BD_DARKNESS, 					a = true},
-	{name = "Judge PR Darkness (-255 to 0)", 					id = JUDGE_PR_DARKNESS, 					a = true},
-	{name = "Judge MS Darkness (-255 to 0)",					id = JUDGE_MS_DARKNESS, 					a = true},
-	{name = "Combo Number Darkness (-255 to 0)",				id = JUDGE_NUM_DARKNESS, 					a = true},
-	{name = "F/S Darkness (-255 to 0)", 						id = FAST_SLOW_DARKNESS, 					a = true},
-	{name = "Target Darkness (-255 to 0)", 						id = TARGET_DARKNESS, 						a = true},
-	{name = "Target2 Darkness (-255 to 0)", 					id = TARGET2_DARKNESS, 						a = true},
-	{name = "Score Rate Darkness (-255 to 0)", 					id = SCORE_RATE_DARKNESS, 					a = true},
-	{name = "Hit Error Visualizer Darkness (-255 to 0)", 		id = HITERRORVISUALIZER_DARKNESS,			a = true},
-	{name = "Hit Error Visualizer BG Darkness (-255 to 0)", 	id = HITERRORVISUALIZER_BG_DARKNESS,		a = true},
-	{name = "F/S Count Darkness (-255 to 0)", 					id = FAST_SLOW_COUNT_DARKNESS,				a = true},
-	{name = "Bomb Darkness (-255 to 0)", 						id = BOMB_DARKNESS,		 					a = true},
-	{name = "Gauge Darkness (-255 to 0)", 						id = GAUGE_DARKNESS, 						a = true}
+	{name = "Background Transparency (-255 to 0)", 					id = BG_TRANSPARENCY,							a = true},
+	{name = "BGA Transparency (-255 to 0)", 						id = BGA_TRANSPARENCY,							a = true},
+	{name = "Barline Transparency (-255 to 0)", 					id = BARLINE_TRANSPARENCY,						a = true},
+	{name = "Judge PG Transparency (-255 to 0)", 					id = JUDGE_PG_TRANSPARENCY, 					a = true},
+	{name = "Judge GR Transparency (-255 to 0)", 					id = JUDGE_GR_TRANSPARENCY, 					a = true},
+	{name = "Judge GD Transparency (-255 to 0)",					id = JUDGE_GD_TRANSPARENCY,						a = true},
+	{name = "Judge BD Transparency (-255 to 0)", 					id = JUDGE_BD_TRANSPARENCY, 					a = true},
+	{name = "Judge PR Transparency (-255 to 0)", 					id = JUDGE_PR_TRANSPARENCY, 					a = true},
+	{name = "Judge MS Transparency (-255 to 0)",					id = JUDGE_MS_TRANSPARENCY, 					a = true},
+	{name = "Combo Number Transparency (-255 to 0)",				id = JUDGE_NUM_TRANSPARENCY, 					a = true},
+	{name = "F/S Transparency (-255 to 0)", 						id = FAST_SLOW_TRANSPARENCY, 					a = true},
+	{name = "Target Transparency (-255 to 0)", 						id = TARGET_TRANSPARENCY, 						a = true},
+	{name = "Target2 Transparency (-255 to 0)", 					id = TARGET2_TRANSPARENCY, 						a = true},
+	{name = "Score Rate Transparency (-255 to 0)", 					id = SCORE_RATE_TRANSPARENCY, 					a = true},
+	{name = "Hit Error Visualizer Transparency (-255 to 0)", 		id = HITERRORVISUALIZER_TRANSPARENCY,			a = true},
+	{name = "Hit Error Visualizer BG Transparency (-255 to 0)", 	id = HITERRORVISUALIZER_BG_TRANSPARENCY,		a = true},
+	{name = "F/S Count Transparency (-255 to 0)", 					id = FAST_SLOW_COUNT_TRANSPARENCY,				a = true},
+	{name = "Bomb Transparency (-255 to 0)", 						id = BOMB_TRANSPARENCY,		 					a = true},
+	{name = "Gauge Transparency (-255 to 0)", 						id = GAUGE_TRANSPARENCY, 						a = true}
 }
 
 local original_filepath = {
@@ -362,14 +363,14 @@ local original_filepath = {
 
 	{name = "Type A_B : Judge & Combo Number", 					path = "parts/judge/type_ab/*.png", 				def = "Default_#ColorScheme_TypeA"},
 
-	{name = "Type B_C : Combo Number & Score Rate", 			path = "parts/judgenum/*.png", 						def = "Default_Rounded"},
+	{name = "Type B_C_D : Combo Number & Score Rate", 			path = "parts/judgenum/*.png", 						def = "Default_Rounded"},
 
-	{name = "Type C : Judge : Perfect", 						path = "parts/judge/type_c/1_pg/*.png", 			def = "x50%_PG_Rounded"},
-	{name = "Type C : Judge : Great", 							path = "parts/judge/type_c/2_gr/*.png", 			def = "x50%_GR_Rounded"},
-	{name = "Type C : Judge : Good",	 						path = "parts/judge/type_c/3_gd/*.png", 			def = "x50%_GD_Rounded"},
-	{name = "Type C : Judge : Bad", 							path = "parts/judge/type_c/4_bd/*.png", 			def = "x50%_BD_Rounded"},
-	{name = "Type C : Judge : Poor", 							path = "parts/judge/type_c/5_pr/*.png", 			def = "x50%_PR_Rounded"},
-	{name = "Type C : Judge : Miss",	 						path = "parts/judge/type_c/6_ms/*.png",				def = "x50%_MS_Rounded"},
+	{name = "Type C_D : Judge : Perfect", 						path = "parts/judge/type_cd/1_pg/*.png", 			def = "x50%_PG_Rounded"},
+	{name = "Type C_D : Judge : Great", 						path = "parts/judge/type_cd/2_gr/*.png", 			def = "x50%_GR_Rounded"},
+	{name = "Type C_D : Judge : Good",	 						path = "parts/judge/type_cd/3_gd/*.png", 			def = "x50%_GD_Rounded"},
+	{name = "Type C_D : Judge : Bad", 							path = "parts/judge/type_cd/4_bd/*.png", 			def = "x50%_BD_Rounded"},
+	{name = "Type C_D : Judge : Poor", 							path = "parts/judge/type_cd/5_pr/*.png", 			def = "x50%_PR_Rounded"},
+	{name = "Type C_D : Judge : Miss",	 						path = "parts/judge/type_cd/6_ms/*.png",			def = "x50%_MS_Rounded"},
 
 	{name = "Gauge: Hazard", 									path = "parts/colors/1_hazard/*.png", 				def = "Blue1_#389eff"},
 	{name = "Gauge: Ex-Hard", 									path = "parts/colors/2_exhard/*.png", 				def = "Yellow1_#ffff40"},
@@ -426,7 +427,8 @@ local original_property = {
 	{name = "Judge Display", 							item = {
 		{name = "Type A", 								op = JUDGE_TYPE_A},
 		{name = "Type B", 								op = JUDGE_TYPE_B},
-		{name = "Type C", 								op = JUDGE_TYPE_C}
+		{name = "Type C", 								op = JUDGE_TYPE_C},
+		{name = "Type D", 								op = JUDGE_TYPE_D}
 	}},
 	{name = "Input Device", 							item = {
 		{name = "Keyboard", 							op = INPUT_DEVICE_KEYBORAD},
@@ -886,7 +888,7 @@ local header = {
 		4:9keys
 	--]]
 	type = 		nil, -- set in ".luaskin"
-	name = 		"Rm-skin ver 0.2.5.a",
+	name = 		"Rm-skin ver 0.2.5",
 	w = 		1920,
 	h = 		1080,
 	loadend = 	3000,
@@ -937,6 +939,7 @@ local function isNotesHeightCustom() 	return skin_config.option["Notes Height"] 
 
 local function isJudgeTypeA()	 		return skin_config.option["Judge Display"] == 				JUDGE_TYPE_A end
 local function isJudgeTypeB() 			return skin_config.option["Judge Display"] == 				JUDGE_TYPE_B end
+local function isJudgeTypeC() 			return skin_config.option["Judge Display"] == 				JUDGE_TYPE_C end
 
 local function isInputKeyboard() 		return skin_config.option["Input Device"] == 				INPUT_DEVICE_KEYBORAD end
 
@@ -1154,7 +1157,7 @@ local function main()
 		LANE_W = 		802,
 		LANE_H = 		1080,
 		-- LANE_CENTER = 	nil,
-		-- LANE_DISTANCE = 	nil,
+		LANE_DISTANCE = 288,
 		-- JUDGE_Y = 		nil,
 		-- TRACER_Y =		nil,
 		-- DETAIL_Y =		nil,
@@ -1208,50 +1211,38 @@ local function main()
 		title_align = 2
 	end
 
-	if isScratchRight() and 	isLaneCenterPosKey() and is7key() then
+	if isScratchRight() and isLaneCenterPosKey() and is7key() then
 		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 3.5)
 	elseif isScratchLeft() and 	isLaneCenterPosKey() and is7key() then
 		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 3.5 + notesInfo.Sc_width)
-	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignRL() and 		isNotesWidthTemplate() then
+	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignRL() and isNotesWidthTemplate() then
 		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Ot_width * 2)
-	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignRL() and 		isNotesWidthTemplate() then
+	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignRL() and isNotesWidthTemplate() then
 		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Sc_width)
-	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignCenter() and 	isNotesWidthTemplate() then
+	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignCenter() and isNotesWidthTemplate() then
 		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 3.5)
-	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignCenter() and 	isNotesWidthTemplate() then
+	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignCenter() and isNotesWidthTemplate() then
 		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 3.5 + notesInfo.Sc_width)
-	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and 	isNotesWidthTemplate() then
+	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and isNotesWidthTemplate() then
 		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5)
-	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and 	isNotesWidthTemplate() then
+	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and isNotesWidthTemplate() then
 		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Sc_width)
-	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and 							isNotesWidthCustom() then
+	elseif isScratchRight() and isLaneCenterPosKey() and is5key() and isNotesWidthCustom() then
 		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5)
-	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and 							isNotesWidthCustom() then
+	elseif isScratchLeft() and 	isLaneCenterPosKey() and is5key() and isNotesWidthCustom() then
 		GEOMETRY.LANE_CENTER = math.floor(notesInfo.Ot_width * 2.5 + notesInfo.Sc_width)
 	else
 		GEOMETRY.LANE_CENTER = 401
 	end
 
-	if isLaneCenterPosKey() and 	is7key() then
-		GEOMETRY.LANE_DISTANCE = math.floor(notesInfo.Ot_width * 3.5 * 0.75)
-	elseif isLaneCenterPosKey() and is5key() and not is5keyAlignEnlarge() and 	isNotesWidthTemplate() then
-		GEOMETRY.LANE_DISTANCE = math.floor(notesInfo.Ot_width * 3.5 * 0.75)
-	elseif isLaneCenterPosKey() and is5key() and is5keyAlignEnlarge() and 		isNotesWidthTemplate() then
-		GEOMETRY.LANE_DISTANCE = math.floor(notesInfo.Ot_width * 2.5 * 0.75)
-	elseif isLaneCenterPosKey() and is5key() and 								isNotesWidthCustom() then
-		GEOMETRY.LANE_DISTANCE = math.floor(notesInfo.Ot_width * 2.5 * 0.75)
-	else
-		GEOMETRY.LANE_DISTANCE = 	300		-- 401 * 0.75 = 300.75
-	end
-
 	if isJudgeTypeA() or isJudgeTypeB() then
 		GEOMETRY.JUDGE_Y = 205
 		GEOMETRY.TRACER_Y = 330
-		GEOMETRY.DETAIL_Y = 179
+		GEOMETRY.DETAIL_Y = 120
 	else
 		GEOMETRY.JUDGE_Y = 780
-		GEOMETRY.TRACER_Y = 544
-		GEOMETRY.DETAIL_Y = 350
+		GEOMETRY.TRACER_Y = 680
+		GEOMETRY.DETAIL_Y = 630
 	end
 
 -- ========================================================================================================================================================	
@@ -1941,22 +1932,22 @@ local function main()
 		hidden = 		{},
 		processed = 	{},
 		group = {
-			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_DARKNESS}, dst = {
+			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_TRANSPARENCY}, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 5, r = 255, g = 255, b = 255, a = 255, acc = 2}
 			}}
 		},
 		time = {
-			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_DARKNESS}, dst = {
+			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_TRANSPARENCY}, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 15, r = 100, g = 100, b = 255, a = 255, acc = 2}
 			}}
 		},
 		bpm = {
-			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_DARKNESS}, dst = {
+			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_TRANSPARENCY}, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 15, r = 100, g = 255, b = 100, a = 255, acc = 2}
 			}}
 		},
 		stop = {
-			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_DARKNESS}, dst = {
+			{id = "section-line", timer = 41, offsets = {3, JUDGELINE_POS, BARLINE_TRANSPARENCY}, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 15, r = 255, g = 100, b = 100, a = 255, acc = 2}
 			}}
 		}
@@ -2125,7 +2116,7 @@ local function main()
 	do
 		if isJudgeTypeA() or isJudgeTypeB() then
 			local judge_w = {356, 356, 288, 220, 288, 260}
-			local offsets = {JUDGE_PG_DARKNESS, JUDGE_GR_DARKNESS, JUDGE_GD_DARKNESS, JUDGE_BD_DARKNESS, JUDGE_PR_DARKNESS, JUDGE_MS_DARKNESS}
+			local offsets = {JUDGE_PG_TRANSPARENCY, JUDGE_GR_TRANSPARENCY, JUDGE_GD_TRANSPARENCY, JUDGE_BD_TRANSPARENCY, JUDGE_PR_TRANSPARENCY, JUDGE_MS_TRANSPARENCY}
 			table.insert(skin.source, {id = "judge_src", path = "parts/judge/type_ab/*.png"})
 			append_all(skin.image, {
 				{id = "judge-pg", src = "judge_src", x = 0, y = 0, w = judge_w[1], h = 720, divy = 6, cycle = 100},
@@ -2187,12 +2178,12 @@ local function main()
 			end
 		else
 			append_all(skin.source, {
-				{id = "judge_pg_src", 	path = "parts/judge/type_c/1_pg/*.png"},
-				{id = "judge_gr_src", 	path = "parts/judge/type_c/2_gr/*.png"},
-				{id = "judge_gd_src", 	path = "parts/judge/type_c/3_gd/*.png"},
-				{id = "judge_bd_src", 	path = "parts/judge/type_c/4_bd/*.png"},
-				{id = "judge_pr_src", 	path = "parts/judge/type_c/5_pr/*.png"},
-				{id = "judge_ms_src", 	path = "parts/judge/type_c/6_ms/*.png"},
+				{id = "judge_pg_src", 	path = "parts/judge/type_cd/1_pg/*.png"},
+				{id = "judge_gr_src", 	path = "parts/judge/type_cd/2_gr/*.png"},
+				{id = "judge_gd_src", 	path = "parts/judge/type_cd/3_gd/*.png"},
+				{id = "judge_bd_src", 	path = "parts/judge/type_cd/4_bd/*.png"},
+				{id = "judge_pr_src", 	path = "parts/judge/type_cd/5_pr/*.png"},
+				{id = "judge_ms_src", 	path = "parts/judge/type_cd/6_ms/*.png"},
 				{id = "judgenum_src", 	path = "parts/judgenum/*.png"}
 			})
 			append_all(skin.image, {
@@ -2205,14 +2196,20 @@ local function main()
 			})
 			table.insert(skin.value, {id = "judgenum", src = "judgenum_src", x = 0, y = 0, w = 540, h = 100, divx = 10, digit = 6, ref = 105, align = 2})
 			local id = {"judge-pg", "judge-gr", "judge-gd", "judge-bd", "judge-pr", "judge-ms"}
-			local offsets = {JUDGE_PG_DARKNESS, JUDGE_GR_DARKNESS, JUDGE_GD_DARKNESS, JUDGE_BD_DARKNESS, JUDGE_PR_DARKNESS, JUDGE_MS_DARKNESS}
+			local offsets = {JUDGE_PG_TRANSPARENCY, JUDGE_GR_TRANSPARENCY, JUDGE_GD_TRANSPARENCY, JUDGE_BD_TRANSPARENCY, JUDGE_PR_TRANSPARENCY, JUDGE_MS_TRANSPARENCY}
+			local judgenum_y
+			if isJudgeTypeC() then
+				judgenum_y = 140
+			else
+				judgenum_y = -440
+			end
 			for i in ipairs(id) do
 				_images[i] = {id = id[i], filter = 1, loop = -1, timer = 46, offsets = {4, JUDGE_POS, offsets[i]}, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-330), y = GEOMETRY.JUDGE_Y, w = 660, h = 120, a = 255, acc = 2},
 					{time = 2000}
 				}}
-				_numbers[i] = {id = "judgenum", loop = -1, timer = 46, offsets = {4, JUDGE_NUM_POS, JUDGE_NUM_DARKNESS}, dst = {
-					{time = 0, x = 330, y = 140, w = 54, h = 100, a = 255, acc = 2},
+				_numbers[i] = {id = "judgenum", loop = -1, timer = 46, offsets = {4, JUDGE_NUM_POS, JUDGE_NUM_TRANSPARENCY}, dst = {
+					{time = 0, x = 330, y = judgenum_y, w = 54, h = 100, a = 255, acc = 2},
 					{time = 2000}
 				}}
 			end
@@ -2233,15 +2230,20 @@ local function main()
 	skin.bpmgraph = {{id = "bpm-graph"}}
 	skin.bga = {id = "bga"}
 	skin.destination = {
-		{id = "bg", stretch = 1, dst = {{x = 0, y = 0, w = 1920, h = 1080, a = 255}}},
-		{id = -110, offset = BG_DARKNESS, dst = {{x = 0, y = 0, w = 1920, h = 1080, a = 0}}},
+		{id = "bg", offset = BG_TRANSPARENCY, stretch = 1, dst = {
+			{x = 0, y = 0, w = 1920, h = 1080, a = 255}
+		}},
 		-- BGA related
-		{id = -110, dst = {{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H}}},
-		{id = "bga", stretch = 1, dst = {{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H}}},
-		{id = -101, loop = 400, op = {80, 195}, filter = 1, stretch = 1, dst = {
-			{time = 0, x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H, a = 0},
-			{time = 400, a = 255}}},
-		{id = "alt-bga-1", stretch = 1, draw = function()
+		{id = -110, dst = {
+			{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H}
+		}},
+		{id = "bga", offset = BGA_TRANSPARENCY, stretch = 1, dst = {
+			{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H, a = 255}
+		}},
+		{id = -101, timer = 41, offset = BGA_TRANSPARENCY, op = {80, 195}, filter = 1, stretch = 1, dst = {
+			{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H, a = 255}
+		}},
+		{id = "alt-bga-1", offset = BGA_TRANSPARENCY, stretch = 1, draw = function()
 			if main_state.option(40) or main_state.option(170) then
 				return true
 			end
@@ -2249,7 +2251,7 @@ local function main()
 			{time = 0, x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H, a = 0},
 			{time = 400, a = 255}
 		}},
-		{id = "alt-bga-2", stretch = 1, draw = function()
+		{id = "alt-bga-2", offset = BGA_TRANSPARENCY, stretch = 1, draw = function()
 			if main_state.option(40) or main_state.option(170) then
 				return true
 			end
@@ -2257,8 +2259,7 @@ local function main()
 			{time = 0, x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H, angle = 180, a = 0},
 			{time = 400, angle = 360, a = 255},
 			{time = 4400, angle = 0}
-		}},
-		{id = -110, timer = 41, offset = BGA_DARKNESS, dst = {{x = GEOMETRY.INFO_POS + GEOMETRY.BGA_X, y = GEOMETRY.BGA_Y, w = GEOMETRY.BGA_W, h = GEOMETRY.BGA_H, a = 0}}}
+		}}
 	}
 
 -- ========================================================================================================================================================	
@@ -2913,13 +2914,13 @@ local function main()
 		})
 		if isFastSlowThresholdDef() and isFastSlowCenter() then
 			append_all(skin.destination, {
-				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 					return main_state.option(1242) and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}},
-				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 					return main_state.option(1243) and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
@@ -2928,13 +2929,13 @@ local function main()
 			})
 		elseif isFastSlowThresholdDef() and isFastSlowRnL() then
 			append_all(skin.destination, {
-				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 					return main_state.option(1242) and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}},
-				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 					return main_state.option(1243) and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
@@ -2943,13 +2944,13 @@ local function main()
 			})
 		elseif not isFastSlowThresholdDef() and isFastSlowCenter() then
 			append_all(skin.destination, {
-				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 					return predicateFast() and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}},
-				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 					return predicateSlow() and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-74), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
@@ -2958,13 +2959,13 @@ local function main()
 			})
 		elseif not isFastSlowThresholdDef() and isFastSlowRnL() then
 			append_all(skin.destination, {
-				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+				{id = "fast", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 					return predicateFast() and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
 					{time = 500}
 				}},
-				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+				{id = "slow", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 					return predicateSlow() and eliminateZeroNumber(525)
 				end, dst = {
 					{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-148), y = GEOMETRY.TRACER_Y, w = 148, h = 35, a = 255, acc = 2},
@@ -2978,7 +2979,7 @@ local function main()
 			table.insert(skin.value, {id = "fsms-num", src = "fsms_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 4, ref = 525, align = 2})
 			if isFastSlowThresholdDef() then
 				table.insert(skin.destination,	{
-					id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+					id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 						return not main_state.option(241) and eliminateZeroNumber(525)
 					end, dst = {
 						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
@@ -2987,7 +2988,7 @@ local function main()
 				})
 			elseif not isFastSlowThresholdDef() then
 				table.insert(skin.destination,	{
-					id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+					id = "fsms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 						if eliminateZeroNumber(525) then
 							return predicateFast() or predicateSlow()
 						end
@@ -3004,13 +3005,13 @@ local function main()
 			})
 			if isFastSlowThresholdDef() then
 				append_all(skin.destination, {
-					{id = "fast-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+					{id = "fast-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 						return not main_state.option(241) and eliminateZeroNumber(525)
 					end, dst = {
 						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
 						{time = 500}
 					}},
-					{id = "slow-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+					{id = "slow-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 						return not main_state.option(241) and eliminateZeroNumber(525)
 					end, dst = {
 						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER  + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
@@ -3019,13 +3020,13 @@ local function main()
 				})
 			elseif not isFastSlowThresholdDef() then
 				append_all(skin.destination, {
-					{id = "fast-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+					{id = "fast-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 						return predicateFast() and eliminateZeroNumber(525)
 					end, dst = {
 						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
 						{time = 500}
 					}},
-					{id = "slow-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_DARKNESS}, loop = -1, timer = 46, draw = function()
+					{id = "slow-ms-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_POS, FAST_SLOW_TRANSPARENCY}, loop = -1, timer = 46, draw = function()
 						return predicateSlow() and eliminateZeroNumber(525)
 					end, dst = {
 						{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-136), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2},
@@ -3052,12 +3053,12 @@ local function main()
 				end
 			end})
 			append_all(skin.destination, {
-				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
+				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_TRANSPARENCY}, timer = 41, draw = function()
 					return not eliminateZeroNumber(_number)
 				end, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-34), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 				}},
-				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
+				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_TRANSPARENCY}, timer = 41, draw = function()
 					return eliminateZeroNumber(_number)
 				end, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
@@ -3069,12 +3070,12 @@ local function main()
 		table.insert(skin.image, {id = "zero-target", src = "target_num_src", x = 0, y = 70, w = 68, h = 35})
 		table.insert(skin.value, {id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 2})
 		append_all(skin.destination, {
-			{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
+			{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_TRANSPARENCY}, timer = 41, draw = function()
 				return not eliminateZeroNumber(153)
 			end, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-34), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 			}},
-			{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
+			{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_TRANSPARENCY}, timer = 41, draw = function()
 				return eliminateZeroNumber(153)
 			end, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-85), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
@@ -3095,24 +3096,24 @@ local function main()
 				{id = "diff-mybest", src = "mybest_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 152, align = 0}
 			})
 			append_all(skin.destination, {
-				{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
+				{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_TRANSPARENCY}, timer = 41, draw = function()
 					return not eliminateZeroNumber(153)
 				end, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 				}},
-				{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
+				{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_TRANSPARENCY}, timer = 41, draw = function()
 					return eliminateZeroNumber(153)
 				end, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
 				}},
-				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
+				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET2_TRANSPARENCY}, timer = 41, draw = function()
 					if main_state.float_number(113) ~= 0 then
 						return not eliminateZeroNumber(152)
 					end
 				end, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-68), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 				}},
-				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
+				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET2_TRANSPARENCY}, timer = 41, draw = function()
 					if main_state.float_number(113) ~= 0 then
 						return eliminateZeroNumber(152)
 					end
@@ -3126,26 +3127,26 @@ local function main()
 				{id = "diff-target", src = "target_num_src", x = 0, y = 0, w = 408, h = 70, divx = 12, divy = 2, digit = 5, ref = 153, align = 0}
 			})
 			append_all(skin.destination, {
-				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
+				{id = "zero-mybest", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_TRANSPARENCY}, timer = 41, draw = function()
 					if main_state.float_number(113) ~= 0 then
 						return not eliminateZeroNumber(152)
 					end
 				end, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 				}},
-				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_DARKNESS}, timer = 41, draw = function()
+				{id = "diff-mybest", offsets = {3, JUDGELINE_POS, TARGET2_POS, TARGET2_TRANSPARENCY}, timer = 41, draw = function()
 					if main_state.float_number(113) ~= 0 then
 						return eliminateZeroNumber(152)
 					end
 				end, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
 				}},
-				{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
+				{id = "zero-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_TRANSPARENCY}, timer = 41, draw = function()
 					return not eliminateZeroNumber(153)
 				end, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-68), y = GEOMETRY.TRACER_Y, w = 68, h = 35, a = 255, acc = 2}
 				}},
-				{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_DARKNESS}, timer = 41, draw = function()
+				{id = "diff-target", offsets = {3, JUDGELINE_POS, TARGET_POS, TARGET_TRANSPARENCY}, timer = 41, draw = function()
 					return eliminateZeroNumber(153)
 				end, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-170), y = GEOMETRY.TRACER_Y, w = 34, h = 35, a = 255, acc = 2}
@@ -3218,11 +3219,11 @@ local function main()
 
 			table.insert(skin.image, {id = "hiterror-visualizer-bg", src = "play_system_src", x = 240, y = bg_y, w = 406, h = 10})
 			append_all(skin.destination, {
-				{id = "hiterror-visualizer-bg", offsets = {3, JUDGELINE_POS, HITERRORVISUALIZER_POS, HITERRORVISUALIZER_BG_DARKNESS}, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-203), y = GEOMETRY.DETAIL_Y - 65, w = 406, h = 10, a = 255, acc = 2}
+				{id = "hiterror-visualizer-bg", offsets = {3, JUDGELINE_POS, HITERRORVISUALIZER_POS, HITERRORVISUALIZER_BG_TRANSPARENCY}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-203), y = GEOMETRY.DETAIL_Y - 5, w = 406, h = 10, a = 255, acc = 2}
 				}},
-				{id = "hiterror-visualizer", offsets = {3, JUDGELINE_POS, HITERRORVISUALIZER_POS, HITERRORVISUALIZER_DARKNESS}, op = {32}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (203), y = GEOMETRY.DETAIL_Y - 85, w =  406, h = 50, a = 255, acc = 2}
+				{id = "hiterror-visualizer", offsets = {3, JUDGELINE_POS, HITERRORVISUALIZER_POS, HITERRORVISUALIZER_TRANSPARENCY}, op = {32}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER - (203), y = GEOMETRY.DETAIL_Y - 25, w =  406, h = 50, a = 255, acc = 2}
 				}},
 			})
 		end
@@ -3241,17 +3242,23 @@ local function main()
 				end}
 			})
 			append_all(skin.destination, {
-				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-70), y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = 255, acc = 2}
+				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_TRANSPARENCY}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-70), y = GEOMETRY.TRACER_Y - 155, w = 20, h = 21, a = 255, acc = 2}
 				}},
-				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-10), y = GEOMETRY.DETAIL_Y, w = 80, h = 21, a = 255, acc = 2}
+				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_TRANSPARENCY}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-10), y = GEOMETRY.TRACER_Y - 155, w = 80, h = 21, a = 255, acc = 2}
 				}},
-				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 10, y = GEOMETRY.DETAIL_Y, w = 20, h = 21, a = 255, acc = 2}
+				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_TRANSPARENCY}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 10, y = GEOMETRY.TRACER_Y - 155, w = 20, h = 21, a = 255, acc = 2}
 				}}
 			})
 		else
+			local playrate_y
+			if isJudgeTypeC() then
+				playrate_y = - 350
+			else
+				playrate_y = 250
+			end
 			table.insert(skin.image, {id = "play-rate-dot", src = "judgenum_src", x = 309, y = 101, w = 16, h = 50})
 			append_all(skin.value, {
 				{id = "play-rate-num", src = "judgenum_src", x = 0, y = 101, w = 280, h = 50, divx = 10, digit = 3, align = 0, value = function()
@@ -3262,14 +3269,14 @@ local function main()
 				end}
 			})
 			append_all(skin.destination, {
-				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8) + (-84), y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = 255, acc = 2}
+				{id = "play-rate-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_TRANSPARENCY}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8) + (-84), y = GEOMETRY.TRACER_Y + playrate_y, w = 28, h = 50, a = 255, acc = 2}
 				}},
-				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8), y = GEOMETRY.DETAIL_Y, w = 16, h = 50, a = 255, acc = 2}
+				{id = "play-rate-dot", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_TRANSPARENCY}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-8), y = GEOMETRY.TRACER_Y + playrate_y, w = 16, h = 50, a = 255, acc = 2}
 				}},
-				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_DARKNESS}, timer = 41, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 8, y = GEOMETRY.DETAIL_Y, w = 28, h = 50, a = 255, acc = 2}
+				{id = "play-rate-adot-num", offsets = {3, JUDGELINE_POS, SCORE_RATE_POS, SCORE_RATE_TRANSPARENCY}, timer = 41, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + 8, y = GEOMETRY.TRACER_Y + playrate_y, w = 28, h = 50, a = 255, acc = 2}
 				}}
 			})
 		end
@@ -3287,17 +3294,17 @@ local function main()
 		})
 		append_all(skin.destination, {
 			-- fast
-			{id = "fast-opg-frame", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_DARKNESS}, op = {32}, timer = 41, dst = {
+			{id = "fast-opg-frame", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_TRANSPARENCY}, op = {32}, timer = 41, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.DETAIL_Y, w = 40, h = 21, a = 255, acc = 2}
 			}},
-			{id = "fast-opg-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_DARKNESS}, op = {32}, timer = 41, dst = {
+			{id = "fast-opg-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_TRANSPARENCY}, op = {32}, timer = 41, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-GEOMETRY.LANE_DISTANCE), y = GEOMETRY.DETAIL_Y + (-26), w = 20, h = 21, a = 255, acc = 2}
 			}},
 			-- slow
-			{id = "slow-opg-frame", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_DARKNESS}, op = {32}, timer = 41, dst = {
+			{id = "slow-opg-frame", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_TRANSPARENCY}, op = {32}, timer = 41, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-40), y = GEOMETRY.DETAIL_Y, w = 40, h = 21, a = 255, acc = 2}
 			}},
-			{id = "slow-opg-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_DARKNESS}, op = {32}, timer = 41, dst = {
+			{id = "slow-opg-num", offsets = {3, JUDGELINE_POS, FAST_SLOW_COUNT_POS, FAST_SLOW_COUNT_TRANSPARENCY}, op = {32}, timer = 41, dst = {
 				{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + GEOMETRY.LANE_DISTANCE + (-80), y = GEOMETRY.DETAIL_Y + (-26), w = 20, h = 21, a = 255, acc = 2}
 			}}
 		})
@@ -3312,7 +3319,7 @@ local function main()
 					{time = 200},
 					{time = 250, h = 25}
 				}},
-				{id = "gauge", offsets = {GAUGE_POS, GAUGE_DARKNESS}, loop = 250, dst = {
+				{id = "gauge", offsets = {GAUGE_POS, GAUGE_TRANSPARENCY}, loop = 250, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 750 + 26, y = 0, w = -750, h = 0, a = 255, acc = 2},
 					{time = 200},
 					{time = 250, h = 25}
@@ -3325,7 +3332,7 @@ local function main()
 					{time = 200},
 					{time = 250, h = 25}
 				}},
-				{id = "gauge", offsets = {GAUGE_POS, GAUGE_DARKNESS}, loop = 250, dst = {
+				{id = "gauge", offsets = {GAUGE_POS, GAUGE_TRANSPARENCY}, loop = 250, dst = {
 					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 26, y = 0, w = 750, h = 0, a = 255, acc = 2},
 					{time = 200},
 					{time = 250, h = 25}
@@ -3492,7 +3499,7 @@ local function main()
 	-- Normal explosion effect placement
 	for i = 1, #b_init, 1 do
 		table.insert(skin.destination, {
-			id = "bomb-"..b_init[i], offsets = {3, JUDGELINE_POS, BOMB_POS, BOMB_DARKNESS}, loop = -1, filter = 1, timer = bombTimer[i], blend = 2, dst = {
+			id = "bomb-"..b_init[i], offsets = {3, JUDGELINE_POS, BOMB_POS, BOMB_TRANSPARENCY}, loop = -1, filter = 1, timer = bombTimer[i], blend = 2, dst = {
 				{time = 0, 	x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + bombPosX[i] - bombWidth / 2,
 							y = GEOMETRY.LANE_Y - (bombHeight / 2),
 							w = bombWidth,
@@ -3506,7 +3513,7 @@ local function main()
 	-- LN explosion effect placement
 	for i = 1, #b_init, 1 do
 		table.insert(skin.destination,	{
-			id = "lnbomb-"..b_init[i], offsets = {3, JUDGELINE_POS, BOMB_POS, BOMB_DARKNESS}, filter = 1, timer = lnBombTimer[i], blend = 2, dst = {
+			id = "lnbomb-"..b_init[i], offsets = {3, JUDGELINE_POS, BOMB_POS, BOMB_TRANSPARENCY}, filter = 1, timer = lnBombTimer[i], blend = 2, dst = {
 				{time = 0, x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + bombPosX[i] - bombWidth / 2,
 							y = GEOMETRY.LANE_Y - (bombHeight / 2),
 							w = bombWidth,
@@ -3592,22 +3599,22 @@ local function main()
 	append_all(skin.destination, {
 		-- replay
 		{id = "replay", offsets = {3, JUDGELINE_POS}, op = {84}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-129), y = GEOMETRY.LANE_Y + 40, w = 258, h = 35}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-129), y = GEOMETRY.LANE_Y + 45, w = 258, h = 35}
 		}},
 		-- auto play
 		{id = "auto", offsets = {3, JUDGELINE_POS}, op = {33}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-174), y = GEOMETRY.LANE_Y + 40, w = 348, h = 35}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-174), y = GEOMETRY.LANE_Y + 45, w = 348, h = 35}
 		}},
 		-- end of note
-		{id = "eon", offsets = {3, 4, JUDGELINE_POS}, draw = function()
+		{id = "eon", draw = function()
 			if main_state.timer(143) == TIMER_OFF and getRemainNotes() == 0 then
 				return true
 			end
 		end, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.DETAIL_Y + 326, w = 390, h = 35, r = 64, g = 64, b = 64}
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.LANE_Y + 522, w = 390, h = 35, r = 64, g = 64, b = 64}
 		}},
-		{id = "eon", timer = 143, offsets = {3, 4, JUDGELINE_POS}, dst = {
-			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.DETAIL_Y + 326, w = 390, h = 35}
+		{id = "eon", timer = 143, dst = {
+			{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-195), y = GEOMETRY.LANE_Y + 522, w = 390, h = 35}
 		}}
 	})
 
@@ -3617,11 +3624,11 @@ local function main()
 			{time = 0, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = 0, w = GEOMETRY.LANE_W, h = 1080, a = 128},
 			{time = 2100, y = 100, a = 0}
 		}},
-		{id = "fullcombo", offsets = {3, 4, JUDGELINE_POS}, loop = -1, timer = 48, dst = {
-			{time = 550, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-180), y = GEOMETRY.DETAIL_Y + 270, w = 360, h = 36, a = 0},
+		{id = "fullcombo",  loop = -1, timer = 48, dst = {
+			{time = 550, x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.LANE_CENTER + (-180), y = GEOMETRY.LANE_Y + 607, w = 360, h = 36, a = 0},
 			{time = 650, a = 255},
 			{time = 1600},
-			{time = 1800, y = GEOMETRY.DETAIL_Y + 240, a = 0}
+			{time = 1800, y = GEOMETRY.LANE_Y + 577, a = 0}
 		}},
 	})
 

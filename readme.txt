@@ -1,8 +1,8 @@
 -------------------------------------
 "Rm-skin"
-ver 0.2.5.a
+ver 0.2.5
 Full HD (1920x1080) Playskin-5,7,9 key for beatoraja
-(Last updated:07/06/2024)
+(Last updated:07/13/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -407,3 +407,13 @@ Update History
 	- Changed from timing visualizer to hit error visualizer and delete "TIMIMIMGVISUALIZER_COLOR.lua" accordingly
 	- Minor modifications to other image parts
 	- Update readme.txt
+
+07132024
+
+	- Added "Type D" option in judge type
+	- Added some judge files 
+	- Update readme.txt
+
+	- Update ver 0.2.5
+
+---- ver 0.2.5
