@@ -89,8 +89,12 @@ local FAST_SLOW_COUNT_ON = 					optionCount()
 local FAST_SLOW_THRESHOLD_DEFAULT = 		optionCount()
 local FAST_SLOW_THRESHOLD_CUSTOM = 			optionCount()
 
+local GAUGE_DISPLAY_DEFAULT =				optionCount()
+local GAUGE_DISPLAY_STATIC =				optionCount()
+
 local BOMB_UNDER_GAUGE_OFF = 				optionCount()
 local BOMB_UNDER_GAUGE_ON = 				optionCount()
+
 local BOMB_PROPERTY_TEMPLATE =				optionCount()
 local BOMB_PROPERTY_CUSTOM =				optionCount()
 
@@ -121,7 +125,7 @@ local FAST_SLOW_COUNT_POS = 				offsetCount()
 local JUDGELINE_POS = 						offsetCount()
 local JUDGELINE_HEIGHT = 					offsetCount()
 local BOMB_POS = 							offsetCount()
-local GAUGE_POS = 							offsetCount()
+local GAUGE_POS_SIZE = 						offsetCount()
 
 local BG_TRANSPARENCY = 					offsetCount()
 local BGA_TRANSPARENCY = 					offsetCount()
@@ -159,7 +163,7 @@ local original_offset = {
 	{name = "Judgeline Position", 				id = JUDGELINE_POS, 			y = true},
 	{name = "Judgeline Height", 				id = JUDGELINE_HEIGHT, 												h = true},
 	{name = "Bomb Position", 					id = BOMB_POS,	 				y = true},
-	{name = "Gauge Position", 					id = GAUGE_POS, 				x = true, 	y = true, 	w = true, 	h = true},
+	{name = "Gauge Position and Size", 			id = GAUGE_POS_SIZE, 			x = true, 	y = true, 	w = true, 	h = true},
 
 	{name = "Background Transparency (-255 to 0)", 					id = BG_TRANSPARENCY,							a = true},
 	{name = "BGA Transparency (-255 to 0)", 						id = BGA_TRANSPARENCY,							a = true},
@@ -477,9 +481,13 @@ local original_property = {
 		{name = "Off", 									op = FAST_SLOW_COUNT_OFF},
 		{name = "On", 									op = FAST_SLOW_COUNT_ON}
 	}},
-	{name = "Fast/Slow Threshold",							item = {
+	{name = "Fast/Slow Threshold",						item = {
 		{name = "Default", 								op = FAST_SLOW_THRESHOLD_DEFAULT},
 		{name = "Custom", 								op = FAST_SLOW_THRESHOLD_CUSTOM}
+	}},
+	{name = "Gauge Display",							item = {
+		{name = "Default", 								op = GAUGE_DISPLAY_DEFAULT},
+		{name = "Static", 								op = GAUGE_DISPLAY_STATIC}
 	}},
 	{name = "Bomb Under the Gauge", 					item = {
 		{name = "Off", 									op = BOMB_UNDER_GAUGE_OFF},
@@ -888,7 +896,7 @@ local header = {
 		4:9keys
 	--]]
 	type = 		nil, -- set in ".luaskin"
-	name = 		"Rm-skin ver 0.2.5",
+	name = 		"Rm-skin ver 0.2.6.a",
 	w = 		1920,
 	h = 		1080,
 	loadend = 	3000,
@@ -967,6 +975,8 @@ local function isFastSlowMSRnL() 		return skin_config.option["Fast/Slow Type"] =
 
 local function isFastSlowCounterOn() 	return skin_config.option["Fast/Slow Counter"] == 			FAST_SLOW_COUNT_ON end
 local function isFastSlowThresholdDef() return skin_config.option["Fast/Slow Threshold"] == 		FAST_SLOW_THRESHOLD_DEFAULT end
+
+local function isGaugeDisplayDef() 		return skin_config.option["Gauge Display"] == 				GAUGE_DISPLAY_DEFAULT end
 
 local function isBombUnderTheGaugeOn() 	return skin_config.option["Bomb Under the Gauge"] == 		BOMB_UNDER_GAUGE_ON end
 local function isBombPropertyCustom()	return skin_config.option["Bomb Property"] == 				BOMB_PROPERTY_CUSTOM end
@@ -1158,6 +1168,7 @@ local function main()
 		LANE_H = 		1080,
 		-- LANE_CENTER = 	nil,
 		LANE_DISTANCE = 288,
+		LANE_LINE = 26,
 		-- JUDGE_Y = 		nil,
 		-- TRACER_Y =		nil,
 		-- DETAIL_Y =		nil,
@@ -2087,28 +2098,37 @@ local function main()
 				h = GEOMETRY.LANE_H}
 		end
 	end
-	skin.gauge = {
-		id = "gauge",
-		nodes = {
-		-- Order: overclear(light),underclear(light),overclear(dark),underclear(dark),tip color(light),tip color(dark)
 
-		-- assist easy gauge
-		"gauge-r1","gauge-p1","gauge-r2","gauge-p2","gauge-r3","gauge-p3",
-		-- easy gauge
-		"gauge-r1","gauge-g1","gauge-r2","gauge-g2","gauge-r3","gauge-g3",
-		-- normal gauge
-		"gauge-r1","gauge-b1","gauge-r2","gauge-b2","gauge-r3","gauge-b3",
-		-- hard gauge(Are the 2, 4, and 6 dummies?)
-		"gauge-r1","gauge-p1","gauge-r2","gauge-p2","gauge-r3","gauge-p3",
-		-- ex hard gauge(Are the 2, 4, and 6 dummies?)
-		"gauge-y1","gauge-p1","gauge-y2","gauge-p2","gauge-y3","gauge-p3",
-		-- hazard gauge(Are the 2, 4, and 6 dummies?)
-		"gauge-w1","gauge-w1","gauge-w2","gauge-w2","gauge-w3","gauge-w3"
-		},
-		parts = 10000,
-		range = 0,
-		cycle = 0
-	}
+	do
+		local _parts ,_range, _cycle
+		if isGaugeDisplayDef() then
+			_parts ,_range, _cycle = 50, 3, 33
+		else
+			_parts ,_range, _cycle = 10000, 0, 0
+		end
+		skin.gauge = {
+			id = "gauge",
+			nodes = {
+			-- Order: overclear(light),underclear(light),overclear(dark),underclear(dark),tip color(light),tip color(dark)
+
+			-- assist easy gauge
+			"gauge-r1","gauge-p1","gauge-r2","gauge-p2","gauge-r3","gauge-p3",
+			-- easy gauge
+			"gauge-r1","gauge-g1","gauge-r2","gauge-g2","gauge-r3","gauge-g3",
+			-- normal gauge
+			"gauge-r1","gauge-b1","gauge-r2","gauge-b2","gauge-r3","gauge-b3",
+			-- hard gauge(Are the 2, 4, and 6 dummies?)
+			"gauge-r1","gauge-p1","gauge-r2","gauge-p2","gauge-r3","gauge-p3",
+			-- ex hard gauge(Are the 2, 4, and 6 dummies?)
+			"gauge-y1","gauge-p1","gauge-y2","gauge-p2","gauge-y3","gauge-p3",
+			-- hazard gauge(Are the 2, 4, and 6 dummies?)
+			"gauge-w1","gauge-w1","gauge-w2","gauge-w2","gauge-w3","gauge-w3"
+			},
+			parts = _parts,
+			range = _range,
+			cycle = _cycle
+		}
+	end
 
 	local _images = {}
 	local _numbers = {}
@@ -2136,7 +2156,12 @@ local function main()
 					{id = "judgenum-ms", src = "judge_src", x = 357, y = 721, w = 840, h = 240, divx = 10, divy = 2, digit = 6, ref = 75, cycle = 60}
 				})
 				local id = {"-pg", "-gr", "-gd", "-bd", "-pr", "-ms"}
-				local judge_between = 24
+				local judge_between
+				if isLaneAlignCenter() then
+					judge_between = 42
+				else
+					judge_between = 24
+				end
 				for i in ipairs(id) do
 					if i <= 3 then
 						-- コンボ数を伴う判定文字(PGからGD)のx座標を求める式は、「(判定文字の幅 + 判定文字とコンボ数との間隔) / 2」
@@ -2433,10 +2458,16 @@ local function main()
 		{id = "score-rate-num", 		timer = 41, dst = {{x = GEOMETRY.SCORE_POS + 28, 					y = 992, w = 20, h = 24}}},
 		{id = "score-rate-adot-num", 	timer = 41, dst = {{x = GEOMETRY.SCORE_POS + 102, 					y = 992, w = 20, h = 24}}},
 		{id = "score-score", 			timer = 41, dst = {{x = GEOMETRY.SCORE_POS + 244, 					y = 961, w = 20, h = 21}}},
-		{id = "score-diff-zero", 		timer = 41, draw = function() return not eliminateZeroNumber(152) end,
+		-- mybest
+		{id = "score-diff-zero", 		timer = 41, draw = function() return main_state.float_number(113) == 0 and not eliminateZeroNumber(152) end,
+													dst = {{x = GEOMETRY.SCORE_POS + 304, 					y = 935, w = 40, h = 21, r = 128, g = 128, b = 128}}},
+		{id = "score-diff-best", 		timer = 41, draw = function() return main_state.float_number(113) == 0 and eliminateZeroNumber(152) end,
+													dst = {{x = GEOMETRY.SCORE_POS + 224, 					y = 935, w = 20, h = 21, r = 128, g = 128, b = 128}}},
+		{id = "score-diff-zero", 		timer = 41, draw = function() return main_state.float_number(113) ~= 0 and not eliminateZeroNumber(152) end,
 													dst = {{x = GEOMETRY.SCORE_POS + 304, 					y = 935, w = 40, h = 21}}},
-		{id = "score-diff-best", 		timer = 41, draw = function() return eliminateZeroNumber(152) end,
+		{id = "score-diff-best", 		timer = 41, draw = function() return main_state.float_number(113) ~= 0 and eliminateZeroNumber(152) end,
 													dst = {{x = GEOMETRY.SCORE_POS + 224, 					y = 935, w = 20, h = 21}}},
+		-- target
 		{id = "score-diff-zero", 		timer = 41, draw = function() return not eliminateZeroNumber(153) end,
 													dst = {{x = GEOMETRY.SCORE_POS + 304, 					y = 909, w = 40, h = 21}}},
 		{id = "score-diff-target", 		timer = 41, draw = function() return eliminateZeroNumber(153) end,
@@ -2538,8 +2569,40 @@ local function main()
 
 	-- judge line
 	table.insert(skin.destination, {id = "judgeline", offsets = {3, JUDGELINE_POS, JUDGELINE_HEIGHT}, dst = {
-		{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = 24}
+		{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS, y = GEOMETRY.LANE_Y, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_LINE}
 	}})
+
+	-- gauge function
+	local function processGauge()
+		if isScratchRight() then
+			append_all(skin.destination, {
+				{id = -110, offset = GAUGE_POS_SIZE, loop = 250, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 752 + 25, y = 0, w = -752, h = 0, a = 255, acc = 2},
+					{time = 200},
+					{time = 250, h = GEOMETRY.LANE_LINE}
+				}},
+				{id = "gauge", offsets = {GAUGE_POS_SIZE, GAUGE_TRANSPARENCY}, loop = 250, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 752 + 25, y = 0, w = -752, h = 0, a = 255, acc = 2},
+					{time = 200},
+					{time = 250, h = GEOMETRY.LANE_LINE}
+				}}
+			})
+		elseif isScratchLeft() then
+			append_all(skin.destination, {
+				{id = -110, offset = GAUGE_POS_SIZE, loop = 250, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 25, y = 0, w = 752, h = 0, a = 255, acc = 2},
+					{time = 200},
+					{time = 250, h = GEOMETRY.LANE_LINE}
+				}},
+				{id = "gauge", offsets = {GAUGE_POS_SIZE, GAUGE_TRANSPARENCY}, loop = 250, dst = {
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 25, y = 0, w = 752, h = 0, a = 255, acc = 2},
+					{time = 200},
+					{time = 250, h = GEOMETRY.LANE_LINE}
+				}}
+			})
+		end
+	end
+	if not isBombUnderTheGaugeOn() then processGauge() end
 
 	-- lane frame
 	if isLaneFrameOn() then
@@ -3175,9 +3238,9 @@ local function main()
 				-- PRColor = "00000000",
 				emaColor = "FF0000FF",
 				-- alpha = 0.1,
-				windowLength = 50,
+				windowLength = 80,
 				-- transparent = 0,
-				-- drawDecay = 1
+				drawDecay = 0
 			}}
 
 			local bg_y
@@ -3310,48 +3373,17 @@ local function main()
 		})
 	end
 
-	-- gauge function
-	local function processGauge()
-		if isScratchRight() then
-			append_all(skin.destination, {
-				{id = -110, offset = GAUGE_POS, loop = 250, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 750 + 26, y = 0, w = -750, h = 0, a = 255, acc = 2},
-					{time = 200},
-					{time = 250, h = 25}
-				}},
-				{id = "gauge", offsets = {GAUGE_POS, GAUGE_TRANSPARENCY}, loop = 250, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 750 + 26, y = 0, w = -750, h = 0, a = 255, acc = 2},
-					{time = 200},
-					{time = 250, h = 25}
-				}}
-			})
-		elseif isScratchLeft() then
-			append_all(skin.destination, {
-				{id = -110, offset = GAUGE_POS, loop = 250, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 26, y = 0, w = 750, h = 0, a = 255, acc = 2},
-					{time = 200},
-					{time = 250, h = 25}
-				}},
-				{id = "gauge", offsets = {GAUGE_POS, GAUGE_TRANSPARENCY}, loop = 250, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 26, y = 0, w = 750, h = 0, a = 255, acc = 2},
-					{time = 200},
-					{time = 250, h = 25}
-				}}
-			})
-		end
-	end
-	if not isBombUnderTheGaugeOn() then processGauge() end
-
 	-- bomb
 	local b_init = 			{}
 	local bombTimer = 		{}
 	local lnBombTimer = 	{}
 	local bombPosX = 		{}
 	local bombProperty = 	getBombProperty()
-	local bombCycle = 		math.floor(bombProperty.BOMB_CYCLE_MULUTIPLIER 		* 251)
-	local lnbombCycle = 	math.floor(bombProperty.LNBOMB_CYCLE_MULUTIPLIER 	* 160)
-	local bombWidth = 		math.floor(bombProperty.BOMB_WIDTH_MULUTIPLIER 		* 600)
-	local bombHeight = 		math.floor(bombProperty.BOMB_HEIGHT_MULUTIPLIER 	* 450)
+	local bombCycle = 		math.floor(bombProperty.BOMB_CYCLE_MULUTIPLIER * 251)
+	local lnbombCycle = 	math.floor(bombProperty.LNBOMB_CYCLE_MULUTIPLIER * 160)
+	local bombWidth = 		math.floor(bombProperty.BOMB_WIDTH_MULUTIPLIER * 600)
+	local bombHeight = 		bombProperty.BOMB_HEIGHT_MULUTIPLIER * 450
+	local bomb_y =			GEOMETRY.LANE_Y - math.floor((bombHeight - GEOMETRY.LANE_LINE) / 2)
 
 	if is7key() then
 		b_init = 		{"1", "2", "3", "4", "5", "6", "7", "s"}
@@ -3501,7 +3533,7 @@ local function main()
 		table.insert(skin.destination, {
 			id = "bomb-"..b_init[i], offsets = {3, JUDGELINE_POS, BOMB_POS, BOMB_TRANSPARENCY}, loop = -1, filter = 1, timer = bombTimer[i], blend = 2, dst = {
 				{time = 0, 	x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + bombPosX[i] - bombWidth / 2,
-							y = GEOMETRY.LANE_Y - (bombHeight / 2),
+							y = bomb_y,
 							w = bombWidth,
 							h = bombHeight,
 							a = 255, r = bombProperty.BOMB_RED, g = bombProperty.BOMB_GREEN, b = bombProperty.BOMB_BLUE, acc = 2},
@@ -3515,7 +3547,7 @@ local function main()
 		table.insert(skin.destination,	{
 			id = "lnbomb-"..b_init[i], offsets = {3, JUDGELINE_POS, BOMB_POS, BOMB_TRANSPARENCY}, filter = 1, timer = lnBombTimer[i], blend = 2, dst = {
 				{time = 0, x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + bombPosX[i] - bombWidth / 2,
-							y = GEOMETRY.LANE_Y - (bombHeight / 2),
+							y = bomb_y,
 							w = bombWidth,
 							h = bombHeight,
 							a = 255, r = bombProperty.LNBOMB_RED, g = bombProperty.LNBOMB_GREEN, b = bombProperty.LNBOMB_BLUE, acc = 2},

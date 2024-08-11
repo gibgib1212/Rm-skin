@@ -1,8 +1,8 @@
 -------------------------------------
 "Rm-skin"
-ver 0.2.5
+ver 0.2.6.a
 Full HD (1920x1080) Playskin-5,7,9 key for beatoraja
-(Last updated:07/13/2024)
+(Last updated:08/11/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -417,3 +417,7 @@ Update History
 	- Update ver 0.2.5
 
 ---- ver 0.2.5
+
+	- Adjust some image files
+	- Added "Gauge Display" option
+	- Update readme.txt
