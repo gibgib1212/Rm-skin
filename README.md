@@ -47,8 +47,10 @@
 
 [Sample Movie](https://www.youtube.com/watch?v=6HqDn00ie58 "Sample Movie3")
 
-"Adjusted Lanecover" is a function that automatically adjusts lane cover in response to changes in BPM.
-Turning on "Hiddencover" and setting HS-Fix to "MAINBPM" or "MAXBPM" will enable this function.
+~~"Adjusted Lanecover" is a function that automatically adjusts lane cover in response to changes in BPM.~~
+~~Turning on "Hiddencover" and setting HS-Fix to "MAINBPM" or "MAXBPM" will enable this function.~~
+
+Implemented in the game itself.
 
 ## Sample Picture
 

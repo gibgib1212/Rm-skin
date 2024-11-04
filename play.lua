@@ -40,8 +40,6 @@ local NOTES_5KEY_ALIGN_RL = 				optionCount()
 local NOTES_5KEY_ALIGN_CENTER = 			optionCount()
 local NOTES_5KEY_ALIGN_ENLARGE = 			optionCount()
 
-local NOTES_HEIGHT_60_PIX = 				optionCount()
-local NOTES_HEIGHT_55_PIX = 				optionCount()
 local NOTES_HEIGHT_50_PIX = 				optionCount()
 local NOTES_HEIGHT_45_PIX = 				optionCount()
 local NOTES_HEIGHT_40_PIX = 				optionCount()
@@ -103,6 +101,9 @@ local HI_SPEED_ABSOLUTE =					optionCount()
 
 local MASCOT_STOP = 						optionCount()
 local MASCOT_ACTIVE = 						optionCount()
+
+local ADJUSTED_COVER_OFF = 					optionCount()
+local ADJUSTED_COVER_ON = 					optionCount()
 
 -- ========================================================================================================================================================	
 
@@ -419,8 +420,6 @@ local original_property = {
 		{name = "Enlarge", 								op = NOTES_5KEY_ALIGN_ENLARGE}
 	}},
 	{name = "Notes Height", 							item = {
-		{name = "60 pixel", 							op = NOTES_HEIGHT_60_PIX},
-		{name = "55 pixel", 							op = NOTES_HEIGHT_55_PIX},
 		{name = "50 pixel", 							op = NOTES_HEIGHT_50_PIX},
 		{name = "45 pixel", 							op = NOTES_HEIGHT_45_PIX},
 		{name = "40 pixel", 							op = NOTES_HEIGHT_40_PIX},
@@ -463,7 +462,7 @@ local original_property = {
 		{name = "Off", 									op = TARGET2_OFF},
 		{name = "On", 									op = TARGET2_ON}
 	}},
-	{name = "Hiterror Visualizer", 					item = {
+	{name = "Hiterror Visualizer", 						item = {
 		{name = "Off", 									op = HITERRORVISUALIZER_OFF},
 		{name = "On", 									op = HITERRORVISUALIZER_ON}
 	}},
@@ -504,6 +503,10 @@ local original_property = {
 	{name = "Mascot Display", 							item = {
 		{name = "Stop", 								op = MASCOT_STOP},
 		{name = "Active", 								op = MASCOT_ACTIVE}
+	}},
+	{name = "Adjusted Cover", 							item = {
+		{name = "Off", 									op = ADJUSTED_COVER_OFF},
+		{name = "On", 									op = ADJUSTED_COVER_ON}
 	}}
 }
 
@@ -896,7 +899,7 @@ local header = {
 		4:9keys
 	--]]
 	type = 		nil, -- set in ".luaskin"
-	name = 		"Rm-skin ver 0.2.6.a",
+	name = 		"Rm-skin ver 0.2.6.b",
 	w = 		1920,
 	h = 		1080,
 	loadend = 	3000,
@@ -936,8 +939,6 @@ local function is5keyAlignRL() 			return skin_config.option["Notes 5Key Align"] 
 local function is5keyAlignCenter() 		return skin_config.option["Notes 5Key Align"] ==			NOTES_5KEY_ALIGN_CENTER end
 local function is5keyAlignEnlarge() 	return skin_config.option["Notes 5Key Align"] ==			NOTES_5KEY_ALIGN_ENLARGE end
 
-local function isNotesHeight_60() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_60_PIX end
-local function isNotesHeight_55() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_55_PIX end
 local function isNotesHeight_50() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_50_PIX end
 local function isNotesHeight_45() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_45_PIX end
 local function isNotesHeight_40() 		return skin_config.option["Notes Height"] == 				NOTES_HEIGHT_40_PIX end
@@ -984,6 +985,8 @@ local function isBombPropertyCustom()	return skin_config.option["Bomb Property"]
 local function isHiSpeedRelative()		return skin_config.option["Hi-Speed Type"] == 				HI_SPEED_RELATIVE end
 
 local function isMascotStop() 			return skin_config.option["Mascot Display"] == 				MASCOT_STOP end
+
+local function isAdjustedCoverOn() 		return skin_config.option["Adjusted Cover"] == 				ADJUSTED_COVER_ON end
 
 -- ========================================================================================================================================================	
 
@@ -1095,11 +1098,7 @@ local function main()
 	end
 
 	do
-		if isNotesHeight_60() then
-			notesInfo.height = 60
-		elseif isNotesHeight_55() then
-			notesInfo.height = 55
-		elseif isNotesHeight_50() then
+		if isNotesHeight_50() then
 			notesInfo.height = 50
 		elseif isNotesHeight_45() then
 			notesInfo.height = 45
@@ -1168,7 +1167,7 @@ local function main()
 		LANE_H = 		1080,
 		-- LANE_CENTER = 	nil,
 		LANE_DISTANCE = 288,
-		LANE_LINE = 26,
+		LANE_LINE = 24,
 		-- JUDGE_Y = 		nil,
 		-- TRACER_Y =		nil,
 		-- DETAIL_Y =		nil,
@@ -1401,14 +1400,14 @@ local function main()
 	local function getHiSpeed()
 		local event = main_state.event_index(55)
 		if main_state.option(177) then
-			if event == 2 and main_state.option(273) then
+			if event == 2 and main_state.option(400) then
 				local maxbpm = main_state.number(90)
 				if maxbpm == 0 then
 					return main_state.number(312)
 				else
 					return main_state.number(312) * main_state.number(160) / maxbpm
 				end
-			elseif event == 3 and main_state.option(273) then
+			elseif event == 3 and main_state.option(400) then
 				local mainbpm = main_state.number(92)
 				if mainbpm == 0 then
 					return main_state.number(312)
@@ -1767,9 +1766,10 @@ local function main()
 		-- # play values
 		{id = "adjusted-rate-num", 		src = "play_system_src", x = 0, y = 1025, w = 150, h = 18, divx = 10, digit = 1, align = 0, value = function()
 			local event = main_state.event_index(55)
-			if event == 2 and main_state.option(273) then
+			local constant = main_state.option(400)
+			if event == 2 and constant then
 				return main_state.number(160) / main_state.number(90)
-			elseif event == 3 and main_state.option(273) then
+			elseif event == 3 and constant then
 				local magnifcation = main_state.number(160) / main_state.number(92)
 				if magnifcation > 1 then
 					return 1
@@ -1780,9 +1780,10 @@ local function main()
 		end},
 		{id = "adjusted-rate-adot-num", src = "play_system_src", x = 0, y = 1044, w = 165, h = 18, divx = 11, digit = 2, align = 0, value = function()
 			local event = main_state.event_index(55)
-			if event == 2 and main_state.option(273) then
+			local constant = main_state.option(400)
+			if event == 2 and constant then
 				return math.floor(main_state.number(160) / main_state.number(90) * 100 + 0.5)
-			elseif event == 3 and main_state.option(273) then
+			elseif event == 3 and constant then
 				local magnifcation = math.floor(main_state.number(160) / main_state.number(92) * 100 + 0.5)
 				if magnifcation > 100 then
 					return 100
@@ -1895,7 +1896,7 @@ local function main()
 		{id = "lanecover", 		src = "lanecover_src", x = 0, y = 0, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, angle = 2, range = GEOMETRY.LANE_H, type = 4},
 		{id = "adjustedcover", 	src = "lanecover_src", x = 0, y = 0, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, angle = 2, range = GEOMETRY.LANE_H, value = function()
 			-- BUTTON_HSFIX = 55;	0:OFF, 1:START, 2:MAX, 3:MAIN, 4:MIN
-			if main_state.option(273) then
+			if main_state.option(400) and isAdjustedCoverOn() then
 				-- NUMBER_LANECOVER1 = 	14;
 				-- NUMBER_LIFT1 = 		314;
 				local visible_area = 1 - (main_state.number(14) + main_state.number(314)) / 1000
@@ -3564,17 +3565,17 @@ local function main()
 		append_all(skin.destination, {
 			-- adjusted cover persent
 			{id = "adjusted-rate-num", 				draw = function()
-				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
+				if main_state.option(400) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 53, y = 1002, w = 15, h = 18}}},
 			{id = "adjusted-rate-adot-num", 		draw = function()
-				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
+				if main_state.option(400) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 77, y = 1002, w = 15, h = 18}}},
 			{id = "adjusted-rate-dot", 				draw = function()
-				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
+				if main_state.option(400) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + GEOMETRY.LANE_W + 38, y = 1002, w = 69, h = 18}}},
@@ -3597,17 +3598,17 @@ local function main()
 		append_all(skin.destination, {
 			-- adjusted cover persent
 			{id = "adjusted-rate-num", 				draw = function()
-				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
+				if main_state.option(400) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-89), y = 1002, w = 15, h = 18}}},
 			{id = "adjusted-rate-adot-num", 		draw = function()
-				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
+				if main_state.option(400) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-65), y = 1002, w = 15, h = 18}}},
 			{id = "adjusted-rate-dot", 				draw = function()
-				if main_state.option(273) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
+				if main_state.option(400) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-104), y = 1002, w = 69, h = 18}}},

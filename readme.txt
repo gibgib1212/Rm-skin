@@ -1,8 +1,8 @@
 -------------------------------------
 "Rm-skin"
-ver 0.2.6.a
+ver 0.2.6
 Full HD (1920x1080) Playskin-5,7,9 key for beatoraja
-(Last updated:08/11/2024)
+(Last updated:11/04/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -16,7 +16,7 @@ caused by the use of this skin.
 -------------------------------------
 
 In creating this skin, I have used code descriptions and images from other authors.
-I would like to express our gratitude to the following.
+I would like to express my gratitude to the following.
 
 Dear 4228(@4228_r), "Rogan".
 	"play.lua" for this skin was produced based on "play7main.lua" for "Rogan".
@@ -421,3 +421,12 @@ Update History
 	- Adjust some image files
 	- Added "Gauge Display" option
 	- Update readme.txt
+
+11042024
+
+	- Support for beatoraja version 0.8.8
+	- Update readme.txt
+
+	- Update ver 0.2.6
+
+---- ver 0.2.6
