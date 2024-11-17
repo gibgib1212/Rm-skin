@@ -3,7 +3,7 @@
 
     - The value is not nil.
     - The type of the value is "number".
-    - The value is an integer(except CUSTOM_BOMB_PROPERTY:1-4).
+    - The value is an integer(except CUSTOM_KEYBEAM_XX and CUSTOM_BOMB_PROPERTY:1-4).
     - The value must be within the specified range.
     - OTHER_WIDTH * n + SCRATCH_WIDTH = 802 (only for XX_WIDTH).
 
@@ -15,7 +15,7 @@
 
     - 値が nil でないこと
     - 値の型が "number" であること
-    - 値が整数であること（CUSTOM_BOMB_PROPERTY:1～4以外）
+    - 値が整数であること（CUSTOM_KEYBEAM_XX 及び CUSTOM_BOMB_PROPERTY:1～4以外）
     - 値が指定の範囲内であること
     - OTHER_WIDTH * n + SCRATCH_WIDTH = 802 であること ※～WIDTHのみ
 
@@ -62,6 +62,17 @@ local CUSTOM_NOTES_HEIGHT_9KEY = {
     CUSTOM_NOTES_HEIGHT = 64
 }
 
+-- Value from 0 to 100
+-- Default : CUSTOM_KEYBEAM_HEIGHT = 12.5
+local CUSTOM_KEYBEAM_HEIGHT = {
+    CUSTOM_KEYBEAM_HEIGHT = 12.5    -- Decimals are acceptable
+}
+
+-- Value from 0 to 100
+-- Default : CUSTOM_KEYBEAM_ALPHA = 12.5
+local CUSTOM_KEYBEAM_ALPHA = {
+    CUSTOM_KEYBEAM_ALPHA = 12.5     -- Decimals are acceptable
+}
 -- Value from -255 to 255
 -- Default : FS_THRESHOLD_DELTA = -3
 local CUSTOM_FAST_SLOW_THRESHOLD = {
@@ -109,6 +120,10 @@ local function load(varName)
         return CUSTOM_NOTES_HEIGHT_5KEY
     elseif varName ==   "CUSTOM_NOTES_HEIGHT_9KEY" then
         return CUSTOM_NOTES_HEIGHT_9KEY
+    elseif varName ==   "CUSTOM_KEYBEAM_HEIGHT" then
+        return CUSTOM_KEYBEAM_HEIGHT
+    elseif varName ==   "CUSTOM_KEYBEAM_ALPHA" then
+        return CUSTOM_KEYBEAM_ALPHA
     elseif varName ==   "CUSTOM_FAST_SLOW_THRESHOLD" then
         return CUSTOM_FAST_SLOW_THRESHOLD
     elseif varName ==   "CUSTOM_BOMB_PROPERTY" then

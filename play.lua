@@ -57,11 +57,13 @@ local KEYBEAM_HEIGHT_MULUTIPLIER_x100 =		optionCount()
 local KEYBEAM_HEIGHT_MULUTIPLIER_x75 =		optionCount()
 local KEYBEAM_HEIGHT_MULUTIPLIER_x50 =		optionCount()
 local KEYBEAM_HEIGHT_MULUTIPLIER_x25 =		optionCount()
+local KEYBEAM_HEIGHT_MULUTIPLIER_CUSTOM =	optionCount()
 
 local KEYBEAM_ALPHA_MULUTIPLIER_x100 =		optionCount()
 local KEYBEAM_ALPHA_MULUTIPLIER_x75 =		optionCount()
 local KEYBEAM_ALPHA_MULUTIPLIER_x50 =		optionCount()
 local KEYBEAM_ALPHA_MULUTIPLIER_x25 =		optionCount()
+local KEYBEAM_ALPHA_MULUTIPLIER_CUSTOM =	optionCount()
 
 local TARGET_OFF = 							optionCount()
 local TARGET_MYBEST = 						optionCount()
@@ -101,9 +103,6 @@ local HI_SPEED_ABSOLUTE =					optionCount()
 
 local MASCOT_STOP = 						optionCount()
 local MASCOT_ACTIVE = 						optionCount()
-
-local ADJUSTED_COVER_OFF = 					optionCount()
-local ADJUSTED_COVER_ON = 					optionCount()
 
 -- ========================================================================================================================================================	
 
@@ -445,13 +444,15 @@ local original_property = {
 		{name = "100%", 								op = KEYBEAM_HEIGHT_MULUTIPLIER_x100},
 		{name = "75%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x75},
 		{name = "50%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x50},
-		{name = "25%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x25}
+		{name = "25%", 									op = KEYBEAM_HEIGHT_MULUTIPLIER_x25},
+		{name = "Custom", 								op = KEYBEAM_HEIGHT_MULUTIPLIER_CUSTOM}
 	}},
 	{name = "Keybeam Alpha Multiplier", 				item = {
 		{name = "100%", 								op = KEYBEAM_ALPHA_MULUTIPLIER_x100},
 		{name = "75%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x75},
 		{name = "50%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x50},
-		{name = "25%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x25}
+		{name = "25%", 									op = KEYBEAM_ALPHA_MULUTIPLIER_x25},
+		{name = "Custom", 								op = KEYBEAM_ALPHA_MULUTIPLIER_CUSTOM}
 	}},
 	{name = "Target", 									item = {
 		{name = "Off", 									op = TARGET_OFF},
@@ -503,10 +504,6 @@ local original_property = {
 	{name = "Mascot Display", 							item = {
 		{name = "Stop", 								op = MASCOT_STOP},
 		{name = "Active", 								op = MASCOT_ACTIVE}
-	}},
-	{name = "Adjusted Cover", 							item = {
-		{name = "Off", 									op = ADJUSTED_COVER_OFF},
-		{name = "On", 									op = ADJUSTED_COVER_ON}
 	}}
 }
 
@@ -899,7 +896,7 @@ local header = {
 		4:9keys
 	--]]
 	type = 		nil, -- set in ".luaskin"
-	name = 		"Rm-skin ver 0.2.6.b",
+	name = 		"Rm-skin ver 0.2.7.a",
 	w = 		1920,
 	h = 		1080,
 	loadend = 	3000,
@@ -957,10 +954,12 @@ local function isKeybeamFast() 			return skin_config.option["Keybeam Display"] =
 local function isKeybeamHeight_x100() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x100 end
 local function isKeybeamHeight_x75() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x75 end
 local function isKeybeamHeight_x50() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x50 end
+local function isKeybeamHeight_x25() 	return skin_config.option["Keybeam Height Multiplier"] == 	KEYBEAM_HEIGHT_MULUTIPLIER_x50 end
 
 local function isKeybeamAlpha_x100() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x100 end
 local function isKeybeamAlpha_x75() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x75 end
 local function isKeybeamAlpha_x50() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x50 end
+local function isKeybeamAlpha_x25() 	return skin_config.option["Keybeam Alpha Multiplier"] == 	KEYBEAM_ALPHA_MULUTIPLIER_x25 end
 
 local function isTargetBest() 			return skin_config.option["Target"] == 						TARGET_MYBEST end
 local function isTargetRank() 			return skin_config.option["Target"] == 						TARGET_TARGET end
@@ -986,8 +985,6 @@ local function isHiSpeedRelative()		return skin_config.option["Hi-Speed Type"] =
 
 local function isMascotStop() 			return skin_config.option["Mascot Display"] == 				MASCOT_STOP end
 
-local function isAdjustedCoverOn() 		return skin_config.option["Adjusted Cover"] == 				ADJUSTED_COVER_ON end
-
 -- ========================================================================================================================================================	
 
 -- # main function
@@ -1007,26 +1004,32 @@ local function main()
 
 	local notesInfo = {}
 
-	local function checkValue(obj, val)
+	local function checkValue(obj, validation)
 		if obj and obj ~= false then
 			if type(obj) == "number" then
-				if val == 0 then
+				if validation == "1_to_255" then
 					if math.floor(obj) == obj then
 						return obj >= 1 and obj <= 255
 					else
 						return false
 					end
-				elseif val == 1 then
+				elseif validation == "0_to_100" then
+					if math.floor(obj) == obj then
+						return obj >= 0 and obj <= 100
+					else
+						return false
+					end
+				elseif validation == "-255_to_255" then
 					if math.floor(obj) == obj then
 						return obj >= -255 and obj <= 255
 					else
 						return false
 					end
-				else
+				elseif validation == "0.1_to_10.0" then
 					return obj >= 0.1 and obj <= 10.0
 				end
 			elseif type(obj) == "string" then
-				return checkValue(tonumber(obj), val)
+				return checkValue(tonumber(obj), validation)
 			end
 		else
 			return false
@@ -1052,7 +1055,7 @@ local function main()
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_NOTES_WIDTH_7KEY")
 			end)
-			if status and result and type(result) == "table" and checkValue(result.OTHER_WIDTH, 0) and checkValue(result.SCRATCH_WIDTH, 0) then
+			if status and result and type(result) == "table" and checkValue(result.OTHER_WIDTH, "1_to_255") and checkValue(result.SCRATCH_WIDTH, "1_to_255") then
 				if result.OTHER_WIDTH * 7 + result.SCRATCH_WIDTH == 802 then
 					notesInfo.Ot_width = result.OTHER_WIDTH
 					notesInfo.Sc_width = result.SCRATCH_WIDTH
@@ -1067,7 +1070,7 @@ local function main()
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_NOTES_WIDTH_5KEY")
 			end)
-			if status and result and type(result) == "table" and checkValue(result.OTHER_WIDTH, 0) and checkValue(result.SCRATCH_WIDTH, 0) then
+			if status and result and type(result) == "table" and checkValue(result.OTHER_WIDTH, "1_to_255") and checkValue(result.SCRATCH_WIDTH, "1_to_255") then
 				if result.OTHER_WIDTH * 5 + result.SCRATCH_WIDTH == 802 then
 					notesInfo.Ot_width = result.OTHER_WIDTH
 					notesInfo.Sc_width = result.SCRATCH_WIDTH
@@ -1082,7 +1085,7 @@ local function main()
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_NOTES_WIDTH_9KEY")
 			end)
-			if status and result and type(result) == "table" and checkValue(result.OTHER_WIDTH, 0) and checkValue(result.SCRATCH_WIDTH, 0) then
+			if status and result and type(result) == "table" and checkValue(result.OTHER_WIDTH, "1_to_255") and checkValue(result.SCRATCH_WIDTH, "1_to_255") then
 				if result.OTHER_WIDTH * 7 + result.SCRATCH_WIDTH * 2 == 802 then
 					notesInfo.Ot_width = result.OTHER_WIDTH
 					notesInfo.Sc_width = result.SCRATCH_WIDTH
@@ -1114,7 +1117,7 @@ local function main()
 				return dofile(lua_path).load("CUSTOM_NOTES_HEIGHT_7KEY")
 			end)
 			if status and result and type(result) == "table" then
-				if checkValue(result.CUSTOM_NOTES_HEIGHT, 0) then
+				if checkValue(result.CUSTOM_NOTES_HEIGHT, "1_to_255") then
 					notesInfo.height = result.CUSTOM_NOTES_HEIGHT
 				else
 					notesInfo.height = 64
@@ -1128,7 +1131,7 @@ local function main()
 				return dofile(lua_path).load("CUSTOM_NOTES_HEIGHT_5KEY")
 			end)
 			if status and result and type(result) == "table" then
-				if checkValue(result.CUSTOM_NOTES_HEIGHT, 0) then
+				if checkValue(result.CUSTOM_NOTES_HEIGHT, "1_to_255") then
 					notesInfo.height = result.CUSTOM_NOTES_HEIGHT
 				else
 					notesInfo.height = 64
@@ -1142,7 +1145,7 @@ local function main()
 				return dofile(lua_path).load("CUSTOM_NOTES_HEIGHT_9KEY")
 			end)
 			if status and result and type(result) == "table" then
-				if checkValue(result.CUSTOM_NOTES_HEIGHT, 0) then
+				if checkValue(result.CUSTOM_NOTES_HEIGHT, "1_to_255") then
 					notesInfo.height = result.CUSTOM_NOTES_HEIGHT
 				else
 					notesInfo.height = 64
@@ -1264,8 +1267,22 @@ local function main()
 			return 0.75
 		elseif isKeybeamHeight_x50() then
 			return 0.5
-		else
+		elseif isKeybeamHeight_x25() then
 			return 0.25
+		else
+			local lua_path = skin_config.get_path("customize/CUSTOMIZE.lua")
+			local status, result = pcall(function()
+				return dofile(lua_path).load("CUSTOM_KEYBEAM_HEIGHT")
+			end)
+			if status and result and type(result) == "table" then
+				if checkValue(result.CUSTOM_KEYBEAM_HEIGHT, "0_to_100") then
+					return result.CUSTOM_KEYBEAM_HEIGHT / 100
+				else
+					return 0.125
+				end
+			else
+				return 0.125
+			end
 		end
 	end
 
@@ -1276,8 +1293,22 @@ local function main()
 			return math.floor(0.75 * alpha)
 		elseif isKeybeamAlpha_x50() then
 			return math.floor(0.5 * alpha)
-		else
+		elseif isKeybeamAlpha_x25() then
 			return math.floor(0.25 * alpha)
+		else
+			local lua_path = skin_config.get_path("customize/CUSTOMIZE.lua")
+			local status, result = pcall(function()
+				return dofile(lua_path).load("CUSTOM_KEYBEAM_ALPHA")
+			end)
+			if status and result and type(result) == "table" then
+				if checkValue(result.CUSTOM_KEYBEAM_ALPHA, "0_to_100") then
+					return math.floor(result.CUSTOM_KEYBEAM_ALPHA / 100 * alpha)
+				else
+					return math.floor(0.125 * alpha)
+				end
+			else
+				return math.floor(0.125 * alpha)
+			end
 		end
 	end
 
@@ -1302,7 +1333,7 @@ local function main()
 			if status and result and type(result) == "table" and (
 				(function()
 					for i = 1, 4 do
-						if not checkValue(result[i], 10) then
+						if not checkValue(result[i], "0.1_to_10.0") then
 							return false
 						end
 					end
@@ -1310,7 +1341,7 @@ local function main()
 				end) and
 				(function()
 					for i = 5, 10 do
-						if not checkValue(result[i], 0) then
+						if not checkValue(result[i], "1_to_255") then
 							return false
 						end
 					end
@@ -1352,7 +1383,7 @@ local function main()
 			local status, result = pcall(function()
 				return dofile(lua_path).load("CUSTOM_FAST_SLOW_THRESHOLD")
 			end)
-			if status and result and type(result) == "table" and checkValue(result.FS_THRESHOLD_DELTA, 1) and math.abs(result.FS_THRESHOLD_DELTA) <= FS_THRESHOLD then
+			if status and result and type(result) == "table" and checkValue(result.FS_THRESHOLD_DELTA, "-255_to_255") and math.abs(result.FS_THRESHOLD_DELTA) <= FS_THRESHOLD then
 				FS_THRESHOLD = FS_THRESHOLD + result.FS_THRESHOLD_DELTA
 			else
 				FS_THRESHOLD = FS_THRESHOLD - 3
@@ -1399,15 +1430,16 @@ local function main()
 
 	local function getHiSpeed()
 		local event = main_state.event_index(55)
-		if main_state.option(177) then
-			if event == 2 and main_state.option(400) then
+		local adjusted_cover = main_state.option(273)
+		if main_state.option(177) and adjusted_cover then
+			if event == 2 then
 				local maxbpm = main_state.number(90)
 				if maxbpm == 0 then
 					return main_state.number(312)
 				else
 					return main_state.number(312) * main_state.number(160) / maxbpm
 				end
-			elseif event == 3 and main_state.option(400) then
+			elseif event == 3 then
 				local mainbpm = main_state.number(92)
 				if mainbpm == 0 then
 					return main_state.number(312)
@@ -1767,9 +1799,10 @@ local function main()
 		{id = "adjusted-rate-num", 		src = "play_system_src", x = 0, y = 1025, w = 150, h = 18, divx = 10, digit = 1, align = 0, value = function()
 			local event = main_state.event_index(55)
 			local constant = main_state.option(400)
-			if event == 2 and constant then
+			local adjusted_cover = main_state.option(273)
+			if event == 2 and (constant or adjusted_cover) then
 				return main_state.number(160) / main_state.number(90)
-			elseif event == 3 and constant then
+			elseif event == 3 and (constant or adjusted_cover) then
 				local magnifcation = main_state.number(160) / main_state.number(92)
 				if magnifcation > 1 then
 					return 1
@@ -1781,9 +1814,10 @@ local function main()
 		{id = "adjusted-rate-adot-num", src = "play_system_src", x = 0, y = 1044, w = 165, h = 18, divx = 11, digit = 2, align = 0, value = function()
 			local event = main_state.event_index(55)
 			local constant = main_state.option(400)
-			if event == 2 and constant then
+			local adjusted_cover = main_state.option(273)
+			if event == 2 and (constant or adjusted_cover) then
 				return math.floor(main_state.number(160) / main_state.number(90) * 100 + 0.5)
-			elseif event == 3 and constant then
+			elseif event == 3 and (constant or adjusted_cover) then
 				local magnifcation = math.floor(main_state.number(160) / main_state.number(92) * 100 + 0.5)
 				if magnifcation > 100 then
 					return 100
@@ -1896,17 +1930,17 @@ local function main()
 		{id = "lanecover", 		src = "lanecover_src", x = 0, y = 0, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, angle = 2, range = GEOMETRY.LANE_H, type = 4},
 		{id = "adjustedcover", 	src = "lanecover_src", x = 0, y = 0, w = GEOMETRY.LANE_W, h = GEOMETRY.LANE_H, angle = 2, range = GEOMETRY.LANE_H, value = function()
 			-- BUTTON_HSFIX = 55;	0:OFF, 1:START, 2:MAX, 3:MAIN, 4:MIN
-			if main_state.option(400) and isAdjustedCoverOn() then
+			if main_state.option(273) then
 				-- NUMBER_LANECOVER1 = 	14;
 				-- NUMBER_LIFT1 = 		314;
 				local visible_area = 1 - (main_state.number(14) + main_state.number(314)) / 1000
 				local event = main_state.event_index(55)
 				if event == 2 then
-					-- NUMBER_MAXBPM = 		90;
-					-- NUMBER_NOWBPM = 		160;
+					-- NUMBER_MAXBPM = 	90;
+					-- NUMBER_NOWBPM = 	160;
 					return visible_area - visible_area * main_state.number(160) / main_state.number(90)
 				elseif event == 3 then
-					-- NUMBER_MAINBPM = 	92;
+					-- NUMBER_MAINBPM = 92;
 					return visible_area - visible_area * main_state.number(160) / main_state.number(92)
 				end
 			end
@@ -3598,17 +3632,17 @@ local function main()
 		append_all(skin.destination, {
 			-- adjusted cover persent
 			{id = "adjusted-rate-num", 				draw = function()
-				if main_state.option(400) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
+				if (main_state.option(400) or main_state.option(273)) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-89), y = 1002, w = 15, h = 18}}},
 			{id = "adjusted-rate-adot-num", 		draw = function()
-				if main_state.option(400) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
+				if (main_state.option(400) or main_state.option(273)) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-65), y = 1002, w = 15, h = 18}}},
 			{id = "adjusted-rate-dot", 				draw = function()
-				if main_state.option(400) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
+				if (main_state.option(400) or main_state.option(273)) and main_state.option(177) and (main_state.event_index(55) == 2 or main_state.event_index(55) == 3) then
 					return true
 				end
 			end, 									dst = {{x = GEOMETRY.PLAY_POS + GEOMETRY.LANE_X + (-104), y = 1002, w = 69, h = 18}}},
