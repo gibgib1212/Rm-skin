@@ -1,8 +1,8 @@
 -------------------------------------
 "Rm-skin"
-ver 0.2.7.a
+ver 0.2.7.b
 Full HD (1920x1080) Playskin-5,7,9 key for beatoraja
-(Last updated:11/17/2024)
+(Last updated:12/01/2024)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -435,3 +435,10 @@ Update History
 
 	- Adjusted “adjusted cover” specifications
 	- Update readme.txt
+
+12012024
+
+	- Added "Custom" option in Keybeams
+	- Fix Keybeam issues
+	- Update readme.txt
+	
