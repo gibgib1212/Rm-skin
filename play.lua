@@ -896,7 +896,7 @@ local header = {
 		4:9keys
 	--]]
 	type = 		nil, -- set in ".luaskin"
-	name = 		"Rm-skin ver 0.2.7.b",
+	name = 		"Rm-skin ver 0.2.7.c",
 	w = 		1920,
 	h = 		1080,
 	loadend = 	3000,
@@ -1174,6 +1174,7 @@ local function main()
 		-- JUDGE_Y = 		nil,
 		-- TRACER_Y =		nil,
 		-- DETAIL_Y =		nil,
+		GAUGE_W = 		752,
 		BGA_X = 		68,
 		BGA_Y = 		457,
 		BGA_W = 		480,
@@ -2139,7 +2140,7 @@ local function main()
 		if isGaugeDisplayDef() then
 			_parts ,_range, _cycle = 50, 3, 33
 		else
-			_parts ,_range, _cycle = 10000, 0, 0
+			_parts ,_range, _cycle = GEOMETRY.GAUGE_W + main_state.offset(GAUGE_POS_SIZE).w, 0, 0
 		end
 		skin.gauge = {
 			id = "gauge",
@@ -2612,12 +2613,12 @@ local function main()
 		if isScratchRight() then
 			append_all(skin.destination, {
 				{id = -110, offset = GAUGE_POS_SIZE, loop = 250, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 752 + 25, y = 0, w = -752, h = 0, a = 255, acc = 2},
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.GAUGE_W + 25, y = 0, w = -(GEOMETRY.GAUGE_W), h = 0, a = 255, acc = 2},
 					{time = 200},
 					{time = 250, h = GEOMETRY.LANE_LINE}
 				}},
 				{id = "gauge", offsets = {GAUGE_POS_SIZE, GAUGE_TRANSPARENCY}, loop = 250, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 752 + 25, y = 0, w = -752, h = 0, a = 255, acc = 2},
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + GEOMETRY.GAUGE_W + 25, y = 0, w = -(GEOMETRY.GAUGE_W), h = 0, a = 255, acc = 2},
 					{time = 200},
 					{time = 250, h = GEOMETRY.LANE_LINE}
 				}}
@@ -2625,12 +2626,12 @@ local function main()
 		elseif isScratchLeft() then
 			append_all(skin.destination, {
 				{id = -110, offset = GAUGE_POS_SIZE, loop = 250, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 25, y = 0, w = 752, h = 0, a = 255, acc = 2},
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 25, y = 0, w = GEOMETRY.GAUGE_W, h = 0, a = 255, acc = 2},
 					{time = 200},
 					{time = 250, h = GEOMETRY.LANE_LINE}
 				}},
 				{id = "gauge", offsets = {GAUGE_POS_SIZE, GAUGE_TRANSPARENCY}, loop = 250, dst = {
-					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 25, y = 0, w = 752, h = 0, a = 255, acc = 2},
+					{x = GEOMETRY.LANE_X + GEOMETRY.PLAY_POS + 25, y = 0, w = GEOMETRY.GAUGE_W, h = 0, a = 255, acc = 2},
 					{time = 200},
 					{time = 250, h = GEOMETRY.LANE_LINE}
 				}}
@@ -3560,8 +3561,6 @@ local function main()
 	-- bomb preload
 	table.insert(skin.destination, {id = "bomb", dst = {{x = 0, y = 0, w = 1, h = 1}}})
 	table.insert(skin.destination, {id = "lnbomb", dst = {{x = 0, y = 0, w = 1, h = 1}}})
-
--- local test = main_state.offset("Bomb Alpha").a
 
 	-- Normal explosion effect placement
 	for i = 1, #b_init, 1 do

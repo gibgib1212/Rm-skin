@@ -1,8 +1,8 @@
 -------------------------------------
 "Rm-skin"
-ver 0.2.7.b
+ver 0.2.7.c
 Full HD (1920x1080) Playskin-5,7,9 key for beatoraja
-(Last updated:12/01/2024)
+(Last updated:02/02/2025)
 -------------------------------------
 
 Thank you very much for downloading "Rm-skin".
@@ -441,4 +441,8 @@ Update History
 	- Added "Custom" option in Keybeams
 	- Fix Keybeam issues
 	- Update readme.txt
-	
+
+02022025
+
+	- Fixed a bug that caused a significant drop in FPS when “Static” was selected for the “Gauge Display” option.
+
